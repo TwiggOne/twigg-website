@@ -1,2 +1,2 @@
 # twigg-website
-Twigg Website - landing pafe
+Twigg Website - landing page
