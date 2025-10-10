@@ -1,129 +1,170 @@
-import React from 'react';
-import Image from 'next/image';
-import { motion } from 'motion/react';
+import React from "react";
+import Image from "next/image";
+import { motion } from "motion/react";
+import {
+  Tag1,
+  Tag2,
+  Tag3,
+  Tag4,
+  OuterCircle,
+  MidCircle,
+  InnerCircle,
+  Core,
+} from "@/utils/SvgUtils";
 
 export default function HeroSection() {
   return (
-    <section className="relative z-10 w-full py-24 overflow-hidden">
+    <section className="relative z-10 w-full py-30">
       {/* Background Glows */}
-      <div className="absolute top-[25%] right-[20%] w-64 sm:w-80 md:w-[420px] lg:w-[480px] h-64 sm:h-80 md:h-[420px] lg:h-[480px] bg-amber-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-[20%] left-[18%] w-64 sm:w-80 md:w-[420px] lg:w-[480px] h-64 sm:h-80 md:h-[420px] lg:h-[480px] bg-emerald-500/10 rounded-full blur-3xl" />
+      {/* <div className="absolute top-[25%] right-[20%] w-64 sm:w-80 md:w-[420px] lg:w-[480px] h-64 sm:h-80 md:h-[420px] lg:h-[480px] bg-amber-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-[20%] left-[18%] w-64 sm:w-80 md:w-[420px] lg:w-[480px] h-64 sm:h-80 md:h-[420px] lg:h-[480px] bg-emerald-500/10 rounded-full blur-3xl" /> */}
 
       {/* Flex Container */}
-      <div className="relative max-w-[1440px] mx-auto flex flex-col lg:flex-row justify-start items-start px-6 lg:px-0">
+      <div className="relative max-w-[1440px] mx-auto flex flex-col lg:flex-row justify-between  items-center px-6 lg:px-4">
         {/* LEFT SECTION */}
-        <div className="order-2 lg:order-1 pl-8 flex flex-col justify-start w-full lg:w-[536px] mt-[97px] lg:mr-[62px]">
+        <div className="flex flex-col justify-center w-[50%]  text-center lg:text-left mb-12 lg:mb-0">
           <h2
-            className="font-semibold text-[48px] sm:text-[60px] lg:text-[72px] leading-[110%] mb-6"
-            style={{ fontFamily: 'Bricolage Grotesque' }}
+            className="text-[48px] sm:text-[60px] lg:text-[72px] leading-[1.1] "
+            style={{ fontFamily: "Bricolage Grotesque", fontWeight: 600 }}
           >
             <span className="text-[#BC9313] block">Money,</span>
             <span className="text-[#FDF9F0] block">Made simple!</span>
           </h2>
 
           <p
-            className="font-normal text-[18px] sm:text-[20px] lg:text-[24px] leading-[130%] mb-[48px] font-switzer max-w-[415px]"
-            style={{ color: '#FDF9F0CC' }}
+            className="font-normal text-[18px] sm:text-[20px] lg:text-[24px] mt-[32px] leading-[130%] mb-[61px] font-switzer max-w-[415px]"
+            style={{ color: "#FDF9F0CC" }}
           >
-            Track, save, and invest smarter — get clear on your money in seconds.
+            Track, save, and invest smarter get clear on your money in seconds.
           </p>
 
-          <button className="bg-[#BC9313] text-white w-[239px] h-[54px] px-[24px] py-[14px] rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-xl">
+          <button className="bg-[#BC9313] text-white w-[239px] h-[54px] mb-[32px] rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-xl">
             Join Wishlist
           </button>
         </div>
 
-       {/* RIGHT SECTION */}
-<motion.div
-  className="
-    order-1 lg:order-2 
-    flex-shrink-0 flex items-center justify-center 
-    mb-12 lg:mb-0 relative 
-    w-full max-w-[612px] 
-    aspect-square
-    lg:mt-[50px]
-  "
-  initial={{ opacity: 0, y: 50 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 1, ease: 'easeOut' }}
->
-  {/* Circles */}
-  <div className="absolute inset-0 rounded-full border-[10px] sm:border-[16px] md:border-[20px] lg:border-[24px] border-[#FDF9F0]/3" />
-  <div className="absolute inset-[14%] rounded-full border-[10px] sm:border-[16px] md:border-[20px] lg:border-[24px] border-[#FDF9F0]/3" />
-  <div className="absolute inset-[29%] rounded-full border-[10px] sm:border-[16px] md:border-[20px] lg:border-[24px] border-[#FDF9F0]/3" />
-  <div className="absolute inset-[21%] rounded-full bg-[#BC9313]/40 blur-[40px]" />
+        {/* RIGHT SECTION */}
+        <motion.div
+          className="
+            flex-shrink-0 flex items-center justify-center 
+          w-[50%] aspect-square relative
+          "
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          {/* SVG Circles */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute w-full h-full opacity-90">
+              <OuterCircle />
+            </div>
+            <div className="absolute w-[72%] h-[72%] opacity-90">
+              <MidCircle />
+            </div>
+            <div className="absolute w-[46%] h-[46%] opacity-90">
+              <InnerCircle />
+            </div>
+          </div>
 
-  {/* Center Icon */}
-  <motion.div
-    className="relative z-30 flex items-center justify-center"
-    style={{
-      transform: 'rotate(-5.67deg)',
-      filter: `
-        drop-shadow(0px 9px 20px rgba(0,0,0,0.64))
-        drop-shadow(0px 37px 37px rgba(0,0,0,0.55))
-        drop-shadow(0px 84px 50px rgba(0,0,0,0.32))
-        drop-shadow(0px 149px 59px rgba(0,0,0,0.10))
-      `,
-    }}
-  >
-    <Image
-      src="/main.svg"
-      alt="Hero Image"
-      width={260}
-      height={260}
-      className="object-contain w-[55%] sm:w-[60%] md:w-[65%]"
-    />
-  </motion.div>
+          {/* Center Icon */}
+          {/* Center Icon */}
+          <div className="relative w-[300px] h-[270px] flex items-center justify-center">
+            {/* Core Background */}
+            <motion.div
+              className="absolute inset-[-25] rounded-full"
+              style={{
+                width: 355,
+                height: 355,
+                background: "rgba(188, 147, 19, 1)", // gold, animation will control opacity
+                filter: "blur(80px)",
+                zIndex: 0,
+                pointerEvents: "none",
+                backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#f)" /></svg>')`,
+                backgroundBlendMode: "overlay",
+                backgroundSize: "100% 100%",
+              }}
+              animate={{
+                opacity: [1, 0.5, 1], // pulse effect
+              }}
+              transition={{
+                duration: 10, // 10s loop
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
 
-  {/* Floating Tags */}
-  <FloatingTag
-    text="Invest Fearlessly"
-    className="absolute top-[6%] left-[4%] text-[10px] sm:text-xs md:text-sm"
-    delay={0.2}
-  />
-  <FloatingTag
-    text="Spend Mindfully"
-    className="absolute top-[8%] right-[4%] text-[10px] sm:text-xs md:text-sm"
-    delay={0.4}
-  />
-  <FloatingTag
-    text="Optimized Spending"
-    className="absolute bottom-[10%] left-[6%] text-[10px] sm:text-xs md:text-sm"
-    delay={0.6}
-  />
-  <FloatingTag
-    text="Ask Your Finances"
-    className="absolute bottom-[12%] right-[6%] text-[10px] sm:text-xs md:text-sm"
-    delay={0.8}
-  />
-</motion.div>
+            {/* Image */}
+            <Image
+              src="/main.png"
+              alt="Hero Image"
+              fill
+              className="object-contain relative z-20"
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                WebkitMaskRepeat: "no-repeat",
+                WebkitMaskSize: "100% 100%",
+                maskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                maskRepeat: "no-repeat",
+                maskSize: "100% 100%",
+              }}
+            />
+          </div>
 
+          {/* TAGS */}
+          <TagWithText
+            Tag={Tag1}
+            text="Invest Fearlessly"
+            className="absolute top-[23%] left-[-6%]"
+          />
+          <TagWithText
+            Tag={Tag2}
+            text="Spend Mindfully"
+            className="absolute top-[16%] right-[-3%]"
+          />
+          <TagWithText
+            Tag={Tag3}
+            text="Optimized Spending"
+            className="absolute bottom-[17%] left-[2%]"
+          />
+          <TagWithText
+            Tag={Tag4}
+            text="Ask Your Finances"
+            className="absolute bottom-[30%] right-[-10%]"
+          />
+        </motion.div>
       </div>
     </section>
   );
 }
 
-const FloatingTag = ({
+/* TagWithText Component */
+const TagWithText = ({
+  Tag,
   text,
   className,
-  delay,
 }: {
+  Tag: React.ElementType;
   text: string;
   className?: string;
-  delay?: number;
 }) => (
-  <motion.div
-    className={`px-4 py-2 sm:px-6 sm:py-3 rounded-lg border text-white text-xs sm:text-sm font-medium backdrop-blur-md ${className}`}
-    style={{
-      background:
-        'linear-gradient(93.03deg, rgba(253, 249, 240, 0.35) 0%, rgba(253, 249, 240, 0.07) 97.22%)',
-      borderImage:
-        'linear-gradient(273.81deg, rgba(255,255,255,0.4) -4.34%, rgba(255,255,255,0.1) 100%) 1',
-    }}
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay, duration: 0.6, ease: 'easeOut' }}
-  >
-    {text}
-  </motion.div>
+  <div className={`flex items-center justify-center ${className}`}>
+    <div className="relative w-[218px] h-[66px] flex items-center justify-center">
+      <Tag />
+      <span
+        className="absolute text-[#FDF9F0] text-[19px]"
+        style={{
+          transform: "translate(0%, -20%)",
+          fontFamily: "Switzer",
+          fontWeight: 600,
+          fontStyle: "normal",
+          lineHeight: "100%",
+          letterSpacing: "0%",
+        }}
+      >
+        {text}
+      </span>
+    </div>
+  </div>
 );
