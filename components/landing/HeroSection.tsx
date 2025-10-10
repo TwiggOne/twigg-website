@@ -10,11 +10,12 @@ import {
   MidCircle,
   InnerCircle,
   Core,
+  UpArrow,
 } from "@/utils/SvgUtils";
 
 export default function HeroSection() {
   return (
-    <section className="relative z-10 w-full py-30">
+    <section className="relative z-10 w-full pt-30">
       {/* Background Glows */}
       {/* <div className="absolute top-[25%] right-[20%] w-64 sm:w-80 md:w-[420px] lg:w-[480px] h-64 sm:h-80 md:h-[420px] lg:h-[480px] bg-amber-500/10 rounded-full blur-3xl" />
       <div className="absolute bottom-[20%] left-[18%] w-64 sm:w-80 md:w-[420px] lg:w-[480px] h-64 sm:h-80 md:h-[420px] lg:h-[480px] bg-emerald-500/10 rounded-full blur-3xl" /> */}
@@ -133,6 +134,17 @@ export default function HeroSection() {
             text="Ask Your Finances"
             className="absolute bottom-[30%] right-[-10%]"
           />
+          <div className="absolute bottom-[15%] right-[-5%]">
+            <div
+              className="flex items-center justify-center w-[48px] h-[48px] border rounded-full border-[#BC931399]"
+              style={{
+                boxShadow: "0px 4px 30px 0px #BC931359",
+                backdropFilter: "blur(40px)",
+              }}
+            >
+              <UpArrow />
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -12,7 +12,7 @@ export const CommingSoon = () => {
         transition={{ duration: 1, delay: 0.2 }}
       >
         <motion.h2
-          className="text-[12rem] sm:text-[16rem] md:text-[20rem] lg:text-[24rem] xl:text-[28rem] font-bold text-[#2D5F4C]/20 select-none whitespace-nowrap font-bricolage absolute"
+          className="text-[15rem] font-bold text-[#FDF9F033] select-none whitespace-nowrap font-bricolage absolute"
           animate={{ x: ["0%", "-50%"] }}
           transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
         >
@@ -36,14 +36,14 @@ export const CommingSoon = () => {
             alt="Twigg App Mockup"
             width={790}
             height={590}
-            className="w-[542px] h-[592px] object-contain "
+            className="object-contain "
             priority
           />
           
         </motion.div>
     
         <motion.div
-          className="w-full max-w-[784px] text-center -mt-12 md:-mt-16 lg:-mt-20"
+          className="text-center flex flex-col gap-[16px] -mt-10"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
@@ -53,7 +53,7 @@ export const CommingSoon = () => {
           }}
         >
           <motion.h3
-            className="font-bricolage text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-semibold text-[#FDF9F0] mb-4"
+            className="font-bricolage text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-semibold text-[#FDF9F0] "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.6 }}
@@ -62,13 +62,12 @@ export const CommingSoon = () => {
           </motion.h3>
     
           <motion.p
-            className="font-switzer max-w-[650px] text-[#FDF9F0]/80 text-base sm:text-lg md:text-[18px] font-normal leading-relaxed"
+            className="font-switzer max-w-[650px] text-[#FDF9F0]/80 text-base sm:text-lg md:text-[24px] font-normal leading-[120%]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
-            Your co-pilot for all your financial needs. smarter saving, tracking, and investing made simple.
-          </motion.p>
+Your co-pilot for all your financial needs. smarter saving, tracking, and investing made simple.          </motion.p>
         </motion.div>
       </div>
     </section>

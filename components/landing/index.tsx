@@ -18,7 +18,10 @@ export function Landing() {
         <Container className="pt-10"> 
           <HeroSection/>
         </Container>
+        <div className="py-20">
         <CommingSoon />
+
+        </div>
         <Container >
           <ProblemSection />
           <Features/>
