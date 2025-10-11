@@ -16,11 +16,7 @@ import {
 export default function HeroSection() {
   return (
     <section className="relative z-10 w-full pt-30">
-      {/* Background Glows */}
-      {/* <div className="absolute top-[25%] right-[20%] w-64 sm:w-80 md:w-[420px] lg:w-[480px] h-64 sm:h-80 md:h-[420px] lg:h-[480px] bg-amber-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-[20%] left-[18%] w-64 sm:w-80 md:w-[420px] lg:w-[480px] h-64 sm:h-80 md:h-[420px] lg:h-[480px] bg-emerald-500/10 rounded-full blur-3xl" /> */}
-
-      {/* Flex Container */}
+      
       <div className="relative max-w-[1440px] mx-auto flex flex-col lg:flex-row justify-between  items-center px-6 lg:px-4">
         {/* LEFT SECTION */}
         <div className="flex flex-col justify-center w-[50%]  text-center lg:text-left mb-12 lg:mb-0">
@@ -142,7 +138,10 @@ export default function HeroSection() {
                 backdropFilter: "blur(40px)",
               }}
             >
+              <div className="w-[18px] h-[19px] text-[#BC9313]">
               <UpArrow />
+
+              </div>
             </div>
           </div>
         </motion.div>

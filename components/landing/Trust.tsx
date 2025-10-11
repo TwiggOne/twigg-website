@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import { CircleSheild } from "@/utils/SvgUtils";
 
-// Define interfaces for props
 interface TrustPointProps {
   title: string;
   description: string;
@@ -14,18 +14,27 @@ interface TrustPointItem {
   icon: string;
 }
 
-// TrustPoint component for reusability
-const TrustPoint: React.FC<TrustPointProps> = ({ title, description, icon }) => {
+const TrustPoint: React.FC<TrustPointProps> = ({
+  title,
+  description,
+  icon,
+}) => {
   return (
-    <div className="flex items-start gap-7">
-      <div className="relative w-[55.58px] h-[56.61px] flex-shrink-0">
-        <Image src={icon} alt={title} fill className="object-contain" />
+    <div className="flex items-center gap-[28px]">
+      <div className="relative flex-shrink-0">
+        <Image
+          src={icon}
+          alt={title}
+          width={56}
+          height={57}
+          className="object-contain"
+        />
       </div>
       <div className="flex flex-col justify-center gap-1">
-        <h3 className="text-2xl font-bricolage font-semibold text-[#152D23] leading-[29px]">
+        <h3 className="text-[24px] font-bricolage font-semibold text-[#152D23] leading-[120%]">
           {title}
         </h3>
-        <p className="text-lg font-switzer text-[#152D23]/70 leading-6 w-[322px]">
+        <p className="text-[18px] font-switzer text-[#152D23]/70 leading-6 ">
           {description}
         </p>
       </div>
@@ -33,74 +42,117 @@ const TrustPoint: React.FC<TrustPointProps> = ({ title, description, icon }) => 
   );
 };
 
-// Main Trust component
 export const Trust = () => {
   const trustPoints: TrustPointItem[] = [
     {
       title: "Your Interests First, Always!",
-      description: "Advice that works only for your goals. No distractions. No side deals.",
+      description:
+        "Advice that works only for your goals. No distractions. No side deals.",
       icon: "/Trust/1.svg",
     },
     {
       title: "Bank-Grade Security, SEBI & RBI Compliant.",
-      description: "Your data and money are protected with the highest regulatory standards.",
+      description:
+        "Your data and money are protected with the highest regulatory standards.",
       icon: "/Trust/2.svg",
     },
     {
       title: "100% Transparent, No Hidden Incentives.",
-      description: "What you see is what you get. Clear guidance, zero conflicts.",
+      description:
+        "What you see is what you get. Clear guidance, zero conflicts.",
       icon: "/Trust/3.svg",
     },
   ];
 
   return (
     <section
-      className="relative w-full max-w-[1240px] h-[733px] mx-auto bg-[#FDF9F0] rounded-[60px] overflow-hidden"
+      className="relative w-full   bg-[#FDF9F0] rounded-[60px] flex flex-col justify-center pl-[91px] py-[93px]"
       style={{
         boxShadow:
           "0px 183px 73px rgba(0, 0, 0, 0.01), 0px 103px 62px rgba(0, 0, 0, 0.05), 0px 46px 46px rgba(0, 0, 0, 0.09), 0px 11px 25px rgba(0, 0, 0, 0.1)",
       }}
     >
-      {/* Background decorative elements */}
-      <div className="absolute w-[915.42px] h-[872.83px] left-[545px] top-[137.61px]">
-        <div className="absolute left-[43.95%] right-[-17.78%] rounded-full top-[18.77%] bottom-[-37.85%] bg-[#152D23]/[2" />
-        <div className="absolute left-[54.45%] right-[-7.34%] rounded-full top-[35.73%] bottom-[-21.11%] bg-[#152D23]/2" />
-        <div className="absolute left-[65.81%] right-[2.97%] rounded-full top-[53.73%] bottom-[-3.54%] bg-[#152D23]/2" />
-        <div className="absolute left-[64.76%] right-[8.55%] rounded-full top-[26.19%] bottom-[28.51%] bg-[#BC9313]/5 blur-[125px]" />
+      {/* Background glow elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute left-[60%] top-[20%] w-[500px] h-[500px] bg-[#BC9313]/5 blur-[125px] rounded-full" />
       </div>
 
-      {/* Content container */}
-      <div className="absolute left-[91px] top-[93px] flex flex-col items-start gap-12 w-[671px] h-[548px]">
-        <h2 className="text-4xl font-bricolage font-semibold text-[#214838] leading-[58px] w-[671px] h-[58px]">
+      {/* Content */}
+      <div className="relative flex flex-col ">
+        {/* Heading */}
+        <h2 className="text-[48px] font-bricolage font-semibold text-[#214838] leading-[100%]">
           Twigg Works <span className="text-[#BC9313]">Only for You.</span>
         </h2>
 
-        {/* Trust points list */}
-        <div className="flex flex-col items-start gap-14 w-[441px] h-[442px]">
-          {trustPoints.map((point, index) => (
-            <TrustPoint
-              key={index}
-              title={point.title}
-              description={point.description}
-              icon={point.icon}
-            />
-          ))}
-        </div>
-      </div>
+        {/* Row: Trust Points + Shield */}
+        <div className="flex flex-row items-center justify-between w-full ">
+          {/* Trust Points */}
+          <div className="flex flex-col items-start gap-[56px] w-[35%] mt-[48px]">
+            {trustPoints.map((point, index) => (
+              <TrustPoint
+                key={index}
+                title={point.title}
+                description={point.description}
+                icon={point.icon}
+              />
+            ))}
+          </div>
 
-      {/* Shield image */}
-      <div className="absolute left-[827px] mt-[250px] transform  w-[289px] h-[515px]">
-        <Image
-          src="/Shield.svg"
-          alt="Gold Shield representing security and trust"
-          fill
-          className="object-contain"
-          style={{
-            filter:
-              "drop-shadow(0px 183px 73px rgba(0, 0, 0, 0.01)) drop-shadow(0px 103px 62px rgba(0, 0, 0, 0.05)) drop-shadow(0px 46px 46px rgba(0, 0, 0, 0.09)) drop-shadow(0px 11px 25px rgba(0, 0, 0, 0.1))",
-          }}
-          priority
-        />
+          {/* Shield */}
+          <div className="flex-1 flex justify-center items-center relative">
+            {/* Circles behind the shield */}
+    <div className="absolute z-0 right-[15%]">
+          <CircleSheild />
+            </div>
+
+            <div className="absolute  flex bottom-[4%] right-[30%] justify-center items-center">
+              {/* Outer most circle */}
+              <div
+                className="absolute  rounded-full border-[#152D2305]"
+                style={{
+                  width: "915.42px",
+                  height: "872.83px",
+                  borderWidth: "40px", // you can adjust with sm/md/lg if needed
+                }}
+              />
+              {/* Middle circle */}
+              <div
+                className="absolute rounded-full border-[#152D2305]"
+                style={{
+                  width: "655.85px",
+                  height: "625.82px",
+                  borderWidth: "40px",
+                }}
+              />
+              {/* Inner most circle */}
+              <div
+                className="absolute rounded-full border-[#152D2305]"
+                style={{
+                  width: "387.15px",
+                  height: "365.08px",
+                  borderWidth: "40px",
+                }}
+              />
+            </div>
+
+            {/* Shield image */}
+            <div className="flex flex-row w-full items">
+              <div className="w-[42%]"></div>
+              <Image
+                src="/Shield.png"
+                alt="Gold Shield representing security and trust"
+                width={290} // 60% of original width
+                height={415} // 60% of original height
+                className=" object-contain z-10 "
+                style={{
+                  filter:
+                    "drop-shadow(0px 183px 73px rgba(0, 0, 0, 0.01)) drop-shadow(0px 103px 62px rgba(0, 0, 0, 0.05)) drop-shadow(0px 46px 46px rgba(0, 0, 0, 0.09)) drop-shadow(0px 11px 25px rgba(0, 0, 0, 0.1))",
+                }}
+                priority
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
