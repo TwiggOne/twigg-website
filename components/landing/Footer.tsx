@@ -174,6 +174,9 @@ export default function Footer() {
           </h2>
         </div>
       </div>
+      <div className="absolute bottom-0 right-0" >
+        <Image width={450} height={300} src="/footer_bg.png" alt="footer_bg"/>
+      </div>
     </footer>
   );
 }

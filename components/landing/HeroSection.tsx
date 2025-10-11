@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import {
   Tag1,
   Tag2,
@@ -11,12 +11,12 @@ import {
   InnerCircle,
   Core,
   UpArrow,
+  RightArrowInline,
 } from "@/utils/SvgUtils";
 
 export default function HeroSection() {
   return (
     <section className="relative z-10 w-full pt-30">
-      
       <div className="relative max-w-[1440px] mx-auto flex flex-col lg:flex-row justify-between  items-center px-6 lg:px-4">
         {/* LEFT SECTION */}
         <div className="flex flex-col justify-center w-[50%]  text-center lg:text-left mb-12 lg:mb-0">
@@ -34,10 +34,48 @@ export default function HeroSection() {
           >
             Track, save, and invest smarter get clear on your money in seconds.
           </p>
+          <motion.button
+            className="bg-[#BC9313] cursor-pointer text-white w-[239px] h-[54px] mb-[32px] rounded-full font-semibold text-lg shadow-xl flex items-center justify-center overflow-hidden relative"
+            initial="rest"
+            whileHover="hover"
+            animate="rest"
+          >
+            {/* Text */}
+            <motion.span
+              variants={{
+                rest: {
+                  x: 10,
+                  transition: { duration: 0.5, ease: "easeInOut" },
+                },
+                hover: {
+                  x: -10,
+                  transition: { duration: 0.5, ease: "easeInOut" },
+                },
+              }}
+              className="transition-transform"
+            >
+              Join Wishlist
+            </motion.span>
 
-          <button className="bg-[#BC9313] text-white w-[239px] h-[54px] mb-[32px] rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-xl">
-            Join Wishlist
-          </button>
+            {/* Icon */}
+            <motion.div
+              variants={{
+                rest: {
+                  opacity: 0,
+                  x: 0,
+                  transition: { duration: 0.5, ease: "easeInOut" },
+                },
+                hover: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { duration: 0.5, ease: "easeInOut" },
+                },
+              }}
+              className=" w-5 h-5 text-white flex-shrink-0"
+            >
+              <UpArrow right />
+            </motion.div>
+          </motion.button>
         </div>
 
         {/* RIGHT SECTION */}
@@ -130,20 +168,23 @@ export default function HeroSection() {
             text="Ask Your Finances"
             className="absolute bottom-[30%] right-[-10%]"
           />
-          <div className="absolute bottom-[15%] right-[-5%]">
-            <div
-              className="flex items-center justify-center w-[48px] h-[48px] border rounded-full border-[#BC931399]"
-              style={{
-                boxShadow: "0px 4px 30px 0px #BC931359",
-                backdropFilter: "blur(40px)",
-              }}
-            >
-              <div className="w-[18px] h-[19px] text-[#BC9313]">
-              <UpArrow />
+<div
+  className="fixed bottom-[20%] right-4 z-50 cursor-pointer"
+  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+>
+  <div
+    className="flex items-center justify-center w-[48px] h-[48px] border rounded-full border-[#BC931399]"
+    style={{
+      boxShadow: "0px 4px 30px 0px #BC931359",
+      backdropFilter: "blur(40px)",
+    }}
+  >
+    <div className="w-[18px] h-[19px] text-[#BC9313]">
+      <UpArrow />
+    </div>
+  </div>
+</div>
 
-              </div>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>

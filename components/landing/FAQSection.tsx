@@ -82,6 +82,12 @@ const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => {
         borderColor: isOpen ? "#BC931399" : "#BC931366",
         backdropFilter: isOpen ? "blur(40px)" : "blur(20px)",
       }}
+        whileHover={{
+    background: isOpen
+      ? "linear-gradient(187.23deg, rgba(188, 147, 19, 0.125) 5.2%, rgba(2, 26, 26, 0) 137.77%)"
+      : "linear-gradient(187.23deg, rgba(188, 147, 19, 0.125) 5.2%, rgba(2, 26, 26, 0) 137.77%)",
+  }}
+
       transition={{ duration: 0.4 }}
       onClick={onClick}
       className={`w-full rounded-[12px] flex flex-col sm:rounded-[20px] py-[19px] px-[16px] cursor-pointer border border-t-[2px] border-l-[0.5px] border-r-[0.5px] border-b-[0.5px]`}
