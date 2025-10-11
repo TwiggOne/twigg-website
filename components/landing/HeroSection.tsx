@@ -15,6 +15,54 @@ import {
 } from "@/utils/SvgUtils";
 
 export default function HeroSection() {
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.6, // 0.6s delay between tags
+      },
+    },
+  };
+
+  const tagVariants = {
+    hidden: { opacity: 0, y: 0 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeInOut" },
+    },
+  };
+  const AnimatedTag = ({
+    Tag,
+    text,
+    className,
+  }: {
+    Tag: React.ElementType;
+    text: string;
+    className?: string;
+  }) => (
+    <motion.div
+      className={className}
+      variants={tagVariants} // use variants instead of individual animate
+    >
+      <div className="relative w-[218px] h-[66px] flex items-center justify-center">
+        <Tag />
+        <span
+          className="absolute text-[#FDF9F0] text-[19px]"
+          style={{
+            transform: "translate(0%, -20%)",
+            fontFamily: "Switzer",
+            fontWeight: 600,
+            fontStyle: "normal",
+            lineHeight: "100%",
+            letterSpacing: "0%",
+          }}
+        >
+          {text}
+        </span>
+      </div>
+    </motion.div>
+  );
   return (
     <section className="relative z-10 w-full pt-30">
       <div className="relative max-w-[1440px] mx-auto flex flex-col lg:flex-row justify-between  items-center px-6 lg:px-4">
@@ -84,9 +132,6 @@ export default function HeroSection() {
             flex-shrink-0 flex items-center justify-center 
           w-[50%] aspect-square relative
           "
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
         >
           {/* SVG Circles */}
           <div className="absolute inset-0 flex items-center justify-center">
@@ -96,7 +141,7 @@ export default function HeroSection() {
             <div className="absolute w-[72%] h-[72%] opacity-90">
               <MidCircle />
             </div>
-            <div className="absolute w-[46%] h-[46%] opacity-90">
+            <div className="absolute w-[36%] h-[36%] opacity-90">
               <InnerCircle />
             </div>
           </div>
@@ -148,75 +193,52 @@ export default function HeroSection() {
           </div>
 
           {/* TAGS */}
-          <TagWithText
-            Tag={Tag1}
-            text="Invest Fearlessly"
-            className="absolute top-[23%] left-[-6%]"
-          />
-          <TagWithText
-            Tag={Tag2}
-            text="Spend Mindfully"
-            className="absolute top-[16%] right-[-3%]"
-          />
-          <TagWithText
-            Tag={Tag3}
-            text="Optimized Spending"
-            className="absolute bottom-[17%] left-[2%]"
-          />
-          <TagWithText
-            Tag={Tag4}
-            text="Ask Your Finances"
-            className="absolute bottom-[30%] right-[-10%]"
-          />
-<div
-  className="fixed bottom-[20%] right-4 z-50 cursor-pointer"
-  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
->
-  <div
-    className="flex items-center justify-center w-[48px] h-[48px] border rounded-full border-[#BC931399]"
-    style={{
-      boxShadow: "0px 4px 30px 0px #BC931359",
-      backdropFilter: "blur(40px)",
-    }}
-  >
-    <div className="w-[18px] h-[19px] text-[#BC9313]">
-      <UpArrow />
-    </div>
-  </div>
-</div>
+          <motion.div
+            className="absolute inset-0"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <AnimatedTag
+              Tag={Tag1}
+              text="Invest Fearlessly"
+              className="absolute top-[23%] left-[-6%]"
+            />
+            <AnimatedTag
+              Tag={Tag2}
+              text="Spend Mindfully"
+              className="absolute top-[16%] right-[-3%]"
+            />
+            <AnimatedTag
+              Tag={Tag3}
+              text="Optimized Spending"
+              className="absolute bottom-[17%] left-[2%]"
+            />
+            <AnimatedTag
+              Tag={Tag4}
+              text="Ask Your Finances"
+              className="absolute bottom-[30%] right-[-10%]"
+            />
+          </motion.div>
 
+          <div
+            className="fixed bottom-[20%] right-4 z-50 cursor-pointer"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <div
+              className="flex items-center justify-center w-[48px] h-[48px] border rounded-full border-[#BC931399]"
+              style={{
+                boxShadow: "0px 4px 30px 0px #BC931359",
+                backdropFilter: "blur(40px)",
+              }}
+            >
+              <div className="w-[18px] h-[19px] text-[#BC9313]">
+                <UpArrow />
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
   );
 }
-
-/* TagWithText Component */
-const TagWithText = ({
-  Tag,
-  text,
-  className,
-}: {
-  Tag: React.ElementType;
-  text: string;
-  className?: string;
-}) => (
-  <div className={`flex items-center justify-center ${className}`}>
-    <div className="relative w-[218px] h-[66px] flex items-center justify-center">
-      <Tag />
-      <span
-        className="absolute text-[#FDF9F0] text-[19px]"
-        style={{
-          transform: "translate(0%, -20%)",
-          fontFamily: "Switzer",
-          fontWeight: 600,
-          fontStyle: "normal",
-          lineHeight: "100%",
-          letterSpacing: "0%",
-        }}
-      >
-        {text}
-      </span>
-    </div>
-  </div>
-);

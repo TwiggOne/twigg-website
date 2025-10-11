@@ -3,7 +3,12 @@ import React from "react";
 import { motion } from "motion/react";
 import { Container } from "../container";
 import Image from "next/image";
-import { RightArrowInline } from "@/utils/SvgUtils";
+import {
+  InnerCircle,
+  MidCircle,
+  OuterCircle,
+  RightArrowInline,
+} from "@/utils/SvgUtils";
 
 export const Features = () => {
   return (
@@ -24,43 +29,83 @@ export const Features = () => {
           </p>
         </div>
 
-        <div className="relative flex justify-center items-center h-[300px] md:h-[400px] w-full overflow-hidden">
+        <div className="relative flex justify-center items-center h-[300px] md:h-[400px] w-full">
           {/* Glow Effect Background */}
-          <div className="absolute w-[100px] h-[100px] md:w-[120px] md:h-[120px] rounded-full bg-[#BC9313]/50 blur-[40px] z-0" />
+          <div className="absolute w-[100px] h-[100px] md:w-[188px] md:h-[192px] z-0">
+            <OuterCircle />
+          </div>
 
           {/* Middle Circle */}
-          <div className="absolute w-[140px] h-[140px] md:w-[160px] md:h-[160px] rounded-full border-10 border-[#FDF9F0]/3 z-10" />
+          <div className="absolute w-[140px] h-[140px] md:w-[134x] md:h-[134px] z-10">
+            <MidCircle />
+          </div>
 
-          {/* Inner Circle */}
-          <div className="absolute w-[100px] h-[100px] md:w-[120px] md:h-[120px] rounded-full border-10 border-[#FDF9F0]/3 z-10" />
-
-          {/* Left Line */}
-          <div
-            className="absolute w-[200px] md:w-[300px] h-[1px] bg-gradient-to-r from-transparent via-[#BC9313] to-transparent z-10"
+          {/* Animated Glow Behind Logo */}
+          {/* Animated Glow Behind Logo with Blur + Noise */}
+          <motion.div
+            className="absolute rounded-full"
             style={{
-              top: "50%",
-              left: "225px",
-              transform: "translateY(-50%) rotate(0deg)",
+              width: 109.05,
+              height: 109.35,
+              background: "rgba(188, 147, 19, 1)", // gold, animation will control opacity
+              filter: "blur(50px)",
+              zIndex: 0,
+              pointerEvents: "none",
+              backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#f)" /></svg>')`,
+              backgroundBlendMode: "overlay",
+              backgroundSize: "100% 100%",
+            }}
+            animate={{
+              backgroundColor: [
+                "hsla(45, 82%, 41%, 0.50)",
+                "rgba(188, 147, 19, 1)",
+                "rgba(188, 147, 19, 0.5)",
+              ],
+              scale: [1, 1.05, 1], // gentle pulse
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
             }}
           />
+          {/* Nois*
 
-          {/* Right Line */}
-          <div
-            className="absolute w-[200px] md:w-[300px] h-[1px] bg-gradient-to-r from-transparent via-[#BC9313] to-transparent z-10"
-            style={{
-              top: "50%",
-              right: "225px",
-              transform: "translateY(-50%) rotate(180deg)",
-            }}
-          />
+
+         {/* Left Line */}
+<motion.div
+  className="absolute h-[1px] bg-gradient-to-r from-transparent via-[#BC9313] to-transparent z-10"
+  style={{
+    top: "50%",
+    left: "50%",
+    transform: "translateY(-50%)",
+    transformOrigin: "right center", // grow leftwards
+    width: "50%",
+  }}
+ 
+/>
+
+{/* Right Line */}
+<motion.div
+  className="absolute h-[1px] bg-gradient-to-r from-transparent via-[#BC9313] to-transparent z-10"
+  style={{
+    top: "50%",
+    left: "0%",
+    transform: "translateY(-50%)",
+    transformOrigin: "left center", // grow rightwards
+    width: "50%",
+  }}
+
+/>
+
 
           {/* Logo */}
           <div className="relative z-20">
             <Image
-              src="/logo(1).png"
+              src="/main.png"
               alt="Central Logo"
-              width={150}
-              height={150}
+              width={90}
+              height={91}
               className=""
               style={{
                 transform: "rotate(45deg)",
@@ -110,7 +155,6 @@ function FeatureCard({
       transition={{ type: "spring", stiffness: 200, damping: 15 }}
       className="relative rounded-[20px]  shadow-[0_37px_37px_rgba(0,0,0,0.25)]"
       style={{
-   
         background:
           "linear-gradient(326.62deg, #BC9313 21.23%, rgba(188,147,19,0.1) 85.57%)", // border gradient
       }}
@@ -144,14 +188,13 @@ function FeatureCard({
             />
           </div>
           <div className="flex flex-col gap-[24px]">
-<h3 className="text-[24px]  font-bricolage font-semibold text-[#FDF9F0] leading-[100%] ">
-            {title}
-          </h3>
-          <p className="text-[#FDF9F0]/80 font-switzer text-[18px] leading-[120%]">
-            {description}
-          </p>
+            <h3 className="text-[24px]  font-bricolage font-semibold text-[#FDF9F0] leading-[100%] ">
+              {title}
+            </h3>
+            <p className="text-[#FDF9F0]/80 font-switzer text-[18px] leading-[120%]">
+              {description}
+            </p>
           </div>
-          
         </div>
       </div>
     </motion.div>
