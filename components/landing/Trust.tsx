@@ -242,7 +242,7 @@ export const Trust = () => {
        */}
       <div
         // The 'lg:hidden' class makes it invisible on large screens and up
-        className="block lg:hidden bg-[#FDF9F0] rounded-[30px] py-[32px] px-[28px] flex flex-col  items-center"
+        className="block lg:hidden bg-[#FDF9F0] rounded-[30px] py-[32px] px-[28px] flex flex-col  items-center gap-[32px]"
       >
         {/* Centered Image */}
         <div className="w-full relative flex justify-center">

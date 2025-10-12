@@ -46,11 +46,11 @@ export default function CTASection() {
   return (
     <section className="relative w-full h-auto min-h-[600px] bg-[#152D23] flex flex-col items-center justify-start pt-12 sm:pt-20 px-4">
       {/* Heading and Subheading */}
-      <div className="flex flex-col items-center gap-2 sm:gap-4 mt-12 sm:mt-24 text-center">
-        <h1 className="font-bricolage text-[28px] sm:text-[56px] font-semibold text-[#FDF9F0] leading-[100%] sm:leading-[100%]">
+      <div className="flex flex-col items-center gap-4 mt-12 sm:mt-24 text-center">
+        <h1 className="font-bricolage text-[20px] sm:text-[56px] font-semibold text-[#FDF9F0] leading-[100%] sm:leading-[100%]">
           Ask finance, <span className="text-[#BC9313]">Twigg answers!</span>
         </h1>
-        <p className="font-switzer text-[16px] sm:text-[24px] font-normal text-[#FDF9F0]/80 leading-[120%] sm:leading-[120%] ">
+        <p className="font-switzer text-[14px] sm:text-[24px] font-normal text-[#FDF9F0]/80 leading-[120%] sm:leading-[120%] ">
           Finally, an AI co-pilot built for your money: clear,
           <br />
           personal, and always on your side.
@@ -59,11 +59,10 @@ export default function CTASection() {
 
       {/* Search Bar */}
       <div
-        className="relative w-full sm:w-[613px] py-[26px] mx-auto mt-8 sm:mt-[56px] px-[24px]"
+        className="relative w-full sm:w-[613px] py-[10px] rounded-[8px] sm:rounded-[20px] sm:py-[26px] mx-auto mt-8 sm:mt-[56px] px-[10px] sm:px-[24px]"
         style={{
           background: "#FDF9F014",
           border: "1px solid #fdf9f026",
-          borderRadius: "20px",
           boxShadow: `
             0px 7px 15px 0px #0000001A,
             0px 27px 27px 0px #00000017,
@@ -76,7 +75,7 @@ export default function CTASection() {
       >
         <div className="flex items-center">
           {/* Display the typing text + blinking cursor together */}
-          <span className="text-white font-switzer text-[14px] sm:text-[20px] leading-[18px] sm:leading-[130%] px-[11px] py-[10px] whitespace-nowrap">
+          <span className="text-white font-switzer text-[12px] sm:text-[20px] leading-[18px] sm:leading-[130%] px-[11px] py-[10px] whitespace-nowrap">
             {displayText}
             <span className="inline-block w-[2px] h-[1em] bg-[#FDF9F0] animate-blink align-middle ml-[2px]" />
           </span>
@@ -84,9 +83,11 @@ export default function CTASection() {
 
         {/* Icons */}
         <div className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 flex items-center gap-2 sm:gap-4">
-          <Mic size={24} color="#D9D9D9" className="mr-2" />
-          <div className="w-[36px] h-[36px] sm:w-[48px] sm:h-[48px] rounded-full bg-[#BC9313] flex items-center justify-center">
-            <div className="w-[21px] h-[22px] text-[#FDF9F0]">
+          <Mic size={24} color="#D9D9D9" className=" hidden sm:block mr-2" />
+          <Mic size={14} color="#D9D9D9" className="sm:hidden mr-2" />
+
+          <div className="w-[24px] h-[24px] sm:w-[48px] sm:h-[48px] rounded-full bg-[#BC9313] flex items-center justify-center">
+            <div className="w-[12px] h-[12px] sm:w-[21px] sm:h-[22px] text-[#FDF9F0]">
               <UpArrow right />
             </div>
           </div>

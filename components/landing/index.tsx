@@ -31,8 +31,8 @@ export function Landing() {
       <div className="mx-auto max-w-7xl px-[20px] md:px-0">
         <Trust />
         <CTASection />
-        <FAQSection />
       </div>
+        <FAQSection />
 
       <Footer />
     </div>

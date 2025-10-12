@@ -846,8 +846,8 @@ export const Core = () => (
 
 export const Menu = () => (
   <svg
-    width="22"
-    height="21"
+    width="100%"
+    height="100%"
     viewBox="0 0 22 21"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -865,8 +865,8 @@ export const Menu = () => (
 
 export const Thunder = () => (
   <svg
-    width="19"
-    height="30"
+    width="100%"
+    height="100%"
     viewBox="0 0 19 30"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -880,8 +880,8 @@ export const Thunder = () => (
 
 export const Eye = () => (
   <svg
-    width="30"
-    height="16"
+    width="100%"
+    height="100%"
     viewBox="0 0 30 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -900,8 +900,8 @@ type ExpandProps = {
 
 export const Expand = ({ flip = false }: ExpandProps) => (
   <svg
-    width="22"
-    height="14"
+    width="100%"
+    height="100%"
     viewBox="0 0 22 14"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

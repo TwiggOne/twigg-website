@@ -34,19 +34,19 @@ export default function FAQSection() {
 
   return (
     <section className="relative w-full flex justify-center items-center py-12 px-4 sm:py-20 sm:px-6 bg-[#0D2F23]">
-      <div className="w-full max-w-[900px] flex flex-col gap-6 sm:gap-10">
+      <div className="w-full max-w-[900px] flex flex-col gap-8 sm:gap-10">
         {/* Heading */}
-        <div className="flex flex-col items-center gap-2 sm:gap-4 text-center">
-          <h2 className="font-bricolage text-[32px] sm:text-[56px] font-semibold text-[#FDF9F0] leading-[40px] sm:leading-[100%]">
+        <div className="flex flex-col items-center gap-4 sm:gap-4 text-center">
+          <h2 className="font-bricolage text-[20px] sm:text-[56px] font-semibold text-[#FDF9F0] leading-[40px] sm:leading-[100%]">
             FAQs
           </h2>
-          <p className="font-switzer text-[18px] sm:text-[24px] font-normal text-[#FDF9F0]/80 leading-[24px] sm:leading-[120%]">
+          <p className="font-switzer text-[14px] sm:text-[24px] font-normal text-[#FDF9F0]/80 leading-[24px] sm:leading-[120%]">
             Got questions? We've got answers.
           </p>
         </div>
 
         {/* FAQ List */}
-        <div className="flex flex-col items-center w-full gap-[30px]">
+        <div className="flex flex-col items-center w-full gap-[15px] sm:gap-[30px]">
           {faqs.map((faq, index) => (
             <FAQItem
               key={index}
@@ -90,14 +90,17 @@ const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => {
 
       transition={{ duration: 0.4 }}
       onClick={onClick}
-      className={`w-full rounded-[12px] flex flex-col sm:rounded-[20px] py-[19px] px-[16px] cursor-pointer border border-t-[2px] border-l-[0.5px] border-r-[0.5px] border-b-[0.5px]`}
+      className={`w-full rounded-[8px] flex flex-col sm:rounded-[20px] py-[19px] px-[16px] cursor-pointer border border-t-[2px] border-l-[0.5px] border-r-[0.5px] border-b-[0.5px]`}
     >
       {/* Header */}
       <div className="flex justify-between items-center ">
-        <span className="font-switzer text-white text-[16px] sm:text-[20px] font-medium leading-[20px] sm:leading-[100%]">
+        <span className="font-switzer text-white text-[12px] sm:text-[20px] font-medium leading-[20px] sm:leading-[100%]">
           {question}
         </span>
+        <div className="w-[12px] h-[8px] sm:w-[22px] sm:h-[14px]">
         <Expand flip={isOpen} />
+
+        </div>
       </div>
 
       {/* Body - motion expand */}
@@ -107,7 +110,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => {
         transition={{ duration: 0.4 }}
         className="overflow-hidden "
       >
-        <p className="font-switzer text-[#FDF9F0CC] pt-[16px] text-[14px] sm:text-[10px] leading-[100%]">
+        <p className="font-switzer text-[#FDF9F0CC] pt-[16px] text-[10px] sm:text-[14px] sm:text-[10px] leading-[100%]">
           {answer}
         </p>
       </motion.div>
