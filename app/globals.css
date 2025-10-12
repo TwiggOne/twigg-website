@@ -145,3 +145,8 @@ body {
   @apply bg-[#152D23] text-foreground overflow-x-hidden;
   }
 }
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}

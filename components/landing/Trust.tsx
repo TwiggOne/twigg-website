@@ -213,8 +213,8 @@ export const Trust = () => {
                 }}
                 className="flex flex-row w-full justify-end"
                 // Rotate around its own center
-                originX={0.5}
-                originY={0.5}
+                originx={0.5}
+                originy={0.5}
               >
                 <Image
                   src="/Shield.png"

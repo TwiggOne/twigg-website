@@ -18,18 +18,18 @@ export const Tag1 = () => (
     </foreignObject>
     <g filter="url(#filter0_d_883_105)" data-figma-bg-blur-radius="40">
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M14.3488 0H195.113C200.805 0 205.463 4.12235 205.463 9.16184V34.6447C205.471 43.8484 206.871 51.0573 214 57.2181C210.639 58.2888 205.492 58.7688 202.536 55.2067C200.652 56.9267 198.018 58 195.114 58H14.3498C8.65786 58 4 53.8776 4 48.8382V9.16272C4 4.12409 8.65687 0.00087264 14.3498 0.00087264L14.3488 0Z"
         fill="url(#paint0_linear_883_105)"
-        fill-opacity="0.35"
-        shape-rendering="crispEdges"
+        fillOpacity="0.35"
+        shapeRendering="crispEdges"
       />
       <path
         d="M195.113 0.5C200.588 0.500029 204.963 4.45436 204.963 9.16211V34.6455C204.971 43.6091 206.293 50.8192 212.989 56.9863C211.521 57.3691 209.819 57.6049 208.162 57.4521C206.178 57.2692 204.291 56.5393 202.921 54.8877L202.586 54.4844L202.199 54.8379C200.409 56.4723 197.896 57.5 195.114 57.5H14.3496C8.87482 57.4999 4.5 53.5456 4.5 48.8379V9.16309C4.5 4.45619 8.8739 0.501075 14.3496 0.500977H15.6689L15.668 0.5H195.113Z"
         stroke="url(#paint1_linear_883_105)"
-        stroke-opacity="0.5"
-        shape-rendering="crispEdges"
+        strokeOpacity="0.5"
+        shapeRendering="crispEdges"
       />
     </g>
     <defs>
@@ -40,9 +40,9 @@ export const Tag1 = () => (
         width="290"
         height="138"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -70,8 +70,8 @@ export const Tag1 = () => (
       </filter>
       <clipPath id="bgblur_0_883_105_clip_path" transform="translate(36 40)">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M14.3488 0H195.113C200.805 0 205.463 4.12235 205.463 9.16184V34.6447C205.471 43.8484 206.871 51.0573 214 57.2181C210.639 58.2888 205.492 58.7688 202.536 55.2067C200.652 56.9267 198.018 58 195.114 58H14.3498C8.65786 58 4 53.8776 4 48.8382V9.16272C4 4.12409 8.65687 0.00087264 14.3498 0.00087264L14.3488 0Z"
         />
       </clipPath>
@@ -83,8 +83,8 @@ export const Tag1 = () => (
         y2="39.717"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#FDF9F0" />
-        <stop offset="1" stop-color="#FDF9F0" stop-opacity="0.2" />
+        <stop stopColor="#FDF9F0" />
+        <stop offset="1" stopColor="#FDF9F0" stopOpacity="0.2" />
       </linearGradient>
       <linearGradient
         id="paint1_linear_883_105"
@@ -94,8 +94,8 @@ export const Tag1 = () => (
         y2="16.3051"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="white" stop-opacity="0.8" />
-        <stop offset="1" stop-color="white" stop-opacity="0.2" />
+        <stop stopColor="white" stopOpacity="0.8" />
+        <stop offset="1" stopColor="white" stopOpacity="0.2" />
       </linearGradient>
     </defs>
   </svg>
@@ -121,18 +121,18 @@ export const Tag2 = () => (
     </foreignObject>
     <g filter="url(#filter0_d_883_98)" data-figma-bg-blur-radius="40">
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M207.454 0H23.2465C17.4461 0 12.6995 4.12235 12.6995 9.16184V34.6447C12.6915 43.8484 11.265 51.0573 4 57.2181C7.42456 58.2888 12.6704 58.7688 15.6821 55.2067C17.6018 56.9267 20.2861 58 23.2455 58H207.453C213.253 58 218 53.8776 218 48.8382V9.16272C218 4.12409 213.254 0.00087264 207.453 0.00087264L207.454 0Z"
         fill="url(#paint0_linear_883_98)"
-        fill-opacity="0.35"
-        shape-rendering="crispEdges"
+        fillOpacity="0.35"
+        shapeRendering="crispEdges"
       />
       <path
         d="M23.2461 0.5C17.6536 0.500195 13.1992 4.46268 13.1992 9.16211V34.6455C13.1914 43.6094 11.8446 50.8197 5.02539 56.9854C6.52356 57.3685 8.26045 57.6051 9.95117 57.4521C11.9774 57.2688 13.9033 56.5367 15.3008 54.8838L15.6328 54.4912L16.0156 54.834C17.8412 56.4696 20.4057 57.4999 23.2451 57.5H207.453C213.046 57.5 217.5 53.5374 217.5 48.8379V9.16309C217.5 4.46438 213.047 0.501014 207.453 0.500977L206.115 0.5H23.2461Z"
         stroke="url(#paint1_linear_883_98)"
-        stroke-opacity="0.5"
-        shape-rendering="crispEdges"
+        strokeOpacity="0.5"
+        shapeRendering="crispEdges"
       />
     </g>
     <defs>
@@ -143,9 +143,9 @@ export const Tag2 = () => (
         width="294"
         height="138"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -173,8 +173,8 @@ export const Tag2 = () => (
       </filter>
       <clipPath id="bgblur_0_883_98_clip_path" transform="translate(36 40)">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M207.454 0H23.2465C17.4461 0 12.6995 4.12235 12.6995 9.16184V34.6447C12.6915 43.8484 11.265 51.0573 4 57.2181C7.42456 58.2888 12.6704 58.7688 15.6821 55.2067C17.6018 56.9267 20.2861 58 23.2455 58H207.453C213.253 58 218 53.8776 218 48.8382V9.16272C218 4.12409 213.254 0.00087264 207.453 0.00087264L207.454 0Z"
         />
       </clipPath>
@@ -186,8 +186,8 @@ export const Tag2 = () => (
         y2="48.8085"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#FDF9F0" />
-        <stop offset="1" stop-color="#FDF9F0" stop-opacity="0.4" />
+        <stop stopColor="#FDF9F0" />
+        <stop offset="1" stopColor="#FDF9F0" stopOpacity="0.4" />
       </linearGradient>
       <linearGradient
         id="paint1_linear_883_98"
@@ -197,8 +197,8 @@ export const Tag2 = () => (
         y2="14.3723"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="white" stop-opacity="0.8" />
-        <stop offset="1" stop-color="white" stop-opacity="0.2" />
+        <stop stopColor="white" stopOpacity="0.8" />
+        <stop offset="1" stopColor="white" stopOpacity="0.2" />
       </linearGradient>
     </defs>
   </svg>
@@ -224,18 +224,18 @@ export const Tag3 = () => (
     </foreignObject>
     <g filter="url(#filter0_d_883_102)" data-figma-bg-blur-radius="40">
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M14.9895 58H206.944C212.988 58 217.935 53.8777 217.935 48.8382V23.3553C217.943 14.1516 219.429 6.94272 227 0.781887C223.431 -0.288841 217.965 -0.768795 214.827 2.79332C212.826 1.07335 210.029 0 206.945 0H14.9905C8.9462 0 4 4.12235 4 9.16185V48.8373C4 53.8759 8.94516 57.9991 14.9905 57.9991L14.9895 58Z"
         fill="url(#paint0_linear_883_102)"
-        fill-opacity="0.35"
-        shape-rendering="crispEdges"
+        fillOpacity="0.35"
+        shapeRendering="crispEdges"
       />
       <path
         d="M206.944 57.5C212.801 57.4999 217.435 53.5198 217.435 48.8379V23.3545C217.439 18.7315 217.813 14.5623 219.16 10.7607C220.422 7.19806 222.531 3.98132 225.945 1.0166C224.38 0.632097 222.564 0.395244 220.795 0.548828C218.674 0.732993 216.661 1.4682 215.202 3.12402L214.875 3.49414L214.501 3.17285C212.595 1.53442 209.915 0.50005 206.945 0.5H14.9902C9.1331 0.500128 4.5 4.48021 4.5 9.16211V48.8369C4.5 53.518 9.13212 57.4989 14.9902 57.499H16.3711L16.3701 57.5H206.944Z"
         stroke="url(#paint1_linear_883_102)"
-        stroke-opacity="0.5"
-        shape-rendering="crispEdges"
+        strokeOpacity="0.5"
+        shapeRendering="crispEdges"
       />
     </g>
     <defs>
@@ -246,9 +246,9 @@ export const Tag3 = () => (
         width="303"
         height="138"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -276,8 +276,8 @@ export const Tag3 = () => (
       </filter>
       <clipPath id="bgblur_0_883_102_clip_path" transform="translate(36 40)">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M14.9895 58H206.944C212.988 58 217.935 53.8777 217.935 48.8382V23.3553C217.943 14.1516 219.429 6.94272 227 0.781887C223.431 -0.288841 217.965 -0.768795 214.827 2.79332C212.826 1.07335 210.029 0 206.945 0H14.9905C8.9462 0 4 4.12235 4 9.16185V48.8373C4 53.8759 8.94516 57.9991 14.9905 57.9991L14.9895 58Z"
         />
       </clipPath>
@@ -289,8 +289,8 @@ export const Tag3 = () => (
         y2="13.4148"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#FDF9F0" />
-        <stop offset="1" stop-color="#FDF9F0" stop-opacity="0.2" />
+        <stop stopColor="#FDF9F0" />
+        <stop offset="1" stopColor="#FDF9F0" stopOpacity="0.2" />
       </linearGradient>
       <linearGradient
         id="paint1_linear_883_102"
@@ -300,8 +300,8 @@ export const Tag3 = () => (
         y2="48.0784"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="white" stop-opacity="0.8" />
-        <stop offset="1" stop-color="white" stop-opacity="0.4" />
+        <stop stopColor="white" stopOpacity="0.8" />
+        <stop offset="1" stopColor="white" stopOpacity="0.4" />
       </linearGradient>
     </defs>
   </svg>
@@ -327,18 +327,18 @@ export const Tag4 = () => (
     </foreignObject>
     <g filter="url(#filter0_d_883_108)" data-figma-bg-blur-radius="40">
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M207.454 0H23.2465C17.4461 0 12.6995 4.12235 12.6995 9.16184V34.6447C12.6915 43.8484 11.265 51.0573 4 57.2181C7.42456 58.2888 12.6704 58.7688 15.6821 55.2067C17.6018 56.9267 20.2861 58 23.2455 58H207.453C213.253 58 218 53.8776 218 48.8382V9.16272C218 4.12409 213.254 0.00087264 207.453 0.00087264L207.454 0Z"
         fill="url(#paint0_linear_883_108)"
-        fill-opacity="0.35"
-        shape-rendering="crispEdges"
+        fillOpacity="0.35"
+        shapeRendering="crispEdges"
       />
       <path
         d="M23.2461 0.5C17.6536 0.500195 13.1992 4.46268 13.1992 9.16211V34.6455C13.1914 43.6094 11.8446 50.8197 5.02539 56.9854C6.52356 57.3685 8.26045 57.6051 9.95117 57.4521C11.9774 57.2688 13.9033 56.5367 15.3008 54.8838L15.6328 54.4912L16.0156 54.834C17.8412 56.4696 20.4057 57.4999 23.2451 57.5H207.453C213.046 57.5 217.5 53.5374 217.5 48.8379V9.16309C217.5 4.46438 213.047 0.501014 207.453 0.500977L206.115 0.5H23.2461Z"
         stroke="url(#paint1_linear_883_108)"
-        stroke-opacity="0.5"
-        shape-rendering="crispEdges"
+        strokeOpacity="0.5"
+        shapeRendering="crispEdges"
       />
     </g>
     <defs>
@@ -349,9 +349,9 @@ export const Tag4 = () => (
         width="294"
         height="138"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -379,8 +379,8 @@ export const Tag4 = () => (
       </filter>
       <clipPath id="bgblur_0_883_108_clip_path" transform="translate(36 40)">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M207.454 0H23.2465C17.4461 0 12.6995 4.12235 12.6995 9.16184V34.6447C12.6915 43.8484 11.265 51.0573 4 57.2181C7.42456 58.2888 12.6704 58.7688 15.6821 55.2067C17.6018 56.9267 20.2861 58 23.2455 58H207.453C213.253 58 218 53.8776 218 48.8382V9.16272C218 4.12409 213.254 0.00087264 207.453 0.00087264L207.454 0Z"
         />
       </clipPath>
@@ -392,8 +392,8 @@ export const Tag4 = () => (
         y2="43.6686"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#FDF9F0" />
-        <stop offset="1" stop-color="#FDF9F0" stop-opacity="0.2" />
+        <stop stopColor="#FDF9F0" />
+        <stop offset="1" stopColor="#FDF9F0" stopOpacity="0.2" />
       </linearGradient>
       <linearGradient
         id="paint1_linear_883_108"
@@ -403,8 +403,8 @@ export const Tag4 = () => (
         y2="14.3723"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="white" stop-opacity="0.8" />
-        <stop offset="1" stop-color="white" stop-opacity="0.2" />
+        <stop stopColor="white" stopOpacity="0.8" />
+        <stop offset="1" stopColor="white" stopOpacity="0.2" />
       </linearGradient>
     </defs>
   </svg>
@@ -439,7 +439,7 @@ export const CircleSheild = () => (
         rx="165.5"
         ry="166"
         fill="#BC9313"
-        fill-opacity="0.5"
+        fillOpacity="0.5"
       />
     </g>
     <defs>
@@ -450,9 +450,9 @@ export const CircleSheild = () => (
         width="831"
         height="832"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend
           mode="normal"
           in="SourceGraphic"
@@ -484,7 +484,7 @@ export const CircleSheild = () => (
           in="coloredNoise1"
           result="noise1Clipped"
         />
-        <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+        <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
         <feComposite
           operator="in"
           in2="noise1Clipped"
@@ -524,9 +524,9 @@ export const Sheild = () => (
         width="435"
         height="685"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -622,7 +622,7 @@ export const Sheild = () => (
           in="coloredNoise1"
           result="noise1Clipped"
         />
-        <feFlood flood-color="rgba(255, 255, 255, 0.25)" result="color1Flood" />
+        <feFlood floodColor="rgba(255, 255, 255, 0.25)" result="color1Flood" />
         <feComposite
           operator="in"
           in2="noise1Clipped"
@@ -783,7 +783,7 @@ export const Core = () => (
         cy="257.5"
         r="177.5"
         fill="#BC931380"
-        fill-opacity="1"
+        fillOpacity="1"
       />
     </g>
     <defs>
@@ -794,9 +794,9 @@ export const Core = () => (
         width="515"
         height="515"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend
           mode="normal"
           in="SourceGraphic"
@@ -828,7 +828,7 @@ export const Core = () => (
           in="coloredNoise1"
           result="noise1Clipped"
         />
-        <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+        <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
         <feComposite
           operator="in"
           in2="noise1Clipped"
@@ -887,8 +887,8 @@ export const Eye = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M18.0569 5.0965C15.3397 2.51571 10.6753 4.3531 10.6753 8.00005C10.6753 11.647 15.3396 13.4845 18.0569 10.9036C19.7458 9.30072 19.7458 6.69947 18.0569 5.0965ZM30 7.99999C25.5787 12.8522 21.9883 16 15 16C8.01169 16 4.42125 12.851 0 7.99999C2.23614 5.54611 4.24694 3.57324 6.49601 2.20607L6.49474 2.20486C8.84032 0.779671 11.4862 0 15 0C22.0024 0 25.5928 3.16476 30 7.99999ZM15 2.40815C20.2283 2.40815 22.8641 8.44003 19.1629 11.9542C15.462 15.4693 9.11227 12.9647 9.11227 8.00029C9.11227 4.91179 11.748 2.40845 14.9997 2.40845L15 2.40815Z"
       fill="#BC9313"
     />
