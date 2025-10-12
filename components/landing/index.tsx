@@ -18,7 +18,7 @@ export function Landing() {
         <HeroSection />
       </div>
 
-      <div className="py-20">
+      <div className="md:py-20">
           <CommingSoon />
       
       </div>

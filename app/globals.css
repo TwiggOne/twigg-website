@@ -142,11 +142,10 @@ body {
     @apply border-border outline-ring/50;
   }
   body {
-  @apply bg-[#152D23] text-foreground overflow-x-hidden;
+  @apply bg-[#152D23] text-foreground ;
   }
 }
 html,
 body {
   width: 100%;
-  overflow-x: hidden;
 }

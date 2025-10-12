@@ -28,9 +28,9 @@ export default function HeroSection() {
     hidden: { opacity: 0, y: 0 },
     visible: {
       opacity: 1,
-      delay:0.5,
+      delay: 0.5,
       y: 0,
-      transition: { duration: 0.8,ease: "easeInOut" },
+      transition: { duration: 0.8, ease: "easeInOut" },
     },
   };
   const AnimatedTag = ({
@@ -62,8 +62,8 @@ export default function HeroSection() {
     </motion.div>
   );
   return (
-    <section className="relative z-10 w-full pt-30">
-      <div className="relative max-w-[1440px] mx-auto flex flex-col-reverse lg:flex-row justify-between items-center px-6 lg:px-4">
+    <section className="relative z-10 w-full pt-30 overflow-hidden">
+      <div className="relative max-w-[1440px] mx-auto flex flex-col-reverse lg:flex-row justify-between items-center px-6 lg:px-4 ">
         {/* LEFT SECTION */}
         <div className="flex flex-col justify-center md:w-[50%] mt-[150px] md:mt-[0px] text-center lg:text-left mb-12 lg:mb-0">
           <h2
@@ -85,7 +85,7 @@ export default function HeroSection() {
             <motion.button
               className="bg-[#BC9313] cursor-pointer text-white 
       w-[165px] md:w-[239px] h-[40px] md:h-[54px] 
-      mb-[32px] rounded-full font-semibold text-[14px] md:text-lg 
+      md:mb-[32px] rounded-full font-semibold text-[14px] md:text-lg 
       shadow-xl flex items-center justify-center overflow-hidden relative"
               initial="rest"
               whileHover="hover"
@@ -151,7 +151,7 @@ export default function HeroSection() {
           </div>
 
           {/* Center Icon */}
-          <div className="relative w-[115px]   h-[103px] md:w-[170px] md:h-[170px] lg:w-[300px] lg:h-[270px] flex items-center justify-center">
+          <div className="relative w-[115px]   h-[103px] md:w-[170px] md:h-[170px] lg:w-[320px] lg:h-[290px] flex items-center justify-center">
             {/* Core Background */}
             <motion.div
               className="
@@ -194,13 +194,20 @@ export default function HeroSection() {
                   "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
                 maskRepeat: "no-repeat",
                 maskSize: "100% 100%",
+                boxShadow: `
+      0px 9px 20px 0px #000000A3,
+      0px 37px 37px 0px #0000008C,
+      0px 84px 50px 0px #00000052,
+      0px 149px 59px 0px #0000001A,
+      0px 232px 65px 0px #00000003
+    `,
               }}
             />
           </div>
 
           {/* TAGS */}
           <motion.div
-          variants={containerVariants}
+            variants={containerVariants}
             className="absolute inset-0"
             initial="hidden"
             animate="visible"
