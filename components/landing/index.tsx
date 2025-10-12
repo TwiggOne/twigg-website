@@ -18,17 +18,17 @@ export function Landing() {
         <HeroSection />
       </div>
 
-      <div className="md:py-20">
+      <div className="md:py-20 ">
           <CommingSoon />
       
       </div>
 
-      <div className="mx-auto max-w-7xl ">
+      <div className="mx-auto max-w-7xl px-[20px] md:px-0 ">
         <ProblemSection />
         <Features />
       </div>
 
-      <div className="mx-auto max-w-7xl ">
+      <div className="mx-auto max-w-7xl px-[20px] md:px-0">
         <Trust />
         <CTASection />
         <FAQSection />

@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import { motion } from "motion/react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container } from "../container";
 import Image from "next/image";
 import {
@@ -9,45 +8,48 @@ import {
   OuterCircle,
   RightArrowInline,
 } from "@/utils/SvgUtils";
+import { motion, useInView } from "motion/react";
 
 export const Features = () => {
   return (
     <section className="bg-[#152D23] py-28 text-[#FDF9F0]">
       <Container>
         {/* Heading */}
-        <div className="flex flex-col items-center gap-2 sm:gap-4 text-center">
-          <h1 className="font-bricolage text-[28px] sm:text-[56px] flex gap-2  font-semibold text-[#FDF9F0] leading-[100%] sm:leading-[67px]">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <h1 className="font-bricolage text-[20px] md:text-[56px] flex gap-2  font-semibold text-[#FDF9F0] leading-[100%] sm:leading-[100%]">
             With Twigg,{" "}
             <span className="text-[#BC9313] flex items-center gap-1">
               Confusion <RightArrowInline className="w-[0.7em] h-[0.7em]" />
               Clarity
             </span>
           </h1>
-          <p className="font-switzer text-[16px] sm:text-[24px] font-normal text-[#FDF9F0] leading-[22px] sm:leading-[120%]">
+          <p className="font-switzer text-[14px] sm:text-[24px] font-normal text-[#FDF9F0] leading-[120%] sm:leading-[120%]">
             Track, save, invest smarter!
             <br /> Your money made simple, your future secured.
           </p>
         </div>
 
-        <div className="relative flex justify-center items-center h-[300px] md:h-[400px] w-full">
+        <div className="relative flex justify-center items-center h-[140px] md:h-[400px] w-full">
           {/* Glow Effect Background */}
-          <div className="absolute w-[100px] h-[100px] md:w-[188px] md:h-[192px] z-0">
+          <div className="absolute w-[88px] h-[88px] sm:w-[100px] sm:h-[100px] md:w-[188px] md:h-[192px] z-0">
             <OuterCircle />
           </div>
 
           {/* Middle Circle */}
-          <div className="absolute w-[140px] h-[140px] md:w-[134x] md:h-[134px] z-10">
+          <div className="absolute w-[63px] h-[63px] md:w-[134px] md:h-[134px] z-10">
             <MidCircle />
           </div>
 
           {/* Animated Glow Behind Logo */}
           {/* Animated Glow Behind Logo with Blur + Noise */}
           <motion.div
-            className="absolute rounded-full"
+            className="
+    absolute rounded-full
+    w-[50px] h-[50px]
+    md:w-[109.05px] md:h-[109.35px]
+  "
             style={{
-              width: 109.05,
-              height: 109.35,
-              background: "rgba(188, 147, 19, 1)", // gold, animation will control opacity
+              background: "rgba(188, 147, 19, 1)",
               filter: "blur(50px)",
               zIndex: 0,
               pointerEvents: "none",
@@ -61,7 +63,7 @@ export const Features = () => {
                 "rgba(188, 147, 19, 1)",
                 "rgba(188, 147, 19, 0.5)",
               ],
-              scale: [1, 1.05, 1], // gentle pulse
+              scale: [1, 1.05, 1],
             }}
             transition={{
               duration: 3,
@@ -69,35 +71,33 @@ export const Features = () => {
               ease: "easeInOut",
             }}
           />
+
           {/* Nois*
 
 
          {/* Left Line */}
-<motion.div
-  className="absolute h-[1px] bg-gradient-to-r from-transparent via-[#BC9313] to-transparent z-10"
-  style={{
-    top: "50%",
-    left: "50%",
-    transform: "translateY(-50%)",
-    transformOrigin: "right center", // grow leftwards
-    width: "50%",
-  }}
- 
-/>
+          <motion.div
+            className="absolute h-[1px]  bg-gradient-to-r from-transparent via-[#BC9313] to-transparent z-10"
+            style={{
+              top: "50%",
+              left: "60%",
+              transform: "translateY(-50%)",
+              transformOrigin: "right center", // grow leftwards
+              width: "50%",
+            }}
+          />
 
-{/* Right Line */}
-<motion.div
-  className="absolute h-[1px] bg-gradient-to-r from-transparent via-[#BC9313] to-transparent z-10"
-  style={{
-    top: "50%",
-    left: "0%",
-    transform: "translateY(-50%)",
-    transformOrigin: "left center", // grow rightwards
-    width: "50%",
-  }}
-
-/>
-
+          {/* Right Line */}
+          <motion.div
+            className="absolute h-[1px] bg-gradient-to-r from-transparent via-[#BC9313] to-transparent z-10"
+            style={{
+              top: "50%",
+              left: "-10%",
+              transform: "translateY(-50%)",
+              transformOrigin: "left center", // grow rightwards
+              width: "50%",
+            }}
+          />
 
           {/* Logo */}
           <div className="relative z-20">
@@ -106,7 +106,7 @@ export const Features = () => {
               alt="Central Logo"
               width={90}
               height={91}
-              className=""
+              className="w-[50px] h-[50px] object-contain sm:w-[90px] sm:h-[91px]"
               style={{
                 transform: "rotate(45deg)",
                 filter:
@@ -117,84 +117,128 @@ export const Features = () => {
         </div>
 
         {/* Feature Cards */}
-        <div className="mt-10 grid md:grid-cols-3 gap-[23px] justify-center">
-          <FeatureCard
-            title="All-In-One Platform"
-            description="Expenses, loans, credit cards, investments, and insurance in real time."
-            iconSrc="/Sol_img1.png"
-          />
-          <FeatureCard
-            title="AI + Expert Hybrid"
-            description="Instant clarity from AI, human expertise for trust and reassurance."
-            iconSrc="/img2.png"
-          />
-          <FeatureCard
-            title="No More FOMO"
-            description="See how you stack up against peers, learn and grow with context."
-            iconSrc="/Sol_img3.png"
-          />
-        </div>
+        <FeaturesCardsWrapper />
       </Container>
     </section>
   );
 };
+// FeatureCard component
+function FeaturesCardsWrapper() {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { amount: 0.3 });
 
-// FeatureCard component remains the same
-function FeatureCard({
-  title,
-  description,
-  iconSrc,
-}: {
+  return (
+    <div
+      ref={containerRef}
+      className="grid md:grid-cols-3 gap-[23px] justify-center"
+    >
+      <FeatureCard
+        title="All-In-One Platform"
+        description="Expenses, loans, credit cards, investments, and insurance in real time."
+        iconSrc="/Sol_img1.png"
+        position="left"
+        animateIn={isInView}
+      />
+      <FeatureCard
+        title="AI + Expert Hybrid"
+        description="Instant clarity from AI, human expertise for trust and reassurance."
+        iconSrc="/img2.png"
+        position="center"
+        animateIn={isInView}
+      />
+      <FeatureCard
+        title="No More FOMO"
+        description="See how you stack up against peers, learn and grow with context."
+        iconSrc="/Sol_img3.png"
+        position="right"
+        animateIn={isInView}
+      />
+    </div>
+  );
+}
+
+// FeatureCard
+interface FeatureCardProps {
   title: string;
   description: string;
   iconSrc: string;
-}) {
+  position?: "left" | "center" | "right";
+  animateIn?: boolean;
+}
+
+
+export default function FeatureCard({
+  title,
+  description,
+  iconSrc,
+  position = "center",
+}: FeatureCardProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { amount: 0.3, once: true }); // animate once
+
+  const [screenCenter, setScreenCenter] = useState(0);
+
+  useEffect(() => {
+    setScreenCenter(window.innerWidth / 2);
+    const handleResize = () => setScreenCenter(window.innerWidth / 2);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Final offsets for grid layout relative to center
+  const finalOffsets = {
+    left: 0, // adjust as needed based on layout
+    center: 0,
+    right: 0,
+  };
+
   return (
     <motion.div
+      ref={ref}
       whileHover={{ scale: 1.03 }}
-      transition={{ type: "spring", stiffness: 200, damping: 15 }}
-      className="relative rounded-[20px]  shadow-[0_37px_37px_rgba(0,0,0,0.25)]"
+      initial={{ x: 0, y: -300, scale: 0, opacity: 0 }} // start from top-center
+      animate={
+        isInView
+          ? { x: finalOffsets[position], y: 0, scale: 1, opacity: 1 }
+          : {}
+      }
+      transition={{
+        duration: 0.8,
+        ease: "easeOut",
+        delay: position === "left" ? 0 : position === "center" ? 0.1 : 0.2,
+      }}
+      className="relative rounded-[20px] md:mx-[0px] overflow-hidden"
       style={{
-        background:
-          "linear-gradient(326.62deg, #BC9313 21.23%, rgba(188,147,19,0.1) 85.57%)", // border gradient
+        borderWidth: "1px",
+        borderStyle: "solid",
+        borderImage:
+          "linear-gradient(135deg, rgba(188,147,19,0.1) 0%, rgba(188,147,19,1) 91%) 1",
+        borderImageSlice: 1,
       }}
     >
-      {/* Inner Card */}
       <div
-        className="relative flex flex-col items-center  rounded-[20px] w-full h-full overflow-hidden p-[42px]"
+        className="rounded-[19px] flex flex-col items-center w-full h-full p-[20px] md:py-[46px] md:px-[41px] overflow-hidden"
         style={{
           background:
-            "linear-gradient(328.59deg, #152D23 -10.94%, rgba(21,45,35,0.2) 21.5%, rgba(188,147,19,0.3) 97.95%)",
+            "linear-gradient(328.59deg, #152D23 0%, rgba(21,45,35,0.2) 40%, rgba(188,147,19,0.3) 100%)",
         }}
       >
-        {/* Noise overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnPjxmaWx0ZXIgaWQ9J25vaXNlJz48ZmVUdXJidWxlbmNlIGZsdXRlcm5hbWU9J0ZsdXRlckJsdXIiIGJsdXI9JzEnLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWxsPSdibGFjaycgZmlsdGVyPSJ1cmwoI2ZsdXRlcikgIi8+PC9zdmc+')",
-            opacity: 0.25,
-          }}
-        />
-        {/* Card Content */}
-        <div className="relative z-10 flex flex-col items-center w-full h-full">
-          <div className="h-[192px] flex items-center justify-center mb-6">
-            <Image
-              src={iconSrc}
-              alt={title}
-              width={245}
-              height={190}
-              className=" object-contain "
-            />
-          </div>
-          <div className="flex flex-col gap-[24px]">
-            <h3 className="text-[24px]  font-bricolage font-semibold text-[#FDF9F0] leading-[100%] ">
-              {title}
-            </h3>
-            <p className="text-[#FDF9F0]/80 font-switzer text-[18px] leading-[120%]">
-              {description}
-            </p>
-          </div>
+        <div className="h-[192px] flex items-center justify-center mb-6">
+          <Image
+            src={iconSrc}
+            alt={title}
+            width={291}
+            height={170}
+            className="object-contain w-[240px] h-[140px] md:w-[291] md:h-[170px]"
+          />
+        </div>
+        <div className="flex flex-col gap-[24px] md:mt-[24px] ">
+          <h3 className="text-[24px] font-bricolage font-semibold text-[#FDF9F0] leading-[100%]">
+            {title}
+          </h3>
+          <p className="text-[#FDF9F0]/80 font-switzer text-[18px] leading-[120%]">
+            {description}
+          </p>
         </div>
       </div>
     </motion.div>

@@ -270,7 +270,7 @@ export default function HeroSection() {
           </motion.div>
 
           <div
-            className="fixed bottom-[20%] right-4 z-50 cursor-pointer"
+            className=" hidden sm:block fixed bottom-[20%] right-4 z-50 cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <div
