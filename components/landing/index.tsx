@@ -12,15 +12,14 @@ import { CommingSoon } from "./ComingSoon";
 
 export function Landing() {
   return (
-    <div className="bg-[#152D23] min-w-screen min-h-screen">
+    <div className="bg-[#152D23] w-full ">
       <Header />
       <div className="mx-auto max-w-7xl  pt-10">
         <HeroSection />
       </div>
 
       <div className="md:py-20 ">
-          <CommingSoon />
-      
+        <CommingSoon />
       </div>
 
       <div className="mx-auto max-w-7xl px-[20px] md:px-0 ">
@@ -32,7 +31,7 @@ export function Landing() {
         <Trust />
         <CTASection />
       </div>
-        <FAQSection />
+      <FAQSection />
 
       <Footer />
     </div>

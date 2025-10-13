@@ -1,16 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
-
 @font-face {
-  font-family: 'Switzer';
-  src: url('https://fonts.cdnfonts.com/css/switzer');
+  font-family: "Switzer";
+  src: url("https://fonts.cdnfonts.com/css/switzer");
 }
 /* Switzer Typography */
 .font-switzer {
-  font-family: 'Switzer', sans-serif;
- 
+  font-family: "Switzer", sans-serif;
 }
 
 body {
@@ -19,12 +16,11 @@ body {
 
 /* 3. Other rules... */
 @font-face {
-  font-family: 'Switzer';
-  src: url('/fonts/Switzer.woff2') format('woff2');
+  font-family: "Switzer";
+  src: url("/fonts/Switzer.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
-
 
 @custom-variant dark (&:is(.dark *));
 
@@ -152,11 +148,11 @@ body {
   padding: 1px; /* Border width */
   background: linear-gradient(
     135deg,
-    rgba(188, 147, 19, 0.1) 0%,    /* #BC9313 full opacity at start (top-left) */
-    rgba(188, 147, 19, 1) 91%  /* #BC9313 at 10% opacity toward bottom-right */
-  );  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
+    rgba(188, 147, 19, 0.1) 0%,
+    /* #BC9313 full opacity at start (top-left) */ rgba(188, 147, 19, 1) 91%
+      /* #BC9313 at 10% opacity toward bottom-right */
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
@@ -170,7 +166,7 @@ body {
   border-radius: inherit;
   background: linear-gradient(
     328.59deg,
-    #152D23 0%,
+    #152d23 0%,
     rgba(21, 45, 35, 0.2) 40%,
     rgba(188, 147, 19, 0.3) 100%
   );
@@ -179,16 +175,14 @@ body {
   align-items: center;
 }
 
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-  @apply bg-[#152D23] text-foreground ;
+    @apply bg-[#152D23] text-foreground;
   }
 }
-html,
-body {
-  width: 100%;
+html {
+  overflow-x: hidden;
 }

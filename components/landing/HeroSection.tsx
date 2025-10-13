@@ -62,7 +62,7 @@ export default function HeroSection() {
     </motion.div>
   );
   return (
-    <section className="relative z-10 w-full pt-30 overflow-hidden">
+    <section className="relative z-10 w-full pt-30 ">
       <div className="relative max-w-[1440px] mx-auto flex flex-col-reverse lg:flex-row justify-between items-center px-6 lg:px-4 ">
         {/* LEFT SECTION */}
         <div className="flex flex-col justify-center md:w-[50%] mt-[150px] md:mt-[0px] text-center lg:text-left mb-12 lg:mb-0">
