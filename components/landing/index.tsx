@@ -33,7 +33,6 @@ export function Landing() {
       </div>
       <FAQSection />
 
-      <Footer />
     </div>
   );
 }

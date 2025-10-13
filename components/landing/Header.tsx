@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -58,7 +59,7 @@ export const Header = () => {
             maxWidth: "178px", // matches desktop width
           }}
         >
-          Join Wishlist
+          Join Waitlist
         </button>
       </div>
     </header>

@@ -105,7 +105,7 @@ export default function HeroSection() {
                 }}
                 className="transition-transform"
               >
-                Join Wishlist
+                Join Waitlist
               </motion.span>
 
               {/* Icon */}
