@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import Image from "next/image";
 import { delay, motion } from "framer-motion";
 import {
@@ -15,11 +16,13 @@ import {
 } from "@/utils/SvgUtils";
 
 export default function HeroSection() {
+    const [imageLoaded, setImageLoaded] = useState(false);
+
   const containerVariants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.6, // 0.6s delay between tags
+        staggerChildren: 1.2, // 0.6s delay between tags
       },
     },
   };
@@ -46,10 +49,9 @@ export default function HeroSection() {
       <div className="relative w-[218px] h-[66px] flex items-center justify-center">
         <Tag />
         <span
-          className="absolute text-[#FDF9F0] text-[19px]"
+          className="absolute font-switzer text-[#FDF9F0] text-[18px]"
           style={{
             transform: "translate(0%, -20%)",
-            fontFamily: "Switzer",
             fontWeight: 600,
             fontStyle: "normal",
             lineHeight: "100%",
@@ -184,6 +186,9 @@ export default function HeroSection() {
               src="/main.png"
               alt="Hero Image"
               fill
+              onLoadingComplete={() => {
+                setTimeout(() => setImageLoaded(true), 1000); // 1s delay
+              }}
               className="object-contain relative z-20"
               style={{
                 WebkitMaskImage:
@@ -206,13 +211,14 @@ export default function HeroSection() {
           </div>
 
           {/* TAGS */}
-          <motion.div
+          {imageLoaded &&     <motion.div
             variants={containerVariants}
             className="absolute inset-0"
             initial="hidden"
             animate="visible"
           >
             {/* Top Left */}
+            
             <AnimatedTag
               Tag={Tag1}
               text="Invest Fearlessly"
@@ -267,7 +273,8 @@ export default function HeroSection() {
       scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-100
     "
             />
-          </motion.div>
+          </motion.div>}
+      
 
           <div
             className=" hidden sm:block fixed bottom-[20%] right-4 z-50 cursor-pointer"

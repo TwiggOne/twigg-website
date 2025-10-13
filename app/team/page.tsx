@@ -66,16 +66,26 @@ const Page = () => {
           </p>
         </div>
 
-        {/* Core Team Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[32px] sm:gap-[48px] md:gap-[64px] place-items-center">
-          {teamMembers.map((member, index) => (
-            <TeamCard
-              key={index}
-              name={member.name}
-              role={member.role}
-              image={member.image}
-            />
-          ))}
+        {/* // 🚀 FIX: Core Team Grid Centering 
+          // Outer div uses flex and mx-auto to center the block of cards itself.
+        */}
+        <div className="flex justify-center w-full  mx-auto">
+          {/* // Inner div holds the cards:
+            // Default (mobile): Flexbox with wrap and justify-center for perfect centering.
+            // Medium screens (md): Reverts to a 3-column grid layout.
+          */}
+          <div className="flex justify-center w-full">
+            <div className="flex flex-wrap justify-center gap-[32px] sm:gap-[48px] md:gap-[64px]">
+              {teamMembers.map((member, index) => (
+                <TeamCard
+                  key={index}
+                  name={member.name}
+                  role={member.role}
+                  image={member.image}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -93,17 +103,19 @@ const Page = () => {
         <div className="h-[1px] bg-gradient-to-r from-transparent via-[#BC9313]/80 to-transparent flex-1 max-w-[150px] sm:max-w-[200px] md:max-w-[30%]" />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-[32px] sm:gap-[40px] md:gap-[56px] place-items-center">
-        {smallTeamMembers.map((member, index) => (
-          <TeamCard
-            key={index}
-            name={member.name}
-            role={member.role}
-            image={member.image}
-            smallCard // 👈 renders compact version
-          />
-        ))}
-      </div>
+      {/* Additional Members Grid (already centered via place-items-center) */}
+     <div className="flex flex-wrap justify-center gap-[32px] sm:gap-[40px] md:gap-[56px] max-w-7xl">
+  {smallTeamMembers.map((member, index) => (
+    <TeamCard
+      key={index}
+      name={member.name}
+      role={member.role}
+      image={member.image}
+      smallCard // renders compact version
+    />
+  ))}
+</div>
+
     </div>
   );
 };

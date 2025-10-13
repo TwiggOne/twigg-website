@@ -1,8 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion } from "framer-motion"; // Assuming 'motion/react' should be 'framer-motion'
 
 export const CommingSoon = () => {
+  // Define the scrolling text string
+  const scrollingText = "Coming soon Coming soon Coming soon Coming soon ";
+  // Duplicate the text to cover two full cycles for seamless loop
+  const seamlessText = scrollingText + scrollingText + scrollingText;
+
   return (
     <section className="relative w-full flex flex-col items-center justify-center px-6 pb-20 lg:pb-12 py-12 overflow-hidden">
       {/* BACKGROUND SCROLLING TEXT */}
@@ -14,10 +19,10 @@ export const CommingSoon = () => {
       >
         <motion.h2
           className="text-[4rem] md:text-[15rem] font-bold text-[#FDF9F033] select-none whitespace-nowrap font-bricolage absolute"
-          animate={{ x: ["0%", "-50%"] }}
+          animate={{ x: ["0%", "-33.333%"] }} // Scroll by one-third (1/3) of the total content width
           transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
         >
-          Coming soon Coming soon Coming soon Coming soon
+          {seamlessText}
         </motion.h2>
       </motion.div>
 
@@ -92,7 +97,8 @@ export const CommingSoon = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
-          Your co-pilot for all your financial needs. smarter saving, tracking, and investing made simple.
+            Your co-pilot for all your financial needs. smarter saving,
+            tracking, and investing made simple.
           </motion.p>
         </motion.div>
       </div>

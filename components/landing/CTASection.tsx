@@ -19,7 +19,7 @@ export default function CTASection() {
   useEffect(() => {
     const currentText = texts[textIndex];
     const words = currentText.split(" ");
-    const typingSpeed = deleting ? 150 : 250; // speed per word
+    const typingSpeed = deleting ? 350 : 550; // speed per word
 
     const timeout = setTimeout(() => {
       const currentWordCount = displayText.split(" ").filter(Boolean).length;

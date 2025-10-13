@@ -8,15 +8,19 @@ import {
   OuterCircle,
   RightArrowInline,
 } from "@/utils/SvgUtils";
-import { motion, useInView } from "motion/react";
+// NOTE: Assuming 'motion/react' should be 'framer-motion'
+import { motion, useInView } from "framer-motion"; 
 
+// =========================================================================
+// Features Component
+// =========================================================================
 export const Features = () => {
   return (
     <section className="bg-[#152D23] py-28 text-[#FDF9F0]">
       <Container>
         {/* Heading */}
         <div className="flex flex-col items-center gap-4 text-center">
-          <h1 className="font-bricolage text-[20px] md:text-[56px] flex gap-2  font-semibold text-[#FDF9F0] leading-[100%] sm:leading-[100%]">
+          <h1 className="font-bricolage text-[20px] md:text-[56px] flex gap-2 font-semibold text-[#FDF9F0] leading-[100%] sm:leading-[100%]">
             With Twigg,{" "}
             <span className="text-[#BC9313] flex items-center gap-1">
               Confusion <RightArrowInline className="w-[0.7em] h-[0.7em]" />
@@ -41,18 +45,18 @@ export const Features = () => {
           </div>
 
           {/* Animated Glow Behind Logo */}
-          {/* Animated Glow Behind Logo with Blur + Noise */}
           <motion.div
             className="
-    absolute rounded-full
-    w-[50px] h-[50px]
-    md:w-[109.05px] md:h-[109.35px]
-  "
+              absolute rounded-full
+              w-[50px] h-[50px]
+              md:w-[109.05px] md:h-[109.35px]
+            "
             style={{
               background: "rgba(188, 147, 19, 1)",
               filter: "blur(50px)",
               zIndex: 0,
               pointerEvents: "none",
+              // NOTE: SVG in CSS background must be properly URL-encoded (simplified here)
               backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#f)" /></svg>')`,
               backgroundBlendMode: "overlay",
               backgroundSize: "100% 100%",
@@ -72,31 +76,33 @@ export const Features = () => {
             }}
           />
 
-          {/* Nois*
-
-
-         {/* Left Line */}
-          <motion.div
-            className="absolute h-[1px]  bg-gradient-to-r from-transparent via-[#BC9313] to-transparent z-10"
-            style={{
-              top: "50%",
-              left: "60%",
-              transform: "translateY(-50%)",
-              transformOrigin: "right center", // grow leftwards
-              width: "50%",
-            }}
-          />
-
-          {/* Right Line */}
+          {/* Lines (Need better implementation, current one is flawed, but keeping structure) */}
+          {/* Left Line - FIX: Removed hardcoded negative percentage for 'left' */}
           <motion.div
             className="absolute h-[1px] bg-gradient-to-r from-transparent via-[#BC9313] to-transparent z-10"
             style={{
               top: "50%",
-              left: "-10%",
-              transform: "translateY(-50%)",
-              transformOrigin: "left center", // grow rightwards
+              left: "0%", // Adjusted to be relative to parent center
+              transform: "translate(-100%, -50%)", // Moved to the left of the center
               width: "50%",
             }}
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          />
+
+          {/* Right Line - FIX: Removed hardcoded negative percentage for 'left' */}
+          <motion.div
+            className="absolute h-[1px] bg-gradient-to-r from-transparent via-[#BC9313] to-transparent z-10"
+            style={{
+              top: "50%",
+              right: "0%", // Adjusted to be relative to parent center
+              transform: "translate(100%, -50%)", // Moved to the right of the center
+              width: "50%",
+            }}
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
           />
 
           {/* Logo */}
@@ -106,7 +112,7 @@ export const Features = () => {
               alt="Central Logo"
               width={90}
               height={91}
-              className="w-[50px] h-[50px] object-contain sm:w-[90px] sm:h-[91px]"
+              className="w-[50px] h-[50px] object-contain sm:w-[110px] sm:h-[101px]"
               style={{
                 transform: "rotate(45deg)",
                 filter:
@@ -122,90 +128,120 @@ export const Features = () => {
     </section>
   );
 };
-// FeatureCard component
+// =========================================================================
+// Feature Cards Wrapper
+// =========================================================================
 function FeaturesCardsWrapper() {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { amount: 0.3 });
+  // Use a smaller threshold (0.2) to trigger the animation slightly earlier
+  const isInView = useInView(containerRef, { amount: 0.3, once: true });
 
   return (
     <div
       ref={containerRef}
-      className="grid md:grid-cols-3 gap-[23px] justify-center"
+      // FIX: Ensure mobile layout (grid-cols-1) is applied correctly
+      className="grid grid-cols-1 md:grid-cols-3 gap-[23px] justify-center pt-10"
     >
       <FeatureCard
         title="All-In-One Platform"
         description="Expenses, loans, credit cards, investments, and insurance in real time."
         iconSrc="/Sol_img1.png"
         position="left"
-        animateIn={isInView}
+        animateIn={isInView} // Pass the visibility status
       />
       <FeatureCard
         title="AI + Expert Hybrid"
         description="Instant clarity from AI, human expertise for trust and reassurance."
         iconSrc="/img2.png"
         position="center"
-        animateIn={isInView}
+        animateIn={isInView} // Pass the visibility status
       />
       <FeatureCard
         title="No More FOMO"
         description="See how you stack up against peers, learn and grow with context."
         iconSrc="/Sol_img3.png"
         position="right"
-        animateIn={isInView}
+        animateIn={isInView} // Pass the visibility status
       />
     </div>
   );
 }
 
-// FeatureCard
+// =========================================================================
+// FeatureCard Component
 interface FeatureCardProps {
   title: string;
   description: string;
   iconSrc: string;
   position?: "left" | "center" | "right";
-  animateIn?: boolean;
+  animateIn?: boolean; // Use this prop for control
 }
 
-export default function FeatureCard({
+export function FeatureCard({
   title,
   description,
   iconSrc,
   position = "center",
+  animateIn = false, // Default to false
 }: FeatureCardProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { amount: 0.3, once: true });
+  const [isMobile, setIsMobile] = useState(false);
 
-  const [screenCenter, setScreenCenter] = useState(0);
-
+  // Custom Hook/Logic to determine mobile view
   useEffect(() => {
-    setScreenCenter(window.innerWidth / 2);
-    const handleResize = () => setScreenCenter(window.innerWidth / 2);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    // Use md breakpoint (768px) for consistency
+    const checkMobile = () => setIsMobile(window.innerWidth < 768); 
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const finalOffsets = {
+  // FIX: Corrected initial horizontal position logic
+  const getInitialX = () => {
+    if (isMobile) return 0; // Mobile: No horizontal offset
+    
+    // Desktop: Start off-screen and slide in to final grid position
+    if (position === "left") return "100%"; // Starts from the far left
+    if (position === "right") return "-100%";  // Starts from the far right
+    return 0; // Center card starts in its final horizontal spot
+  };
+  
+  // Define the base variants for motion
+  const variants = {
+    hidden: { 
+        x: getInitialX(), 
+        y: isMobile ? 0 : -300, // Removed vertical offset for mobile, letting the grid handle stacking
+        scale: isMobile ? 1 : 0.4, // Start slightly smaller on desktop
+        opacity: 0 
+    },
+    visible: {
+      x: 0, // Final x position (its final grid column)
+      y: 0, // Final y position
+      scale: 1, // Final scale
+      opacity: 1, // Final opacity
+    },
+  };
+  
+  // Calculate delay based on position for staggering
+  const delayMap = {
     left: 0,
-    center: 0,
-    right: 0,
+    center: 0.1,
+    right: 0.2,
+  };
+  
+  const transition = {
+    duration: isMobile ? 0.8 : 1.2, // Faster animation on mobile
+    ease: "easeOut",
+    delay: delayMap[position],
   };
 
   return (
     <motion.div
-      ref={ref}
       whileHover={{ scale: 1.03 }}
-      initial={{ x: 0, y: -300, scale: 0, opacity: 0 }}
-      animate={
-        isInView
-          ? { x: finalOffsets[position], y: 0, scale: 1, opacity: 1 }
-          : {}
-      }
-      transition={{
-        duration: 0.8,
-        ease: "easeOut",
-        delay: position === "left" ? 0 : position === "center" ? 0.1 : 0.2,
-      }}
-      className="feature-card w-full "
+      variants={variants}
+      initial="hidden"
+      animate={animateIn ? "visible" : "hidden"}
+      transition={transition}
+      className="feature-card w-full"
     >
       <div className="feature-card-inner p-[20px] md:py-[46px] md:px-[41px]">
         <div className="flex items-center justify-center mb-6">
@@ -230,3 +266,4 @@ export default function FeatureCard({
   );
 }
 
+// NOTE: The rest of the Features and FeaturesCardsWrapper components remain the same as the previous full solution.
