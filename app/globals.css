@@ -136,6 +136,49 @@ body {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+.feature-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Gradient border mask */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px; /* Border width */
+  background: linear-gradient(
+    135deg,
+    rgba(188, 147, 19, 0.1) 0%,    /* #BC9313 full opacity at start (top-left) */
+    rgba(188, 147, 19, 1) 91%  /* #BC9313 at 10% opacity toward bottom-right */
+  );  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Inner content area — controls padding and background */
+.feature-card-inner {
+  position: relative;
+  z-index: 2;
+  border-radius: inherit;
+  background: linear-gradient(
+    328.59deg,
+    #152D23 0%,
+    rgba(21, 45, 35, 0.2) 40%,
+    rgba(188, 147, 19, 0.3) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 @layer base {
   * {

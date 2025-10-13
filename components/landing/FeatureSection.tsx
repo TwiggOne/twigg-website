@@ -166,7 +166,6 @@ interface FeatureCardProps {
   animateIn?: boolean;
 }
 
-
 export default function FeatureCard({
   title,
   description,
@@ -174,7 +173,7 @@ export default function FeatureCard({
   position = "center",
 }: FeatureCardProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { amount: 0.3, once: true }); // animate once
+  const isInView = useInView(ref, { amount: 0.3, once: true });
 
   const [screenCenter, setScreenCenter] = useState(0);
 
@@ -185,9 +184,8 @@ export default function FeatureCard({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Final offsets for grid layout relative to center
   const finalOffsets = {
-    left: 0, // adjust as needed based on layout
+    left: 0,
     center: 0,
     right: 0,
   };
@@ -196,7 +194,7 @@ export default function FeatureCard({
     <motion.div
       ref={ref}
       whileHover={{ scale: 1.03 }}
-      initial={{ x: 0, y: -300, scale: 0, opacity: 0 }} // start from top-center
+      initial={{ x: 0, y: -300, scale: 0, opacity: 0 }}
       animate={
         isInView
           ? { x: finalOffsets[position], y: 0, scale: 1, opacity: 1 }
@@ -207,32 +205,19 @@ export default function FeatureCard({
         ease: "easeOut",
         delay: position === "left" ? 0 : position === "center" ? 0.1 : 0.2,
       }}
-      className="relative rounded-[20px] md:mx-[0px] overflow-hidden"
-      style={{
-        borderWidth: "1px",
-        borderStyle: "solid",
-        borderImage:
-          "linear-gradient(135deg, rgba(188,147,19,0.1) 0%, rgba(188,147,19,1) 91%) 1",
-        borderImageSlice: 1,
-      }}
+      className="feature-card w-full "
     >
-      <div
-        className="rounded-[19px] flex flex-col items-center w-full h-full p-[20px] md:py-[46px] md:px-[41px] overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(328.59deg, #152D23 0%, rgba(21,45,35,0.2) 40%, rgba(188,147,19,0.3) 100%)",
-        }}
-      >
-        <div className="h-[192px] flex items-center justify-center mb-6">
+      <div className="feature-card-inner p-[20px] md:py-[46px] md:px-[41px]">
+        <div className="flex items-center justify-center mb-6">
           <Image
             src={iconSrc}
             alt={title}
             width={291}
             height={170}
-            className="object-contain w-[240px] h-[140px] md:w-[291] md:h-[170px]"
+            className="object-contain w-[240px] h-[140px] md:w-[291px] md:h-[170px]"
           />
         </div>
-        <div className="flex flex-col gap-[24px] md:mt-[24px] ">
+        <div className="flex flex-col gap-[24px] md:mt-[24px]">
           <h3 className="text-[24px] font-bricolage font-semibold text-[#FDF9F0] leading-[100%]">
             {title}
           </h3>
@@ -244,3 +229,4 @@ export default function FeatureCard({
     </motion.div>
   );
 }
+
