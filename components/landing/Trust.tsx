@@ -1,7 +1,13 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { delay, motion, useAnimation, useInView } from "framer-motion";
+import {
+  delay,
+  motion,
+  useAnimation,
+  useInView,
+  Variants,
+} from "framer-motion";
 import { CircleSheild } from "@/utils/SvgUtils"; // Assuming this utility is available
 
 export const Trust = () => {
@@ -91,12 +97,18 @@ export const Trust = () => {
       transition: { duration: 0.6, ease: "easeOut" },
     },
   };
-
-  const shieldVariants = {
+  type Easing =
+    | "linear"
+    | "easeIn"
+    | "easeOut"
+    | "easeInOut"
+    | [number, number, number, number] // cubic-bezier
+    | ((t: number) => number);
+  const shieldVariants: Variants = {
     hidden: {
       y: 400,
       x: -100,
-      rotateY: 360, // spins horizontally
+      rotateY: 360,
       opacity: 0,
       scale: 0.8,
     },
@@ -108,7 +120,7 @@ export const Trust = () => {
       scale: 1,
       transition: {
         duration: 1.8,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: [0.25, 0.1, 0.25, 1], // ✅ tuple, TS-safe
       },
     },
   };
@@ -116,11 +128,11 @@ export const Trust = () => {
   // ----------------------------------------
   // --- MOBILE SCREEN VARIANTS (NEW) ---
   // ----------------------------------------
-  const mobileShieldVariants = {
+  const mobileShieldVariants: Variants = {
     hidden: {
       x: "-100%", // Start off-screen left
       opacity: 0,
-      rotatey: 360, // Tumble/Flip along X-axis
+      rotateY: 360, // Tumble/Flip along X-axis
       scale: 0.8,
     },
     visible: {
@@ -135,7 +147,7 @@ export const Trust = () => {
     },
   };
 
-  const mobileHeadingVariants = {
+  const mobileHeadingVariants: Variants = {
     hidden: { x: -50, opacity: 0 },
     visible: {
       x: 0,
@@ -202,7 +214,7 @@ export const Trust = () => {
           {/* Heading */}
           <motion.h2
             className="text-[48px] font-bricolage font-semibold text-[#214838] leading-[100%]"
-            variants={headingVariants}
+            variants={headingVariants as Variants}
             initial="hidden"
             animate={headingControls}
           >
@@ -221,7 +233,7 @@ export const Trust = () => {
                 <motion.div
                   key={index}
                   className="flex items-center gap-[28px]"
-                  variants={itemVariants}
+                  variants={itemVariants as Variants}
                 >
                   <div className="relative flex-shrink-0">
                     <Image
@@ -282,19 +294,19 @@ export const Trust = () => {
                 <div className="w-[42%]" />
 
                 <motion.div
-                  variants={shieldVariants}
+                  variants={shieldVariants as Variants}
                   initial="hidden"
                   animate={shieldControls}
                   style={{
                     transformStyle: "preserve-3d",
                     perspective: 1200,
+                    originX: 0.5, // ✅ correct
+                    originY: 0.5, // ✅ correct
                   }}
                   onAnimationStart={() => {
                     setTimeout(() => setImageLoaded(true), 500);
                   }}
                   className="flex flex-row w-full justify-end"
-                  originx={0.5}
-                  originy={0.5}
                 >
                   <Image
                     src="/Shield.png"
@@ -329,7 +341,7 @@ export const Trust = () => {
         <div className="w-full relative flex justify-center">
           {/* The main shield image with animation */}
           <motion.div
-            variants={mobileShieldVariants}
+            variants={mobileShieldVariants as Variants}
             initial="hidden"
             animate={mobileShieldControls}
             style={{
@@ -380,7 +392,7 @@ export const Trust = () => {
           {/* Heading with animation */}
           <motion.h2
             className="text-[18px] sm:text-[24px] font-bricolage font-semibold text-[#214838] leading-[100%]"
-            variants={mobileHeadingVariants}
+            variants={mobileHeadingVariants as Variants}
             initial="hidden"
             animate={mobileHeadingControls}
           >
@@ -398,7 +410,7 @@ export const Trust = () => {
               <motion.div
                 key={index}
                 className="flex flex-row items-center gap-[20px]"
-                variants={mobileItemVariants}
+                variants={mobileItemVariants as Variants}
               >
                 <div className="relative flex-shrink-0">
                   <Image

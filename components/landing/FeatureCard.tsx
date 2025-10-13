@@ -3,6 +3,7 @@
 import { Menu, Thunder, Eye } from "@/utils/SvgUtils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Variants, Transition } from "framer-motion";
 
 export default function FeatureCard() {
   const features = [
@@ -57,7 +58,7 @@ export default function FeatureCard() {
   }, [isMobile, features.length]);
 
   // Desktop stagger animation variants
-  const getCardVariants = (index: number) => {
+  const getCardVariants = (index: number): Variants => {
     switch (index) {
       case 0: // Left card: start center → move left
         return {

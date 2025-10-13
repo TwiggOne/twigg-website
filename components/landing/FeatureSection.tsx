@@ -9,7 +9,7 @@ import {
   RightArrowInline,
 } from "@/utils/SvgUtils";
 // NOTE: Assuming 'motion/react' should be 'framer-motion'
-import { motion, useInView } from "framer-motion"; 
+import { motion, Transition, useInView } from "framer-motion"; 
 
 // =========================================================================
 // Features Component
@@ -240,7 +240,7 @@ export function FeatureCard({
       variants={variants}
       initial="hidden"
       animate={animateIn ? "visible" : "hidden"}
-      transition={transition}
+      transition={transition as Transition}
       className="feature-card w-full"
     >
       <div className="feature-card-inner p-[20px] md:py-[46px] md:px-[41px]">

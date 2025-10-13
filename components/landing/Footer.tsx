@@ -33,10 +33,11 @@ export default function Footer() {
                 className="object-contain w-[112px] h-[33px] sm:w-[140px] sm:h-[45px]"
               />
             </div>
-            <p className="text-[#FDF9F0]/80 font-switzer text-[10px] sm:text-sm leading-relaxed">
-              Your journey with money doesn't have to be complicated. With
-              Twigg, clarity and confidence are just a tap away.
-            </p>
+        <p className="text-[#FDF9F0]/80 font-switzer text-[10px] sm:text-sm leading-relaxed">
+  Your journey with money doesn&apos;t have to be complicated. With Twigg,
+  clarity and confidence are just a tap away.
+</p>
+
           </div>
       <div
   // Change to flex container with column direction for mobile

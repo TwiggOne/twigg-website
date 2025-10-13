@@ -40,9 +40,10 @@ export default function FAQSection() {
           <h2 className="font-bricolage text-[20px] sm:text-[56px] font-semibold text-[#FDF9F0] leading-[40px] sm:leading-[100%]">
             FAQs
           </h2>
-          <p className="font-switzer text-[14px] sm:text-[24px] font-normal text-[#FDF9F0]/80 leading-[24px] sm:leading-[120%]">
-            Got questions? We've got answers.
-          </p>
+        <p className="font-switzer text-[14px] sm:text-[24px] font-normal text-[#FDF9F0]/80 leading-[24px] sm:leading-[120%]">
+  Got questions? We&apos;ve got answers.
+</p>
+
         </div>
 
         {/* FAQ List */}

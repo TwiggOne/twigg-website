@@ -11,14 +11,13 @@ interface LenisScrollProps {
 export const LenisScroll: React.FC<LenisScrollProps> = ({ children }) => {
   useEffect(() => {
     // Initialize Lenis
-    const lenis = new Lenis({
-      duration: 1.2, // Scroll duration
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing
-      smoothWheel: true, // Enable wheel-based smooth scrolling
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    });
+  const lenis = new Lenis({
+  duration: 1.2, // Scroll duration
+  easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing
+  touchMultiplier: 2,
+  infinite: false,
+});
+
 
     // Ticker (requestAnimationFrame loop)
     const raf = (time: number) => {

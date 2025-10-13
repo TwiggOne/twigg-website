@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import Image from "next/image";
-import { delay, motion } from "framer-motion";
+import { delay, motion, Variants } from "framer-motion";
 import {
   Tag1,
   Tag2,
@@ -45,7 +45,7 @@ export default function HeroSection() {
     text: string;
     className?: string;
   }) => (
-    <motion.div className={className} variants={tagVariants}>
+    <motion.div className={className} variants={tagVariants as Variants}>
       <div className="relative w-[218px] h-[66px] flex items-center justify-center">
         <Tag />
         <span
