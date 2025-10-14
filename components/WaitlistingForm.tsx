@@ -13,7 +13,7 @@ type FormData = {
 };
 
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxg0o8iiMvjbUj2UCLA5WoRXgL_G_5EF7-V0502NL9wQNpvQ7gh4Ze2jUKff88Ct_Wt/exec";
+  "https://script.google.com/macros/s/AKfycbxBNo2Db1JWc61rBG0rndWyZLMKr2nablXQmL4cuqLyPCWMJkzS10jqgbYPX42jTHeg/exec";
 
 const formFields = [
   {
@@ -157,8 +157,21 @@ export default function WaitlistForm() {
       placeholder={field.placeholder}
       {...register(field.id as keyof FormData, {
         required: `${field.label} is required`,
+        ...(field.id === "email" && {
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: "Please enter a valid email address"
+          }
+        }),
         ...(field.id === "phone" && {
-        
+          pattern: {
+            value: /^(\+?1[-.\s]?)?\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/,
+            message: "Please enter a valid phone number"
+          },
+          minLength: {
+            value: 10,
+            message: "Phone number must be at least 10 digits"
+          }
         }),
       })}
       maxLength={field.id === "phone" ? 13 : undefined}
@@ -166,15 +179,27 @@ export default function WaitlistForm() {
         field.id === "phone"
           ? (e: React.FormEvent<HTMLInputElement>) => {
               const input = e.currentTarget;
-              input.value = input.value.replace(/[^\d+]/g, "");
-              if (input.value.indexOf("+") > 0) {
-                input.value = input.value.replace(/\+/g, "");
+              let value = input.value.replace(/[^\d+]/g, "");
+              
+              // Remove extra + signs (keep only the first one)
+              if (value.indexOf("+") > 0) {
+                value = value.replace(/\+/g, "");
               }
-              if (!input.value.startsWith("+") && input.value.length > 10) {
-                input.value = input.value.slice(0, 10);
-              } else if (input.value.startsWith("+") && input.value.length > 13) {
-                input.value = input.value.slice(0, 13);
+              
+              // Format phone number
+              if (value.startsWith("+")) {
+                // International format: +1234567890 (max 13 chars)
+                if (value.length > 13) {
+                  value = value.slice(0, 13);
+                }
+              } else {
+                // US format: 1234567890 (max 10 digits)
+                if (value.length > 10) {
+                  value = value.slice(0, 10);
+                }
               }
+              
+              input.value = value;
             }
           : undefined
       }
