@@ -38,14 +38,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${bricolage.className} antialiased`}
       >
         <LenisScroll>
-          <div className="bg-[#152D23] ">
-            <Header />
-
-            {children}
-            <Footer />
-          </div>
+          <div className="bg-[#152D23] ">{children}</div>
         </LenisScroll>
-        <Toaster/>
+        <Toaster />
       </body>
     </html>
   );

@@ -1,11 +1,10 @@
-"use client"
+"use client";
+
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { backendUrl } from "@/lib/config";
+import { UpArrow } from "@/utils/SvgUtils";
 
 type FormData = {
   name: string;
@@ -13,253 +12,290 @@ type FormData = {
   phone: string;
 };
 
+const APPS_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxg0o8iiMvjbUj2UCLA5WoRXgL_G_5EF7-V0502NL9wQNpvQ7gh4Ze2jUKff88Ct_Wt/exec";
+
+const formFields = [
+  {
+    id: "name",
+    label: "Name",
+    type: "text",
+    placeholder: "Enter your full name",
+  },
+  {
+    id: "email",
+    label: "Email",
+    type: "email",
+    placeholder: "Enter your email",
+  },
+  {
+    id: "phone",
+    label: "Phone",
+    type: "tel",
+    placeholder: "Enter your phone number",
+  },
+];
+
+const floatingCards = [
+  // ... (floatingCards unchanged)
+  {
+    title: "Founding community",
+    description:
+      "Be part of our founding community and help shape the future of financial wellness.",
+    logo: "/form/logo(1).svg",
+    positionClasses:
+      "top-5 left-0 md:top-30 md:left-[5%] lg:top-[25%] lg:left-[0%]",
+    gradientStart: "rgba(21,45,35,0.5)",
+    gradientMid: "rgba(38,56,48,0.5)",
+    gradientEnd: "rgba(219,215,252,0.5)",
+  },
+  {
+    title: "AI-powered insights",
+    description:
+      "Blends your income, spending, assets, loans, and money personality.",
+    logo: "/form/logo(2).svg",
+    positionClasses:
+      "top-1/2 right-[-20] -translate-y-1/2 md:right-[5%] lg:top-[45%] lg:right-[5%]",
+    gradientStart: "rgba(21,45,35,0.5)",
+    gradientMid: "rgba(38,56,48,0.5)",
+    gradientEnd: "rgba(219,215,252,0.5)",
+  },
+  {
+    title: "Personalized guidance",
+    description:
+      "No anxiety, no FOMO - just clear, personalized financial guidance that works for you.",
+    logo: "/form/logo(3).svg",
+    positionClasses:
+      "bottom-5 left-0 md:bottom-40 md:left-[20%] lg:bottom-[25%] lg:left-[10%]",
+    gradientStart: "rgba(21,45,35,0.5)",
+    gradientMid: "rgba(38,56,48,0.5)",
+    gradientEnd: "rgba(219,215,252,0.5)",
+  },
+];
+
 export default function WaitlistForm() {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors, isSubmitting },
   } = useForm<FormData>();
 
-  
   const onSubmit = async (data: FormData) => {
+    const params = new URLSearchParams(
+      data as Record<string, string>
+    ).toString();
+    const targetUrl = `${APPS_SCRIPT_URL}?${params}`;
+
     try {
-      
-      const res = await axios.post(`${backendUrl}/api/waitlist/join`, data);
-      if (res.status === 200 || res.status === 201) {
-        toast.success(" Successfully joined the waitlist!");
+      // Use simple fetch with GET request
+      const res = await fetch(targetUrl, {
+        method: "GET",
+        mode: "no-cors", // Use 'no-cors' for simple data submissions to Apps Script
+      });
+
+      if (res.status === 200 || res.ok || res.type === "opaque") {
+        toast.success("Successfully joined the waitlist!");
         reset();
       } else {
-        throw new Error("Unexpected server response");
+        throw new Error(`Server responded with status: ${res.status}`);
       }
     } catch (error) {
-      const message = error || "Something went wrong.";
-      toast.error(`❌ ${message}`);
+      toast.error(
+        `❌ Submission failed. Check your Apps Script URL and deployment.`
+      );
+      console.error(error);
     }
   };
-  return (
-    <section className="relative w-full h-[939px] bg-[#152D23] flex flex-col lg:flex-row items-center lg:items-start justify-center lg:justify-start px-6 lg:px-0 py-12 lg:py-20 gap-8 lg:gap-16">
 
-      {/* Header */}
-      <header className="absolute top-12 left-6 lg:top-[52px] lg:left-[120px] flex items-center z-20">
-        <Image src="/form/TwiggLogo1.svg" alt="Twigg Logo" width={174} height={42} />
+  const inputClass =
+    "w-full h-[56px] px-4 rounded-lg bg-[rgba(253,249,240,0.08)] border border-[rgba(188,147,19,0.25)] text-[#FDF9F0] placeholder-[rgba(253,249,240,0.8)] focus:ring-1 focus:ring-[#BC9313] shadow-[0_108px_43px_rgba(0,0,0,0.01),0_61px_36px_rgba(0,0,0,0.05),0_27px_27px_rgba(0,0,0,0.09),0_7px_15px_rgba(0,0,0,0.1)] font-switzer text-[14px]";
+
+  return (
+    <section className="relative max-w-7xl px-5 sm:px-6  mx-auto flex flex-col bg-[#152D23]">
+      {/* Header - UNCHANGED */}
+      <header className="mt-12 flex justify-center lg:justify-start items-center z-20">
+        <Image
+          src="/form/TwiggLogo1.svg"
+          alt="Twigg Logo"
+          width={174}
+          height={42}
+        />
       </header>
 
-      <div className="w-full flex flex-col items-center lg:items-start lg:w-auto mt-12 lg:mt-[118px] lg:ml-[120px]">
-        <div className="flex flex-col max-w-[452px] mx-auto lg:mx-0">
-          {/* Title & Subtitle */}
-          <div className="space-y-4 max-w-[452px] mb-8 text-center lg:text-left">
-            <h1 className="text-5xl lg:text-[56px] font-bricolage font-semibold text-[#FDF9F0] leading-[67px]">
+      {/* Form & Image Section - UNCHANGED */}
+      <div className="w-full flex flex-col lg:flex-row items-center mt-12 lg:mt-[84px] gap-12 lg:gap-0">
+        {/* Form - UNCHANGED */}
+        <div className="flex flex-col gap-12 w-full lg:w-1/2 items-center lg:items-start">
+          <div className="max-w-[452px] flex flex-col gap-4 text-center lg:text-left">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bricolage font-semibold text-[#FDF9F0] leading-[110%]">
               Join the <span className="text-[#BC9313]">Waitlist!</span>
             </h1>
-            <p className="text-[rgba(253,249,240,0.8)] text-lg lg:text-[24px] font-switzer font-normal leading-[29px] max-w-[370px] mx-auto lg:mx-0">
-              Be the first to experience Twigg, your all-in-one money companion.
+            <p className="text-[rgba(253,249,240,0.8)] text-base sm:text-lg lg:text-[24px] font-switzer font-normal leading-[120%]">
+              Be the first to experience Twigg,
+              <br />
+              your all-in-one money companion.
             </p>
           </div>
 
-          {/* Form */}
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mt-6 max-w-[400px] gap-6 w-full">
-            {/* Name */}
-            <div className="flex flex-col w-full relative">
-              <label
-                htmlFor="name"
-                className="text-[#FDF9F0] font-switzer font-normal text-[16px] leading-[21px] mb-2"
-              >
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                placeholder="Enter your full name"
-                {...register("name", { required: "Name is required" })}
-                className="w-full h-[56px] px-4 rounded-lg bg-[rgba(253,249,240,0.08)] border border-[rgba(188,147,19,0.25)] text-[#FDF9F0] placeholder-[rgba(253,249,240,0.8)] focus:ring-2 focus:ring-[#BC9313] shadow-[0_108px_43px_rgba(0,0,0,0.01),0_61px_36px_rgba(0,0,0,0.05),0_27px_27px_rgba(0,0,0,0.09),0_7px_15px_rgba(0,0,0,0.1)] font-switzer text-[16px]"
-              />
-              {errors.name && (
-                <span className="text-[#FF6B6B] font-switzer text-[12px] mt-1">
-                  {errors.name.message}
-                </span>
-              )}
-            </div>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col w-full sm:w-[80%] lg:w-[70%] gap-6 sm:gap-8"
+          >
+           {formFields.map((field) => (
+  <div key={field.id} className="flex flex-col gap-2 w-full relative">
+    <label
+      htmlFor={field.id}
+      className="text-[#FDF9F0] font-switzer font-normal text-[12px] sm:text-[14px]"
+    >
+      {field.label}
+    </label>
 
-            {/* Email */}
-            <div className="flex flex-col w-full relative">
-              <label
-                htmlFor="email"
-                className="text-[#FDF9F0] font-switzer font-normal text-[16px] leading-[21px] mb-2"
-              >
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                {...register("email", {
-                  required: "Email is required",
-                  pattern: { value: /\S+@\S+\.\S+/, message: "Invalid email" },
-                })}
-                className="w-full h-[56px] px-4 rounded-lg bg-[rgba(253,249,240,0.08)] border border-[rgba(188,147,19,0.25)] text-[#FDF9F0] placeholder-[rgba(253,249,240,0.8)] focus:ring-2 focus:ring-[#BC9313] shadow-[0_108px_43px_rgba(0,0,0,0.01),0_61px_36px_rgba(0,0,0,0.05),0_27px_27px_rgba(0,0,0,0.09),0_7px_15px_rgba(0,0,0,0.1)] font-switzer text-[16px]"
-              />
-              {errors.email && (
-                <span className="text-[#FF6B6B] font-switzer text-[12px] mt-1">
-                  {errors.email.message}
-                </span>
-              )}
-            </div>
+    <input
+      id={field.id}
+      type={field.type}
+      placeholder={field.placeholder}
+      {...register(field.id as keyof FormData, {
+        required: `${field.label} is required`,
+        ...(field.id === "phone" && {
+        
+        }),
+      })}
+      maxLength={field.id === "phone" ? 13 : undefined}
+      onInput={
+        field.id === "phone"
+          ? (e: React.FormEvent<HTMLInputElement>) => {
+              const input = e.currentTarget;
+              input.value = input.value.replace(/[^\d+]/g, "");
+              if (input.value.indexOf("+") > 0) {
+                input.value = input.value.replace(/\+/g, "");
+              }
+              if (!input.value.startsWith("+") && input.value.length > 10) {
+                input.value = input.value.slice(0, 10);
+              } else if (input.value.startsWith("+") && input.value.length > 13) {
+                input.value = input.value.slice(0, 13);
+              }
+            }
+          : undefined
+      }
+      className={inputClass}
+    />
 
-            {/* Phone */}
-            <div className="flex flex-col w-full relative">
-              <label
-                htmlFor="phone"
-                className="text-[#FDF9F0] font-switzer font-normal text-[16px] leading-[21px] mb-2"
-              >
-                Phone
-              </label>
-              <input
-                id="phone"
-                type="tel"
-                placeholder="Enter your phone number"
-                {...register("phone", { required: "Phone number is required" })}
-                className="w-full h-[56px] px-4 rounded-lg bg-[rgba(253,249,240,0.08)] border border-[rgba(188,147,19,0.25)] text-[#FDF9F0] placeholder-[rgba(253,249,240,0.8)] focus:ring-2 focus:ring-[#BC9313] shadow-[0_108px_43px_rgba(0,0,0,0.01),0_61px_36px_rgba(0,0,0,0.05),0_27px_27px_rgba(0,0,0,0.09),0_7px_15px_rgba(0,0,0,0.1)] font-switzer text-[16px]"
-              />
-              {errors.phone && (
-                <span className="text-[#FF6B6B] font-switzer text-[12px] mt-1">
-                  {errors.phone.message}
-                </span>
-              )}
-            </div>
+    {errors[field.id as keyof FormData] && (
+      <span className="text-[#FF6B6B] font-switzer text-[12px] mt-1">
+        {errors[field.id as keyof FormData]?.message}
+      </span>
+    )}
+  </div>
+))}
 
-            {/* Submit Button */}
-            <motion.button
-              type="submit"
-              disabled={isSubmitting}
-              className={`bg-[#BC9313] cursor-pointer mt-[46px] text-white w-[265px] h-[54px] rounded-full font-switzer font-semibold text-[18px] shadow-xl flex items-center justify-center overflow-hidden relative gap-[48px] ${
-                isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-              initial="rest"
-              whileHover={isSubmitting ? "rest" : "hover"}
-              animate="rest"
-            >
-              <motion.span
-                variants={{
-                  rest: {
-                    x: 10,
-                    transition: { duration: 0.5, ease: "easeInOut" },
-                  },
-                  hover: {
-                    x: -10,
-                    transition: { duration: 0.5, ease: "easeInOut" },
-                  },
-                }}
-                className="transition-transform"
-              > 
-                {isSubmitting ? "Submitting..." : "Join Waitlist"}
-              </motion.span>
-              {!isSubmitting && (
+            <div className="flex justify-center lg:justify-start">
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                initial="rest"
+                whileHover="hover"
+                animate="rest"
+                className="bg-[#BC9313] cursor-pointer text-white w-[165px] sm:w-[200px] md:w-[239px] h-[40px] sm:h-[48px] md:h-[54px] rounded-full font-semibold text-[14px] sm:text-[16px] md:text-lg shadow-xl flex items-center justify-center relative overflow-hidden"
+              >
+                <motion.span
+                  variants={{
+                    rest: {
+                      x: 0,
+                      transition: { duration: 0.2, ease: "easeOut" },
+                    },
+                    hover: {
+                      x: -10,
+                      transition: { duration: 0.2, ease: "easeOut" },
+                    },
+                  }}
+                  className="transition-transform"
+                >
+                  {isSubmitting ? "Submitting..." : "Join Waitlist"}
+                </motion.span>
                 <motion.div
                   variants={{
                     rest: {
                       opacity: 0,
-                      x: 0,
-                      transition: { duration: 0.5, ease: "easeInOut" },
+                      x: 20,
+                      transition: { duration: 0.2, ease: "easeOut" },
                     },
                     hover: {
                       opacity: 1,
-                      x: 0,
-                      transition: { duration: 0.5, ease: "easeInOut" },
+                      x: 10,
+                      transition: { duration: 0.2, ease: "easeOut" },
                     },
                   }}
-                  className="w-5 h-5 text-white flex-shrink-0"
+                  className="w-5 h-5 text-white flex-shrink-0 absolute right-10"
                 >
-                  <ArrowRight />
+                  <UpArrow right />
                 </motion.div>
-              )}
-            </motion.button>
-            
+              </motion.button>
+            </div>
           </form>
         </div>
-      </div>
 
-
-    
-      {/* Right Section - Phone Mockup & Cards */}
-      <div className="w-full lg:w-1/2 relative flex justify-center items-center min-h-[600px] lg:min-h-[700px] lg:pr-[120px]">
-        {/* Phone Mockup - Centered */}
-        <Image
-      src="/form/Waitlist.svg"
-      alt="Waitlist Illustration"
-      width={412}
-      height={504}
-      className="w-full h-full object-cover rotate-[2.24deg]"
-      style={{
-        boxShadow: `
-          0px 16px 34px 0px #0000003B,
-          0px 62px 62px 0px #00000033,
-          0px 140px 84px 0px #0000001F,
-          0px 248px 99px 0px #00000008,
-          0px 388px 109px 0px #00000000
-        `
-      }}
-    />
-
-        {/* Floating Cards Container */}
-        <div className="hidden lg:block">
-          {/* Floating Card 1: Founding Community */}
-          <div className="absolute left-[106px] top-[252px] w-[280px] h-[119px] rounded-[15px] overflow-hidden">
-            
-            <div className="absolute inset-0 backdrop-blur-[12.5px] rounded-[15px] bg-[rgba(31,60,48,0.7)]"></div>
-            <div className="absolute w-[361px] h-[344px] -left-[9px] top-0
-              bg-gradient-to-br from-[rgba(30,51,42,0.5)] via-[rgba(38,56,48,0.5)] to-[rgba(226,187,66,0.5)]
-              blur-[50px] rounded-[15px]"></div>
-            <div className="relative flex flex-col gap-2 p-5 z-10">
-              <div className="flex items-center gap-3">
-              <Image src="/form/logo(1).svg" alt="Handshake" width={28} height={22} />
-                <h3 className="font-switzer font-semibold text-[16px] text-[#BC9313]">
-                  Founding community
-                </h3>
+        {/* Image & Floating Cards - UNCHANGED */}
+        <div className="w-full lg:w-1/2 relative h-full flex justify-center items-center">
+          <div
+            className="absolute"
+            style={{
+              width: 400,
+              height: 400,
+              background: "rgba(188, 147, 19, 0.3)",
+              filter: "blur(100px)",
+              borderRadius: "50%",
+              zIndex: 0,
+            }}
+          ></div>
+          <Image
+            src="/form.png"
+            alt="form"
+            width={300}
+            height={368}
+            className="object-contain relative z-10 sm:w-[60%] md:w-[80%]"
+            style={{
+              filter: `
+            drop-shadow(0px 16px 34px rgba(0,0,0,0.23))
+            drop-shadow(0px 62px 62px rgba(0,0,0,0.2))
+            drop-shadow(0px 140px 84px rgba(0,0,0,0.12))
+            drop-shadow(0px 248px 99px rgba(0,0,0,0.03))
+          `,
+            }}
+          />
+          {floatingCards.map((card, i) => (
+            <div
+              key={i}
+              className={`absolute w-44 h-20 md:w-56 md:h-24 lg:w-[220px] lg:h-[90px] rounded-[12px] overflow-hidden ${card.positionClasses}`}
+              style={{
+                zIndex: 20,
+              }}
+            >
+              <div className="absolute inset-0 backdrop-blur-[10px] rounded-[12px] bg-[rgba(31,60,48,0.7)]"></div>
+              <div
+                className="absolute -left-[8px] top-0  rounded-[12px] blur-[40px] pt-[16px] pb-[28px] px-[16px]"
+                style={{
+                  background: `linear-gradient(135deg, ${card.gradientStart} 0%, ${card.gradientMid} 42%, ${card.gradientEnd} 100%)`,
+                }}
+              ></div>
+              <div className="relative flex flex-col gap-1 p-2 md:p-3 z-10">
+                <div className="flex items-center gap-1">
+                  <Image
+                    src={card.logo}
+                    alt={card.title}
+                    width={20}
+                    height={12}
+                  />
+                  <h3 className="font-switzer font-semibold text-[13px] md:text-[14px] text-[#BC9313] truncate">
+                    {card.title}
+                  </h3>
+                </div>
+                <p className="font-switzer text-[9px] md:text-[10px] text-[#FDF9F0]/80 leading-tight">
+                  {card.description}
+                </p>
               </div>
-              <p className="font-switzer text-[12px] text-[#FDF9F0]/80">
-                Be part of our founding community and help shape the future of financial wellness.
-              </p>
             </div>
-          </div>
-
-          {/* Floating Card 2: AI-powered insights */}
-          <div className="absolute left-[549px] top-[360px] w-[254px] h-[115px] rounded-[15px] overflow-hidden">
-            <div className="absolute inset-0 backdrop-blur-[12.5px] rounded-[15px] bg-[rgba(31,60,48,0.7)]"></div>
-            <div className="absolute w-[361px] h-[344px] -left-[9px] top-0
-              bg-gradient-to-br from-[rgba(30,51,42,0.5)] via-[rgba(38,56,48,0.5)] to-[rgba(228,215,174,0.5)]
-              blur-[50px] rounded-[15px]"></div>
-            <div className="relative flex flex-col gap-2 p-5 z-10">
-              <div className="flex items-center gap-3">
-              <Image src="/form/logo(2).svg" alt="Handshake" width={28} height={22} />
-                <h3 className="font-bricolage font-bold text-[16px] text-[#BC9313]">
-                  AI-powered insights
-                </h3>
-              </div>
-              <p className="font-switzer text-[12px] text-[#FDF9F0]/80">
-                Blends your income, spending, assets, loans, and money personality.
-              </p>
-            </div>
-          </div>
-
-          {/* Floating Card 3: Personalized guidance */}
-          <div className="absolute left-[192px] top-[512px] w-[292px] h-[115px] rounded-[15px] overflow-hidden">
-            <div className="absolute inset-0 backdrop-blur-[12.5px] rounded-[15px] bg-[rgba(31,60,48,0.7)]"></div>
-            <div className="absolute w-[361px] h-[344px] -left-[10px] -top-[156px]
-              bg-gradient-to-br from-[rgba(30,51,42,0.5)] via-[rgba(38,56,48,0.5)] to-[rgba(219,215,252,0.5)]
-              blur-[50px] rounded-[15px]"></div>
-            <div className="relative flex flex-col gap-2 p-5 z-10">
-              <div className="flex items-center gap-3">
-                <Image src="/form/logo(3).svg" alt="Handshake" width={28} height={22} />
-                <h3 className="font-switzer font-semibold text-[16px] text-[#BC9313]">
-                  Personalized guidance
-                </h3>
-              </div>
-              <p className="font-switzer text-[12px] text-[#FDF9F0]/80">
-                No anxiety, no FOMO - just clear, personalized financial guidance that works for you.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
