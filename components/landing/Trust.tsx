@@ -7,7 +7,7 @@ import {
   useAnimation,
   useInView,
   Variants,
-} from "framer-motion";
+} from "motion/react";
 import { CircleSheild } from "@/utils/SvgUtils"; // Assuming this utility is available
 
 export const Trust = () => {

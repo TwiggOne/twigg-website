@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  next-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: next-app
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app            # Mount project for hot reload
+      - /app/node_modules  # Preserve container node_modules
+    environment:
+      NODE_ENV: development
