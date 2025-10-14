@@ -22,7 +22,7 @@ export function Landing() {
         <CommingSoon />
       </div>
 
-      <div className="mx-auto max-w-7xl px-[20px] md:px-0 ">
+      <div className="mx-auto max-w-7xl px-[20px] md:px-[20px] ">
         <ProblemSection />
         <Features />
       </div>

@@ -2,7 +2,7 @@
 import { motion } from "motion/react";
 import React from "react";
 import Image from "next/image";
-import { QuesitonMark, UpArrow } from "@/utils/SvgUtils";
+import { QuesitonMark, Stress, UpArrow, Wallet } from "@/utils/SvgUtils";
 
 // 🎯 Reusable Card Component
 const ProblemCard = ({
@@ -32,10 +32,17 @@ const ProblemCard = ({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
-      className="relative rounded-[15px] p-[3px] bg-gradient-to-br from-[#BC931300] to-[#BC9313]"
+      className="rounded-[15px] backdrop-blur-[15.5px]"
+      style={{
+        boxSizing: "border-box",
+
+        // Apply the exact linear gradient
+        background:
+          "linear-gradient(144.51deg, rgba(188, 147, 19, 0.2) -17.11%, rgba(253, 249, 240, 0.2) 55.86%, rgba(228, 215, 174, 0.2) 95.79%)",
+      }}
     >
       {/* Inner card background */}
-      <div className="rounded-[12px] bg-gradient-to-br from-[#BC9313] via-[#FDF9F0] to-[#E4D7AE] backdrop-blur-[25px] py-[44px] px-[28px]">
+      <div className="rounded-[12px]  py-[44px] px-[28px]">
         <div className="flex flex-col gap-[20px]">
           <h3
             className="font-bricolage font-bold leading-[1.2] text-[#BC9313]"
@@ -104,30 +111,81 @@ export const ProblemSection = () => {
             </span>
           </h2>
         </motion.div>
-
+        <div className="absolute left-[27%] top-[68%] flex flex-row gap-2">
+          <div className=" flex items-center justify-center rounded-full w-[44px] h-[44px] border border-[#000000]/20">
+            <Stress />
+          </div>
+          <p className="text-[18px] font-bold text-[#B7B7B7] leading-[120%] font-bricolage">
+       Hard to <br />
+manage money
+          </p>
+        </div>
+            <div className="absolute left-[27%] top-[26%] flex flex-row gap-2">
+          <div className=" flex items-center justify-center rounded-full w-[44px] h-[44px] border border-[#000000]/20">
+            <Wallet />
+          </div>
+          <p className="text-[18px] font-bold text-[#B7B7B7] leading-[120%] font-bricolage">
+            Constant
+            <br />
+            Money Stress
+          </p>
+        </div>
         {/* Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 items-center relative">
           {/* Left - Image */}
-          <div className=" ml-[-40%] flex justify-center items-center mb-12">
+          <div className=" ml-[-40%] pt-[10%] relative flex justify-center items-center mb-12">
             <Image
               src="/Problem.svg"
               alt="Financial Cycle Illustration"
-              width={560}
-              height={550}
-              className="object-contain"
+              width={499}
+              height={499}
+              className="absolute object-contain "
             />
+            <div className="relative w-[549px] h-[548px]">
+              <Image
+                src="/Ellipse.svg"
+                alt="Financial Cycle Illustration"
+                fill
+                className="object-contain"
+              />
+              {/* Dot on the border */}
+              <div
+                className="absolute w-[14px] h-[14px] bg-[#B7B7B7] rounded-full"
+                style={{
+                  top: "11%", // 50% down from top
+                  right: "19%", // 100% across width of ellipse
+                  transform: "translate(-50%, -50%)", // center the dot on the border
+                }}
+              ></div>
+                 <div
+                className="absolute w-[14px] h-[14px] bg-[#B7B7B7] rounded-full"
+                style={{
+                  bottom: "9%", // 50% down from top
+                  right: "19%", // 100% across width of ellipse
+                  transform: "translate(-50%, -50%)", // center the dot on the border
+                }}
+              ></div>
+                <div
+                className="absolute w-[21px] h-[21px] bg-[#BC9313] rounded-full"
+                style={{
+                   // 50% down from top
+                   top:"50%",
+                  right: "-4%", // 100% across width of ellipse
+                  transform: "translate(-50%, -50%)", // center the dot on the border
+                }}
+              ></div>
+            </div>
           </div>
-          <div className="relative w-full h-[50%] flex flex-col rounded-[15px] ">
-            {/* Top gradient border */}
-            <div
-              className="flex-1 rounded-[15px]"
-              style={{
-                background: `linear-gradient(135deg, #BC931300 0%, #BC931380 50%, #BC9313 100%)`,
-              }}
-            ></div>
-
+          <div className="relative w-full h-[50%] pl-[15%] flex flex-col rounded-[15px] ">
+            <Image
+              src="/Border.svg"
+              alt="Financial Cycle Illustration"
+              width={328}
+              height={282}
+              className="absolute object-contain "
+            />
             {/* Middle content */}
-            <div className="flex-1 flex items-center bg-[#FDF9F0]">
+            <div className="flex-1 flex items-center bg-[#FDF9F0] ">
               <div className="-ml-8 flex flex-row gap-[8px] items-center w-full">
                 <div className="flex items-center justify-center w-[62px] h-[62px] rounded-full bg-[#BC9313]">
                   <QuesitonMark />
@@ -139,18 +197,10 @@ export const ProblemSection = () => {
                 </div>
               </div>
             </div>
-
-            {/* Bottom gradient border */}
-            <div
-              className="flex-1"
-              style={{
-                background: `linear-gradient(225deg, #BC9313 0%, #BC931380 50%, #BC931300 100%)`,
-              }}
-            ></div>
           </div>
 
           {/* Right - Cards */}
-          <div className="flex flex-col gap-[18px] w-full  pt-0 lg:pt-12">
+          <div className="flex flex-col gap-[18px] pl-[10%] w-full  pt-0 lg:pt-12">
             {cards.map((card, idx) => (
               <ProblemCard
                 key={idx}

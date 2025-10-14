@@ -12,9 +12,10 @@ export const LenisScroll: React.FC<LenisScrollProps> = ({ children }) => {
   useEffect(() => {
     // Initialize Lenis
   const lenis = new Lenis({
-  duration: 1.2, // Scroll duration
+  duration:0.5, // Keep the scroll speed fast
   easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing
-  touchMultiplier: 2,
+  wheelMultiplier:1.5, 
+  touchMultiplier: 1.0, 
   infinite: false,
 });
 
