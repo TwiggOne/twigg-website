@@ -4,6 +4,7 @@ import "./globals.css";
 import { LenisScroll } from "@/components/landing/LenisScoll";
 import { Header } from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,6 +45,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </LenisScroll>
+        <Toaster/>
       </body>
     </html>
   );
