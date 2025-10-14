@@ -1,9 +1,11 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const Header = () => {
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -47,6 +49,9 @@ export const Header = () => {
 
         {/* Button */}
         <button
+           onClick={() => {
+            router.push("/waitlist");
+          }}
           className={` px-[20px] sm:px-[24px] py-[8px] sm:py-[14px] rounded-full text-[10px] sm:text-base font-semibold transition-all hover:scale-105 text-center
             ${
               scrolled

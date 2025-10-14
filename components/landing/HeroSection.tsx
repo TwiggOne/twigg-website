@@ -14,8 +14,10 @@ import {
   UpArrow,
   RightArrowInline,
 } from "@/utils/SvgUtils";
+import { useRouter } from "next/navigation";
 
 export default function HeroSection() {
+  const router = useRouter();
     const [imageLoaded, setImageLoaded] = useState(false);
 
   const containerVariants = {
@@ -85,6 +87,10 @@ export default function HeroSection() {
           {/* Button */}
           <div className="flex justify-center lg:justify-start">
             <motion.button
+              // add to waitlist page
+              onClick={() => {
+                router.push("/waitlist");
+              }}
               className="bg-[#BC9313] cursor-pointer text-white 
       w-[165px] md:w-[239px] h-[40px] md:h-[54px] 
       md:mb-[32px] rounded-full font-semibold text-[14px] md:text-lg 
