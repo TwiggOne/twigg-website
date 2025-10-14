@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion"; // Assuming 'motion/react' should be 'framer-motion'
+import { motion } from "motion/react"; // Assuming 'motion/react' should be 'framer-motion'
 
 export const CommingSoon = () => {
   // Define the scrolling text string

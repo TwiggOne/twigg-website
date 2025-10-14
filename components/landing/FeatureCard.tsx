@@ -1,9 +1,9 @@
 "use client";
 
 import { Menu, Thunder, Eye } from "@/utils/SvgUtils";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
-import { Variants, Transition } from "framer-motion";
+import { Variants, Transition } from "motion/react";
 
 export default function FeatureCard() {
   const features = [

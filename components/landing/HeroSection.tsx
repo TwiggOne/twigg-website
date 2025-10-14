@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import Image from "next/image";
-import { delay, motion, Variants } from "framer-motion";
+import { delay, motion, Variants } from "motion/react";
 import {
   Tag1,
   Tag2,

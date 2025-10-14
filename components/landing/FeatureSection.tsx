@@ -9,7 +9,7 @@ import {
   RightArrowInline,
 } from "@/utils/SvgUtils";
 // NOTE: Assuming 'motion/react' should be 'framer-motion'
-import { motion, Transition, useInView } from "framer-motion"; 
+import { motion, Transition, useInView } from "motion/react"; 
 
 // =========================================================================
 // Features Component
