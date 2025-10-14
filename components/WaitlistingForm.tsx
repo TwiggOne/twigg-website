@@ -13,7 +13,7 @@ type FormData = {
 };
 
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxg0o8iiMvjbUj2UCLA5WoRXgL_G_5EF7-V0502NL9wQNpvQ7gh4Ze2jUKff88Ct_Wt/exec";
+  "https://script.google.com/macros/s/AKfycbxBNo2Db1JWc61rBG0rndWyZLMKr2nablXQmL4cuqLyPCWMJkzS10jqgbYPX42jTHeg/exec";
 
 const formFields = [
   {
