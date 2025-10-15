@@ -9,7 +9,7 @@ import {
   RightArrowInline,
 } from "@/utils/SvgUtils";
 // NOTE: Assuming 'motion/react' should be 'framer-motion'
-import { motion, Transition, useInView } from "motion/react"; 
+import { motion, Transition, useInView } from "motion/react";
 
 // =========================================================================
 // Features Component
@@ -33,7 +33,7 @@ export const Features = () => {
           </p>
         </div>
 
-        <div className="relative flex justify-center items-center h-[140px] md:h-[400px] w-full">
+        <div className="relative flex justify-center items-center h-[140px] md:h-[270px] w-full">
           {/* Glow Effect Background */}
           <div className="absolute w-[88px] h-[88px] sm:w-[100px] sm:h-[100px] md:w-[188px] md:h-[192px] z-0">
             <OuterCircle />
@@ -189,7 +189,7 @@ export function FeatureCard({
   // Custom Hook/Logic to determine mobile view
   useEffect(() => {
     // Use md breakpoint (768px) for consistency
-    const checkMobile = () => setIsMobile(window.innerWidth < 768); 
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
@@ -198,20 +198,20 @@ export function FeatureCard({
   // FIX: Corrected initial horizontal position logic
   const getInitialX = () => {
     if (isMobile) return 0; // Mobile: No horizontal offset
-    
+
     // Desktop: Start off-screen and slide in to final grid position
     if (position === "left") return "100%"; // Starts from the far left
-    if (position === "right") return "-100%";  // Starts from the far right
+    if (position === "right") return "-100%"; // Starts from the far right
     return 0; // Center card starts in its final horizontal spot
   };
-  
+
   // Define the base variants for motion
   const variants = {
-    hidden: { 
-        x: getInitialX(), 
-        y: isMobile ? 0 : -300, // Removed vertical offset for mobile, letting the grid handle stacking
-        scale: isMobile ? 1 : 0.4, // Start slightly smaller on desktop
-        opacity: 0 
+    hidden: {
+      x: getInitialX(),
+      y: isMobile ? 0 : -300, // Removed vertical offset for mobile, letting the grid handle stacking
+      scale: isMobile ? 1 : 0.4, // Start slightly smaller on desktop
+      opacity: 0,
     },
     visible: {
       x: 0, // Final x position (its final grid column)
@@ -220,14 +220,18 @@ export function FeatureCard({
       opacity: 1, // Final opacity
     },
   };
-  
+
   // Calculate delay based on position for staggering
   const delayMap = {
-    left: 0,
-    center: 0.1,
-    right: 0.2,
+    center: 0, // Animate center first
+    left: 1.5, // Animate left second
+    right: 3, // Animate right last
   };
-  
+  const delayMapMobile = {
+    center: 1.5, // Animate center first
+    left: 0, // Animate left second
+    right: 3, // Animate right last
+  };
   const transition = {
     duration: isMobile ? 0.8 : 1.2, // Faster animation on mobile
     ease: "easeOut",
@@ -240,7 +244,11 @@ export function FeatureCard({
       variants={variants}
       initial="hidden"
       animate={animateIn ? "visible" : "hidden"}
-      transition={transition as Transition}
+      transition={{
+        duration: isMobile ? 0.8 : 1.2,
+        ease: "easeOut",
+        delay: isMobile? delayMapMobile[position]: delayMap[position],
+      }}
       className="feature-card w-full"
     >
       <div className="feature-card-inner p-[20px] md:py-[46px] md:px-[41px]">

@@ -67,7 +67,7 @@ export default function FeatureCard() {
             opacity: 1,
             scale: 1,
             x: "0%",
-            transition: { delay: 0.8, type: "spring", stiffness: 120 },
+            transition: { delay: 1, type: "spring", stiffness: 120 },
           },
         };
       case 1: // Center card: appear in place
@@ -76,7 +76,7 @@ export default function FeatureCard() {
           visible: {
             opacity: 1,
             scale: 1,
-            transition: { delay: 1.6, type: "spring", stiffness: 120 },
+            transition: { delay: 2.5, type: "spring", stiffness: 120 },
           },
         };
       case 2: // Right card: start center → move right
@@ -86,7 +86,7 @@ export default function FeatureCard() {
             opacity: 1,
             scale: 1,
             x: "0%",
-            transition: { delay: 2.1, type: "spring", stiffness: 120 },
+            transition: { delay: 4, type: "spring", stiffness: 120 },
           },
         };
       default:

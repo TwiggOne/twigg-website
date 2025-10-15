@@ -32,19 +32,15 @@ const page = () => {
   return (
     <div className="min-h-screen mt-[140px] sm:mt-[160px] lg:mt-[180px] px-[16px] sm:px-[24px]">
       {/* Header */}
-      <div className="flex max-w-[1240px] items-center mx-auto w-full justify-start mb-8 flex-wrap sm:flex-nowrap">
-        <div className="sm:w-auto sm:h-auto flex-shrink-0">
-          <Privacy />
-        </div>
-        <p className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-[#FDF9F0] font-bricolage ml-3 sm:ml-4 mt-2 sm:mt-0">
-          Privacy Policy
-        </p>
-      </div>
+    
 
       {/* Main Card */}
-      <div className="flex flex-col gap-[32px] bg-[#FDF9F0] py-[32px] sm:py-[48px] lg:py-[64px] px-[24px] sm:px-[48px] lg:px-[92px] max-w-[1240px] mx-auto rounded-[24px] sm:rounded-[40px] lg:rounded-[60px]">
+    <div className="flex flex-col gap-[32px] bg-[#FDF9F0] py-[32px] sm:py-[48px] lg:py-[64px] px-[24px] sm:px-[48px] lg:px-[92px] max-w-[1240px] mx-auto rounded-[20px] sm:rounded-[20px] lg:rounded-[20px]">
         {/* Intro Section */}
-        <div className="flex flex-col text-[16px] sm:text-[18px] lg:text-[20px] font-switzer text-[#152D23] leading-[120%] sm:leading-[115%] lg:leading-[110%] text-justify">
+        <div className="flex flex-col text-[16px] gap-[42px] sm:text-[18px] lg:text-[20px] font-switzer text-[#152D23] leading-[120%] sm:leading-[115%] lg:leading-[110%] text-justify">
+              <p className="text-[30px] sm:text-[32px] lg:text-[36px] font-semibold text-[#152D23] font-bricolage  leading-[110%] ">
+          Privacy Policy
+        </p>
           <p>
             Last updated: [Insert Date]
             <br />

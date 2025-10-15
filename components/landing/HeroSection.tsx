@@ -1,7 +1,7 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { delay, motion, Variants } from "motion/react";
+import { motion, Variants } from "motion/react";
 import {
   Tag1,
   Tag2,
@@ -18,7 +18,23 @@ import { useRouter } from "next/navigation";
 
 export default function HeroSection() {
   const router = useRouter();
-    const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false); // <-- new
+
+  // Show button after scrolling 1 screen height
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      if (scrollY > window.innerHeight) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const containerVariants = {
     hidden: {},
@@ -93,7 +109,7 @@ export default function HeroSection() {
               }}
               className="bg-[#BC9313] cursor-pointer text-white 
       w-[165px] md:w-[239px] h-[40px] md:h-[54px] 
-      md:mb-[32px] rounded-full font-semibold text-[14px] md:text-lg 
+      md:mb-[32px] rounded-full font-semibold text-[14px] md:text-[22px]
       shadow-xl flex items-center justify-center overflow-hidden relative"
               initial="rest"
               whileHover="hover"
@@ -153,7 +169,7 @@ export default function HeroSection() {
             <div className="absolute w-[285px] h-[291px] md:w-[72%] md:h-[72%] ">
               <MidCircle />
             </div>
-            <div className="absolute w-[168px] h-[168px] md:w-[36%] md:h-[36%] ">
+            <div className="absolute w-[168px] h-[168px] md:w-[36%] md:ml-[-16] md:h-[36%] ">
               <InnerCircle />
             </div>
           </div>
@@ -217,18 +233,19 @@ export default function HeroSection() {
           </div>
 
           {/* TAGS */}
-          {imageLoaded &&     <motion.div
-            variants={containerVariants}
-            className="absolute inset-0"
-            initial="hidden"
-            animate="visible"
-          >
-            {/* Top Left */}
-            
-            <AnimatedTag
-              Tag={Tag1}
-              text="Invest Fearlessly"
-              className="
+          {imageLoaded && (
+            <motion.div
+              variants={containerVariants}
+              className="absolute inset-0"
+              initial="hidden"
+              animate="visible"
+            >
+              {/* Top Left */}
+
+              <AnimatedTag
+                Tag={Tag1}
+                text="Invest Fearlessly"
+                className="
       absolute 
       top-[-40%] left-[-140%]
       sm:top-[-50%] sm:left-[-160%]
@@ -236,13 +253,13 @@ export default function HeroSection() {
       lg:top-[23%] lg:left-[-6%]
       scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-100
     "
-            />
+              />
 
-            {/* Top Right */}
-            <AnimatedTag
-              Tag={Tag2}
-              text="Spend Mindfully"
-              className="
+              {/* Top Right */}
+              <AnimatedTag
+                Tag={Tag2}
+                text="Spend Mindfully"
+                className="
       absolute 
       top-[-50%] right-[-130%]
       sm:top-[-50%] sm:left-[90%]
@@ -250,13 +267,13 @@ export default function HeroSection() {
       lg:top-[16%] lg:left-[65%]
       scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-100
     "
-            />
+              />
 
-            {/* Bottom Left */}
-            <AnimatedTag
-              Tag={Tag3}
-              text="Optimized Spending"
-              className="
+              {/* Bottom Left */}
+              <AnimatedTag
+                Tag={Tag3}
+                text="Optimized Spending"
+                className="
       absolute 
       bottom-[-55%] left-[-120%]
       sm:bottom-[-60%] sm:left-[-150%]
@@ -264,13 +281,13 @@ export default function HeroSection() {
       lg:bottom-[17%] lg:left-[2%]
       scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-100
     "
-            />
+              />
 
-            {/* Bottom Right */}
-            <AnimatedTag
-              Tag={Tag4}
-              text="Ask Your Finances"
-              className="
+              {/* Bottom Right */}
+              <AnimatedTag
+                Tag={Tag4}
+                text="Ask Your Finances"
+                className="
       absolute 
       bottom-[-40%] left-[50%]
       sm:bottom-[-50%] sm:left-[80%]
@@ -278,26 +295,28 @@ export default function HeroSection() {
       lg:bottom-[25%] lg:left-[70%]
       scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-100
     "
-            />
-          </motion.div>}
-      
+              />
+            </motion.div>
+          )}
 
-          <div
-            className=" hidden sm:block fixed bottom-[20%] right-4 z-50 cursor-pointer"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
+          {showScrollTop && (
             <div
-              className="flex items-center justify-center w-[48px] h-[48px] border rounded-full border-[#BC931399]"
-              style={{
-                boxShadow: "0px 4px 30px 0px #BC931359",
-                backdropFilter: "blur(40px)",
-              }}
+              className="hidden sm:flex fixed bottom-[20%] right-4 z-50 cursor-pointer"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
-              <div className="w-[18px] h-[19px] text-[#BC9313]">
-                <UpArrow />
+              <div
+                className="flex items-center justify-center w-[48px] h-[48px] border rounded-full border-[#BC931399]"
+                style={{
+                  boxShadow: "0px 4px 30px 0px #BC931359",
+                  backdropFilter: "blur(40px)",
+                }}
+              >
+                <div className="w-[18px] h-[19px] text-[#BC9313]">
+                  <UpArrow />
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </motion.div>
       </div>
     </section>

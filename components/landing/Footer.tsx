@@ -15,7 +15,7 @@ export default function Footer() {
       title: "Product",
       links: [
         { name: "Features", href: "#" },
-        { name: "FAQ", href: "#" },
+        { name: "FAQs", href: "/faqs" },
       ],
     },
     {
@@ -28,7 +28,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#0D2F23] text-white pt-[100px] px-[24px] sm:px-[100px] relative">
+    <footer className="bg-[#0D2F23] text-white pt-[100px] px-[24px] md:px-[100px] relative">
       <div className="w-full flex-col gap-[40px]">
         {/* Main Footer Content */}
         <div className="mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-16">
@@ -176,7 +176,7 @@ export default function Footer() {
       <div className="absolute bottom-[-30] left-0 right-0 w-full pointer-events-none overflow-hidden">
         <div className="w-full h-[80px] overflow-hidden flex items-end justify-center pointer-events-none">
           <h2
-            className="text-[40px] sm:text-[130px] font-bold text-center text-[#FDF9F0]/8 leading-none"
+            className="text-[40px] sm:text-[60px] md:text-[130px] font-bold text-center text-[#FDF9F0]/8 leading-none"
             style={{ opacity: 0.8, transform: "translateY(20%)" }}
           >
             Twigg Your Money

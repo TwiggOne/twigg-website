@@ -112,16 +112,16 @@ export default function WaitlistForm() {
     "w-full h-[56px] px-4 rounded-lg bg-[rgba(253,249,240,0.08)] border border-[rgba(188,147,19,0.25)] text-[#FDF9F0] placeholder-[rgba(253,249,240,0.8)] focus:ring-1 focus:ring-[#BC9313] shadow-[0_108px_43px_rgba(0,0,0,0.01),0_61px_36px_rgba(0,0,0,0.05),0_27px_27px_rgba(0,0,0,0.09),0_7px_15px_rgba(0,0,0,0.1)] font-switzer text-[14px]";
 
   return (
-    <section className="relative max-w-7xl px-5 sm:px-6  mx-auto flex flex-col bg-[#152D23]">
+    <section className="relative max-w-7xl px-5 sm:px-6 py-[80px]  mx-auto flex flex-col ">
       {/* Header - UNCHANGED */}
-      <header className="mt-12 flex justify-center lg:justify-start items-center z-20">
+      {/* <header className="mt-12 flex justify-center lg:justify-start items-center z-20">
         <Image
           src="/form/TwiggLogo1.svg"
           alt="Twigg Logo"
           width={174}
           height={42}
         />
-      </header>
+      </header> */}
 
       {/* Form & Image Section - UNCHANGED */}
       <div className="w-full flex flex-col lg:flex-row items-center mt-12 lg:mt-[84px] gap-12 lg:gap-0">
@@ -142,77 +142,81 @@ export default function WaitlistForm() {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col w-full sm:w-[80%] lg:w-[70%] gap-6 sm:gap-8"
           >
-           {formFields.map((field) => (
-  <div key={field.id} className="flex flex-col gap-2 w-full relative">
-    <label
-      htmlFor={field.id}
-      className="text-[#FDF9F0] font-switzer font-normal text-[12px] sm:text-[14px]"
-    >
-      {field.label}
-    </label>
+            {formFields.map((field) => (
+              <div
+                key={field.id}
+                className="flex flex-col gap-2 w-full relative"
+              >
+                <label
+                  htmlFor={field.id}
+                  className="text-[#FDF9F0] font-switzer font-normal text-[12px] sm:text-[14px]"
+                >
+                  {field.label}
+                </label>
 
-    <input
-      id={field.id}
-      type={field.type}
-      placeholder={field.placeholder}
-      {...register(field.id as keyof FormData, {
-        required: `${field.label} is required`,
-        ...(field.id === "email" && {
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            message: "Please enter a valid email address"
-          }
-        }),
-        ...(field.id === "phone" && {
-          pattern: {
-            value: /^(\+?1[-.\s]?)?\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/,
-            message: "Please enter a valid phone number"
-          },
-          minLength: {
-            value: 10,
-            message: "Phone number must be at least 10 digits"
-          }
-        }),
-      })}
-      maxLength={field.id === "phone" ? 13 : undefined}
-      onInput={
-        field.id === "phone"
-          ? (e: React.FormEvent<HTMLInputElement>) => {
-              const input = e.currentTarget;
-              let value = input.value.replace(/[^\d+]/g, "");
-              
-              // Remove extra + signs (keep only the first one)
-              if (value.indexOf("+") > 0) {
-                value = value.replace(/\+/g, "");
-              }
-              
-              // Format phone number
-              if (value.startsWith("+")) {
-                // International format: +1234567890 (max 13 chars)
-                if (value.length > 13) {
-                  value = value.slice(0, 13);
-                }
-              } else {
-                // US format: 1234567890 (max 10 digits)
-                if (value.length > 10) {
-                  value = value.slice(0, 10);
-                }
-              }
-              
-              input.value = value;
-            }
-          : undefined
-      }
-      className={inputClass}
-    />
+                <input
+                  id={field.id}
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  {...register(field.id as keyof FormData, {
+                    required: `${field.label} is required`,
+                    ...(field.id === "email" && {
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: "Please enter a valid email address",
+                      },
+                    }),
+                    ...(field.id === "phone" && {
+                      pattern: {
+                        value:
+                          /^(\+?1[-.\s]?)?\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/,
+                        message: "Please enter a valid phone number",
+                      },
+                      minLength: {
+                        value: 10,
+                        message: "Phone number must be at least 10 digits",
+                      },
+                    }),
+                  })}
+                  maxLength={field.id === "phone" ? 13 : undefined}
+                  onInput={
+                    field.id === "phone"
+                      ? (e: React.FormEvent<HTMLInputElement>) => {
+                          const input = e.currentTarget;
+                          let value = input.value.replace(/[^\d+]/g, "");
 
-    {errors[field.id as keyof FormData] && (
-      <span className="text-[#FF6B6B] font-switzer text-[12px] mt-1">
-        {errors[field.id as keyof FormData]?.message}
-      </span>
-    )}
-  </div>
-))}
+                          // Remove extra + signs (keep only the first one)
+                          if (value.indexOf("+") > 0) {
+                            value = value.replace(/\+/g, "");
+                          }
+
+                          // Format phone number
+                          if (value.startsWith("+")) {
+                            // International format: +1234567890 (max 13 chars)
+                            if (value.length > 13) {
+                              value = value.slice(0, 13);
+                            }
+                          } else {
+                            // US format: 1234567890 (max 10 digits)
+                            if (value.length > 10) {
+                              value = value.slice(0, 10);
+                            }
+                          }
+
+                          input.value = value;
+                        }
+                      : undefined
+                  }
+                  className={inputClass}
+                />
+
+                {errors[field.id as keyof FormData] && (
+                  <span className="text-[#FF6B6B] font-switzer text-[12px] mt-1">
+                    {errors[field.id as keyof FormData]?.message}
+                  </span>
+                )}
+              </div>
+            ))}
 
             <div className="flex justify-center lg:justify-start">
               <motion.button

@@ -174,7 +174,19 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
 
+.backface-hidden {
+  backface-visibility: hidden;
+}
+/* You may also want to set perspective on the *parent* container 
+   of the TeamCards (e.g., the grid/flex container) for a better effect, 
+   but it's often applied to the group container itself. */
+.group {
+    perspective: 1000px; /* Adds depth to the rotation */
+}
 @layer base {
   * {
     @apply border-border outline-ring/50;

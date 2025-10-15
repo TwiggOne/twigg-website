@@ -31,7 +31,6 @@ export function Landing() {
         <Trust />
         <CTASection />
       </div>
-      <FAQSection />
 
     </div>
   );

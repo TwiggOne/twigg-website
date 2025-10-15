@@ -48,7 +48,7 @@ export const Header = () => {
         </Link>
 
         {/* Button */}
-        <button
+        {/* <button
            onClick={() => {
             router.push("/waitlist");
           }}
@@ -65,7 +65,7 @@ export const Header = () => {
           }}
         >
           Join Waitlist
-        </button>
+        </button> */}
       </div>
     </header>
   );

@@ -9,7 +9,9 @@ interface TeamCardProps {
   name: string;
   role: string;
   linkedin?: string;
-  smallCard?: boolean; // 👈 New optional prop
+  smallCard?: boolean;
+  backContent: React.ReactNode;
+  isFlippable?: boolean; // 👈 New optional prop to enable flip logic
 }
 
 export const TeamCard: React.FC<TeamCardProps> = ({
@@ -18,10 +20,20 @@ export const TeamCard: React.FC<TeamCardProps> = ({
   role,
   linkedin,
   smallCard = false,
+  backContent,
+  isFlippable = false, // 👈 Default to false (static card)
 }) => {
   // 🎯 Conditional sizing based on `smallCard`
-  const imageWidth = smallCard ? 244 : 300;
-  const imageHeight = smallCard ? 242 : 336;
+  const imageWidth = smallCard ? 244 : 320;
+  const imageHeight = smallCard ? 242 : 356;
+
+  // Use CSS variables or inline styles for fixed size (only used if isFlippable is true)
+  const cardStyle = {
+    width: `${imageWidth}px`,
+    height: `${imageHeight}px`,
+  };
+
+  // ... (other style calculations remain the same)
   const nameTextSize = smallCard ? "text-[16px]" : "text-[24px]";
   const roleTextSize = smallCard ? "text-[12px]" : "text-[16px]";
   const cardPadding = smallCard ? "pr-[20px]" : "pr-[26px]";
@@ -31,14 +43,10 @@ export const TeamCard: React.FC<TeamCardProps> = ({
     : "w-[40px] h-[40px]";
   const iconSize = smallCard ? "h-[14px] w-[14px]" : "h-[16px] w-[16px]";
 
-  return (
-    <div
-      className={`relative rounded-[20px] ${cardPadding}`}
-      style={{
-        background:
-          "linear-gradient(328.59deg, #152D23 -10.94%, rgba(21, 45, 35, 0.2) 21.5%, rgba(188, 147, 19, 0.3) 97.95%)",
-      }}
-    >
+  // --- Reusable Content Structure (Front Face) ---
+  // This function renders the main visual content of the card, used in both modes.
+  const renderFrontContent = (isFlipping: boolean = false) => (
+    <>
       {/* Gradient overlay at bottom */}
       <div className="w-full absolute bottom-0 h-[40%] bg-gradient-to-b from-[#152D23]/0 to-[#152D23]/100 border-b border-[#BC9313]/80 rounded-[20px]" />
 
@@ -87,6 +95,69 @@ export const TeamCard: React.FC<TeamCardProps> = ({
         height={imageHeight}
         className="object-cover rounded-[20px]"
       />
+    </>
+  );
+
+  // --- Conditional Rendering ---
+  if (isFlippable) {
+    // ----------------------------------------------------
+    // MODE 1: FLIPPABLE CARD (Uses fixed size and 3D structure)
+    // ----------------------------------------------------
+    return (
+      <div
+        className={`group relative`}
+        style={{ ...cardStyle, perspective: "1000px" }} // Apply fixed size and perspective for 3D
+      >
+        {/* **2. Flippable Inner Container:** Handles the 3D rotation */}
+        <div
+          className={`relative w-full h-full transform-style-preserve-3d transition-transform duration-700 ease-in-out group-hover:rotate-y-180`}
+        >
+          {/* 3. Front Side (Absolute and Backface Hidden) */}
+          <div
+            className={`absolute inset-0 backface-hidden rounded-[20px] ${cardPadding}`}
+            style={{
+              width: "100%",
+              height: "100%",
+              background:
+                "linear-gradient(328.59deg, #152D23 -10.94%, rgba(21, 45, 35, 0.2) 21.5%, rgba(188, 147, 19, 0.3) 97.95%)",
+            }}
+          >
+            {renderFrontContent(true)}
+          </div>
+
+          {/* 4. Back Side (Absolute, Backface Hidden, and Rotated 180deg) */}
+          <div
+            className={`absolute inset-0 backface-hidden rounded-[20px] rotate-y-180`}
+            style={{
+              width: "100%",
+              height: "100%",
+              background:
+                "linear-gradient(328.59deg, #152D23 -10.94%, rgba(21, 45, 35, 0.2) 21.5%, rgba(188, 147, 19, 0.3) 97.95%)",
+            }}
+          >      
+
+            {/* Back content */}
+            <div className="w-full z-10 absolute">{backContent}</div>
+            <div className="w-full absolute bottom-0 h-[40%] bg-gradient-to-b from-[#152D23]/0 to-[#152D23]/100 border-b border-[#BC9313]/80 rounded-[20px]" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ----------------------------------------------------
+  // MODE 2: STATIC CARD (Original structure, flex-wrap friendly)
+  // ----------------------------------------------------
+  return (
+    <div
+      className={`relative rounded-[20px] ${cardPadding}`}
+      style={{
+        background:
+          "linear-gradient(328.59deg, #152D23 -10.94%, rgba(21, 45, 35, 0.2) 21.5%, rgba(188, 147, 19, 0.3) 97.95%)",
+      }}
+    >
+      
+      {renderFrontContent(false)}
     </div>
   );
 };

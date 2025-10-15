@@ -6,9 +6,7 @@ import { Header } from "@/components/landing/Header";
 export default function Home() {
   return (
     <div className="flex flex-col">
-      <Header />
       <Landing />
-      <Footer />
     </div>
   );
 }
