@@ -1,29 +1,54 @@
 "use client";
-import { Container } from "../container";
-import CTASection from "./CTASection";
-import FAQSection from "./FAQSection";
-import Footer from "./Footer";
-import { Header } from "./Header";
+import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
 import HeroSection from "./HeroSection";
-import { Trust } from "./Trust";
-import { Features } from "./FeatureSection";
-import { ProblemSection } from "./ProblemSection";
-import { CommingSoon } from "./ComingSoon";
+import { Header } from "./Header";
+
+const CommingSoon = dynamic(() => import("./ComingSoon"), { ssr: false });
+const ProblemSection = dynamic(() => import("./ProblemSection"), { ssr: false });
+const Features = dynamic(() => import("./FeatureSection"), { ssr: false });
+const Trust = dynamic(() => import("./Trust"), { ssr: false });
+const CTASection = dynamic(() => import("./CTASection"), { ssr: false });
 
 export function Landing() {
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 1010);
+    };
+
+    handleResize(); // initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="bg-[#152D23] w-full ">
+    <div className="bg-[#152D23] w-full">
       <Header />
-      <div className="mx-auto max-w-7xl  pt-10">
+
+      <div className="mx-auto max-w-7xl pt-10">
         <HeroSection />
       </div>
 
-      <div className="md:py-20 ">
+      <div className="md:py-20">
         <CommingSoon />
       </div>
 
-      <div className="mx-auto max-w-7xl px-[20px] md:px-[20px] ">
-        <ProblemSection />
+      <div className="mx-auto max-w-7xl px-[20px] md:px-[20px]">
+        {isMobileView ? (
+          <video
+            src="/ProblemSection.mov"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-auto rounded-2xl"
+          />
+        ) : (
+          <ProblemSection />
+        )}
+
         <Features />
       </div>
 
@@ -31,7 +56,6 @@ export function Landing() {
         <Trust />
         <CTASection />
       </div>
-
     </div>
   );
 }

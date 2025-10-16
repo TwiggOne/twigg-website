@@ -105,3 +105,4 @@ export const CommingSoon = () => {
     </section>
   );
 };
+export default CommingSoon;

@@ -443,3 +443,4 @@ export const ProblemSection = () => {
     </section>
   );
 };
+export default ProblemSection;

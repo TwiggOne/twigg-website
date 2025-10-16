@@ -207,6 +207,7 @@ export default function HeroSection() {
             <Image
               src="/main.png"
               alt="Hero Image"
+              priority
               fill
               onLoadingComplete={() => {
                 setTimeout(() => setImageLoaded(true), 1000); // 1s delay

@@ -295,7 +295,7 @@ export default function WaitlistForm() {
           {floatingCards.map((card, i) => (
             <div
               key={i}
-              className={`absolute w-44 h-20 md:w-56 md:h-24 lg:w-[220px] lg:h-[90px] rounded-[12px] overflow-hidden ${card.positionClasses}`}
+              className={`absolute w-54  md:w-56  lg:w-[220px] pb-[10px] rounded-[12px] overflow-hidden ${card.positionClasses}`}
               style={{
                 zIndex: 20,
               }}
@@ -315,11 +315,11 @@ export default function WaitlistForm() {
                     width={20}
                     height={12}
                   />
-                  <h3 className="font-switzer font-semibold text-[13px] md:text-[14px] text-[#BC9313] truncate">
+                  <h3 className="font-switzer font-semibold text-[15px] md:text-[16px] text-[#BC9313] truncate">
                     {card.title}
                   </h3>
                 </div>
-                <p className="font-switzer text-[9px] md:text-[10px] text-[#FDF9F0]/80 leading-tight">
+                <p className="font-switzer text-[11px] md:text-[12px] text-[#FDF9F0]/80 leading-tight">
                   {card.description}
                 </p>
               </div>

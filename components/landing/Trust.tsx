@@ -442,3 +442,4 @@ export const Trust = () => {
     </>
   );
 };
+export default Trust

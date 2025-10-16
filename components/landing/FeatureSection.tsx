@@ -247,12 +247,22 @@ export function FeatureCard({
       transition={{
         duration: isMobile ? 0.8 : 1.2,
         ease: "easeOut",
-        delay: isMobile? delayMapMobile[position]: delayMap[position],
+        delay: isMobile ? delayMapMobile[position] : delayMap[position],
       }}
       className="feature-card w-full"
     >
       <div className="feature-card-inner p-[20px] md:py-[46px] md:px-[41px]">
-        <div className="flex items-center justify-center mb-6">
+        <div
+          className="flex items-center justify-center mb-6"
+          style={{
+            filter: `
+      drop-shadow(0px 73px 29px rgba(0, 0, 0, 0.04))
+      drop-shadow(0px 41px 25px rgba(0, 0, 0, 0.13))
+      drop-shadow(0px 18px 18px rgba(0, 0, 0, 0.21))
+      drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.25))
+    `,
+          }}
+        >
           <Image
             src={iconSrc}
             alt={title}
@@ -273,5 +283,5 @@ export function FeatureCard({
     </motion.div>
   );
 }
-
+export default Features
 // NOTE: The rest of the Features and FeaturesCardsWrapper components remain the same as the previous full solution.
