@@ -66,8 +66,7 @@ export const ProblemSection = () => {
       delay: 0.6,
     },
   ];
-
-  // 🔁 Wheel animation logic
+  // Add `cards` property directly inside each label
   const labels = [
     {
       id: 0,
@@ -79,6 +78,19 @@ export const ProblemSection = () => {
         </>
       ),
       icon: <Wallet />,
+      cards: [
+        {
+          title: "24%",
+          descriptions: ["Only 24% of Indian adults are financially literate."],
+        },
+        {
+          title: "Lack of Awareness",
+          descriptions: [
+            "Most people don’t know where or how to start investing.",
+            "They rely on friends, trends, or luck for money decisions.",
+          ],
+        },
+      ],
     },
     {
       id: 1,
@@ -90,6 +102,19 @@ export const ProblemSection = () => {
         </>
       ),
       icon: <QuesitonMark />,
+      cards: [
+        {
+          title: "24%",
+          descriptions: ["Only 24% of Indian adults are financially literate."],
+        },
+        {
+          title: "CAGR, XIRR, ETFs..",
+          descriptions: [
+            "For most, terms like CAGR, XIRR, ETFs, Alpha, Beta sound like another language.",
+            "This causes confusion, delays, and financial paralysis.",
+          ],
+        },
+      ],
     },
     {
       id: 2,
@@ -101,11 +126,91 @@ export const ProblemSection = () => {
         </>
       ),
       icon: <Stress />,
+      cards: [
+        {
+          title: "24%",
+          descriptions: ["Only 24% of Indian adults are financially literate."],
+        },
+        {
+          title: "No Long-Term Planning",
+          descriptions: [
+            "Without clear goals, short-term decisions cause long-term loss.",
+          ],
+        },
+      ],
     },
-    
+    {
+      id: 3,
+      title: (
+        <>
+          Hard to
+          <br />
+          manage 462783
+        </>
+      ),
+      icon: <Stress />,
+      cards: [
+        {
+          title: "24%",
+          descriptions: ["Only 24% of Indian adults are financially literate."],
+        },
+        {
+          title: "No Long-Term Planning",
+          descriptions: [
+            "Without clear goals, short-term decisions cause long-term loss.",
+          ],
+        },
+      ],
+    },
+    {
+      id: 4,
+      title: (
+        <>
+          Hard to
+          <br />
+          manage hdfjkhfk
+        </>
+      ),
+      icon: <Stress />,
+      cards: [
+        {
+          title: "24%",
+          descriptions: ["Only 24% of Indian adults are financially literate."],
+        },
+        {
+          title: "No Long-Term Planning",
+          descriptions: [
+            "Without clear goals, short-term decisions cause long-term loss.",
+          ],
+        },
+      ],
+    },
+    {
+      id: 5,
+      title: (
+        <>
+          Hard to
+          <br />
+          manage jkl
+        </>
+      ),
+      icon: <Stress />,
+      cards: [
+        {
+          title: "24%",
+          descriptions: ["Only 24% of Indian adults are financially literate."],
+        },
+        {
+          title: "No Long-Term Planning",
+          descriptions: [
+            "Without clear goals, short-term decisions cause long-term loss.",
+          ],
+        },
+      ],
+    },
   ];
 
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const handleRotate = () => {
     setActiveIndex((prev) => (prev + 1) % labels.length);
@@ -115,26 +220,27 @@ export const ProblemSection = () => {
     const timer = setInterval(handleRotate, 5000);
     return () => clearInterval(timer);
   }, []);
+  // Compute visible labels (max 3) based on activeIndex
+  const getVisibleLabels = () => {
+    const total = labels.length;
+    // always show 3
+    const visible = [];
+    for (let i = 0; i < 3; i++) {
+      visible.push(labels[(activeIndex + i) % total]);
+    }
+    return visible;
+  };
 
-const positions = {
-  top: { top: "26%", left: "27%", scale: 0.8, opacity: 0.6, zIndex: 1 },
-  center: { top: "45%", left: "37%", scale: 1, opacity: 1, zIndex: 3 },
-  bottom: { top: "68%", left: "27%", scale: 0.8, opacity: 0.6, zIndex: 1 },
-};
-
-
-  const getPosition = (idx: number) => {
-    const relative = (idx - activeIndex + labels.length) % labels.length;
-    if (relative === 0) return { ...positions.center, left: "37%" }; // 🔥 move active label more to the right
-
-    if (relative === 1) return positions.bottom;
-    return positions.top;
+  const positions = {
+    top: { top: "26%", left: "27%", scale: 0.8, opacity: 0.6, zIndex: 1 },
+    center: { top: "45%", left: "37%", scale: 1, opacity: 1, zIndex: 3 },
+    bottom: { top: "68%", left: "27%", scale: 0.8, opacity: 0.6, zIndex: 1 },
   };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center">
       <motion.div
-        className="w-full bg-[#FDF9F0] rounded-[60px] p-8 sm:p-12 md:py-[76px] md:px-[59px] relative overflow-hidden"
+        className="w-full bg-[#FDF9F0] rounded-[60px] p-8 sm:p-12 md:py-[76px] md:px-[59px] relative "
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -158,18 +264,25 @@ const positions = {
         </motion.div>
 
         {/* 🔁 Animated Wheel Labels */}
-        {labels.map((label, idx) => {
-          const pos = getPosition(idx);
-          const isActive = idx === activeIndex;
+        {/* 🔁 Animated Wheel Labels */}
+        {/* 🔁 Animated Wheel Labels */}
+        {getVisibleLabels().map((label, idx) => {
+          // idx: 0..2 in visible array
+          // compute positions based on idx in visible array
+          let pos;
+          const isActive = idx === 1; // middle label in visible array is active
+          if (idx === 0) pos = positions.top;
+          else if (idx === 1) pos = positions.center;
+          else pos = positions.bottom;
+
           return (
             <motion.div
               key={label.id}
-              className="absolute left-[27%] flex flex-row gap-2 cursor-pointer"
+              className="absolute flex flex-row gap-2 cursor-pointer"
               animate={{
                 top: pos.top,
                 scale: pos.scale,
-                left: pos.left, // 🔥 add this line
-
+                left: pos.left,
                 opacity: pos.opacity,
                 zIndex: pos.zIndex,
               }}
@@ -255,8 +368,7 @@ const positions = {
           </div>
 
           {/* Middle Content */}
-      <AnimatedBorderSVG activeIndex={activeIndex} />
-
+          <AnimatedBorderSVG activeIndex={activeIndex} />
 
           {/* Right - Cards */}
           <div className="relative flex flex-col gap-[18px] pl-[10%] w-full pt-0  overflow-hidden min-h-[400px]">
@@ -268,56 +380,14 @@ const positions = {
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, y: 0 }}
-                  transition={{ duration: 1, delay:0.6, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    duration: 1,
+                    delay: 0.6,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                   className="relative flex flex-col gap-[18px] w-full"
                 >
-                  {[
-                    // 🧩 Each array index corresponds to one activeIndex value
-                    [
-                      {
-                        title: "24%",
-                        descriptions: [
-                          "Only 24% of Indian adults are financially literate.",
-                        ],
-                      },
-                      {
-                        title: "Lack of Awareness",
-                        descriptions: [
-                          "Most people don’t know where or how to start investing.",
-                          "They rely on friends, trends, or luck for money decisions.",
-                        ],
-                      },
-                    ],
-                    [
-                      {
-                        title: "24%",
-                        descriptions: [
-                          "Only 24% of Indian adults are financially literate.",
-                        ],
-                      },
-                      {
-                        title: "CAGR, XIRR, ETFs..",
-                        descriptions: [
-                          "For most, terms like CAGR, XIRR, ETFs, Alpha, Beta sound like another language.",
-                          "This causes confusion, delays, and financial paralysis.",
-                        ],
-                      },
-                    ],
-                    [
-                      {
-                        title: "24%",
-                        descriptions: [
-                          "Only 24% of Indian adults are financially literate.",
-                        ],
-                      },
-                      {
-                        title: "No Long-Term Planning",
-                        descriptions: [
-                          "Without clear goals, short-term decisions cause long-term loss.",
-                        ],
-                      },
-                    ],
-                  ][activeIndex].map((card, i) => (
+                  {labels[activeIndex].cards.map((card, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, x: 0 }}

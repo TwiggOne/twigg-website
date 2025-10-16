@@ -146,21 +146,33 @@ export default function Footer() {
         </div>
 
         {/* Social Icons */}
+        {/* Social Icons */}
         <div className="flex gap-4">
-          {[Instagram, Linkedin].map((Icon, idx) => (
-            <div
-              key={idx}
-              className="relative rounded-full p-[1px] bg-gradient-to-br from-[#FDF9F066] via-[#FDF9F033] to-[#FDF9F01A]"
+          {/* Instagram */}
+          <div className="relative rounded-full p-[1px] bg-gradient-to-br from-[#FDF9F066] via-[#FDF9F033] to-[#FDF9F01A]">
+            <a
+              href="https://www.instagram.com/twigg.one/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="relative w-10 h-10 sm:w-[56px] sm:h-[56px] rounded-full bg-[#1A4536] hover:bg-[#234d3d] flex items-center justify-center overflow-hidden transition-colors duration-200"
             >
-              <a
-                href="#"
-                aria-label={idx === 0 ? "Instagram" : "LinkedIn"}
-                className="relative w-10 h-10 sm:w-[56px] sm:h-[56px] rounded-full bg-[#1A4536] hover:bg-[#234d3d] flex items-center justify-center overflow-hidden transition-colors duration-200"
-              >
-                <Icon className="relative w-5 h-5 sm:w-6 sm:h-6 text-white" />
-              </a>
-            </div>
-          ))}
+              <Instagram className="relative w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </a>
+          </div>
+
+          {/* LinkedIn */}
+          <div className="relative rounded-full p-[1px] bg-gradient-to-br from-[#FDF9F066] via-[#FDF9F033] to-[#FDF9F01A]">
+            <a
+              href="https://www.linkedin.com/company/twigg-one/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="relative w-10 h-10 sm:w-[56px] sm:h-[56px] rounded-full bg-[#1A4536] hover:bg-[#234d3d] flex items-center justify-center overflow-hidden transition-colors duration-200"
+            >
+              <Linkedin className="relative w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </a>
+          </div>
         </div>
 
         {/* Copyright Bar */}
