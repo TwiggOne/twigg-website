@@ -116,11 +116,12 @@ export const ProblemSection = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const positions = {
-    top: { top: "26%", scale: 0.8, opacity: 0.6, zIndex: 1 },
-    center: { top: "45%", scale: 1, opacity: 1, zIndex: 3 },
-    bottom: { top: "68%", scale: 0.8, opacity: 0.6, zIndex: 1 },
-  };
+const positions = {
+  top: { top: "26%", left: "27%", scale: 0.8, opacity: 0.6, zIndex: 1 },
+  center: { top: "45%", left: "37%", scale: 1, opacity: 1, zIndex: 3 },
+  bottom: { top: "68%", left: "27%", scale: 0.8, opacity: 0.6, zIndex: 1 },
+};
+
 
   const getPosition = (idx: number) => {
     const relative = (idx - activeIndex + labels.length) % labels.length;
