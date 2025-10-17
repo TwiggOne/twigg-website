@@ -8,8 +8,8 @@ import {
   OuterCircle,
   RightArrowInline,
 } from "@/utils/SvgUtils";
-// NOTE: Assuming 'motion/react' should be 'framer-motion'
-import { motion, Transition, useInView } from "motion/react";
+import { motion, useInView } from "framer-motion";
+import { easing, duration, getVariants, prefersReducedMotion } from "@/lib/animations";
 
 // =========================================================================
 // Features Component
@@ -209,46 +209,39 @@ export function FeatureCard({
   const variants = {
     hidden: {
       x: getInitialX(),
-      y: isMobile ? 0 : -300, // Removed vertical offset for mobile, letting the grid handle stacking
-      scale: isMobile ? 1 : 0.4, // Start slightly smaller on desktop
+      y: isMobile ? 0 : -50, // Reduced vertical offset for subtlety
+      scale: isMobile ? 1 : 0.95, // More subtle scale change
       opacity: 0,
     },
     visible: {
-      x: 0, // Final x position (its final grid column)
-      y: 0, // Final y position
-      scale: 1, // Final scale
-      opacity: 1, // Final opacity
+      x: 0,
+      y: 0,
+      scale: 1,
+      opacity: 1,
     },
   };
 
   // Calculate delay based on position for staggering
   const delayMap = {
-    center: 0, // Animate center first
-    left: 1.5, // Animate left second
-    right: 3, // Animate right last
+    center: 0,
+    left: prefersReducedMotion() ? 0 : 0.2,
+    right: prefersReducedMotion() ? 0 : 0.4,
   };
-  const delayMapMobile = {
-    center: 1.5, // Animate center first
-    left: 0, // Animate left second
-    right: 3, // Animate right last
-  };
+  
   const transition = {
-    duration: isMobile ? 0.8 : 1.2, // Faster animation on mobile
-    ease: "easeOut",
+    duration: prefersReducedMotion() ? 0 : (isMobile ? duration.normal : duration.slower),
+    ease: easing.smooth,
     delay: delayMap[position],
   };
 
   return (
     <motion.div
-      whileHover={{ scale: 1.03 }}
+      whileHover={prefersReducedMotion() ? {} : { scale: 1.02 }}
       variants={variants}
       initial="hidden"
       animate={animateIn ? "visible" : "hidden"}
-      transition={{
-        duration: isMobile ? 0.8 : 1.2,
-        ease: "easeOut",
-        delay: isMobile ? delayMapMobile[position] : delayMap[position],
-      }}
+      transition={transition}
+      style={{ willChange: 'transform, opacity' }}
       className="feature-card w-full"
     >
       <div className="feature-card-inner p-[20px] md:py-[46px] md:px-[41px]">

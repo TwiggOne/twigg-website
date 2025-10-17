@@ -2,12 +2,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import {
-  delay,
   motion,
   useAnimation,
   useInView,
   Variants,
-} from "motion/react";
+} from "framer-motion";
+import { easing, duration, getVariants, prefersReducedMotion } from "@/lib/animations";
 import { CircleSheild } from "@/utils/SvgUtils"; // Assuming this utility is available
 
 export const Trust = () => {
@@ -29,7 +29,7 @@ export const Trust = () => {
 
   // --- Animation Logic for Large Screens (onHover) ---
   const handleHover = async () => {
-    if (!animated) {
+    if (!animated && !prefersReducedMotion()) {
       setAnimated(true);
 
       // Start heading and shield together
@@ -39,13 +39,15 @@ export const Trust = () => {
       // Delay trust points slightly after heading starts
       setTimeout(() => {
         listControls.start("visible");
-      }, 1500);
+      }, prefersReducedMotion() ? 0 : 800); // Faster for reduced motion
     }
   };
 
   // --- Mobile Animation Sequence (useEffect) ---
   useEffect(() => {
     if (isInView) {
+      const delay = prefersReducedMotion() ? 0 : 400; // Faster for reduced motion
+      
       // 1. Shield comes in
       mobileShieldControls.start("visible");
 
@@ -55,7 +57,7 @@ export const Trust = () => {
       // 3. Trust points stagger in after heading
       setTimeout(() => {
         mobileListControls.start("visible");
-      }, 800); // Wait for heading animation (approx 0.8s)
+      }, delay);
     }
   }, [
     isInView,
@@ -68,15 +70,13 @@ export const Trust = () => {
   // --- LARGE SCREEN VARIANTS ---
   // ----------------------------------------
   const headingVariants = {
-    hidden: { y: -60, opacity: 0 },
+    hidden: { y: -30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
-        stiffness: 80,
-        damping: 12,
-        duration: 1.4,
+        duration: prefersReducedMotion() ? 0 : duration.slower,
+        ease: easing.smooth,
       },
     },
   };
@@ -85,7 +85,10 @@ export const Trust = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 1.5, delayChildren: 1.5 }, // Adjusted for better flow
+      transition: { 
+        staggerChildren: prefersReducedMotion() ? 0 : 0.1, 
+        delayChildren: prefersReducedMotion() ? 0 : 0.2 
+      },
     },
   };
 
@@ -94,7 +97,10 @@ export const Trust = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { 
+        duration: prefersReducedMotion() ? 0 : duration.normal, 
+        ease: easing.smooth 
+      },
     },
   };
   type Easing =

@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { motion } from "motion/react"; // Assuming 'motion/react' should be 'framer-motion'
+import { motion } from "framer-motion";
+import { easing, duration, getVariants } from "@/lib/animations";
 
 export const CommingSoon = () => {
   // Define the scrolling text string
@@ -15,12 +16,18 @@ export const CommingSoon = () => {
         className="absolute inset-0 w-full flex items-center justify-center overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.2 }}
+        transition={{ duration: duration.normal, delay: 0.1, ease: easing.smooth }}
       >
         <motion.h2
           className="text-[4rem] md:text-[15rem] font-bold text-[#FDF9F033] select-none whitespace-nowrap font-bricolage absolute"
-          animate={{ x: ["0%", "-33.333%"] }} // Scroll by one-third (1/3) of the total content width
-          transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+          animate={{ x: ["0%", "-33.333%"] }}
+          transition={{ 
+            repeat: Infinity, 
+            duration: 20, // Slower for more subtle effect
+            ease: easing.linear,
+            repeatType: "loop"
+          }}
+          style={{ willChange: 'transform' }} // Performance optimization
         >
           {seamlessText}
         </motion.h2>

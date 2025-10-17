@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Mic } from "lucide-react";
 import FeatureCard from "./FeatureCard";
 import { UpArrow } from "@/utils/SvgUtils";
+import { motion } from "framer-motion";
+import { easing, duration, prefersReducedMotion } from "@/lib/animations";
 
 export default function CTASection() {
   const texts = [
@@ -17,9 +19,15 @@ export default function CTASection() {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
+    // Skip typing animation for reduced motion users
+    if (prefersReducedMotion()) {
+      setDisplayText(texts[textIndex]);
+      return;
+    }
+
     const currentText = texts[textIndex];
     const words = currentText.split(" ");
-    const typingSpeed = deleting ? 350 : 550; // speed per word
+    const typingSpeed = deleting ? 300 : 500; // Slightly faster for better UX
 
     const timeout = setTimeout(() => {
       const currentWordCount = displayText.split(" ").filter(Boolean).length;
@@ -28,7 +36,7 @@ export default function CTASection() {
         if (currentWordCount < words.length) {
           setDisplayText(words.slice(0, currentWordCount + 1).join(" "));
         } else {
-          setTimeout(() => setDeleting(true), 2000); // pause before deleting
+          setTimeout(() => setDeleting(true), 1500); // Shorter pause
         }
       } else {
         if (currentWordCount > 0) {
@@ -46,7 +54,16 @@ export default function CTASection() {
   return (
     <section className="relative w-full h-auto min-h-[600px] bg-[#152D23] flex flex-col items-center justify-start pt-12 sm:pt-20 px-4">
       {/* Heading and Subheading */}
-      <div className="flex flex-col items-center gap-4 mt-12 sm:mt-24 text-center">
+      <motion.div 
+        className="flex flex-col items-center gap-4 mt-12 sm:mt-24 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ 
+          duration: prefersReducedMotion() ? 0 : duration.normal,
+          ease: easing.smooth,
+          delay: 0
+        }}
+      >
         <h1 className="font-bricolage text-[20px] sm:text-[56px] font-semibold text-[#FDF9F0] leading-[100%] sm:leading-[100%]">
           Ask finance, <span className="text-[#BC9313]">Twigg answers!</span>
         </h1>
@@ -55,7 +72,7 @@ export default function CTASection() {
           <br />
           personal, and always on your side.
         </p>
-      </div>
+      </motion.div>
 
       {/* Search Bar */}
       <div
