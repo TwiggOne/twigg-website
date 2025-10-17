@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { UpArrow } from "@/utils/SvgUtils";
+import { easing, duration, prefersReducedMotion } from "@/lib/animations";
 
 type FormData = {
   name: string;
@@ -223,19 +224,20 @@ export default function WaitlistForm() {
                 type="submit"
                 disabled={isSubmitting}
                 initial="rest"
-                whileHover="hover"
+                whileHover={prefersReducedMotion() ? "rest" : "hover"}
                 animate="rest"
                 className="bg-[#BC9313] cursor-pointer text-white w-[165px] sm:w-[200px] md:w-[239px] h-[40px] sm:h-[48px] md:h-[54px] rounded-full font-semibold text-[14px] sm:text-[16px] md:text-lg shadow-xl flex items-center justify-center relative overflow-hidden"
+                style={{ willChange: 'transform' }}
               >
                 <motion.span
                   variants={{
                     rest: {
                       x: 0,
-                      transition: { duration: 0.2, ease: "easeOut" },
+                      transition: { duration: duration.fast, ease: easing.snappy },
                     },
                     hover: {
-                      x: -10,
-                      transition: { duration: 0.2, ease: "easeOut" },
+                      x: -8,
+                      transition: { duration: duration.fast, ease: easing.snappy },
                     },
                   }}
                   className="transition-transform"
@@ -246,13 +248,13 @@ export default function WaitlistForm() {
                   variants={{
                     rest: {
                       opacity: 0,
-                      x: 20,
-                      transition: { duration: 0.2, ease: "easeOut" },
+                      x: 15,
+                      transition: { duration: duration.fast, ease: easing.snappy },
                     },
                     hover: {
                       opacity: 1,
-                      x: 10,
-                      transition: { duration: 0.2, ease: "easeOut" },
+                      x: 8,
+                      transition: { duration: duration.fast, ease: easing.snappy },
                     },
                   }}
                   className="w-5 h-5 text-white flex-shrink-0 absolute right-10"
