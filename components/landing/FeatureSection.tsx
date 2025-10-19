@@ -224,8 +224,8 @@ export function FeatureCard({
   // Calculate delay based on position for staggering
   const delayMap = {
     center: 0, // Animate center first
-    left: 1.5, // Animate left second
-    right: 3, // Animate right last
+    left: 1, // Animate left second
+    right: 2, // Animate right last
   };
   const delayMapMobile = {
     center: 1.5, // Animate center first

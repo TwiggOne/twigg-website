@@ -1,3 +1,4 @@
+"use client"
 import { Instagram, Linkedin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,14 +8,14 @@ export default function Footer() {
     {
       title: "Company",
       links: [
-        { name: "About Us", href: "#" },
+        { name: "About Us", href: "/team" },
         { name: "Team", href: "/team" }, // ✅ navigates to /team
       ],
     },
     {
       title: "Product",
       links: [
-        { name: "Features", href: "#" },
+  { name: "Features", href: "#features" },
         { name: "FAQs", href: "/faqs" },
       ],
     },
@@ -26,6 +27,13 @@ export default function Footer() {
       ],
     },
   ];
+    const scrollToFeatures = (e: React.MouseEvent) => {
+  e.preventDefault();
+  const el = document.getElementById("features");
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
 
   return (
     <footer className="bg-[#0D2F23] text-white pt-[100px] px-[24px] md:px-[100px] relative">
@@ -64,14 +72,25 @@ export default function Footer() {
                 </h4>
                 <ul className="space-y-3">
                   {group.links.map((link, linkIndex) => (
-                    <li key={linkIndex}>
-                      <Link
-                        href={link.href}
-                        className="text-[#FDF9F0]/80 font-switzer hover:text-amber-400 transition-colors duration-200 text-sm"
-                      >
-                        {link.name}
-                      </Link>
-                    </li>
+                  <li key={linkIndex}>
+  {link.name === "Features" ? (
+    <a
+      href="#features"
+      onClick={scrollToFeatures}
+      className="text-[#FDF9F0]/80 font-switzer hover:text-amber-400 transition-colors duration-200 text-sm"
+    >
+      {link.name}
+    </a>
+  ) : (
+    <Link
+      href={link.href}
+      className="text-[#FDF9F0]/80 font-switzer hover:text-amber-400 transition-colors duration-200 text-sm"
+    >
+      {link.name}
+    </Link>
+  )}
+</li>
+
                   ))}
                 </ul>
               </div>

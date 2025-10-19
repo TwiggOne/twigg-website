@@ -1,33 +1,63 @@
 "use client";
 import { Expand } from "@/utils/SvgUtils";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
+
 import { useState } from "react";
 
 export default function FAQSection() {
-  const faqs = [
-    {
-      question: "What is Twigg?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
-    },
-    {
-      question: "How does Twigg use AI?",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-    },
-    {
-      question: "Is my data secure?",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      question: "How much does it cost?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
-    },
-    {
-      question: "How can I get started?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
-    },
-  ];
+const faqs = [
+  {
+    question: "What exactly is Twigg?",
+    answer:
+      "Twigg is your all-in-one money management platform. From expenses and loans to investments and insurance, Twigg gives you a clear picture of your money and helps you grow it with confidence.",
+  },
+  {
+    question: "How is Twigg different from other finance apps?",
+    answer:
+      "Most apps only help you invest. Twigg helps you manage money end-to-end—building personalized money plans, nudging you to save better, tracking progress with a Fitness Score, and guiding you toward smarter decisions across your entire financial life.",
+  },
+  {
+    question: "Is the advice on Twigg unbiased?",
+    answer:
+      "Yes. Twigg is 100% transparent and conflict-free. We don't push products or take hidden commissions. Our recommendations come from SEBI-registered advisors and AI models built to prioritise your interests first.",
+  },
+  {
+    question: "How does Twigg personalise advice for me?",
+    answer:
+      "Twigg combines your actual data (income, expenses, assets, loans, policies) with your money personality to give you tailored plans. It adapts to your goals—whether you're saving for an emergency fund, buying a home, or planning for your child's education.",
+  },
+  {
+    question: "Will Twigg help if I don't understand finance jargon?",
+    answer:
+      "Absolutely. You don't need to know terms like CAGR or XIRR. Twigg translates complex financial concepts into plain language and gives you actionable steps—so you can make decisions without getting stuck in jargon.",
+  },
+  {
+    question: "How safe is my data with Twigg?",
+    answer:
+      "Very safe. We use bank-grade security, comply with SEBI & RBI norms, and handle your data with encryption and consent at every step.",
+  },
+  {
+    question: "Do I really need Twigg if I already invest in mutual funds or stocks?",
+    answer:
+      "Yes—because investing is only one part of money management. Twigg helps you manage cash flows, debts, insurance, and risk alongside investments, so your overall financial health stays on track.",
+  },
+  {
+    question: "Can Twigg help me see how I'm doing compared to others?",
+    answer:
+      "Yes. Twigg's Money Fitness Score lets you track your progress month by month and even see how you stack up against peers, so you learn and grow with context—without FOMO.",
+  },
+  {
+    question: "Does Twigg replace a financial advisor?",
+    answer:
+      "Twigg blends the best of both worlds. Our AI provides instant clarity, while human experts give you reassurance and deeper insights when you need them.",
+  },
+  {
+    question: "How do I start using Twigg?",
+    answer:
+      "Just sign up, connect your financial accounts, and answer a few simple questions. Twigg will create your personalised money plan instantly—and keep guiding you with nudges and insights as you go.",
+  },
+];
+
 
   // Track which FAQ index is open
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -111,7 +141,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => {
         transition={{ duration: 0.4 }}
         className="overflow-hidden "
       >
-        <p className="font-switzer text-[#FDF9F0CC] pt-[16px] text-[10px] sm:text-[14px] sm:text-[10px] leading-[100%]">
+        <p className="font-switzer text-[#FDF9F0CC] pt-[16px] text-[10px] sm:text-[14px] sm:text-[10px] leading-[130%]">
           {answer}
         </p>
       </motion.div>

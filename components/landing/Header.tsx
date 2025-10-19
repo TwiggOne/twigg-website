@@ -18,7 +18,7 @@ export const Header = () => {
 
   return (
     <header
-      className={`fixed top-2 left-1/2 transform -translate-x-1/2 md:z-20 transition-all duration-300 w-full max-w-[1312px] px-4 sm:px-6 md:px-8
+      className={`fixed top-2 left-1/2 transform -translate-x-1/2 z-999 transition-all duration-300 w-full max-w-[1312px] px-4 sm:px-6 md:px-8
         ${
           scrolled
             ? "bg-[#21483880] border border-[#FDF9F00A] rounded-[100px] z-20 shadow-[0px_7px_15px_0px_#0000001A,0px_27px_27px_0px_#00000017,0px_61px_36px_0px_#0000000D,0px_108px_43px_0px_#00000003,0px_169px_47px_0px_#00000000,0px_4px_4px_0px_#FDF9F01A_inset] backdrop-blur-[40px]"

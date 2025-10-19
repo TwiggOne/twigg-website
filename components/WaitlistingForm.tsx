@@ -255,7 +255,7 @@ export default function WaitlistForm() {
                       transition: { duration: 0.2, ease: "easeOut" },
                     },
                   }}
-                  className="w-5 h-5 text-white flex-shrink-0 absolute right-10"
+                  className="w-5 h-5 text-white flex-shrink-0 absolute right-10 pointer-events-none"
                 >
                   <UpArrow right />
                 </motion.div>
@@ -267,12 +267,12 @@ export default function WaitlistForm() {
         {/* Image & Floating Cards - UNCHANGED */}
         <div className="w-full lg:w-1/2 relative h-full flex justify-center items-center">
           <div
-            className="absolute"
+            className="absolute pointer-events-none"
             style={{
               width: 400,
               height: 400,
               background: "rgba(188, 147, 19, 0.3)",
-              filter: "blur(100px)",
+            filter: "blur(50px)",
               borderRadius: "50%",
               zIndex: 0,
             }}
@@ -295,14 +295,14 @@ export default function WaitlistForm() {
           {floatingCards.map((card, i) => (
             <div
               key={i}
-              className={`absolute w-54  md:w-56  lg:w-[220px] pb-[10px] rounded-[12px] overflow-hidden ${card.positionClasses}`}
+              className={`absolute w-54 pointer-events-none md:w-56  lg:w-[220px] pb-[10px] rounded-[12px] overflow-hidden ${card.positionClasses}`}
               style={{
                 zIndex: 20,
               }}
             >
-              <div className="absolute inset-0 backdrop-blur-[10px] rounded-[12px] bg-[rgba(31,60,48,0.7)]"></div>
+              <div className="absolute pointer-events-none inset-0 backdrop-blur-[10px] rounded-[12px] bg-[rgba(31,60,48,0.7)]"></div>
               <div
-                className="absolute -left-[8px] top-0  rounded-[12px] blur-[40px] pt-[16px] pb-[28px] px-[16px]"
+                className="absolute pointer-events-none -left-[8px] top-0  rounded-[12px] blur-[40px] pt-[16px] pb-[28px] px-[16px]"
                 style={{
                   background: `linear-gradient(135deg, ${card.gradientStart} 0%, ${card.gradientMid} 42%, ${card.gradientEnd} 100%)`,
                 }}

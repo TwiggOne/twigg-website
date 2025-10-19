@@ -18,6 +18,7 @@ export const Trust = () => {
   const headingControls = useAnimation();
   const listControls = useAnimation();
   const shieldControls = useAnimation();
+  const largeRef = useRef<HTMLDivElement>(null);
 
   // --- Mobile Animation Hooks ---
   const mobileRef = useRef(null);
@@ -26,6 +27,7 @@ export const Trust = () => {
   const mobileShieldControls = useAnimation();
   const mobileHeadingControls = useAnimation();
   const mobileListControls = useAnimation();
+  const isLargeInView = useInView(largeRef, { once: true, amount: 0.5 });
 
   // --- Animation Logic for Large Screens (onHover) ---
   const handleHover = async () => {
@@ -42,7 +44,13 @@ export const Trust = () => {
       }, 1500);
     }
   };
-
+  useEffect(() => {
+    if (isLargeInView) {
+      headingControls.start("visible");
+      shieldControls.start("visible");
+      setTimeout(() => listControls.start("visible"), 1500);
+    }
+  }, [isLargeInView, headingControls, shieldControls, listControls]);
   // --- Mobile Animation Sequence (useEffect) ---
   useEffect(() => {
     if (isInView) {
@@ -198,12 +206,13 @@ export const Trust = () => {
     <>
       {/* LARGE SCREEN LAYOUT: Visible from 'lg' breakpoint and up (default hidden) */}
       <motion.section
+              ref={largeRef}
+
         className="hidden lg:block relative w-full bg-[#FDF9F0] rounded-[60px] flex flex-col justify-center pl-[91px] py-[93px]"
         style={{
           boxShadow:
             "0px 183px 73px rgba(0, 0, 0, 0.01), 0px 103px 62px rgba(0, 0, 0, 0.05), 0px 46px 46px rgba(0, 0, 0, 0.09), 0px 11px 25px rgba(0, 0, 0, 0.1)",
         }}
-        onHoverStart={handleHover}
       >
         {/* Background glow */}
         <div className="absolute inset-0 pointer-events-none">

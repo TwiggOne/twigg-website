@@ -1,39 +1,17 @@
-// components/LenisScroll.tsx
 "use client";
 
-import React, { useEffect } from "react";
-import Lenis from "@studio-freight/lenis";
+import { ReactLenis } from "@studio-freight/react-lenis";
 
-interface LenisScrollProps {
-  children: React.ReactNode;
+interface SmoothScrollingProps {
+  children: any; // bypass type issues
 }
 
-export const LenisScroll: React.FC<LenisScrollProps> = ({ children }) => {
-  useEffect(() => {
-    // Initialize Lenis
-  const lenis = new Lenis({
-  duration:0.5, // Keep the scroll speed fast
-  easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing
-  wheelMultiplier:1.5, 
-  touchMultiplier: 1.0, 
-  infinite: false,
-});
-
-
-    // Ticker (requestAnimationFrame loop)
-    const raf = (time: number) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-
-    const rafId = requestAnimationFrame(raf);
-
-    // Cleanup
-    return () => {
-      lenis.destroy();
-      cancelAnimationFrame(rafId);
-    };
-  }, []);
-
-  return <>{children}</>;
+const SmoothScrolling = ({ children }: SmoothScrollingProps) => {
+  return (
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.5 }}>
+      {children}
+    </ReactLenis>
+  );
 };
+
+export default SmoothScrolling;

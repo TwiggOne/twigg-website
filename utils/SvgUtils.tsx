@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 export const Tag1 = () => (
   <svg
@@ -1067,5 +1067,56 @@ export const BulletLogo = () => (
       d="M10.3888 5.09552C13.1692 5.00545 16.4125 7.13375 16.2026 11.0121C15.9946 14.8696 13.9383 17.0925 10.5761 17.0637C6.19072 17.0268 4.24526 13.7312 4.33082 11.0292C4.4308 7.85609 7.22289 5.06039 10.3888 5.09552ZM14.4562 10.8815C14.5003 8.59734 12.9035 6.91849 10.6509 6.87075C8.14788 6.82212 6.13848 8.69282 6.07724 11.1282C6.01959 13.4493 7.86057 15.2858 10.2933 15.3317C12.9296 15.3821 14.4013 13.8087 14.4562 10.8815Z"
       fill="#FDF9F0"
     />
+  </svg>
+);
+
+export const ProblemMobileBprder = () => (
+  <svg
+    width="208"
+    height="194"
+    viewBox="0 0 208 194"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M207 193L207 11C207 5.47715 202.523 1 197 1L121 0.999996"
+      stroke="url(#paint0_linear_1467_2564)"
+      strokeOpacity="0.5"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M89 1L11 1C5.47715 1 1 5.47715 1 11L0.999997 83"
+      stroke="url(#paint1_linear_1467_2564)"
+      strokeOpacity="0.5"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <defs>
+      <linearGradient
+        id="paint0_linear_1467_2564"
+        x1="207"
+        y1="193"
+        x2="267.432"
+        y2="113.147"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#BC9313" stopOpacity="0" />
+        <stop offset="0.519122" stopColor="#BC9313" stopOpacity="0.519122" />
+        <stop offset="1" stopColor="#BC9313" />
+      </linearGradient>
+      <linearGradient
+        id="paint1_linear_1467_2564"
+        x1="1.00001"
+        y1="83"
+        x2="-14.405"
+        y2="34.2296"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#BC9313" stopOpacity="0" />
+        <stop offset="0.519122" stopColor="#BC9313" stopOpacity="0.519122" />
+        <stop offset="1" stopColor="#BC9313" />
+      </linearGradient>
+    </defs>
   </svg>
 );

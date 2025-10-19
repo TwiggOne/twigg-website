@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { LenisScroll } from "@/components/landing/LenisScoll";
 import { Header } from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import SmoothScrolling from "@/components/landing/LenisScoll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,14 +41,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${bricolage.className} antialiased`}
       >
-        <LenisScroll>
-          <div className=" flex flex-col bg-[#152D23] ">
+          <div className=" flex flex-col bg-[#152D23] overflow-hidden">
             <Header />
             {children}
 
             <Footer />
           </div>
-        </LenisScroll>
         <Toaster />
       </body>
     </html>
