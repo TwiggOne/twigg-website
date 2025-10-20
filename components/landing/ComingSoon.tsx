@@ -61,14 +61,16 @@ export const CommingSoon = () => {
             />
 
             {/* Gradient overlay */}
-            <div
-              className="absolute left-1/2 bottom-0 h-[120px] md:h-[258px] w-[324px] md:w-[790px]"
-              style={{
-                transform: "translateX(-50%)",
-                background:
-                  "linear-gradient(180deg, rgba(21, 45, 35, 0) 0%, rgba(21, 45, 35, 0.8) 61.31%, #152D23 89.67%)",
-              }}
-            ></div>
+    <div
+  className="absolute left-1/2 bottom-0 h-[120px] md:h-[258px]  min-w-screen"
+  style={{
+    transform: "translateX(-50%)",
+    backgroundColor: "#152D23",
+    maskImage: "linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0))",
+    WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0))",
+  }}
+></div>
+
           </div>
         </motion.div>
 
