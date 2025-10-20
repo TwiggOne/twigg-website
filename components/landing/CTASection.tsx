@@ -5,12 +5,15 @@ import FeatureCard from "./FeatureCard";
 import { UpArrow } from "@/utils/SvgUtils";
 
 export default function CTASection() {
-  const texts = [
-    "Will I lose 5kg weight in a month?",
-    "Is now a good time to invest in gold?",
-    "How much should I save monthly?",
-    "Can Twigg help plan my retirement?",
-  ];
+const texts = [
+  "Why is my account balance dropping?",
+  "Invest more in equities or debt funds?",
+  "Should I prepay my loan or invest?",
+  "Do I need term insurance from company?",
+  "Can I afford to quit my job?",
+];
+
+
 
   const [displayText, setDisplayText] = useState("");
   const [textIndex, setTextIndex] = useState(0);
