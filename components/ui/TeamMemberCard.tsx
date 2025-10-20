@@ -36,7 +36,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({
   // ... (other style calculations remain the same)
   const nameTextSize = smallCard ? "text-[16px]" : "text-[24px]";
   const roleTextSize = smallCard ? "text-[12px]" : "text-[16px]";
-  const cardPadding = smallCard ? "pr-[20px]" : "pr-[26px]";
+  const cardPadding = smallCard ? "pr-[20px]" : "pr-[24px]";
   const textPaddingX = smallCard ? "px-[16px]" : "px-[26px]";
   const iconContainerSize = smallCard
     ? "w-[36px] h-[36px]"
@@ -93,7 +93,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({
         alt={name}
         width={imageWidth}
         height={imageHeight}
-        className="object-cover rounded-[20px]"
+        className=" object-cover rounded-[20px]"
       />
     </>
   );

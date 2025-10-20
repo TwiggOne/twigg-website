@@ -8,7 +8,7 @@ const teamMembers = [
   {
     name: "Utkarsh Vijay",
     role: "Co-Founder",
-    image: "/team/team_member.png",
+    image: "/team/Utkarsh.png",
     linkedIn: "https://www.linkedin.com/in/uvijay/",
     experiences: [
       "12+ years in strategy, product, and technology across government & private sectors",
@@ -33,7 +33,7 @@ const teamMembers = [
   {
     name: "Saurabh Taneja",
     role: "Tech Expert",
-    image: "/team/team_member.png",
+    image: "/team/Saurabh.png",
     linkedIn: "https://www.linkedin.com/in/saurabh-taneja-65937493/",
 
     experiences: [
