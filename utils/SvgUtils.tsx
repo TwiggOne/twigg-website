@@ -309,7 +309,7 @@ export const Tag3 = () => (
 
 export const Tag4 = () => (
   <svg
-    width="222"
+    width="330"
     height="66"
     viewBox="0 0 222 66"
     fill="none"

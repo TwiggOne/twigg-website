@@ -245,7 +245,7 @@ Your co-pilot for all your financial needs. Get personalized insights, smart inv
 
               <AnimatedTag
                 Tag={Tag1}
-                text="Invest Fearlessly"
+                text="Thoughtful Investing"
                 className="
       absolute 
       top-[-40%] left-[-140%]
@@ -259,7 +259,7 @@ Your co-pilot for all your financial needs. Get personalized insights, smart inv
               {/* Top Right */}
               <AnimatedTag
                 Tag={Tag2}
-                text="Spend Mindfully"
+                text="Conscious Spending"
                 className="
       absolute 
       top-[-50%] right-[-130%]
@@ -273,7 +273,7 @@ Your co-pilot for all your financial needs. Get personalized insights, smart inv
               {/* Bottom Left */}
               <AnimatedTag
                 Tag={Tag3}
-                text="Optimized Spending"
+                text="Purposeful Insurance"
                 className="
       absolute 
       bottom-[-55%] left-[-120%]
@@ -287,7 +287,7 @@ Your co-pilot for all your financial needs. Get personalized insights, smart inv
               {/* Bottom Right */}
               <AnimatedTag
                 Tag={Tag4}
-                text="Ask Your Finances"
+                text="Responsible Borrowing"
                 className="
       absolute 
       bottom-[-40%] left-[50%]

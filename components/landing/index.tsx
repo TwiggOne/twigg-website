@@ -3,8 +3,8 @@ import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import HeroSection from "./HeroSection";
 import { Header } from "./Header";
+import CommingSoon from "./ComingSoon";
 
-const CommingSoon = dynamic(() => import("./ComingSoon"), { ssr: false });
 const ProblemSection = dynamic(() => import("./ProblemSection"), { ssr: false });
 const Features = dynamic(() => import("./FeatureSection"), { ssr: false });
 const Trust = dynamic(() => import("./Trust"), { ssr: false });
