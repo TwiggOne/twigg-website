@@ -32,26 +32,23 @@ const page = () => {
   return (
     <div className="min-h-screen mt-[140px] sm:mt-[160px] lg:mt-[180px] px-[16px] sm:px-[24px]">
       {/* Header */}
-      <div className="flex max-w-[1240px] items-center mx-auto w-full justify-start mb-8 flex-wrap sm:flex-nowrap">
-      
-      </div>
+      <div className="flex max-w-[1240px] items-center mx-auto w-full justify-start mb-8 flex-wrap sm:flex-nowrap"></div>
 
       {/* Main Card */}
       <div className="flex flex-col gap-[32px] bg-[#FDF9F0] py-[32px] sm:py-[48px] lg:py-[64px] px-[24px] sm:px-[48px] lg:px-[92px] max-w-[1240px] mx-auto rounded-[20px] sm:rounded-[20px] lg:rounded-[20px]">
         {/* Intro Section */}
         <div className="flex flex-col text-[16px] sm:text-[18px] gap-[42px] lg:text-[20px] font-switzer text-[#152D23] leading-[120%] sm:leading-[115%] lg:leading-[110%] text-justify">
-
-        <p className="text-[30px] sm:text-[32px] lg:text-[36px] font-semibold text-[#152D23] font-bricolage  leading-[110%] ">
-          Terms & Conditions
-        </p>
+          <p className="text-[30px] sm:text-[32px] lg:text-[36px] font-semibold text-[#152D23] font-bricolage  leading-[110%] ">
+            Terms & Conditions
+          </p>
           <p>
-            Last updated: [Insert Date]
+            Last updated: 20/10/2025
             <br />
             <br />
-            Welcome to Twigg. By signing up, accessing, or using Twigg, you
-            agree to the following
-            <span className="inline lg:block ml-2 lg:ml-0">
-              Terms & Conditions. Please read carefully.
+            <span className=" text-[14px] sm:text-[15px] lg:text-[16px] font-switzer">
+              {" "}
+              Welcome to Twigg. By signing up, accessing, or using Twigg, you
+              agree to the following Terms & Conditions. Please read carefully.
             </span>
           </p>
         </div>

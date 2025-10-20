@@ -95,11 +95,10 @@ export default function HeroSection() {
           </h2>
 
           <p
-            className="font-normal text-[16px] sm:text-[16px] lg:text-[24px] mt-[32px] md:mt-[32px] leading-[130%] mb-[32px] md:mb-[61px] font-switzer max-w-[300px] md:max-w-[500px]"
+            className="font-normal text-[16px] sm:text-[16px] lg:text-[24px] mt-[32px] md:mt-[32px] leading-[130%] mb-[32px] md:mb-[57px] italic font-switzer max-w-[300px] md:max-w-[300px]"
             style={{ color: "#FDF9F0CC" }}
           >
-Your co-pilot for all your financial needs. Get personalized insights, smart investing nudges, and financial clarity all in one place.
-          </p>
+Trusted guidance for every money move you make          </p>
           {/* Button */}
           <div className="flex justify-center lg:justify-start">
             <motion.button

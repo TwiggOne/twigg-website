@@ -17,7 +17,7 @@ const ProblemCard = ({
   delay?: number;
   index: number;
 }) => {
-  const titleStyles = index === 0 ? { fontSize: "54px" } : { fontSize: "24px" };
+  const titleStyles = index === 0 ? { fontSize: "54px" } : { fontSize: "54px" };
 
   return (
     <div
@@ -38,7 +38,7 @@ const ProblemCard = ({
           {descriptions.map((desc, i) => (
             <p
               key={i}
-              className="font-switzer text-[#214838CC] text-[20px] leading-[100%]"
+              className="font-switzer text-[#214838CC] text-[18px] leading-[120%]"
             >
               {desc}
             </p>
@@ -51,118 +51,119 @@ const ProblemCard = ({
 
 // 🎨 Main Section
 export const ProblemSection = () => {
-const labels = [
-  {
-    id: 0,
-    title: (
-      <>
-        Constant
-        <br />
-        Money Stress
-      </>
-    ),
-    icon: <Wallet />,
-    cards: [
-      {
-        title: "Savings",
-        descriptions: [
-          "1 in 3 employees lack even 3 months of emergency savings.",
-        ],
-      },
-      {
-        title: "Low,Savings,Debt",
-        descriptions: [
-          "43% of affluent Indians (earning >₹20L post-tax) save less than 20% of their income; in the 30–45 age group it’s 50%.",
-          "Household debt in India has surged to 33–34% of income — among the highest in the world",
-        ],
-      },
-    ],
-  },
-  {
-    id: 1,
-    title: (
-      <>
-        Know
-        <br />
-        Money Terms
-      </>
-    ),
-    icon: <QuesitonMark />,
-    cards: [
-      {
-        title: "Literacy",
-        descriptions: ["Only 24% of Indian adults are financially literate."],
-      },
-      {
-        title: "CAGR,XIRR,Confusion",
-        descriptions: [
-          "For most, terms like CAGR, XIRR, ETFs, Alpha, Beta sound like another language.",
-          "Confusion and paralysis - people delay or avoid financial decisions altogether.",
-        ],
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: (
+  const labels = [
+    {
+      id: 0,
+      title: (
         <>
-        Get
-        <br />
-        Right Advice
-      </>
-    ),
-    icon: <Stress />,
-    cards: [
-      {
-        title: "Advice",
-        descriptions: [
-          "Advisory exists, but it’s mostly generic and non-personalised — 2/3 of people are dissatisfied with the advice they get.",
-        ],
-      },
-      {
-        title: "No,Planning,Guidance",
-        descriptions: [
-          "Most still rely on patchwork guidance: 32% advisory from local CAs/wealth managers, 25% from friends & family",
-          "82% of investors act on Finfluencer advice — but only 2% are SEBI-registered and 63% don’t disclose sponsorships.",
-        ],
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: (
-      <>
-        Too Many <br />
-        Choices, No Clarity
-      </>
-    ),
-    icon: <Stress />,
-    cards: [
-      {
-        title: "Companies",
-        descriptions: ["India has 7000+ listed companies."],
-      },
-      {
-        title: "Funds,Wealth,Default",
-        descriptions: [
-          "1,791 mutual fund schemes are available as of June 2025.",
-          "Yet, 95% of household wealth sits in traditional assets — when overwhelmed, people default to “safe” but low-return and illiquid assets.",
-        ],
-      },
-    ],
-  },
-];
-
+          Money
+          <br />
+          Jargon = Intimidating
+        </>
+      ),
+      icon: <Wallet />,
+      cards: [
+        {
+          title: "24%",
+          descriptions: ["Indian adults understands basic financial concepts"],
+        },
+        {
+          title: "87%",
+          descriptions: [
+            "Affluent Indians admit they don’t know how to save or invest properly",
+          ],
+        },
+      ],
+    },
+    {
+      id: 1,
+      title: (
+        <>
+          Too Many
+          <br />
+          Choices, No Clarity{" "}
+        </>
+      ),
+      icon: <QuesitonMark />,
+      cards: [
+        {
+          title: "9000+",
+          descriptions: ["Listed companies and mutual funds in India"],
+        },
+        {
+          title: "95%",
+          descriptions: [
+            "Household wealth sits in traditional asset classes which are low returning and illiquid",
+          ],
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: (
+        <>
+          Conflict, Opaque
+          <br />
+          charges & Finfluencers{" "}
+        </>
+      ),
+      icon: <Stress />,
+      cards: [
+        {
+          title: "66%",
+          descriptions: [
+            "People are dissatisfied with the advice they get. 32% advisory from local CAs/wealth managers, 25% from friends & family, 20% from bank managers",
+          ],
+        },
+        {
+          title: "2%",
+          descriptions: [
+            "Fin-fluencers are  SEBI-registered and 63% don’t disclose sponsorships",
+          ],
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: (
+        <>
+          Constant <br />
+          Money Stress{" "}
+        </>
+      ),
+      icon: <Stress />,
+      cards: [
+        {
+          title: "43%",
+          descriptions: ["Affluent Indians save less than 20% of their income"],
+        },
+        {
+          title: "34%",
+          descriptions: [
+            "Household income is used to service debt –  among the highest in the world",
+          ],
+        },
+      ],
+    },
+  ];
 
   const [activeIndex, setActiveIndex] = useState(0);
-const safeIndex = Math.min(activeIndex, labels.length - 1);
+  const [displayedIndex, setDisplayedIndex] = useState(0);
+  useEffect(() => {
+    const CARD_SYNC_DELAY = 650; // 👈 Adjusted to match real motion timing
+    const timer = setTimeout(() => {
+      setDisplayedIndex(activeIndex);
+    }, CARD_SYNC_DELAY);
+
+    return () => clearTimeout(timer);
+  }, [activeIndex]);
 
   const handleRotate = () => {
     setActiveIndex((prev) => (prev + 1) % labels.length);
   };
 
   useEffect(() => {
-    const timer = setInterval(handleRotate, 5000);
+    const timer = setInterval(handleRotate, 8000);
     return () => clearInterval(timer);
   }, []);
   // Compute visible labels (max 3) based on activeIndex
@@ -343,35 +344,27 @@ const safeIndex = Math.min(activeIndex, labels.length - 1);
             <div className="relative flex flex-col gap-[18px]  w-full pt-0  overflow-hidden min-h-[400px]">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={activeIndex}
+                  key={displayedIndex}
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, y: 0 }}
+                  exit={{ opacity: 0, x: 0 }}
                   transition={{
-                    duration: 1,
-                    delay: 0.6,
+                    delay: 0.4,
+                    duration: 0.6, // smoother and matches the wheel ease-out
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   className="relative flex flex-col gap-[18px] w-full"
                 >
-                  {labels[safeIndex].cards.map((card, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: 0 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 0 }}
-                      transition={{
-                        duration: 0.6,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
-                    >
+                  {labels[(displayedIndex + 1) % labels.length].cards.map(
+                    (card, i) => (
                       <ProblemCard
+                        key={i}
                         index={i}
                         title={card.title}
                         descriptions={card.descriptions}
                       />
-                    </motion.div>
-                  ))}
+                    )
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>

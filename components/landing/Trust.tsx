@@ -93,7 +93,7 @@ export const Trust = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 1.5, delayChildren: 1.5 }, // Adjusted for better flow
+      transition: { staggerChildren: 1.5, delayChildren:0 }, // Adjusted for better flow
     },
   };
 

@@ -9,37 +9,41 @@ const teamMembers = [
     name: "Utkarsh Vijay",
     role: "Co-Founder",
     image: "/team/team_member.png",
+    linkedIn: "https://www.linkedin.com/in/uvijay/",
     experiences: [
-      "12+ years in strategy, product, and technology across government & private sectors.",
-      "Scaled Samagra from $2.5M / 15 members → $8M / 125 members as core leadership.",
-      "Co-founded Indian Lawyers Forum, built 150K+ community, 15K+ paid subscribers.",
-      "Ex-BCG & Indus Valley Partners; NIT Jalandhar, Computer Science Engineering.",
+      "12+ years in strategy, product, and technology across government & private sectors",
+      "Scaled Samagra from $2.5M / 15 members → $8M / 125 members as core leadership",
+      "Co-founded Indian Lawyers Forum, built 150K+ community, 15K+ paid subscribers",
+      "Ex-BCG & Indus Valley Partners; NIT Jalandhar, Computer Science Engineering",
     ],
   },
   {
     name: "Aditya Bansal",
     role: "Co-Founder",
     image: "/team/team_member.png",
+    linkedIn: "https://www.linkedin.com/in/adityabansal1989/",
+
     experiences: [
-      "10+ years in equity research, investment advisory & wealth management.",
-      "Co-founder, Wuxel Financial Services (₹60Cr+ AUA, 200+ active clients).",
-      "Ex-Goldman Sachs, KPMG & SEBI — spanning IB, advisory, and regulation.",
-      "MDI Gurgaon (MBA Finance), Thapar University (B.Tech Electronics).",
+      "10+ years in equity research, investment advisory & wealth management",
+      "Co-founder, Wuxel Financial Services (₹60Cr+ AUA, 200+ active clients)",
+      "Ex-Goldman Sachs, KPMG & SEBI — spanning IB, advisory, and regulation",
+      "MDI Gurgaon (MBA Finance), Thapar University (B.Tech Electronics)",
     ],
   },
   {
     name: "Saurabh Taneja",
-    role: "Product Lead",
+    role: "Tech Expert",
     image: "/team/team_member.png",
+    linkedIn: "https://www.linkedin.com/in/saurabh-taneja-65937493/",
+
     experiences: [
-      "12+ years in product development, driving innovation across global startups and enterprises.",
-      "Extensive experience in the fintech ecosystem — 4+ years across Stripe, Stitch Money.",
-      "Co-founded Joysquare, a co-living startup for young professionals in Delhi/NCR.",
-      "Computer Science Engineering from Maharaja Surajmal Institute of Technology (MSIT).",
+      "12+ years in product development, driving innovation across global startups and enterprises",
+      "Extensive experience in the fintech ecosystem — 4+ years across Stripe, Stitch Money",
+      "Co-founded Joysquare, a co-living startup for young professionals in Delhi/NCR",
+      "Computer Science Engineering from Maharaja Surajmal Institute of Technology (MSIT)",
     ],
   },
 ];
-
 
 // 👩‍💻 Additional Members (smaller cards)
 const smallTeamMembers = [
@@ -103,6 +107,7 @@ const Page = () => {
                   name={member.name}
                   role={member.role}
                   image={member.image}
+                  linkedin={member.linkedIn}
                   backContent={
                     <div className="py-[41px] w-full px-[21px] flex flex-col gap-[16px]">
                       <div className="flex w-full flex-row border-b border-[#BC9313] justify-between items-center pb-[16px] mb-[41px]">
@@ -114,11 +119,17 @@ const Page = () => {
                             {member.role}
                           </p>
                         </div>
-                        <div className="bg-[#214838]/50 border border-[#FDF9F0]/20 h-[40px] w-[40px] rounded-full flex items-center justify-center">
-                          <div className="w-[11px] h-[11px]">
-                            <LinkedIng />
+                        <a
+                          href={member.linkedIn}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <div className="bg-[#214838]/50 cursor-pointer border border-[#FDF9F0]/20 h-[40px] w-[40px] rounded-full flex items-center justify-center">
+                            <div className="w-[11px] h-[11px] ">
+                              <LinkedIng />
+                            </div>
                           </div>
-                        </div>
+                        </a>
                       </div>
 
                       {/* Map experiences */}
@@ -145,16 +156,16 @@ const Page = () => {
       </div>
 
       {/* Additional Members Section */}
-      <div className="relative flex items-center justify-center w-full px-4">
+      {/* <div className="relative flex items-center justify-center w-full px-4">
         <div className="h-[1px] bg-gradient-to-r from-transparent via-[#BC9313]/80 to-transparent flex-1 max-w-[150px] sm:max-w-[200px] md:max-w-[30%]" />
         <p className="text-[20px] sm:text-[24px] md:text-[32px] text-[#FDF9F0] font-bricolage font-medium text-center px-4 whitespace-nowrap">
           Team Members
         </p>
         <div className="h-[1px] bg-gradient-to-r from-transparent via-[#BC9313]/80 to-transparent flex-1 max-w-[150px] sm:max-w-[200px] md:max-w-[30%]" />
-      </div>
+      </div> */}
 
       {/* Additional Members Grid */}
-      <div className="flex flex-wrap justify-center gap-[32px] sm:gap-[40px] md:gap-[56px] max-w-7xl">
+      {/* <div className="flex flex-wrap justify-center gap-[32px] sm:gap-[40px] md:gap-[56px] max-w-7xl">
         {smallTeamMembers.map((member, index) => (
           <TeamCard
             key={index}
@@ -166,7 +177,7 @@ const Page = () => {
             backContent={<div />} // placeholder
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

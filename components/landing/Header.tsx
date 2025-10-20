@@ -48,11 +48,11 @@ export const Header = () => {
         </Link>
 
         {/* Button */}
-        {/* <button
+        {scrolled &&   <button
            onClick={() => {
             router.push("/waitlist");
           }}
-          className={` px-[20px] sm:px-[24px] py-[8px] sm:py-[14px] rounded-full text-[10px] sm:text-base font-semibold transition-all hover:scale-105 text-center
+          className={` px-[20px] cursor-pointer sm:px-[24px] py-[8px] sm:py-[14px] rounded-full text-[10px] sm:text-base font-semibold transition-all hover:scale-105 text-center
             ${
               scrolled
                 ? "bg-[#BC9313] text-white hover:bg-[#f1c33a]"
@@ -65,7 +65,8 @@ export const Header = () => {
           }}
         >
           Join Waitlist
-        </button> */}
+        </button>}
+      
       </div>
     </header>
   );

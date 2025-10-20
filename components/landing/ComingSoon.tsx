@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
- // Assuming 'motion/react' should be 'framer-motion'
+// Assuming 'motion/react' should be 'framer-motion'
 
 export const CommingSoon = () => {
   // Define the scrolling text string
@@ -98,8 +98,7 @@ export const CommingSoon = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
-            Your co-pilot for all your financial needs. smarter saving,
-            tracking, and investing made simple.
+            All your money. One simple, smart space.
           </motion.p>
         </motion.div>
       </div>

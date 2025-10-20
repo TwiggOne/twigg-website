@@ -228,37 +228,12 @@ export default function WaitlistForm() {
                 className="bg-[#BC9313] cursor-pointer text-white w-[165px] sm:w-[200px] md:w-[239px] h-[40px] sm:h-[48px] md:h-[54px] rounded-full font-semibold text-[14px] sm:text-[16px] md:text-lg shadow-xl flex items-center justify-center relative overflow-hidden"
               >
                 <motion.span
-                  variants={{
-                    rest: {
-                      x: 0,
-                      transition: { duration: 0.2, ease: "easeOut" },
-                    },
-                    hover: {
-                      x: -10,
-                      transition: { duration: 0.2, ease: "easeOut" },
-                    },
-                  }}
+              
                   className="transition-transform"
                 >
-                  {isSubmitting ? "Submitting..." : "Join Waitlist"}
+                  {isSubmitting ? "Submitting..." : "Submit"}
                 </motion.span>
-                <motion.div
-                  variants={{
-                    rest: {
-                      opacity: 0,
-                      x: 20,
-                      transition: { duration: 0.2, ease: "easeOut" },
-                    },
-                    hover: {
-                      opacity: 1,
-                      x: 10,
-                      transition: { duration: 0.2, ease: "easeOut" },
-                    },
-                  }}
-                  className="w-5 h-5 text-white flex-shrink-0 absolute right-10 pointer-events-none"
-                >
-                  <UpArrow right />
-                </motion.div>
+               
               </motion.button>
             </div>
           </form>

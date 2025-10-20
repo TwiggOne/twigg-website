@@ -42,7 +42,7 @@ const page = () => {
           Privacy Policy
         </p>
           <p>
-            Last updated: [Insert Date]
+            Last updated: 20/10/2025
             <br />
             <br />
             Welcome to Twigg. By signing up, accessing, or using Twigg, you

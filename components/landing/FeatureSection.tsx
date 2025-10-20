@@ -144,7 +144,7 @@ function FeaturesCardsWrapper() {
     >
       <FeatureCard
         title="All-In-One Platform"
-        description="Expenses, loans, credit cards, investments, and insurance in real time."
+        description="Expenses, loans, credit cards, investments and insurance in real time."
         iconSrc="/Sol_img1.png"
         position="left"
         animateIn={isInView} // Pass the visibility status

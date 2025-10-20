@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Instagram, Linkedin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,14 +8,14 @@ export default function Footer() {
     {
       title: "Company",
       links: [
-        { name: "About Us", href: "/team" },
+        // { name: "About Us", href: "/team" },
         { name: "Team", href: "/team" }, // ✅ navigates to /team
       ],
     },
     {
       title: "Product",
       links: [
-  { name: "Features", href: "#features" },
+        // { name: "Features", href: "#features" },
         { name: "FAQs", href: "/faqs" },
       ],
     },
@@ -23,17 +23,17 @@ export default function Footer() {
       title: "Support",
       links: [
         { name: "Terms & Conditions", href: "/terms-condition" }, // ✅ navigates to /terms-condition
-        { name: "Privacy Policy", href: "/privacy-policy" }, // ✅ navigates to /privacy-policy
+        // { name: "Privacy Policy", href: "/privacy-policy" }, // ✅ navigates to /privacy-policy
       ],
     },
   ];
-    const scrollToFeatures = (e: React.MouseEvent) => {
-  e.preventDefault();
-  const el = document.getElementById("features");
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-};
+  const scrollToFeatures = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.getElementById("features");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <footer className="bg-[#0D2F23] text-white pt-[100px] px-[24px] md:px-[100px] relative">
@@ -72,25 +72,24 @@ export default function Footer() {
                 </h4>
                 <ul className="space-y-3">
                   {group.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-  {link.name === "Features" ? (
-    <a
-      href="#features"
-      onClick={scrollToFeatures}
-      className="text-[#FDF9F0]/80 font-switzer hover:text-amber-400 transition-colors duration-200 text-sm"
-    >
-      {link.name}
-    </a>
-  ) : (
-    <Link
-      href={link.href}
-      className="text-[#FDF9F0]/80 font-switzer hover:text-amber-400 transition-colors duration-200 text-sm"
-    >
-      {link.name}
-    </Link>
-  )}
-</li>
-
+                    <li key={linkIndex}>
+                      {link.name === "Features" ? (
+                        <a
+                          href="#features"
+                          onClick={scrollToFeatures}
+                          className="text-[#FDF9F0]/80 font-switzer hover:text-amber-400 transition-colors duration-200 text-sm"
+                        >
+                          {link.name}
+                        </a>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          className="text-[#FDF9F0]/80 font-switzer hover:text-amber-400 transition-colors duration-200 text-sm"
+                        >
+                          {link.name}
+                        </Link>
+                      )}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -102,7 +101,7 @@ export default function Footer() {
                 Contact
               </h4>
               <ul className="space-y-3 text-sm text-gray-300">
-                <li className="flex font-switzer items-center gap-2">
+                {/* <li className="flex font-switzer items-center gap-2">
                   <svg
                     className="w-4 h-4 flex-shrink-0"
                     fill="none"
@@ -117,7 +116,7 @@ export default function Footer() {
                     />
                   </svg>
                   +91 9999999999
-                </li>
+                </li> */}
                 <li className="flex items-center gap-2">
                   <svg
                     className="w-4 h-4 flex-shrink-0"
@@ -132,7 +131,8 @@ export default function Footer() {
                       d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                     />
                   </svg>
-                  contact@twigg.one
+                  <div className="w-fit flex flex-row">                  contact<span className="font-switzer">[@]</span>twigg.one
+</div>
                 </li>
                 <li className="flex items-start gap-2">
                   <svg
@@ -155,8 +155,7 @@ export default function Footer() {
                     />
                   </svg>
                   <span className="leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do
+                  New Delhi
                   </span>
                 </li>
               </ul>
