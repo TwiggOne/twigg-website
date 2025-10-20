@@ -51,166 +51,111 @@ const ProblemCard = ({
 
 // 🎨 Main Section
 export const ProblemSection = () => {
-  const cards = [
-    {
-      title: "24%",
-      descriptions: ["Only 24% of Indian adults are financially literate."],
-      delay: 0.4,
-    },
-    {
-      title: "CAGR, XIRR, ETFs..",
-      descriptions: [
-        "For most, terms like CAGR, XIRR, ETFs, Alpha, Beta sound like another language.",
-        "Which caused confusion and people delay or avoid financial decisions altogether.",
-      ],
-      delay: 0.6,
-    },
-  ];
-  // Add `cards` property directly inside each label
-  const labels = [
-    {
-      id: 0,
-      title: (
+const labels = [
+  {
+    id: 0,
+    title: (
+      <>
+        Constant
+        <br />
+        Money Stress
+      </>
+    ),
+    icon: <Wallet />,
+    cards: [
+      {
+        title: "Savings",
+        descriptions: [
+          "1 in 3 employees lack even 3 months of emergency savings.",
+        ],
+      },
+      {
+        title: "Low,Savings,Debt",
+        descriptions: [
+          "43% of affluent Indians (earning >₹20L post-tax) save less than 20% of their income; in the 30–45 age group it’s 50%.",
+          "Household debt in India has surged to 33–34% of income — among the highest in the world",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1,
+    title: (
+      <>
+        Know
+        <br />
+        Money Terms
+      </>
+    ),
+    icon: <QuesitonMark />,
+    cards: [
+      {
+        title: "Literacy",
+        descriptions: ["Only 24% of Indian adults are financially literate."],
+      },
+      {
+        title: "CAGR,XIRR,Confusion",
+        descriptions: [
+          "For most, terms like CAGR, XIRR, ETFs, Alpha, Beta sound like another language.",
+          "Confusion and paralysis - people delay or avoid financial decisions altogether.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: (
         <>
-          Constant
-          <br />
-          Money Stress
-        </>
-      ),
-      icon: <Wallet />,
-      cards: [
-        {
-          title: "24%",
-          descriptions: ["Only 24% of Indian adults are financially literate."],
-        },
-        {
-          title: "Lack of Awareness",
-          descriptions: [
-            "Most people don’t know where or how to start investing.",
-            "They rely on friends, trends, or luck for money decisions.",
-          ],
-        },
-      ],
-    },
-    {
-      id: 1,
-      title: (
-        <>
-          Lost in
-          <br />
-          Money Jargon
-        </>
-      ),
-      icon: <QuesitonMark />,
-      cards: [
-        {
-          title: "24%",
-          descriptions: ["Only 24% of Indian adults are financially literate."],
-        },
-        {
-          title: "CAGR, XIRR, ETFs..",
-          descriptions: [
-            "For most, terms like CAGR, XIRR, ETFs, Alpha, Beta sound like another language.",
-            "This causes confusion, delays, and financial paralysis.",
-          ],
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: (
-        <>
-          Hard to
-          <br />
-          manage money
-        </>
-      ),
-      icon: <Stress />,
-      cards: [
-        {
-          title: "24%",
-          descriptions: ["Only 24% of Indian adults are financially literate."],
-        },
-        {
-          title: "No Long-Term Planning",
-          descriptions: [
-            "Without clear goals, short-term decisions cause long-term loss.",
-          ],
-        },
-      ],
-    },
-    {
-      id: 3,
-      title: (
-        <>
-          Hard to
-          <br />
-          manage 462783
-        </>
-      ),
-      icon: <Stress />,
-      cards: [
-        {
-          title: "24%",
-          descriptions: ["Only 24% of Indian adults are financially literate."],
-        },
-        {
-          title: "No Long-Term Planning",
-          descriptions: [
-            "Without clear goals, short-term decisions cause long-term loss.",
-          ],
-        },
-      ],
-    },
-    {
-      id: 4,
-      title: (
-        <>
-          Hard to
-          <br />
-          manage hdfjkhfk
-        </>
-      ),
-      icon: <Stress />,
-      cards: [
-        {
-          title: "24%",
-          descriptions: ["Only 24% of Indian adults are financially literate."],
-        },
-        {
-          title: "No Long-Term Planning",
-          descriptions: [
-            "Without clear goals, short-term decisions cause long-term loss.",
-          ],
-        },
-      ],
-    },
-    {
-      id: 5,
-      title: (
-        <>
-          Hard to
-          <br />
-          manage jkl
-        </>
-      ),
-      icon: <Stress />,
-      cards: [
-        {
-          title: "24%",
-          descriptions: ["Only 24% of Indian adults are financially literate."],
-        },
-        {
-          title: "No Long-Term Planning",
-          descriptions: [
-            "Without clear goals, short-term decisions cause long-term loss.",
-          ],
-        },
-      ],
-    },
-  ];
+        Get
+        <br />
+        Right Advice
+      </>
+    ),
+    icon: <Stress />,
+    cards: [
+      {
+        title: "Advice",
+        descriptions: [
+          "Advisory exists, but it’s mostly generic and non-personalised — 2/3 of people are dissatisfied with the advice they get.",
+        ],
+      },
+      {
+        title: "No,Planning,Guidance",
+        descriptions: [
+          "Most still rely on patchwork guidance: 32% advisory from local CAs/wealth managers, 25% from friends & family",
+          "82% of investors act on Finfluencer advice — but only 2% are SEBI-registered and 63% don’t disclose sponsorships.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: (
+      <>
+        Too Many <br />
+        Choices, No Clarity
+      </>
+    ),
+    icon: <Stress />,
+    cards: [
+      {
+        title: "Companies",
+        descriptions: ["India has 7000+ listed companies."],
+      },
+      {
+        title: "Funds,Wealth,Default",
+        descriptions: [
+          "1,791 mutual fund schemes are available as of June 2025.",
+          "Yet, 95% of household wealth sits in traditional assets — when overwhelmed, people default to “safe” but low-return and illiquid assets.",
+        ],
+      },
+    ],
+  },
+];
+
 
   const [activeIndex, setActiveIndex] = useState(0);
+const safeIndex = Math.min(activeIndex, labels.length - 1);
 
   const handleRotate = () => {
     setActiveIndex((prev) => (prev + 1) % labels.length);
@@ -331,12 +276,16 @@ export const ProblemSection = () => {
                   }`}
                 >
                   <div
-                    className={`absolute ${ isActive ?"w-[21px] h-[21px] bg-[#BC9313]": "w-[14px] h-[14px] bg-[#B7B7B7]"} rounded-full`}
+                    className={`absolute ${
+                      isActive
+                        ? "w-[21px] h-[21px] bg-[#BC9313]"
+                        : "w-[14px] h-[14px] bg-[#B7B7B7]"
+                    } rounded-full`}
                     style={{
-                      scale:1.2,
-                      
-                      top:isActive ?   "65%" :idx == 0 ?  "120%" : "0%",
-                      left: !isActive ? "-120%" :"-57%",
+                      scale: 1.2,
+
+                      top: isActive ? "65%" : idx == 0 ? "120%" : "0%",
+                      left: !isActive ? "-120%" : "-57%",
                       transform: "translate(-50%, -50%)",
                     }}
                   ></div>
@@ -382,7 +331,6 @@ export const ProblemSection = () => {
                 fill
                 className="object-contain"
               />
-         
             </div>
           </div>
 
@@ -406,7 +354,7 @@ export const ProblemSection = () => {
                   }}
                   className="relative flex flex-col gap-[18px] w-full"
                 >
-                  {labels[activeIndex].cards.map((card, i) => (
+                  {labels[safeIndex].cards.map((card, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, x: 0 }}

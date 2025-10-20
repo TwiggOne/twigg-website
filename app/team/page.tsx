@@ -4,42 +4,42 @@ import { TeamCard } from "@/components/ui/TeamMemberCard";
 import { BulletLogo, LinkedIng } from "@/utils/SvgUtils";
 import React from "react";
 
-// 🧑‍💼 Core Team
 const teamMembers = [
   {
     name: "Utkarsh Vijay",
     role: "Co-Founder",
     image: "/team/team_member.png",
     experiences: [
+      "12+ years in strategy, product, and technology across government & private sectors.",
+      "Scaled Samagra from $2.5M / 15 members → $8M / 125 members as core leadership.",
+      "Co-founded Indian Lawyers Forum, built 150K+ community, 15K+ paid subscribers.",
+      "Ex-BCG & Indus Valley Partners; NIT Jalandhar, Computer Science Engineering.",
+    ],
+  },
+  {
+    name: "Aditya Bansal",
+    role: "Co-Founder",
+    image: "/team/team_member.png",
+    experiences: [
+      "10+ years in equity research, investment advisory & wealth management.",
       "Co-founder, Wuxel Financial Services (₹60Cr+ AUA, 200+ active clients).",
-      "Built AI-powered fintech platform for SME clients. development",
-      "Managed cross-functional teams of 15+ engineers and analysts.",
-      "Speaker at multiple fintech and startup conferences.",
+      "Ex-Goldman Sachs, KPMG & SEBI — spanning IB, advisory, and regulation.",
+      "MDI Gurgaon (MBA Finance), Thapar University (B.Tech Electronics).",
     ],
   },
   {
-    name: "Riya Sharma",
-    role: "AI Engineer",
+    name: "Saurabh Taneja",
+    role: "Product Lead",
     image: "/team/team_member.png",
     experiences: [
-      "Developed predictive analytics models for financial planning.",
-      "Implemented NLP pipelines for customer support automation.",
-      "Mentored junior AI engineers in the team. development development",
-      "Published research on AI-based investment risk scoring.",
-    ],
-  },
-  {
-    name: "Arjun Mehta",
-    role: "Product Designer",
-    image: "/team/team_member.png",
-    experiences: [
-      "Designed intuitive interfaces for web and mobile apps.",
-      "Led user research and usability testing cycles. development",
-      "Created design systems for scalable product development.",
-      "Collaborated with engineering to optimize UX performance.",
+      "12+ years in product development, driving innovation across global startups and enterprises.",
+      "Extensive experience in the fintech ecosystem — 4+ years across Stripe, Stitch Money.",
+      "Co-founded Joysquare, a co-living startup for young professionals in Delhi/NCR.",
+      "Computer Science Engineering from Maharaja Surajmal Institute of Technology (MSIT).",
     ],
   },
 ];
+
 
 // 👩‍💻 Additional Members (smaller cards)
 const smallTeamMembers = [
@@ -87,7 +87,8 @@ const Page = () => {
             The People <span className="text-[#BC9313]">Powering Twigg</span>
           </div>
           <p className="text-[18px] sm:text-[20px] md:text-[24px] text-[#FDF9F0]/80 leading-[140%] font-switzer">
-            Turning money chaos into clarity, <br /> one breakthrough at a time
+            We’ve built for millions before.
+            <br /> Now we’re building for you.
           </p>
         </div>
 
