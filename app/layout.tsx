@@ -4,7 +4,6 @@ import "./globals.css";
 import { Header } from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import { Toaster } from "@/components/ui/sonner";
-import SmoothScrolling from "@/components/landing/LenisScoll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
