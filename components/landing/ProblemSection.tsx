@@ -233,10 +233,19 @@ export const ProblemSection = () => {
 
   const positions = {
     top: { top: "26%", left: "27%", scale: 0.8, opacity: 0.6, zIndex: 1 },
-    center: { top: "45%", left: "37%", scale: 1, opacity: 1, zIndex: 3 },
+    center: { top: "45.5%", left: "37%", scale: 1, opacity: 1, zIndex: 3 },
     bottom: { top: "68%", left: "27%", scale: 0.8, opacity: 0.6, zIndex: 1 },
   };
-
+  const exitPositions = {
+    top: { top: "24%", left: "-5%", scale: 0.8, opacity: 0, zIndex: 0 },
+    center: { top: "26%", left: "27%", scale: 1, opacity: 0, zIndex: 0 },
+    bottom: { top: "45%", left: "37%", scale: 0.8, opacity: 0, zIndex: 0 },
+  };
+  const initailPositions = {
+    top: { top: "24%", left: "-5%", scale: 0.8, opacity: 0, zIndex: 0 },
+    center: { top: "26%", left: "27%", scale: 1, opacity: 0, zIndex: 0 },
+    bottom: { top: "75%", left: "0%", scale: 0.8, opacity: 0, zIndex: 0 },
+  };
   return (
     <section className="relative min-h-screen flex items-center justify-center">
       <motion.div
@@ -266,61 +275,94 @@ export const ProblemSection = () => {
         {/* 🔁 Animated Wheel Labels */}
         {/* 🔁 Animated Wheel Labels */}
         {/* 🔁 Animated Wheel Labels */}
-        {getVisibleLabels().map((label, idx) => {
-          // idx: 0..2 in visible array
-          // compute positions based on idx in visible array
-          let pos;
-          const isActive = idx === 1; // middle label in visible array is active
-          if (idx === 0) pos = positions.top;
-          else if (idx === 1) pos = positions.center;
-          else pos = positions.bottom;
-
-          return (
-            <motion.div
-              key={label.id}
-              className="absolute flex flex-row gap-2 cursor-pointer"
-              animate={{
-                top: pos.top,
-                scale: pos.scale,
-                left: pos.left,
-                opacity: pos.opacity,
-                zIndex: pos.zIndex,
-              }}
-              transition={{
-                duration: 1.2,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              onClick={handleRotate}
-            >
-              <div
-                className={`flex items-center justify-center rounded-full border transition-all duration-300 ${
-                  isActive
-                    ? "bg-[#BC9313] border-[#BC9313] w-[62px] h-[62px]"
-                    : "border-[#00000020] w-[44px] h-[44px]"
-                }`}
+        <AnimatePresence>
+          {getVisibleLabels().map((label, idx) => {
+            // idx: 0..2 in visible array
+            // compute positions based on idx in visible array
+            let pos;
+            const isActive = idx === 1; // middle label in visible array is active
+            if (idx === 0) pos = positions.top;
+            else if (idx === 1) pos = positions.center;
+            else pos = positions.bottom;
+            let exitPos;
+            if (idx === 0) exitPos = exitPositions.top;
+            else if (idx === 1) exitPos = exitPositions.center;
+            else exitPos = exitPositions.bottom;
+            let initailPos;
+            if (idx === 0) initailPos = initailPositions.top;
+            else if (idx === 1) initailPos = initailPositions.center;
+            else initailPos = initailPositions.bottom;
+            return (
+              <motion.div
+                key={label.id}
+                className="absolute flex flex-row gap-2 cursor-pointer"
+                initial={{
+                  top: initailPos.top,
+                  scale: initailPos.scale,
+                  left: initailPos.left,
+                  opacity: initailPos.opacity,
+                  zIndex: initailPos.zIndex,
+                }}
+                exit={{
+                  top: exitPos.top,
+                  scale: exitPos.scale,
+                  left: exitPos.left,
+                  opacity: exitPos.opacity,
+                  zIndex: exitPos.zIndex,
+                }}
+                animate={{
+                  top: pos.top,
+                  scale: pos.scale,
+                  left: pos.left,
+                  opacity: pos.opacity,
+                  zIndex: pos.zIndex,
+                }}
+                transition={{
+                  duration: 1.2,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                onClick={handleRotate}
               >
                 <div
-                  className={`${
+                  className={`relative flex items-center justify-center rounded-full border transition-all duration-300 ${
                     isActive
-                      ? "w-[25px] h-[25px] text-[#FDF9F0]"
-                      : "w-[21px] h-[21px] text-[#B7B7B7]"
+                      ? "bg-[#BC9313] border-[#BC9313] w-[62px] h-[62px]"
+                      : "border-[#00000020] w-[44px] h-[44px]"
                   }`}
                 >
-                  {label.icon}
+                  <div
+                    className={`absolute ${ isActive ?"w-[21px] h-[21px] bg-[#BC9313]": "w-[14px] h-[14px] bg-[#B7B7B7]"} rounded-full`}
+                    style={{
+                      scale:1.2,
+                      
+                      top:isActive ?   "65%" :idx == 0 ?  "120%" : "0%",
+                      left: !isActive ? "-120%" :"-57%",
+                      transform: "translate(-50%, -50%)",
+                    }}
+                  ></div>
+                  <div
+                    className={`${
+                      isActive
+                        ? "w-[25px] h-[25px] text-[#FDF9F0]"
+                        : "w-[21px] h-[21px] text-[#B7B7B7]"
+                    }`}
+                  >
+                    {label.icon}
+                  </div>
                 </div>
-              </div>
-              <p
-                className={`font-bricolage font-bold leading-[120%] transition-all duration-300 ${
-                  isActive
-                    ? "text-[#152D23] text-[26px]"
-                    : "text-[#B7B7B7] text-[18px]"
-                }`}
-              >
-                {label.title}
-              </p>
-            </motion.div>
-          );
-        })}
+                <p
+                  className={`font-bricolage font-bold leading-[120%] transition-all duration-300 ${
+                    isActive
+                      ? "text-[#152D23] text-[26px]"
+                      : "text-[#B7B7B7] text-[18px]"
+                  }`}
+                >
+                  {label.title}
+                </p>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
 
         {/* Grid Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 items-center relative">
@@ -340,30 +382,7 @@ export const ProblemSection = () => {
                 fill
                 className="object-contain"
               />
-              <div
-                className="absolute w-[14px] h-[14px] bg-[#B7B7B7] rounded-full"
-                style={{
-                  top: "11%",
-                  right: "19%",
-                  transform: "translate(-50%, -50%)",
-                }}
-              ></div>
-              <div
-                className="absolute w-[14px] h-[14px] bg-[#B7B7B7] rounded-full"
-                style={{
-                  bottom: "9%",
-                  right: "19%",
-                  transform: "translate(-50%, -50%)",
-                }}
-              ></div>
-              <div
-                className="absolute w-[21px] h-[21px] bg-[#BC9313] rounded-full"
-                style={{
-                  top: "50%",
-                  right: "-4%",
-                  transform: "translate(-50%, -50%)",
-                }}
-              ></div>
+         
             </div>
           </div>
 
