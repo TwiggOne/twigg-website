@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, Variants } from "motion/react";
+import { delay, motion, Variants } from "motion/react";
 import {
   Tag1,
   Tag2,
@@ -18,8 +18,8 @@ import { useRouter } from "next/navigation";
 
 export default function HeroSection() {
   const router = useRouter();
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false); // <-- new
+const [tagsAnimated, setTagsAnimated] = useState(false);
 
   // Show button after scrolling 1 screen height
   useEffect(() => {
@@ -35,11 +35,20 @@ export default function HeroSection() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+useEffect(() => {
+  if (!tagsAnimated) {
+    const maxAnimationTime = 5000; // 5 seconds, for example
+    const timer = setTimeout(() => setTagsAnimated(true), maxAnimationTime);
+    return () => clearTimeout(timer);
+  }
+}, [tagsAnimated]);
 
   const containerVariants = {
     hidden: {},
     visible: {
+      delay:1,
       transition: {
+        
         staggerChildren: 1.2, // 0.6s delay between tags
       },
     },
@@ -209,9 +218,7 @@ Trusted guidance for every money move you make          </p>
               alt="Hero Image"
               priority
               fill
-              onLoadingComplete={() => {
-                setTimeout(() => setImageLoaded(true), 1000); // 1s delay
-              }}
+           
               className="object-contain relative z-20"
               style={{
                 WebkitMaskImage:
@@ -234,12 +241,13 @@ Trusted guidance for every money move you make          </p>
           </div>
 
           {/* TAGS */}
-          {imageLoaded && (
             <motion.div
               variants={containerVariants}
               className="absolute inset-0"
-              initial="hidden"
+  initial={!tagsAnimated ? "hidden" : undefined} // animate only if not already animated
               animate="visible"
+  onAnimationComplete={() => setTagsAnimated(true)}
+
             >
               {/* Top Left */}
 
@@ -252,7 +260,7 @@ Trusted guidance for every money move you make          </p>
       sm:top-[-50%] sm:left-[-160%]
       md:top-[20%] md:left-[-20%]
       lg:top-[23%] lg:left-[-6%]
-      scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-100
+      scale-[0.4] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
     "
               />
 
@@ -266,7 +274,7 @@ Trusted guidance for every money move you make          </p>
       sm:top-[-50%] sm:left-[90%]
       md:top-[12%] md:left-[50%]
       lg:top-[16%] lg:left-[65%]
-      scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-100
+      scale-[0.4] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
     "
               />
 
@@ -280,7 +288,7 @@ Trusted guidance for every money move you make          </p>
       sm:bottom-[-60%] sm:left-[-150%]
       md:bottom-[12%] md:left-[-15%]
       lg:bottom-[17%] lg:left-[2%]
-      scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-100
+      scale-[0.4] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
     "
               />
 
@@ -294,11 +302,11 @@ Trusted guidance for every money move you make          </p>
       sm:bottom-[-50%] sm:left-[80%]
       md:bottom-[18%] md:left-[67%]
       lg:bottom-[25%] lg:left-[70%]
-      scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-100
+      scale-[0.4] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
     "
               />
             </motion.div>
-          )}
+          
 
           {showScrollTop && (
             <div
