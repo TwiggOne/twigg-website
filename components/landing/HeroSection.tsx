@@ -65,7 +65,8 @@ export default function HeroSection() {
   }) => (
     <motion.div className={className} variants={tagVariants as Variants}>
       <div className="relative w-[218px] h-[66px] flex items-center justify-center">
-        <Tag />
+        <div className="scale-[1.15]">        <Tag />
+</div>
         <span
           className="absolute font-switzer text-[#FDF9F0] text-[18px]"
           style={{
