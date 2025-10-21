@@ -7,15 +7,15 @@ import {
 } from "@/utils/SvgUtils";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ProblemMobileBorder } from "../ui/BorderSvgEffect";
 const labels = [
   {
     id: 0,
     title: (
-      <>
-        Money
-        <br />
-        Jargon = Intimidating
+    <>
+        Money <br />
+        Finance is Mystery
       </>
     ),
     icon: <Wallet />,
@@ -58,11 +58,11 @@ const labels = [
   {
     id: 2,
     title: (
-      <>
-        Conflict, Opaque
-        <br />
-        Charges & Finfluencers
+          <>
+        Hidden Costs <br />
+        Opaque by Nature
       </>
+
     ),
     icon: <Stress />,
     cards: [
@@ -83,9 +83,9 @@ const labels = [
   {
     id: 3,
     title: (
-      <>
-        Constant <br />
-        Money Stress
+       <>
+        Money Stress <br />
+        Savings to Freedom
       </>
     ),
     icon: <Stress />,
@@ -104,14 +104,48 @@ const labels = [
   },
 ];
 const ProblemSectionMobile = () => {
-  const [activeId, setActiveId] = useState(0); // Default active (e.g., last one)
+  const [activeIndex, setActiveIndex] = useState(1);
   const getVisibleItems = () => {
     const lastIndex = labels.length - 1;
-    const prevIndex = activeId === 0 ? lastIndex : activeId - 1;
-    const nextIndex = activeId === lastIndex ? 0 : activeId + 1;
-    return [labels[prevIndex], labels[activeId], labels[nextIndex]];
+    const prevIndex = activeIndex === 0 ? lastIndex : activeIndex - 1;
+    const nextIndex = activeIndex === lastIndex ? 0 : activeIndex + 1;
+    return [labels[prevIndex], labels[activeIndex], labels[nextIndex]];
   };
 
+  const handleRotate = () => {
+    setActiveIndex((prev) => (prev + 1) % labels.length);
+  };
+
+  useEffect(() => {
+    const timer = setInterval(handleRotate, 8000);
+    return () => clearInterval(timer);
+  }, []);
+  const getVisibleLabels = () => {
+    const total = labels.length;
+    // always show 3
+    const visible = [];
+    for (let i = 0; i < 3; i++) {
+      visible.push(labels[(activeIndex + i) % total]);
+    }
+    return visible;
+  };
+
+  const positions = {
+    bottom: { top: "75%", left: "-25%", scale: 1, opacity: 1, zIndex: 1 },
+    center: { top: "108%", left: "21%", scale: 1, opacity: 1, zIndex: 3 },
+    top: { top: "75%", left: "86%", scale: 1, opacity: 1, zIndex: 1 },
+  };
+  const exitPositions = {
+    bottom: { top: "108%", left: "22%", scale: 1, opacity: 0, zIndex: 3 },
+    center: { top: "75%", left: "95%", scale: 1, opacity: 0, zIndex: 1 },
+    top: { top: "0%", left: "200%", scale: 0.8, opacity: 0, zIndex: 0 },
+  };
+  const initailPositions = {
+    top: { top: "24%", left: "205%", scale: 0.8, opacity: 0, zIndex: 1 }, // start left/top, invisible
+    center: { top: "108%", left: "22%", scale: 0.8, opacity: 0, zIndex: 3 }, // start below center, invisible
+    bottom: { top: "75%", left: "220%", scale: 0.8, opacity: 0, zIndex: 1 }, // start right/outside, invisible
+  };
+  const cardIndex = (activeIndex + 1 + labels.length) % labels.length;
   const visibleItems = getVisibleItems();
   return (
     <div className="flex flex-col  py-8 items-center px-[22px] bg-[#FDF9F0] rounded-[30px] relative">
@@ -149,8 +183,8 @@ const ProblemSectionMobile = () => {
           {/* ==== DYNAMIC SIDE LABELS ==== */}
           {(() => {
             const lastIndex = labels.length - 1;
-            const prevIndex = activeId === 0 ? lastIndex : activeId - 1;
-            const nextIndex = activeId === lastIndex ? 0 : activeId + 1;
+            const prevIndex = activeIndex === 0 ? lastIndex : activeIndex - 1;
+            const nextIndex = activeIndex === lastIndex ? 0 : activeIndex + 1;
             const prev = labels[prevIndex];
             const next = labels[nextIndex];
 
@@ -158,41 +192,94 @@ const ProblemSectionMobile = () => {
               <>
                 {/* Left (Previous) */}
                 <AnimatePresence>
-                  {/* Left (Previous) */}
-                  <motion.div
-                    key={prev.id}
-                    className="flex flex-col absolute bottom-2 gap-1 -left-14 items-center cursor-pointer"
-                    onClick={() => setActiveId(prev.id)}
-                    initial={{ opacity: 0, x: -20, scale: 0.8 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: -20, scale: 0.8 }}
-                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <div className="w-5 h-5 border border-[#000000]/20 flex items-center justify-center rounded-full text-[#B7B7B7]">
-                      <div className="h-3 w-3">{prev.icon}</div>
-                    </div>
-                    <div className="font-bricolage font-medium text-[9px] text-[#B7B7B7] leading-[110%] text-center">
-                      {prev.title}
-                    </div>
-                  </motion.div>
-
-                  {/* Right (Next) */}
-                  <motion.div
-                    key={next.id}
-                    className="flex flex-col absolute bottom-2 gap-1 -right-16 items-center cursor-pointer"
-                    onClick={() => setActiveId(next.id)}
-                    initial={{ opacity: 0, x: 20, scale: 0.8 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: 20, scale: 0.8 }}
-                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <div className="w-5 h-5 border border-[#000000]/20 flex items-center justify-center rounded-full text-[#B7B7B7]">
-                      <div className="h-3 w-3">{next.icon}</div>
-                    </div>
-                    <div className="font-bricolage font-medium text-[9px] text-[#B7B7B7] leading-[110%] text-center">
-                      {next.title}
-                    </div>
-                  </motion.div>
+                  {getVisibleLabels().map((label, idx) => {
+                    // idx: 0..2 in visible array
+                    // compute positions based on idx in visible array
+                    let pos;
+                    const isActive = idx === 1; // middle label in visible array is active
+                    if (idx === 0) pos = positions.top;
+                    else if (idx === 1) pos = positions.center;
+                    else pos = positions.bottom;
+                    let exitPos;
+                    if (idx === 0) exitPos = exitPositions.top;
+                    else if (idx === 1) exitPos = exitPositions.center;
+                    else exitPos = exitPositions.bottom;
+                    let initailPos;
+                    if (idx === 0) initailPos = initailPositions.top;
+                    else if (idx === 1) initailPos = initailPositions.center;
+                    else initailPos = initailPositions.bottom;
+                    return (
+                      <motion.div
+                        key={label.id}
+                        className="absolute flex flex-col items-center text-center gap-2 cursor-pointer"
+                        initial={{
+                          top: initailPos.top,
+                          scale: initailPos.scale,
+                          left: initailPos.left,
+                          opacity: initailPos.opacity,
+                          zIndex: initailPos.zIndex,
+                        }}
+                        exit={{
+                          top: exitPos.top,
+                          scale: exitPos.scale,
+                          left: exitPos.left,
+                          opacity: exitPos.opacity,
+                          zIndex: exitPos.zIndex,
+                        }}
+                        animate={{
+                          top: pos.top,
+                          scale: pos.scale,
+                          left: pos.left,
+                          opacity: pos.opacity,
+                          zIndex: pos.zIndex,
+                        }}
+                        transition={{
+                          duration: 1.2,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                      >
+                        <div
+                          className={`relative flex flex-col  items-center justify-center rounded-full border transition-all duration-300 ${
+                            isActive
+                              ? "bg-[#BC9313] border-[#BC9313] w-[32px] h-[32px]"
+                              : "border-[#00000020] w-[20px] h-[20px]"
+                          }`}
+                        >
+                          {/* <div
+                                   className={`absolute ${
+                                     isActive
+                                       ? "w-[12px] h-[12px] bg-[#BC9313]"
+                                       : "w-[8px] h-[8px] bg-[#B7B7B7]"
+                                   } rounded-full`}
+                                   style={{
+               
+                                     top: isActive ? "-60%" : idx == 0 ? "-60%" : "-60%",
+                                     left: isActive ?  "45%"  : idx == 0 ? "170%" : "-80%",
+                                     transform: "translate(-50%, -50%)",
+                                   }}
+                                 ></div> */}
+                          <div
+                            className={`${
+                              isActive
+                                ? "w-[15px] h-[15px] text-[#FDF9F0]"
+                                : "w-[12px] h-[12px] text-[#B7B7B7]"
+                            }`}
+                          >
+                            {label.icon}
+                          </div>
+                        </div>
+                        <p
+                          className={`font-bricolage whitespace-nowrap  font-bold leading-[120%] transition-all duration-300 ${
+                            isActive
+                              ? "text-[#152D23] text-[14px] font-semibold font-bricolage"
+                              : "text-[#B7B7B7] text-[9px] font-medium font-bricolage"
+                          }`}
+                        >
+                          {label.title}
+                        </p>
+                      </motion.div>
+                    );
+                  })}
                 </AnimatePresence>
               </>
             );
@@ -202,107 +289,76 @@ const ProblemSectionMobile = () => {
       {/* ==== CENTERED ACTIVE ONE ==== */}
       {/* ==== CENTERED ACTIVE ONE ==== */}
       <div className="relative flex flex-col mt-8 ">
-        <AnimatePresence>
-          <motion.div
-            key={activeId} // ensures motion triggers on activeId change
-            initial={{
-              top: "-40%", // center position
-              left: "-10%",
-              scale: 0.8,
-              opacity: 1,
-              zIndex: 1,
-            }}
-            animate={{
-              top: "0%", // center position
-              left: "50%",
-              scale: 1,
-              opacity: 1,
-              zIndex: 3,
-            }}
-            exit={{
-              top: "-40%", // center position
-              left: "115%",
-              scale: 0.8,
-              opacity: 1,
-              zIndex: 1,
-            }}
-            transition={{
-              duration: 1.2,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="absolute top-0 left-1/2 w-full -translate-x-1/2 -translate-y-[20%] flex flex-col items-center justify-center gap-2"
-          >
-            {/* Icon */}
-            <div className="w-8 h-8 flex justify-center items-center bg-[#BC9313] rounded-full">
-              <div className="flex items-center justify-center">
-                <div className="w-[8px] h-[15px] text-white">
-                  {labels[activeId].icon}
+        <AnimatePresence mode="wait">
+          {labels[cardIndex].cards[0] && (
+            <motion.div
+              key={`card1-${cardIndex}`} // unique key for re-animation on index change
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              className="w-full absolute bottom-2 left-[-20%]"
+            >
+              <div
+                className="w-[146px] flex flex-col gap-3 rounded-[15px] py-[22px] px-[16px]"
+                style={{
+                  background:
+                    "linear-gradient(144.51deg, rgba(188, 147, 19, 0.2) -17.11%, rgba(253, 249, 240, 0.2) 55.86%, rgba(228, 215, 174, 0.2) 95.79%)",
+                }}
+              >
+                <h3 className="font-bricolage text-[22px] font-bold leading-[1.2] text-[#BC9313]">
+                  {labels[cardIndex].cards[0].title}
+                </h3>
+                <div className="flex flex-col gap-[20px]">
+                  {labels[cardIndex].cards[0].descriptions.map((desc, i) => (
+                    <p
+                      key={i}
+                      className="font-switzer text-[#214838CC] text-[10px] leading-[100%]"
+                    >
+                      {desc}
+                    </p>
+                  ))}
                 </div>
               </div>
-            </div>
-
-            {/* Text */}
-            <div className="text-[14px] font-bricolage text-[#152D23] leading-[110%] font-semibold text-center">
-              {labels[activeId].title}
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
         </AnimatePresence>
 
-        {/* Card Section - First Card (Absolute) */}
-        {labels[activeId].cards[0] && (
-          <div className="w-full absolute bottom-2 left-[-20%]">
-            <div
-              className="w-[146px] flex flex-col gap-3 rounded-[15px] py-[22px] px-[16px]"
-              style={{
-                background:
-                  "linear-gradient(144.51deg, rgba(188, 147, 19, 0.2) -17.11%, rgba(253, 249, 240, 0.2) 55.86%, rgba(228, 215, 174, 0.2) 95.79%)",
-              }}
-            >
-              <h3 className="font-bricolage text-[22px] font-bold leading-[1.2] text-[#BC9313]">
-                {labels[activeId].cards[0].title}
-              </h3>
-              <div className="flex flex-col gap-[20px]">
-                {labels[activeId].cards[0].descriptions.map((desc, i) => (
-                  <p
-                    key={i}
-                    className="font-switzer text-[#214838CC] text-[10px] leading-[100%]"
-                  >
-                    {desc}
-                  </p>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        <ProblemMobileBprder />
+        <ProblemMobileBorder activeIndex={activeIndex} />
       </div>
       {/* Second Card Section (like “CAGR, XIRR, ETFs..”) */}
-      {labels[activeId].cards[1] && (
-        <div
-          className="flex w-[236px] max-sm:self-end flex-col gap-3 rounded-[15px] py-[22px] px-[16px]"
-          style={{
-            background:
-              "linear-gradient(144.51deg, rgba(188, 147, 19, 0.2) -17.11%, rgba(253, 249, 240, 0.2) 55.86%, rgba(228, 215, 174, 0.2) 95.79%)",
-          }}
-        >
-          <h3 className="font-bricolage text-[16px] font-bold leading-[1.2] text-[#BC9313]">
-            {labels[activeId].cards[1].title}
-          </h3>
-          <div className="flex flex-col gap-[20px]">
-            {labels[activeId].cards[1].descriptions.map((desc, i) => (
-              <p
-                key={i}
-                className="font-switzer text-[#214838CC] text-[10px] leading-[100%]"
-              >
-                {desc}
-              </p>
-            ))}
-          </div>
-        </div>
-      )}
+      <AnimatePresence mode="wait">
+        {labels[cardIndex].cards[1] && (
+          <motion.div
+            key={`card2-${cardIndex}`}
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            className="flex w-[236px] max-sm:self-end flex-col gap-3 rounded-[15px] py-[22px] px-[16px]"
+            style={{
+              background:
+                "linear-gradient(144.51deg, rgba(188, 147, 19, 0.2) -17.11%, rgba(253, 249, 240, 0.2) 55.86%, rgba(228, 215, 174, 0.2) 95.79%)",
+            }}
+          >
+            <h3 className="font-bricolage text-[22px] font-bold leading-[1.2] text-[#BC9313]">
+              {labels[cardIndex].cards[1].title}
+            </h3>
+            <div className="flex flex-col gap-[20px]">
+              {labels[cardIndex].cards[1].descriptions.map((desc, i) => (
+                <p
+                  key={i}
+                  className="font-switzer text-[#214838CC] text-[10px] leading-[100%]"
+                >
+                  {desc}
+                </p>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="font-switzer text-[12px] text-[#214838] leading-[120%] mt-8 self-start">
-        Confusion, delays, bad choices, and constant stress , most of us are
+        Confusion, delays, bad choices, and constant<br /> stress , most of us are
         running hard, but getting nowhere with our money.
       </div>
       <div className="flex flex-col gap-[2px] self-start mt-8">

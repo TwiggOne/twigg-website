@@ -64,3 +64,72 @@ export const AnimatedBorderSVG = ({ activeIndex }: { activeIndex: number }) => {
     </div>
   );
 };
+
+
+
+export const ProblemMobileBorder = ({ activeIndex }: { activeIndex: number }) => {
+  return (
+    <div className="relative w-full h-full flex justify-center items-center">
+      <motion.svg
+        key={activeIndex} // retriggers animation whenever index changes
+        width="208"
+        height="194"
+        viewBox="0 0 208 194"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Top-right path */}
+        <motion.path
+          d="M207 193L207 11C207 5.47715 202.523 1 197 1L121 0.999996"
+          stroke="url(#paint0_linear_1467_2564)"
+          strokeOpacity="0.5"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+        />
+
+        {/* Bottom-left path */}
+        <motion.path
+          d="M89 1L11 1C5.47715 1 1 5.47715 1 11L0.999997 83"
+          stroke="url(#paint1_linear_1467_2564)"
+          strokeOpacity="0.5"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1, ease: "easeInOut", delay: 0.3 }}
+        />
+
+        {/* Gradient definitions */}
+        <defs>
+          <linearGradient
+            id="paint0_linear_1467_2564"
+            x1="207"
+            y1="193"
+            x2="267.432"
+            y2="113.147"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#BC9313" stopOpacity="0" />
+            <stop offset="0.519122" stopColor="#BC9313" stopOpacity="0.519122" />
+            <stop offset="1" stopColor="#BC9313" />
+          </linearGradient>
+          <linearGradient
+            id="paint1_linear_1467_2564"
+            x1="1.00001"
+            y1="83"
+            x2="-14.405"
+            y2="34.2296"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#BC9313" stopOpacity="0" />
+            <stop offset="0.519122" stopColor="#BC9313" stopOpacity="0.519122" />
+            <stop offset="1" stopColor="#BC9313" />
+          </linearGradient>
+        </defs>
+      </motion.svg>
+    </div>
+  );
+};

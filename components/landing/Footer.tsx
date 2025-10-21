@@ -52,7 +52,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-[#FDF9F0]/80 font-switzer text-[10px] sm:text-sm leading-relaxed">
-              Your journey with money doesn&apos;t have to be complicated. With
+              Your journey with money doesn&apos;t have to be complicated.<br />With
               Twigg, clarity and confidence are just a tap away.
             </p>
           </div>
