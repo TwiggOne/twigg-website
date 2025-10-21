@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import HeroSection from "./HeroSection";
 import { Header } from "./Header";
 import CommingSoon from "./ComingSoon";
+import ProblemSectionMobile from "./ProblemSectionMobile";
 
 const ProblemSection = dynamic(() => import("./ProblemSection"), { ssr: false });
 const Features = dynamic(() => import("./FeatureSection"), { ssr: false });
@@ -37,14 +38,7 @@ export function Landing() {
 
       <div className="mx-auto max-w-7xl px-[20px] md:px-[20px]">
         {isMobileView ? (
-          <video
-            src="/ProblemSection.mov"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-auto rounded-2xl"
-          />
+          <ProblemSectionMobile />
         ) : (
           <ProblemSection />
         )}
