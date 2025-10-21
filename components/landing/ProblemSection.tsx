@@ -65,7 +65,7 @@ export const ProblemSection = () => {
       cards: [
         {
           title: "24%",
-          descriptions: ["Indian adults understands basic financial concepts"],
+          descriptions: ["Indian adults understand basic financial concepts"],
         },
         {
           title: "87%",
@@ -112,7 +112,7 @@ export const ProblemSection = () => {
         {
           title: "66%",
           descriptions: [
-            "People are dissatisfied with the advice they get. 32% advisory from local CAs/wealth managers, 25% from friends & family, 20% from bank managers",
+            "People are dissatisfied with the advice they get from local CAs, friends/family and bank managers",
           ],
         },
         {
@@ -344,12 +344,12 @@ export const ProblemSection = () => {
             <div className="relative flex flex-col gap-[18px]  w-full pt-0  overflow-hidden min-h-[400px]">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={displayedIndex}
+                  key={activeIndex}
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 0 }}
                   transition={{
-                    delay: 0.4,
+                    delay:0.2,
                     duration: 0.6, // smoother and matches the wheel ease-out
                     ease: [0.22, 1, 0.36, 1],
                   }}

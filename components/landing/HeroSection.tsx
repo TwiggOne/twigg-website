@@ -64,33 +64,38 @@ useEffect(() => {
     },
   };
   const AnimatedTag = ({
-    Tag,
-    text,
-    className,
-  }: {
-    Tag: React.ElementType;
-    text: string;
-    className?: string;
-  }) => (
-    <motion.div className={className} variants={tagVariants as Variants}>
-      <div className="relative w-[218px] h-[66px] flex items-center justify-center">
-        <div className="scale-[1.15]">        <Tag />
-</div>
-        <span
-          className="absolute font-switzer text-[#FDF9F0] text-[18px]"
-          style={{
-            transform: "translate(0%, -20%)",
-            fontWeight: 600,
-            fontStyle: "normal",
-            lineHeight: "100%",
-            letterSpacing: "0%",
-          }}
-        >
-          {text}
-        </span>
+  Tag,
+  text,
+  className,
+  addSpace = false, // corrected prop name
+}: {
+  Tag: React.ElementType;
+  text: string;
+  className?: string;
+  addSpace?: boolean; // corrected type
+}) => (
+  <motion.div className={className} variants={tagVariants as Variants}>
+    <div className="relative w-[218px] h-[66px] flex items-center justify-center">
+      <div className="scale-[1.15]">
+        <Tag />
       </div>
-    </motion.div>
-  );
+      <span
+        className="absolute font-switzer text-[#FDF9F0] text-[18px]"
+        style={{
+          transform: "translate(0%, -20%)",
+          fontWeight: 600,
+          marginTop: addSpace ? 16 : 0, // conditional margin
+          fontStyle: "normal",
+          lineHeight: "100%",
+          letterSpacing: "0%",
+        }}
+      >
+        {text}
+      </span>
+    </div>
+  </motion.div>
+);
+
   return (
     <section className="relative z-10 w-full pt-30 ">
       <div className="relative max-w-[1440px] mx-auto flex flex-col-reverse lg:flex-row justify-between items-center px-6 lg:px-4 ">
@@ -295,6 +300,7 @@ Trusted guidance for every money move you make          </p>
               {/* Bottom Right */}
               <AnimatedTag
                 Tag={Tag4}
+                addSpace
                 text="Responsible Borrowing"
                 className="
       absolute 

@@ -36,7 +36,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({
   // ... (other style calculations remain the same)
   const nameTextSize = smallCard ? "text-[16px]" : "text-[24px]";
   const roleTextSize = smallCard ? "text-[12px]" : "text-[16px]";
-  const cardPadding = smallCard ? "pr-[20px]" : "pr-[24px]";
+  const cardPadding = smallCard ? "pr-[20px]" : "pr-[]";
   const textPaddingX = smallCard ? "px-[16px]" : "px-[26px]";
   const iconContainerSize = smallCard
     ? "w-[36px] h-[36px]"
@@ -45,58 +45,53 @@ export const TeamCard: React.FC<TeamCardProps> = ({
 
   // --- Reusable Content Structure (Front Face) ---
   // This function renders the main visual content of the card, used in both modes.
-  const renderFrontContent = (isFlipping: boolean = false) => (
-    <>
-      {/* Gradient overlay at bottom */}
-      <div className="w-full absolute bottom-0 h-[40%] bg-gradient-to-b from-[#152D23]/0 to-[#152D23]/100 border-b border-[#BC9313]/80 rounded-[20px]" />
+ const renderFrontContent = (isFlipping: boolean = false) => (
+  <div
+    className="relative w-full h-full rounded-[20px] bg-cover bg-center"
+    style={{ backgroundImage: `url(${image})` }}
+  >
+    {/* Gradient overlay at bottom */}
+    <div className="w-full absolute bottom-0 h-[40%] bg-gradient-to-b from-[#152D23]/0 to-[#152D23]/100 border-b border-[#BC9313]/80 rounded-[20px]" />
 
-      {/* Text + LinkedIn icon */}
-      <div
-        className={`absolute py-[22px] ${textPaddingX} bottom-0 flex flex-row w-full justify-between items-center`}
-      >
-        <div className="flex flex-col gap-[4px]">
-          <p
-            className={`text-[#FDF9F0] ${nameTextSize} font-medium font-bricolage leading-[110%]`}
-          >
-            {name}
-          </p>
-          <p
-            className={`text-[#FDF9F0]/80 ${roleTextSize} font-switzer leading-[110%]`}
-          >
-            {role}
-          </p>
-        </div>
-
-        <div
-          className={`${iconContainerSize} flex items-center justify-center rounded-full bg-[#214838]/50`}
+    {/* Text + LinkedIn icon */}
+    <div
+      className={`absolute py-[22px] ${textPaddingX} bottom-0 flex flex-row w-full justify-between items-center`}
+    >
+      <div className="flex flex-col gap-[4px]">
+        <p
+          className={`text-[#FDF9F0] ${nameTextSize} font-medium font-bricolage leading-[110%]`}
         >
-          {linkedin ? (
-            <a
-              href={linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center justify-center ${iconSize}`}
-            >
-              <LinkedIng />
-            </a>
-          ) : (
-            <div className={`${iconSize}`}>
-              <LinkedIng />
-            </div>
-          )}
-        </div>
+          {name}
+        </p>
+        <p
+          className={`text-[#FDF9F0]/80 ${roleTextSize} font-switzer leading-[110%]`}
+        >
+          {role}
+        </p>
       </div>
 
-      {/* Team member image */}
-      <Image
-        src={image}
-        alt={name}
-        width={imageWidth}
-        height={imageHeight}
-        className=" object-cover rounded-[20px]"
-      />
-    </>
-  );
+      <div
+        className={`${iconContainerSize} flex items-center justify-center rounded-full bg-[#214838]/50`}
+      >
+        {linkedin ? (
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex items-center justify-center ${iconSize}`}
+          >
+            <LinkedIng />
+          </a>
+        ) : (
+          <div className={`${iconSize}`}>
+            <LinkedIng />
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+);
+
 
   // --- Conditional Rendering ---
   if (isFlippable) {

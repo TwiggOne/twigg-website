@@ -20,7 +20,7 @@ const teamMembers = [
   {
     name: "Aditya Bansal",
     role: "Co-Founder",
-    image: "/team/team_member.png",
+    image: "/team/Aditya.png",
     linkedIn: "https://www.linkedin.com/in/adityabansal1989/",
 
     experiences: [
@@ -37,7 +37,7 @@ const teamMembers = [
     linkedIn: "https://www.linkedin.com/in/saurabh-taneja-65937493/",
 
     experiences: [
-      "12+ years in product development, driving innovation across global startups and enterprises",
+      "12+ years in product development, driving innovation across startups and enterprises",
       "Extensive experience in the fintech ecosystem — 4+ years across Stripe, Stitch Money",
       "Co-founded Joysquare, a co-living startup for young professionals in Delhi/NCR",
       "Computer Science Engineering from Maharaja Surajmal Institute of Technology (MSIT)",
@@ -91,7 +91,7 @@ const Page = () => {
             The People <span className="text-[#BC9313]">Powering Twigg</span>
           </div>
           <p className="text-[18px] sm:text-[20px] md:text-[24px] text-[#FDF9F0]/80 leading-[140%] font-switzer">
-            We’ve built for millions before.
+            We’ve built for millions before,
             <br /> Now we’re building for you.
           </p>
         </div>
@@ -141,7 +141,7 @@ const Page = () => {
                           <div className="w-[20px] h-[20px]">
                             <BulletLogo />
                           </div>
-                          <p className="text-[11px] font-switzer text-white leading-[130%]">
+                          <p className="text-[12px] font-switzer text-white leading-[130%]">
                             {exp}
                           </p>
                         </div>

@@ -189,7 +189,7 @@ export const Trust = () => {
       icon: "/Trust/1.svg",
     },
     {
-      title: "Secure by Design.\nTrusted by Experts.",
+      title: "Secure by Design,\nTrusted by Experts.",
       description:
         "Your data and money are protected with the highest regulatory standards.",
       icon: "/Trust/2.svg",
