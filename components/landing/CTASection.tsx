@@ -54,8 +54,8 @@ const texts = [
           Ask finance, <span className="text-[#BC9313]">Twigg answers!</span>
         </h1>
         <p className="font-switzer text-[14px] sm:text-[24px] font-normal text-[#FDF9F0]/80 leading-[120%] sm:leading-[120%] ">
-          Finally, an AI co-pilot built for your money: clear,
-          <br />
+          Finally, an AI co-pilot built for your money<br /> clear,
+      
           personal, and always on your side.
         </p>
       </div>

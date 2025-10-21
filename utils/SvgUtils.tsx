@@ -313,6 +313,8 @@ export const Tag4 = () => (
     height="66"
     viewBox="0 0 222 66"
     fill="none"
+        style={{ transform: "scaleY(-1)" }} // Flip vertically
+
     xmlns="http://www.w3.org/2000/svg"
   >
     <foreignObject x="-36" y="-40" width="294" height="138">
