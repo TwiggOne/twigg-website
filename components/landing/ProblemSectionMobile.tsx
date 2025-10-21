@@ -15,7 +15,7 @@ const labels = [
     title: (
     <>
         Money <br />
-        Finance is Mystery
+          Jargon = Intimidating
       </>
     ),
     icon: <Wallet />,
@@ -27,7 +27,7 @@ const labels = [
       {
         title: "87%",
         descriptions: [
-          "Affluent Indians admit they don’t know how to save or invest properly",
+          "affluent Indians admit they don’t know how to save or invest properly",
         ],
       },
     ],
@@ -45,12 +45,12 @@ const labels = [
     cards: [
       {
         title: "9000+",
-        descriptions: ["Listed companies and mutual funds in India"],
+        descriptions: ["listed companies and mutual funds in India"],
       },
       {
         title: "95%",
         descriptions: [
-          "Household wealth sits in traditional assets which are low returning and illiquid",
+          "household wealth sits in traditional assets which are low returning and illiquid",
         ],
       },
     ],
@@ -69,13 +69,13 @@ const labels = [
       {
         title: "2%",
         descriptions: [
-          "Finfluencers are SEBI-registered and 63% don’t disclose sponsorships",
+            "fin-fluencers are  SEBI-registered and 63% don’t disclose sponsorships",
         ],
       },
       {
         title: "66%",
         descriptions: [
-          "People are dissatisfied with the advice they get. 32% from CAs/wealth managers, 25% from friends & family, 20% from bank managers",
+            "people are dissatisfied with the advice they get from local CAs, friends/family and bank managers",
         ],
       },
     ],
@@ -83,21 +83,21 @@ const labels = [
   {
     id: 3,
     title: (
-       <>
-        Money Stress <br />
-        Savings to Freedom
-      </>
+      <>
+          Constant <br />
+          Money Stress{" "}
+        </>
     ),
     icon: <Stress />,
     cards: [
       {
         title: "43%",
-        descriptions: ["Affluent Indians save less than 20% of their income"],
+        descriptions: ["affluent Indians save less than 20% of their income"],
       },
       {
         title: "34%",
         descriptions: [
-          "Household income is used to service debt – among the highest in the world",
+          "household income is used to service debt – among the highest in the world",
         ],
       },
     ],
@@ -358,7 +358,7 @@ const ProblemSectionMobile = () => {
         )}
       </AnimatePresence>
       <div className="font-switzer text-[12px] text-[#214838] leading-[120%] mt-8 self-start">
-        Confusion, delays, bad choices, and constant<br /> stress , most of us are
+        Confusion, delays, bad choices, and constant stress,<br />most of us are
         running hard, but getting nowhere with our money.
       </div>
       <div className="flex flex-col gap-[2px] self-start mt-8">

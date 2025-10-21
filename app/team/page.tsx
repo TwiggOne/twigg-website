@@ -14,7 +14,7 @@ const teamMembers = [
       "12+ years in strategy, product, and technology across government & private sectors",
       "Scaled Samagra from $2.5M / 15 members → $8M / 125 members as core leadership",
       "Co-founded Indian Lawyers Forum, built 150K+ community, 15K+ paid subscribers",
-      "Ex-BCG & Indus Valley Partners; NIT Jalandhar, Computer Science Engineering",
+      "Ex-BCG & Indus Valley Partners; Computer Science Engineering from NIT Jalandhar",
     ],
   },
   {
@@ -91,7 +91,7 @@ const Page = () => {
             The People <span className="text-[#BC9313]">Powering Twigg</span>
           </div>
           <p className="text-[18px] sm:text-[20px] md:text-[24px] text-[#FDF9F0]/80 leading-[140%] font-switzer">
-            We’ve built for millions before,
+            We’ve built for millions before.
             <br /> Now we’re building for you.
           </p>
         </div>

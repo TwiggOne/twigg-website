@@ -189,7 +189,7 @@ Trusted guidance for every money move you make          </p>
           </div>
 
           {/* Center Icon */}
-          <div className="relative w-[115px]   h-[103px] md:w-[170px] md:h-[170px] lg:w-[320px] lg:h-[290px] flex items-center justify-center">
+          <div className="relative w-[175px]   h-[173px] md:w-[170px] md:h-[170px] lg:w-[320px] lg:h-[290px] flex items-center justify-center">
             {/* Core Background */}
             <motion.div
               className="
@@ -224,7 +224,7 @@ Trusted guidance for every money move you make          </p>
               priority
               fill
            
-              className="object-contain relative z-20"
+              className="object-cover relative z-20"
               style={{
                 WebkitMaskImage:
                   "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
@@ -261,11 +261,11 @@ Trusted guidance for every money move you make          </p>
                 text="Thoughtful Investing"
                 className="
       absolute 
-      top-[-40%] left-[-140%]
+      top-[-10%] left-[-80%]
       sm:top-[-50%] sm:left-[-160%]
       md:top-[20%] md:left-[-20%]
       lg:top-[23%] lg:left-[-6%]
-      scale-[0.4] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
+      scale-[0.5] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
     "
               />
 
@@ -275,11 +275,11 @@ Trusted guidance for every money move you make          </p>
                 text="Conscious Spending"
                 className="
       absolute 
-      top-[-50%] right-[-130%]
+      top-[-20%] right-[-75%]
       sm:top-[-50%] sm:left-[90%]
       md:top-[12%] md:left-[50%]
       lg:top-[16%] lg:left-[65%]
-      scale-[0.4] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
+      scale-[0.5] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
     "
               />
 
@@ -289,11 +289,11 @@ Trusted guidance for every money move you make          </p>
                 text="Purposeful Insurance"
                 className="
       absolute 
-      bottom-[-55%] left-[-120%]
+      bottom-[-25%] left-[-70%]
       sm:bottom-[-60%] sm:left-[-150%]
       md:bottom-[12%] md:left-[-15%]
       lg:bottom-[17%] lg:left-[2%]
-      scale-[0.4] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
+      scale-[0.5] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
     "
               />
 
@@ -304,11 +304,11 @@ Trusted guidance for every money move you make          </p>
                 text="Responsible Borrowing"
                 className="
       absolute 
-      bottom-[-40%] left-[50%]
+      bottom-[-10%] left-[60%]
       sm:bottom-[-50%] sm:left-[80%]
       md:bottom-[18%] md:left-[67%]
       lg:bottom-[25%] lg:left-[70%]
-      scale-[0.4] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
+      scale-[0.5] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
     "
               />
             </motion.div>

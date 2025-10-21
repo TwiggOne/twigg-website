@@ -70,7 +70,7 @@ export const ProblemSection = () => {
         {
           title: "87%",
           descriptions: [
-            "Affluent Indians admit they don’t know how to save or invest properly",
+            "affluent Indians admit they don’t know how to save or invest properly",
           ],
         },
       ],
@@ -88,12 +88,12 @@ export const ProblemSection = () => {
       cards: [
         {
           title: "9000+",
-          descriptions: ["Listed companies and mutual funds in India"],
+          descriptions: ["listed companies and mutual funds in India"],
         },
         {
           title: "95%",
           descriptions: [
-            "Household wealth sits in traditional asset classes which are low returning and illiquid",
+            "household wealth sits in traditional asset classes which are low returning and illiquid",
           ],
         },
       ],
@@ -112,13 +112,13 @@ export const ProblemSection = () => {
         {
           title: "66%",
           descriptions: [
-            "People are dissatisfied with the advice they get from local CAs, friends/family and bank managers",
+            "people are dissatisfied with the advice they get from local CAs, friends/family and bank managers",
           ],
         },
         {
           title: "2%",
           descriptions: [
-            "Fin-fluencers are  SEBI-registered and 63% don’t disclose sponsorships",
+            "fin-fluencers are  SEBI-registered and 63% don’t disclose sponsorships",
           ],
         },
       ],
@@ -135,12 +135,12 @@ export const ProblemSection = () => {
       cards: [
         {
           title: "43%",
-          descriptions: ["Affluent Indians save less than 20% of their income"],
+          descriptions: ["affluent Indians save less than 20% of their income"],
         },
         {
           title: "34%",
           descriptions: [
-            "Household income is used to service debt –  among the highest in the world",
+            "household income is used to service debt –  among the highest in the world",
           ],
         },
       ],
@@ -380,8 +380,8 @@ export const ProblemSection = () => {
           transition={{ duration: 0.6, delay: 1 }}
         >
           <p className="font-switzer text-sm sm:text-[24px] text-[#214838]  leading-[120%] text-center lg:text-left">
-            Confusion, delays, bad choices, and constant stress , most of
-            <br /> us are running hard, but getting nowhere with our money.
+            Confusion, delays, bad choices, and constant stress,<br />most of
+             us are running hard, but getting nowhere with our money.
           </p>
           <div className="flex flex-col gap-[4px] items-end ">
             <div className="text-[26px] font-semibold text-[#214838]">
