@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { UpArrow } from "@/utils/SvgUtils";
+import { parsePhoneNumberFromString } from "libphonenumber-js/max";
 
 type FormData = {
   name: string;
@@ -13,7 +14,7 @@ type FormData = {
 };
 
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxBNo2Db1JWc61rBG0rndWyZLMKr2nablXQmL4cuqLyPCWMJkzS10jqgbYPX42jTHeg/exec";
+  "https://script.google.com/macros/s/AKfycbxBNo2Db1JWc61rBG0rndWyZLMKr2nablXQL4cuqLyPCWMJkzS10jqgbYPX42jTHeg/exec";
 
 const formFields = [
   {
@@ -82,16 +83,32 @@ export default function WaitlistForm() {
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    const params = new URLSearchParams(
-      data as Record<string, string>
-    ).toString();
+    const phoneInput = data.phone.trim();
+
+    // Parse phone number using full metadata
+    const phoneNumber = parsePhoneNumberFromString(phoneInput, "IN");
+
+    // Validate properly using libphonenumber-js
+    if (!phoneNumber || !phoneNumber.isValid()) {
+      toast.error("Please enter a valid phone number.");
+      return;
+    }
+
+    // Normalize to E.164 format (+919876543210)
+    const normalizedPhone = phoneNumber.number;
+
+    // ✅ Proceed with submission
+    const params = new URLSearchParams({
+      ...data,
+      phone: normalizedPhone,
+    }).toString();
+
     const targetUrl = `${APPS_SCRIPT_URL}?${params}`;
 
     try {
-      // Use simple fetch with GET request
       const res = await fetch(targetUrl, {
         method: "GET",
-        mode: "no-cors", // Use 'no-cors' for simple data submissions to Apps Script
+        mode: "no-cors",
       });
 
       if (res.status === 200 || res.ok || res.type === "opaque") {
@@ -102,9 +119,8 @@ export default function WaitlistForm() {
       }
     } catch (error) {
       toast.error(
-        `❌ Submission failed. Check your Apps Script URL and deployment.`
+        "❌ Submission failed. Check your Apps Script URL and deployment."
       );
-      console.error(error);
     }
   };
 
@@ -167,15 +183,7 @@ export default function WaitlistForm() {
                       },
                     }),
                     ...(field.id === "phone" && {
-                      pattern: {
-                        value:
-                          /^(\+?1[-.\s]?)?\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/,
-                        message: "Please enter a valid phone number",
-                      },
-                      minLength: {
-                        value: 10,
-                        message: "Phone number must be at least 10 digits",
-                      },
+                      required: "Phone number is required",
                     }),
                   })}
                   maxLength={field.id === "phone" ? 13 : undefined}
@@ -227,13 +235,9 @@ export default function WaitlistForm() {
                 animate="rest"
                 className="bg-[#BC9313] cursor-pointer text-white w-[165px] sm:w-[200px] md:w-[239px] h-[40px] sm:h-[48px] md:h-[54px] rounded-full font-semibold text-[14px] sm:text-[16px] md:text-lg shadow-xl flex items-center justify-center relative overflow-hidden"
               >
-                <motion.span
-              
-                  className="transition-transform"
-                >
+                <motion.span className="transition-transform">
                   {isSubmitting ? "Submitting..." : "Submit"}
                 </motion.span>
-               
               </motion.button>
             </div>
           </form>
@@ -247,7 +251,7 @@ export default function WaitlistForm() {
               width: 400,
               height: 400,
               background: "rgba(188, 147, 19, 0.3)",
-            filter: "blur(50px)",
+              filter: "blur(50px)",
               borderRadius: "50%",
               zIndex: 0,
             }}
