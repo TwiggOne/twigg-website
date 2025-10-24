@@ -32,7 +32,7 @@ const teamMembers = [
   },
   {
     name: "Saurabh Taneja",
-    role: "Tech Expert",
+    role: "Chief Technology Advisor",
     image: "/team/Saurabh.png",
     linkedIn: "https://www.linkedin.com/in/saurabh-taneja-65937493/",
 

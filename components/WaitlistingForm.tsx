@@ -14,7 +14,7 @@ type FormData = {
 };
 
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxBNo2Db1JWc61rBG0rndWyZLMKr2nablXQL4cuqLyPCWMJkzS10jqgbYPX42jTHeg/exec";
+  "https://script.google.com/macros/s/AKfycbz6hV0pM_Rg8EITV24GZourdxPEpxm0AdBeMypWryRQmyc_ax0IUIs3b1frNWcWHyCM/exec";
 
 const formFields = [
   {
