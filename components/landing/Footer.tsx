@@ -40,7 +40,7 @@ export default function Footer() {
       <div className="w-full flex-col gap-[40px]">
         {/* Main Footer Content */}
         <div className="mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-16">
-          {/* Logo + Description + Social Icons */}
+          {/* Logo + Description */}
           <div className="lg:col-span-4 flex flex-col gap-[12px] sm:gap-6">
             <div>
               <Image
@@ -55,34 +55,6 @@ export default function Footer() {
               Your journey with money doesn&apos;t have to be complicated.<br />With
               Twigg, clarity and confidence are just a tap away.
             </p>
-            {/* Social Icons */}
-            <div className="flex gap-4 mt-2">
-              {/* Instagram */}
-              <div className="relative rounded-full p-[1px] bg-gradient-to-br from-[#FDF9F066] via-[#FDF9F033] to-[#FDF9F01A]">
-                <a
-                  href="https://www.instagram.com/twigg.one/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="relative w-10 h-10 sm:w-[56px] sm:h-[56px] rounded-full bg-[#1A4536] hover:bg-[#234d3d] flex items-center justify-center overflow-hidden transition-colors duration-200"
-                >
-                  <Instagram className="relative w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                </a>
-              </div>
-
-              {/* LinkedIn */}
-              <div className="relative rounded-full p-[1px] bg-gradient-to-br from-[#FDF9F066] via-[#FDF9F033] to-[#FDF9F01A]">
-                <a
-                  href="https://www.linkedin.com/company/twigg-one/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="relative w-10 h-10 sm:w-[56px] sm:h-[56px] rounded-full bg-[#1A4536] hover:bg-[#234d3d] flex items-center justify-center overflow-hidden transition-colors duration-200"
-                >
-                  <Linkedin className="relative w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                </a>
-              </div>
-            </div>
           </div>
 
           {/* Links + Contact */}
@@ -191,24 +163,53 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Copyright Bar */}
-        <div className="font-switzer pt-[30px] sm:pt-[40px] pb-[40px] sm:pb-[120px] flex flex-col md:flex-row justify-between sm:items-center gap-4 text-[12px] sm:text-[14px] text-[#FDF9F0]">
-          <p>© 2025 Twigg. All rights reserved.</p>
-          <p className="md:text-right">
-            Aadyantax Technologies Private Limited
-          </p>
+        {/* Social Icons */}
+        <div className="flex gap-4">
+          {/* Instagram */}
+          <div className="relative rounded-full p-[1px] bg-gradient-to-br from-[#FDF9F066] via-[#FDF9F033] to-[#FDF9F01A]">
+            <a
+              href="https://www.instagram.com/twigg.one/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="relative w-10 h-10 sm:w-[56px] sm:h-[56px] rounded-full bg-[#1A4536] hover:bg-[#234d3d] flex items-center justify-center overflow-hidden transition-colors duration-200"
+            >
+              <Instagram className="relative w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </a>
+          </div>
+
+          {/* LinkedIn */}
+          <div className="relative rounded-full p-[1px] bg-gradient-to-br from-[#FDF9F066] via-[#FDF9F033] to-[#FDF9F01A]">
+            <a
+              href="https://www.linkedin.com/company/twigg-one/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="relative w-10 h-10 sm:w-[56px] sm:h-[56px] rounded-full bg-[#1A4536] hover:bg-[#234d3d] flex items-center justify-center overflow-hidden transition-colors duration-200"
+            >
+              <Linkedin className="relative w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </a>
+          </div>
         </div>
 
-        {/* Legal Disclaimers */}
-        <div className="font-switzer pt-6 pb-[40px] sm:pb-[120px] border-t border-[#FDF9F0]/10">
-          <div className="flex flex-col gap-4 text-[12px] sm:text-[14px] text-[#FDF9F0]/80 leading-relaxed">
-            <p>
+        {/* Disclaimer Text */}
+        <div className="font-switzer pt-[30px] sm:pt-[40px] pb-[20px] sm:pb-[30px] flex flex-col md:flex-row justify-between gap-4">
+          <div className="flex-1 text-[10px] sm:text-[12px] text-[#FDF9F0]/60 leading-relaxed max-w-4xl">
+            <p className="mb-2">
               Twigg is a brand owned and operated by Aadyantax Technologies Private Limited.
             </p>
             <p>
               Investment advisory services on the Twigg platform are provided in partnership with Ayush Sharma, a SEBI-registered Investment Adviser (Registration No. INA000020475). Aadyantax Technologies Private Limited is not itself a SEBI-registered Investment Adviser and does not independently undertake advisory activities.
             </p>
           </div>
+        </div>
+
+        {/* Copyright Bar */}
+        <div className="font-switzer pb-[40px] sm:pb-[120px] flex flex-col md:flex-row justify-between sm:items-center gap-4 text-[12px] sm:text-[14px] text-[#FDF9F0]">
+          <p>© 2025 Twigg. All rights reserved.</p>
+          <p className="md:text-right">
+            Aadyantax Technologies Private Limited
+          </p>
         </div>
       </div>
 
