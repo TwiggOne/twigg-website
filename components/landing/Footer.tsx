@@ -164,7 +164,6 @@ export default function Footer() {
         </div>
 
         {/* Social Icons */}
-        {/* Social Icons */}
         <div className="flex gap-4">
           {/* Instagram */}
           <div className="relative rounded-full p-[1px] bg-gradient-to-br from-[#FDF9F066] via-[#FDF9F033] to-[#FDF9F01A]">
@@ -193,8 +192,20 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Disclaimer Text */}
+        <div className="font-switzer pt-[30px] sm:pt-[40px] pb-[20px] sm:pb-[30px] flex flex-col md:flex-row justify-between gap-4">
+          <div className="flex-1 text-[10px] sm:text-[12px] text-[#FDF9F0]/60 leading-relaxed max-w-4xl">
+            <p className="mb-2">
+              Twigg is a brand owned and operated by Aadyantax Technologies Private Limited.
+            </p>
+            <p>
+              Investment advisory services on the Twigg platform are provided in partnership with Ayush Sharma, a SEBI-registered Investment Adviser (Registration No. INA000020475). Aadyantax Technologies Private Limited is not itself a SEBI-registered Investment Adviser and does not independently undertake advisory activities.
+            </p>
+          </div>
+        </div>
+
         {/* Copyright Bar */}
-        <div className="font-switzer pt-[30px] sm:pt-[40px] pb-[40px] sm:pb-[120px] flex flex-col md:flex-row justify-between sm:items-center gap-4 text-[12px] sm:text-[14px] text-[#FDF9F0]">
+        <div className="font-switzer pb-[40px] sm:pb-[120px] flex flex-col md:flex-row justify-between sm:items-center gap-4 text-[12px] sm:text-[14px] text-[#FDF9F0]">
           <p>© 2025 Twigg. All rights reserved.</p>
           <p className="md:text-right">
             Aadyantax Technologies Private Limited
