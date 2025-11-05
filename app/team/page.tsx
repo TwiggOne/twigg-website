@@ -43,6 +43,19 @@ const teamMembers = [
       "Computer Science Engineering from Maharaja Surajmal Institute of Technology (MSIT)",
     ],
   },
+  {
+    name: "Ayush Sharma",
+    role: "Investment Partner",
+    image: "/team/Ayush.png",
+    linkedIn: "https://www.linkedin.com/in/ayush-sharma-80b58b7b/",
+
+    experiences: [
+      "Expertise in Equity Research, Investment Advisory and Wealth Management",
+      "Dual SEBI Certified Equity Professional (Investment Advisor & Research Analyst)",
+      "Ex-Accenture Strategy, led multiple engagements with Fortune 500 clients",
+      "MBA Finance - IIFT Delhi, B.Tech Computer Science Engineering - LNMIIT Jaipur",
+    ],
+  }
 ];
 
 // 👩‍💻 Additional Members (smaller cards)
