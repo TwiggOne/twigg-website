@@ -199,7 +199,7 @@ export default function Footer() {
               Twigg is a brand owned and operated by Aadyantax Technologies Private Limited.
             </p>
             <p>
-              Investment advisory services on the Twigg platform are provided in partnership with Ayush Sharma, a SEBI-registered Investment Adviser (Registration No. INA000020475). Aadyantax Technologies Private Limited is not itself a SEBI-registered Investment Adviser and does not independently undertake advisory activities.
+              Investment advisory services on the Twigg platform are provided in partnership with Ayush Sharma, a SEBI-registered Investment Adviser (Registration No. INA000020475).
             </p>
           </div>
         </div>
