@@ -196,10 +196,7 @@ export default function Footer() {
         <div className="font-switzer pt-[30px] sm:pt-[40px] pb-[20px] sm:pb-[30px] flex flex-col md:flex-row justify-between gap-4">
           <div className="flex-1 text-[10px] sm:text-[12px] text-[#FDF9F0]/60 leading-relaxed max-w-4xl">
             <p className="mb-2">
-              Twigg is a brand owned and operated by Aadyantax Technologies Private Limited.
-            </p>
-            <p>
-              Investment advisory services on the Twigg platform are provided in partnership with Ayush Sharma, a SEBI-registered Investment Adviser (Registration No. INA000020475).
+              Twigg is a platform owned and operated by Aadyantax Technologies Private Limited in collaboration with Ayush Sharma, a SEBI-registered Investment Adviser (Registration No. INA000020475). Investment advisory services on the Twigg platform are provided in partnership with Ayush Sharma, a SEBI-registered Investment Adviser (Registration No. INA000020475)
             </p>
           </div>
         </div>
