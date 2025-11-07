@@ -1,0 +1,22 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.twigg.app",
+      "sha256_cert_fingerprints": [
+        "20:69:1A:D0:F3:31:5F:04:BF:94:02:B7:1F:1A:F6:5C:C8:C6:5E:2C:31:1B:D1:47:56:97:6A:10:0E:B8:BD:58"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.twigg.app.dev",
+      "sha256_cert_fingerprints": [
+        "20:69:1A:D0:F3:31:5F:04:BF:94:02:B7:1F:1A:F6:5C:C8:C6:5E:2C:31:1B:D1:47:56:97:6A:10:0E:B8:BD:58"
+      ]
+    }
+  }
+]
