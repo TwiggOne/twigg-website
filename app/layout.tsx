@@ -20,14 +20,19 @@ const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-bricolage",
 });
-
 export const metadata: Metadata = {
   title: "Twigg",
   description: "Turning money chaos into clarity, one breakthrough at a time.",
   icons: {
-    icon: "/logo.svg",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
 };
+
 
 
 export default function RootLayout({
