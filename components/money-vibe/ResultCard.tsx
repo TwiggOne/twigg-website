@@ -9,22 +9,23 @@ const ResultCard = () => {
   return (
     <div
       className="
-        bg-[rgba(253,249,240,0.02)]
-        rounded-[60px]
-        p-[44px]
+      pt-[90px] md:pt-[33px]
+      md:  bg-[rgba(253,249,240,0.02)]
+        md:rounded-[60px]
+        px-[18px] pb-[44px] md:p-[44px]
         w-full
         items-center
         flex
         flex-col
-        border border-[#BC9313]/20
-        backdrop-blur-[50px]
+        md:border border-[#BC9313]/20
+        md:backdrop-blur-[50px]
       "
     >
       <div className="leading-tight">
-        <h1 className="text-[40px] font-semibold font-bricolage text-[#FDF9F0]">
+        <h1 className="text-[28px] md:text-[40px] font-semibold font-bricolage text-[#FDF9F0]">
           Here’s Your
         </h1>
-        <h1 className="text-[40px] font-semibold font-bricolage text-[#BC9313]">
+        <h1 className="text-[28px] md:text-[40px] font-semibold font-bricolage text-[#BC9313]">
           MoneyVibe
         </h1>
       </div>

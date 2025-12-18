@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import MoneyMainContent from "@/components/money-vibe/MoneyMainContent";
 import MoneyVibeHeader from "@/components/money-vibe/MoneyVibeHeader";
-import { CompletedBgLogo, MoneyVibeBg } from "@/utils/SvgUtils";
+import { CompletedBgLogo, MoneyVibeBg, ResultBgMobile } from "@/utils/SvgUtils";
 import ResultCard from "@/components/money-vibe/ResultCard";
 
 const Page: React.FC = () => {
@@ -30,7 +30,11 @@ const Page: React.FC = () => {
             : "top-0 left-0"
         }`}
       >
-        {isCompleted ? <CompletedBgLogo /> : <MoneyVibeBg />}
+        {isCompleted ? <div>
+
+          <div className="block md:hidden"><ResultBgMobile /> </div>
+          <div className="hidden md:block"><CompletedBgLogo /></div>
+        </div>  : <MoneyVibeBg />}
       </div>
     </div>
   );

@@ -5,19 +5,19 @@ const traitList = ["High Planning", "Moderate Risk", "High Knowledge"];
 const Traits = () => {
   return (
     <div className="flex flex-col gap-[18px] items-center w-full">
-      <p className="text-[24px] font-medium font-switzer text-[#FDF9F0]">
+      <p className="text-[16px] md:text-[24px] font-medium font-switzer text-[#FDF9F0]">
         Traits
       </p>
 
       {/* GRID CONTAINER */}
-      <div className="grid grid-cols-3 gap-3 w-full max-w-[570px]">
+      <div className="grid grid-cols-3 gap-3 w-full md:max-w-[570px]">
         {traitList.map((trait, index) => (
           <div
             key={index}
             className="
               p-[10px] 
               w-full
-              text-[16px] 
+              text-[12px] md:text-[16px] 
               font-medium 
               flex items-center justify-center
               text-[#FDF9F0] 
