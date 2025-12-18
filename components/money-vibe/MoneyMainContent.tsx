@@ -14,7 +14,11 @@ type UserAnswer = {
   questionId: string;
   answer: string;
 };
-const MoneyMainContent: React.FC = () => {
+type MoneyMainContentProps = {
+  onComplete?: () => void; // optional callback
+};
+
+const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
   const [sections, setSections] = useState<ApiSection[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [sendDataForResults, setSendDataForResults] = useState(false);
@@ -32,6 +36,11 @@ const MoneyMainContent: React.FC = () => {
         setIsLoading(false); // ✅ stop loading
       });
   }, []);
+useEffect(() => {
+  if (sendDataForResults && onComplete) {
+    onComplete(); // notify parent
+  }
+}, [sendDataForResults, onComplete]);
 
   const stack = useMemo(() => {
     if (sections.length === 0) return [];

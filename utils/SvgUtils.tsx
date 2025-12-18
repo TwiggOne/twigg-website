@@ -1213,3 +1213,92 @@ export const LoadingTwiggLogo = ()=>{
 
   )
 }
+export const CompletedBgLogo =()=>{
+  return(
+    <svg width="983" height="745" viewBox="0 0 983 745" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M213.04 -173.331C306.699 -247.585 416.611 -273.409 534.952 -261.036C635.654 -250.497 730.321 -221.554 810.502 -157.537C912.765 -75.9083 966.965 32.8848 978.349 163.618C980.268 185.679 980.832 207.872 981.999 230.087C981.995 335.438 961.698 435.805 907.594 526.793C828.485 659.789 710.594 733.308 557.807 742.759H557.806C400.529 752.532 258.64 704.688 142.935 596.31L142.934 596.309C29.7624 490.578 -13.4404 354.868 5.17773 200.712C23.6418 47.8622 93.396 -78.4944 213.04 -173.331ZM620.324 -185.37C516.59 -217.133 413.995 -210.957 317.986 -162.802L315.72 -161.657C160.743 -82.9463 79.1212 51.1558 62.0771 221.884C46.1273 381.479 111.094 509.497 240.549 599.988L240.55 599.989C346.276 673.8 466.74 695.541 593.735 677.776C662.768 668.219 725.206 643.517 777.032 593.884L777.033 593.885C885.599 490.067 925.243 360.602 918.843 213.922C918.843 199.946 919.503 185.755 918.841 171.717V171.709C912.999 64.5427 872.375 -26.7464 792.16 -97.8496L792.159 -97.8506L790.995 -98.874C741.657 -142.049 682.082 -166.497 620.324 -185.37Z" stroke="#FDF9F0" stroke-opacity="0.05" stroke-width="2"/>
+<path d="M342.927 -83.0547C390.106 -110.997 444.256 -121.848 510.136 -120.008L510.155 -120.007H510.175C565.839 -120.672 628.655 -103.978 687.604 -71.501C790.829 -14.6529 834.622 77.894 841.476 191.748C845.159 253.963 843.168 316.752 823.973 376.144V376.145C783.275 502.28 691.354 593.125 545.513 601.222L543.794 601.312C430.267 607.116 331.032 574.458 247.402 498.114L247.401 498.113C170.869 428.388 133.881 339.213 141.766 235.118V235.117C152.452 93.7985 222.359 -11.9179 342.925 -83.0537L342.927 -83.0547ZM605.846 -44.6875C551.728 -62.7754 491.224 -67.6042 436.285 -56.3271L433.673 -55.7773C379.138 -44.0173 319.593 -2.03081 274.346 54.8018C229.098 111.634 198.028 183.462 200.609 255.061C200.262 315.11 217.209 373.664 257.54 424.4L257.541 424.401C313.631 494.795 388.591 528.994 475.263 541.894C549.521 552.971 612.968 538.743 663.033 505.03C713.09 471.323 749.687 418.194 770.362 351.606L770.365 351.599L770.367 351.59C779.099 321.697 783.89 290.774 784.617 259.619C787.549 185.638 782.269 112.48 738.631 48.666C709.285 5.77049 660.817 -26.3142 605.846 -44.6875Z" stroke="#FDF9F0" stroke-opacity="0.05" stroke-width="2"/>
+<path d="M503.143 32.6245C599.953 29.4609 712.796 104.21 705.493 240.364C701.862 308.275 682.112 361.671 648.72 397.951C615.344 434.213 568.243 453.483 509.673 452.977H509.672C433.241 452.328 378.151 423.043 342.53 382.111C306.89 341.156 290.7 288.494 292.189 241.052C295.671 129.585 392.929 31.3917 503.099 32.6245H503.143ZM512.299 93.272C424.207 91.5452 353.441 157.98 351.284 244.492V244.493C349.253 326.991 414.131 392.224 499.751 393.855C546.072 394.749 582.302 381.247 607.181 354.417C632.042 327.604 645.435 287.626 646.398 235.828C647.952 154.69 591.671 94.969 512.301 93.272H512.299Z" stroke="#FDF9F0" stroke-opacity="0.05" stroke-width="2"/>
+</svg>
+
+  )
+}
+
+export const ResultGoldCard =()=>{
+  return(
+    <svg width="511" height="304" viewBox="0 0 511 304" fill="none" xmlns="http://www.w3.org/2000/svg">
+<foreignObject x="0" y="-4" width="511" height="308"></foreignObject><g filter="url(#filter0_dg_4044_9083)" data-figma-bg-blur-radius="40">
+<rect x="40" y="36" width="431" height="224" rx="20" fill="url(#paint0_radial_4044_9083)"/>
+</g>
+<defs>
+<filter id="filter0_dg_4044_9083" x="0" y="-4" width="511" height="308" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="20"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4044_9083"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4044_9083" result="shape"/>
+<feTurbulence type="fractalNoise" baseFrequency="0.25 0.25" numOctaves="3" seed="9348" />
+<feDisplacementMap in="shape" scale="8" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+<feMerge result="effect2_texture_4044_9083">
+<feMergeNode in="displacedImage"/>
+</feMerge>
+</filter>
+<clipPath id="bgblur_0_4044_9083_clip_path" transform="translate(0 4)"><rect x="40" y="36" width="431" height="224" rx="20"/>
+</clipPath><radialGradient id="paint0_radial_4044_9083" cx="0" cy="0" r="1" gradientTransform="matrix(664.887 273.702 -554.399 167.78 -160.79 8.42553)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#BC9313"/>
+<stop offset="0.600098" stop-color="#FDF9F0"/>
+<stop offset="1" stop-color="#BC9313"/>
+</radialGradient>
+</defs>
+</svg>
+
+  )
+}
+
+export const StarResult = ()=>{return(
+  <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.5 0L10.7958 6.20423L17 8.5L10.7958 10.7958L8.5 17L6.20423 10.7958L0 8.5L6.20423 6.20423L8.5 0Z" fill="url(#paint0_linear_4044_9089)"/>
+<defs>
+<linearGradient id="paint0_linear_4044_9089" x1="8.5" y1="0" x2="8.5" y2="17" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FDF9F0"/>
+<stop offset="1" stop-color="#BC9313"/>
+</linearGradient>
+</defs>
+</svg>
+
+)}
+
+export const SocialBg = ()  =>{return (
+  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_n_4548_3030)">
+<circle cx="28" cy="28" r="28" fill="#214838"/>
+<circle cx="28" cy="28" r="27.5" stroke="url(#paint0_linear_4548_3030)" stroke-opacity="0.4"/>
+</g>
+<defs>
+<filter id="filter0_n_4548_3030" x="0" y="0" width="56" height="56" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feTurbulence type="fractalNoise" baseFrequency="2 2" stitchTiles="stitch" numOctaves="3" result="noise" seed="6696" />
+<feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+<feComponentTransfer in="alphaNoise" result="coloredNoise1">
+<feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
+</feComponentTransfer>
+<feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+<feFlood flood-color="rgba(253, 249, 240, 0.2)" result="color1Flood" />
+<feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+<feMerge result="effect1_noise_4548_3030">
+<feMergeNode in="shape" />
+<feMergeNode in="color1" />
+</feMerge>
+</filter>
+<linearGradient id="paint0_linear_4548_3030" x1="1.5" y1="17" x2="28" y2="56" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FDF9F0"/>
+<stop offset="1" stop-color="#FDF9F0" stop-opacity="0.5"/>
+</linearGradient>
+</defs>
+</svg>
+
+)}
