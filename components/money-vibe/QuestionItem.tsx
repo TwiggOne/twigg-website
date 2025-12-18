@@ -1,51 +1,67 @@
-import React from 'react'
-import AnswerItem from './AnswerItem'
-import {
-  StronglyDisagree,
+import AnswerItem from "./AnswerItem";
+import { ApiQuestion } from "./TopicData";
 
-} from '@/utils/SvgUtils'
+type QuestionItemProps = {
+  question: ApiQuestion;
+  onAnswer: (value: string) => void;
+};
 
-type AnswerOption = {
-  label: string
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
-}
 
-const answers: AnswerOption[] = [
-  { label: 'Strongly Disagree', icon: StronglyDisagree },
-  { label: 'Disagree', icon: StronglyDisagree },
-  { label: 'Agree', icon: StronglyDisagree },
-  { label: 'Strongly Agree', icon: StronglyDisagree },
-]
+const ANSWERS = [
+  {
+    value: "strongly_disagree",
+    label: "Strongly Disagree",
+    iconPath: "/moneyvibe/strongly_disagree.png",
+  },
+  {
+    value: "disagree",
+    label: "Disagree",
+    iconPath: "/moneyvibe/disagree.png",
+  },
+  {
+    value: "strongly_agree",
+    label: "Strongly Agree",
+    iconPath: "/moneyvibe/strongly_agree.png",
+  },
+  {
+    value: "agree",
+    label: "Agree",
+    iconPath: "/moneyvibe/agree.png",
+  },
+];
 
-const QuestionItem: React.FC = () => {
+const QuestionItem: React.FC<QuestionItemProps> = ({
+  question,
+  onAnswer,
+}) => {
   return (
     <div
       className="
-        w-[90%] h-[506px]
-        flex flex-col
-        gap-[45px]
+        h-[506px]
+        flex flex-col gap-[45px]
         p-[56px]
         bg-[#FDF9F0]
         border border-[#BC9313]/20
         rounded-[40px]
-        
       "
     >
-      <h3 className="text-[34px] text-[#152D23] font-medium font-bricolage leading-[100%]">
-        Money was a source of stress in my household growing up.
+      <h3 className="text-[34px] font-bricolage leading-[100%]">
+        {question.text}
       </h3>
 
-      <div className="grid grid-cols-2 gap-[18px] ">
-        {answers.map((answer) => (
+      <div className="grid grid-cols-2 gap-[18px]">
+        {ANSWERS.map((answer) => (
           <AnswerItem
-            key={answer.label}
-            icon={answer.icon}
+            key={answer.value}
+            value={answer.value}
+            icon={answer.iconPath}
             label={answer.label}
+            onSelectComplete={onAnswer}
           />
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default QuestionItem
+export default QuestionItem;

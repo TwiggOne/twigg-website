@@ -1,31 +1,27 @@
 import React from 'react'
 import TopicSideItem from './TopicSideItem'
-import {
-  TopicCircle,
-} from '@/utils/SvgUtils'
+import { WalletTopic } from '@/utils/SvgUtils'
 
-type TopicItem = {
-  label: string
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
+export type TopicItem = {
+  title: string
+  progress: number
+  isActive: boolean
 }
 
-const topics: TopicItem[] = [
-  { label: 'Money Beliefs', icon: TopicCircle },
-  { label: 'Spending Habits', icon: TopicCircle },
-  { label: 'Saving Mindset', icon: TopicCircle },
-  { label: 'Debt Awareness', icon: TopicCircle },
-  { label: 'Income Goals', icon: TopicCircle },
-  { label: 'Financial Confidence', icon: TopicCircle },
-]
+type TopicListProps = {
+  topics: TopicItem[]
+}
 
-const TopicList: React.FC = () => {
+const TopicList: React.FC<TopicListProps> = ({ topics }) => {
   return (
-    <div className="flex  h-[506px] flex-col justify-between">
+    <div className="flex min-h-full w-fit ml-auto flex-col justify-between">
       {topics.map((topic) => (
         <TopicSideItem
-          key={topic.label}
-          icon={topic.icon}
-          label={topic.label}
+          key={topic.title}
+          icon={WalletTopic}
+          label={topic.title}
+          progress={topic.progress}
+          isActive={topic.isActive}
         />
       ))}
     </div>
