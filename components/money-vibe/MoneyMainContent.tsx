@@ -50,9 +50,9 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
           setActiveIndex(cached.activeIndex);
         }
       })
-      // .finally(() => {
-      //   setIsLoading(false);
-      // });
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   /* ================= STACK ================= */
