@@ -37,19 +37,20 @@ const QuestionItem: React.FC<QuestionItemProps> = ({
   return (
     <div
       className="
-        h-[506px]
+h-[440px]        md:h-[506px]
         flex flex-col gap-[45px]
-        p-[56px]
+        p-[20px] md:p-[56px]
         bg-[#FDF9F0]
         border border-[#BC9313]/20
         rounded-[40px]
+        justify-center
       "
     >
-      <h3 className="text-[34px] font-bricolage leading-[100%]">
+      <h3 className="text-[20px] md:text-[34px] font-bricolage leading-[100%]">
         {question.text}
       </h3>
 
-      <div className="grid grid-cols-2 gap-[18px]">
+      <div className="grid grid-cols-2 gap-[12px] md:gap-[18px]">
         {ANSWERS.map((answer) => (
           <AnswerItem
             key={answer.value}

@@ -49,15 +49,18 @@ const TopicSideItem: React.FC<TopicSideItemProps> = ({
   }
 
   return (
-    <div className="flex flex-row items-center gap-3">
-      <div className="relative flex items-center justify-center">
-        <TopicCircleProgress progress={progress} isActive={isActive} />
-        <div className="absolute">
+    <div className="flex flex-col  md:flex-row items-center gap-3  ">
+      <div className="relative flex items-center justify-center ">
+        <div className="h-[48px] w-[48px] md:h-[56px] md:w-[56px] ">
+                  <TopicCircleProgress progress={progress} isActive={isActive} />
+
+        </div>
+        <div className="absolute w-[24px] h-[24px] md:w-[40px] md:h-[40px]">
           <Icon />
         </div>
       </div>
 
-      <h3 className="text-[20px] text-[#FDF9F0]/80 font-light font-bricolage leading-[120%]">
+      <h3 className="text-[10px] md:text-[20px] text-center md:text-start  text-[#FDF9F0]/80 font-light font-bricolage leading-[120%]">
         {renderLabel()}
       </h3>
     </div>

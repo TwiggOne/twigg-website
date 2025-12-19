@@ -70,20 +70,16 @@ const AnswerItem: React.FC<AnswerItemProps> = ({
           ease: "easeInOut",
         }}
       >
-        <Image
-          src={icon}
-          alt={label}
-          width={55}
-          height={55}
-          className="object-contain"
-        />
+        <div className="relative w-[41px] h-[41px] md:w-[55px] md:h-[55px]">
+          <Image src={icon} alt={label} fill className="object-contain" />
+        </div>
       </motion.div>
 
       {/* TEXT */}
       <motion.h3
         animate={{ opacity: selected ? 0 : 1 }}
         transition={{ duration: 0.6 }}
-        className="text-[14px] text-[#1A1A1A]/80 font-medium font-switzer"
+        className="text-[10px] text-center md:text-[14px] text-[#1A1A1A]/80 font-medium font-switzer leading-tight"
       >
         {label}
       </motion.h3>

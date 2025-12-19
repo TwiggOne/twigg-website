@@ -9,10 +9,10 @@ const Page: React.FC = () => {
   const [isCompleted, setIsCompleted] = useState(false);
 
   return (
-    <div className="min-h-screen relative mx-auto w-full py-[41px] flex flex-col gap-[56px] justify-center items-center">
+<div className="min-h-[87vh] md:min-h-screen relative mx-auto w-full py-[41px] flex flex-col gap-[56px] items-center  md:justify-center">
       {/* CONDITIONAL MAIN CONTENT */}
       {!isCompleted ? (
-        <div className="max-w-7xl absolute z-10 mx-auto w-full py-[41px] flex flex-col gap-[56px] justify-center items-center">
+        <div className="max-w-7xl   z-10 mx-auto w-full py-[61px]  md:py-[41px] flex flex-col gap-[56px] justify-center items-center">
           <MoneyVibeHeader />
           <MoneyMainContent onComplete={() => setIsCompleted(true)} />
         </div>

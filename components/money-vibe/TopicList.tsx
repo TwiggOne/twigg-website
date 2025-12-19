@@ -11,21 +11,34 @@ export type TopicItem = {
 type TopicListProps = {
   topics: TopicItem[]
 }
-
 const TopicList: React.FC<TopicListProps> = ({ topics }) => {
   return (
-    <div className="flex min-h-full w-fit ml-auto flex-col justify-between">
+    <div
+      className="
+        flex w-full md:w-fit md:h-full md:justify-between
+        flex-row md:flex-col 
+       gap-4 md:gap-3 md:ml-auto
+        max-md:overflow-x-auto 
+        max-md:flex-nowrap 
+        px-4 md:px-0
+        scrollbar-hide
+     
+        "
+    style={{scrollbarWidth:"none"}}
+    >
       {topics.map((topic) => (
-        <TopicSideItem
-          key={topic.title}
-          icon={WalletTopic}
-          label={topic.title}
-          progress={topic.progress}
-          isActive={topic.isActive}
-        />
+        <div key={topic.title} className="flex-shrink-0">
+          <TopicSideItem
+            icon={WalletTopic}
+            label={topic.title}
+            progress={topic.progress}
+            isActive={topic.isActive}
+          />
+        </div>
       ))}
     </div>
   )
 }
+
 
 export default TopicList
