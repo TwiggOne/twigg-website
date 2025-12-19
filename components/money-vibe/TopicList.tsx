@@ -6,6 +6,7 @@ export type TopicItem = {
   title: string
   progress: number
   isActive: boolean
+  iconUrl:string
 }
 
 type TopicListProps = {
@@ -29,7 +30,7 @@ const TopicList: React.FC<TopicListProps> = ({ topics }) => {
       {topics.map((topic) => (
         <div key={topic.title} className="flex-shrink-0">
           <TopicSideItem
-            icon={WalletTopic}
+            icon={topic.iconUrl}
             label={topic.title}
             progress={topic.progress}
             isActive={topic.isActive}

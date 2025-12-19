@@ -1,24 +1,37 @@
 "use client";
+
 import React, { useState } from "react";
 import MoneyMainContent from "@/components/money-vibe/MoneyMainContent";
 import MoneyVibeHeader from "@/components/money-vibe/MoneyVibeHeader";
-import { CompletedBgLogo, MoneyVibeBg, ResultBgMobile } from "@/utils/SvgUtils";
+import {
+  CompletedBgLogo,
+  MoneyVibeBg,
+  ResultBgMobile,
+} from "@/utils/SvgUtils";
 import ResultCard from "@/components/money-vibe/ResultCard";
+import { MoneyVibeEvaluationResponse } from "@/components/money-vibe/TopicData";
 
 const Page: React.FC = () => {
   const [isCompleted, setIsCompleted] = useState(false);
+  const [result, setResult] =
+    useState<MoneyVibeEvaluationResponse | null>(null);
 
   return (
-<div className="min-h-[87vh] md:min-h-screen relative mx-auto w-full py-[41px] flex flex-col gap-[56px] items-center  md:justify-center">
-      {/* CONDITIONAL MAIN CONTENT */}
+    <div className="min-h-[87vh] md:min-h-screen relative mx-auto w-full py-[41px] flex flex-col gap-[56px] items-center md:justify-center">
       {!isCompleted ? (
-        <div className="max-w-7xl   z-10 mx-auto w-full py-[61px]  md:py-[41px] flex flex-col gap-[56px] justify-center items-center">
+        <div className="max-w-7xl z-10 mx-auto w-full py-[61px] md:py-[41px] flex flex-col gap-[56px] justify-center items-center">
           <MoneyVibeHeader />
-          <MoneyMainContent onComplete={() => setIsCompleted(true)} />
+          <MoneyMainContent
+            onComplete={(response) => {
+              console.log("MoneyVibe Evaluation Result:", response);
+              setResult(response);
+              setIsCompleted(true);
+            }}
+          />
         </div>
       ) : (
-        <div className="max-w-[780px] absolute z-10 mx-auto w-full flex flex-col  justify-center items-center">
-          <ResultCard />
+        <div className="max-w-[780px] absolute z-10 mx-auto w-full flex flex-col justify-center items-center">
+          <ResultCard result={result} />
         </div>
       )}
 
@@ -30,11 +43,18 @@ const Page: React.FC = () => {
             : "top-0 left-0"
         }`}
       >
-        {isCompleted ? <div>
-
-          <div className="block md:hidden"><ResultBgMobile /> </div>
-          <div className="hidden md:block"><CompletedBgLogo /></div>
-        </div>  : <MoneyVibeBg />}
+        {isCompleted ? (
+          <>
+            <div className="block md:hidden">
+              <ResultBgMobile />
+            </div>
+            <div className="hidden md:block">
+              <CompletedBgLogo />
+            </div>
+          </>
+        ) : (
+          <MoneyVibeBg />
+        )}
       </div>
     </div>
   );

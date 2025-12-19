@@ -2,7 +2,13 @@ import React from "react";
 
 const traitList = ["High Planning", "Moderate Risk", "High Knowledge"];
 
-const Traits = () => {
+type TraitsProps = {
+  traits: string;
+};
+
+const Traits: React.FC<TraitsProps> = ({ traits }) => {
+    const traitList = traits.split(",").map((t) => t.trim());
+
   return (
     <div className="flex flex-col gap-[18px] items-center w-full">
       <p className="text-[16px] md:text-[24px] font-medium font-switzer text-[#FDF9F0]">
@@ -10,7 +16,7 @@ const Traits = () => {
       </p>
 
       {/* GRID CONTAINER */}
-      <div className="grid grid-cols-3 gap-3 w-full md:max-w-[570px]">
+      <div className="flex flex-row gap-3 w-full md:max-w-[570px]">
         {traitList.map((trait, index) => (
           <div
             key={index}

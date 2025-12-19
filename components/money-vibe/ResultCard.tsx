@@ -1,16 +1,21 @@
-import { ResultGoldCard, StarResult } from "@/utils/SvgUtils";
-import Image from "next/image";
-import React from "react";
+import React, { useMemo } from "react";
 import CardResultGold from "./CardResultGold";
 import Traits from "./Traits";
 import ShareResult from "./ShareResult";
+import {  MoneyVibeEvaluationResponse } from "./TopicData";
 
-const ResultCard = () => {
+type ResultCardProps = {
+  result: MoneyVibeEvaluationResponse | null;
+};
+
+export default function ResultCard({ result }: ResultCardProps) {
+
+
   return (
     <div
       className="
-      pt-[90px] md:pt-[33px]
-      md:  bg-[rgba(253,249,240,0.02)]
+        pt-[90px] md:pt-[33px]
+        md:bg-[rgba(253,249,240,0.02)]
         md:rounded-[60px]
         px-[18px] pb-[44px] md:p-[44px]
         w-full
@@ -29,18 +34,24 @@ const ResultCard = () => {
           MoneyVibe
         </h1>
       </div>
-      <CardResultGold />
-      <Traits />
+
+      <CardResultGold
+        title={result?.archetypes.primary.title ?? ""}
+        description={result?.archetypes.primary.description ?? ""}
+      />
+
+      {/* ✅ PASS TRAITS */}
+      <Traits traits={result?.archetypes.primary.traits ??''} />
+
       <div
         className="my-8 h-[1px] w-full"
         style={{
           background:
             "linear-gradient(to right, rgba(253,249,240,0.05) 0%, #FDF9F0 50%, rgba(253,249,240,0) 100%)",
         }}
-      ></div>
+      />
+
       <ShareResult />
     </div>
   );
-};
-
-export default ResultCard;
+}

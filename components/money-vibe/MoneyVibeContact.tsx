@@ -1,17 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 
-const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbz6hV0pM_Rg8EITV24GZourdxPEpxm0AdBeMypWryRQmyc_ax0IUIs3b1frNWcWHyCM/exec";
 type FormErrors = {
   name?: string;
   email?: string;
   phone?: string;
   addToWaitlist?: string;
 };
+
 type MoneyVibeFormProps = {
-  onComplete: () => void;
+  onComplete: (waitlistEntryId: number) => void;
 };
 
 export default function MoneyVibeForm({ onComplete }: MoneyVibeFormProps) {
@@ -21,12 +21,13 @@ export default function MoneyVibeForm({ onComplete }: MoneyVibeFormProps) {
     phone: "",
     addToWaitlist: false,
   });
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-const validateForm = () => {
-  const newErrors: FormErrors = {};
-
+  /* ================= VALIDATION ================= */
+  const validateForm = () => {
+    const newErrors: FormErrors = {};
 
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
@@ -42,8 +43,6 @@ const validateForm = () => {
 
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required";
-    } else if (!/^[\d+]{10,13}$/.test(formData.phone.replace(/\s/g, ""))) {
-      newErrors.phone = "Please enter a valid phone number";
     }
 
     if (!formData.addToWaitlist) {
@@ -54,44 +53,52 @@ const validateForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  /* ================= SUBMIT ================= */
   const handleSubmit = async () => {
-    // if (!validateForm()) {
-    //   return;
-    // }
+    if (!validateForm() || isSubmitting) return;
 
-    // setIsSubmitting(true);
-
-    // const params = new URLSearchParams({
-    //   name: formData.name,
-    //   email: formData.email,
-    //   phone: formData.phone,
-    // }).toString();
-
-    // const targetUrl = `${APPS_SCRIPT_URL}?${params}`;
+    setIsSubmitting(true);
 
     try {
-    //   const res = await fetch(targetUrl, {
-    //     method: "GET",
-    //     mode: "no-cors",
-    //   });
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone_no: formData.phone,
+        is_waitlist: formData.addToWaitlist,
+      };
 
-    //   alert("Successfully joined the waitlist!");
-    //   setFormData({
-    //     name: "",
-    //     email: "",
-    //     phone: "",
-    //     addToWaitlist: false,
-    //   });
-    //   setErrors({});
-        onComplete();
+      const res = await fetch(
+        "https://api.twigg-dev.one/api/v1/moneyvibe/submit_form",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
+      if (!res.ok) {
+        throw new Error("Submission failed");
+      }
+
+      const data = await res.json();
+
+      if (!data?.waitlistEntryId) {
+        throw new Error("Invalid response");
+      }
+
+      toast.success("Successfully submitted!");
+
+      onComplete(data.waitlistEntryId);
     } catch (error) {
-      alert("Submission failed. Please try again.");
+      toast.error("Submission failed. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  /* ================= INPUT HANDLERS ================= */
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
 
@@ -105,27 +112,16 @@ const validateForm = () => {
     }
   };
 
-const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value.replace(/[^\d+]/g, "");
 
-    if (value.indexOf("+") > 0) {
-      value = value.replace(/\+/g, "");
-    }
-
-    if (value.startsWith("+")) {
-      if (value.length > 13) {
-        value = value.slice(0, 13);
-      }
-    } else {
-      if (value.length > 10) {
-        value = value.slice(0, 10);
-      }
+    if (value.startsWith("+") && value.length > 13) {
+      value = value.slice(0, 13);
+    } else if (!value.startsWith("+") && value.length > 10) {
+      value = value.slice(0, 10);
     }
 
     setFormData((prev) => ({ ...prev, phone: value }));
-    if (errors.phone) {
-      setErrors((prev) => ({ ...prev, phone: "" }));
-    }
   };
 
   return (
@@ -309,13 +305,24 @@ const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
           )}
         </div>
 
-        <button
-          onClick={handleSubmit}
-          disabled={isSubmitting}
-          className="w-full h-[48px] bg-[#BC9313] hover:bg-[#a68210] text-[#FDF9F0] cursor-pointer font-semibold rounded-lg transition-all  disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {isSubmitting ? "Submitting..." : "Continue"}
-        </button>
+            <button
+        onClick={handleSubmit}
+        disabled={isSubmitting}
+        className="
+          w-full h-[48px]
+          bg-[#BC9313]
+          text-[#FDF9F0]
+          font-semibold
+          rounded-lg
+          cursor-pointer
+          transition-all
+          disabled:opacity-50
+          disabled:cursor-not-allowed
+        "
+      >
+        {isSubmitting ? "Submitting..." : "Continue"}
+      </button>
+
       </div>
     </div>
   );

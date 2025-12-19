@@ -1,16 +1,16 @@
-import { TopicCircle } from "@/utils/SvgUtils";
 import React from "react";
 import TopicCircleProgress from "./TopicCircleAnimation";
+import Image from "next/image";
 
 type TopicSideItemProps = {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  icon:string
   label: string
   progress: number // 0 → 1
   isActive?: boolean
 }
 
 const TopicSideItem: React.FC<TopicSideItemProps> = ({
-  icon: Icon,
+  icon,
   label,
   progress,
   isActive,
@@ -56,7 +56,7 @@ const TopicSideItem: React.FC<TopicSideItemProps> = ({
 
         </div>
         <div className="absolute w-[24px] h-[24px] md:w-[40px] md:h-[40px]">
-          <Icon />
+          <Image fill src={icon} alt="topic-minor" className="relative object-contain"/>
         </div>
       </div>
 

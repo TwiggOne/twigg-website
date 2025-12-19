@@ -9,14 +9,15 @@ import QuestionItem from "./QuestionItem";
 import TopicContent from "./TopicContent";
 import MoneyVibeForm from "./MoneyVibeContact";
 import LoadingMoneyUi from "./LoadingMoneyUi";
-import { ApiSection, buildStack } from "./TopicData";
+import {
+  ApiSection,
+  buildStack,
+  MoneyVibeEvaluationResponse,
+} from "./TopicData";
 import { useIsDesktop } from "./IsDesktop";
 
-import {
-  saveProgress,
-  loadProgress,
-  clearProgress,
-} from "./SaveProgessMoney";
+import { saveProgress, loadProgress, clearProgress } from "./SaveProgessMoney";
+import { LoadingTwiggLogo } from "./LoadingSvg";
 
 export type UserAnswer = {
   questionId: string;
@@ -24,7 +25,7 @@ export type UserAnswer = {
 };
 
 type MoneyMainContentProps = {
-  onComplete?: () => void;
+  onComplete?: (result: MoneyVibeEvaluationResponse) => void;
 };
 
 const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
@@ -33,13 +34,17 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
   const [sendDataForResults, setSendDataForResults] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [answers, setAnswers] = useState<UserAnswer[]>([]);
+  const [evaluationResult, setEvaluationResult] =
+    useState<MoneyVibeEvaluationResponse | null>(null);
 
   /* ================= FETCH QUESTIONS (GET API) ================= */
   useEffect(() => {
     setIsLoading(true);
 
     axios
-      .get("https://www.jsonkeeper.com/b/B4GNR")
+      .get(
+        "https://api.twigg-dev.one/api/v1/moneyvibe/questions"
+      )
       .then((res) => {
         setSections(res.data.sections);
 
@@ -60,6 +65,32 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
     if (!sections.length) return [];
     return buildStack(sections);
   }, [sections]);
+  type NormalizedAnswer =
+    | "Strongly Disagree"
+    | "Disagree"
+    | "Agree"
+    | "Strongly Agree";
+
+  const normalizeAnswer = (value: string): NormalizedAnswer => {
+    const cleaned = value
+      .toLowerCase()
+      .replace(/_/g, " ")
+      .replace(/-/g, " ")
+      .trim();
+
+    switch (cleaned) {
+      case "strongly disagree":
+        return "Strongly Disagree";
+      case "disagree":
+        return "Disagree";
+      case "agree":
+        return "Agree";
+      case "strongly agree":
+        return "Strongly Agree";
+      default:
+        throw new Error(`Invalid answer value: ${value}`);
+    }
+  };
 
   const visibleStack = stack.slice(activeIndex, activeIndex + 3);
   const isDesktop = useIsDesktop();
@@ -69,8 +100,10 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
 
   /* ================= SAVE ANSWER + CACHE ================= */
   const handleAnswer = (questionId: string, value: string) => {
+    const normalized = normalizeAnswer(value);
+
     setAnswers((prev) => {
-      const updatedAnswers = [...prev, { questionId, answer: value }];
+      const updatedAnswers = [...prev, { questionId, answer: normalized }];
 
       saveProgress({
         answers: updatedAnswers,
@@ -94,17 +127,12 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
           submittedAt: new Date().toISOString(),
         };
 
-        console.log("Submitting answers:", payload);
+     
 
         // 🔹 DEMO POST API
-        await axios.post(
-          "https://jsonplaceholder.typicode.com/posts",
-          payload
-        );
 
-        clearProgress(); // ✅ clear cache after success
       } catch (err) {
-        console.error("Submit failed:", err);
+        // console.error("Submit failed:", err);
         // cache remains for retry
       }
     };
@@ -130,7 +158,8 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
     }
 
     return sections.map((s) => ({
-      title: s.trait,
+      title: s.title,
+      iconUrl: s.minorImage,
       progress: (progressMap.get(s.id) || 0) / s.questions.length,
       isActive:
         stack[activeIndex]?.type === "question"
@@ -143,14 +172,30 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
   if (isLoading) {
     return (
       <div className="flex w-full h-[506px] items-center justify-center px-[40px] p-[20px] md:p-0">
-        <LoadingMoneyUi />
+  <div
+      className="
+      h-[440px] md:h-[506px] w-full
+      flex flex-col gap-[45px]
+      p-[56px]
+      bg-[#FDF9F0]
+      border border-[#BC9313]/20
+      rounded-[40px]
+      items-center justify-center
+    "
+    >
+      <div className="w-[120px] h-[123px] md:w-[182px] md:h-[190px]">
+              <LoadingTwiggLogo />
+
       </div>
+     
+    </div>      </div>
     );
   }
 
   /* ================= RENDER ================= */
   return (
-    <div className="
+    <div
+      className="
       flex w-full flex-col-reverse md:flex-row justify-between
       md:rounded-[60px]
       gap-[30px] md:gap-0
@@ -158,7 +203,8 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
       md:bg-[rgba(253,249,240,0.02)]
       md:backdrop-blur-[50px]
       md:border md:border-[#BC9313]/20
-    ">
+    "
+    >
       {/* MAIN STACK */}
       <div className="relative flex-1 h-[506px]">
         <AnimatePresence>
@@ -184,7 +230,11 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
                   className="absolute w-full px-[40px] pr-[60px] p-[20px] md:p-0"
                 >
                   {item.type === "topic" ? (
-                    <TopicContent topicName={item.section.trait} next={goNext} />
+                    <TopicContent
+                      iconUrl={item.section.majorImage}
+                      topicName={item.section.title}
+                      next={goNext}
+                    />
                   ) : (
                     <QuestionItem
                       question={item.question}
@@ -218,9 +268,43 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
                 animate={{ opacity: 1 }}
               >
                 <MoneyVibeForm
-                  onComplete={() => {
-                    setSendDataForResults(true);
-                    onComplete?.();
+                  onComplete={async (waitlistEntryId: number) => {
+                    try {
+                      setSendDataForResults(true);
+
+                      const payload = {
+                        waitlistEntryId,
+                        answers,
+                      };
+
+                      console.log("Submitting evaluation:", payload);
+
+                      const res = await axios.post<MoneyVibeEvaluationResponse>(
+                        "https://api.twigg-dev.one/api/v1/moneyvibe/evaluate",
+                        payload,
+                        {
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                        }
+                      );
+
+                      if (!res.data?.success) {
+                        throw new Error("Evaluation failed");
+                      }
+
+                      // ✅ SAVE RESULT
+                      setEvaluationResult(res.data);
+        clearProgress(); // ✅ clear cache after success
+
+                      // ✅ CLEAR LOCAL CACHE
+
+                      // ✅ SEND RESULT TO PARENT
+                      onComplete?.(res.data);
+                    } catch (error) {
+                      console.error("Evaluation submit failed:", error);
+                      setSendDataForResults(false);
+                    }
                   }}
                 />
               </motion.div>
