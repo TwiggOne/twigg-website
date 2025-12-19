@@ -17,6 +17,7 @@ export default function Footer() {
       links: [
         // { name: "Features", href: "#features" },
         { name: "FAQs", href: "/faqs" },
+        { name: "MoneyVibe", href: "/moneyvibe" },
       ],
     },
     {
@@ -52,8 +53,9 @@ export default function Footer() {
               />
             </div>
             <p className="text-[#FDF9F0]/80 font-switzer text-[10px] sm:text-sm leading-relaxed">
-              Your journey with money doesn&apos;t have to be complicated.<br />With
-              Twigg, clarity and confidence are just a tap away.
+              Your journey with money doesn&apos;t have to be complicated.
+              <br />
+              With Twigg, clarity and confidence are just a tap away.
             </p>
           </div>
 
@@ -131,8 +133,10 @@ export default function Footer() {
                       d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                     />
                   </svg>
-                  <div className="w-fit flex flex-row">                  contact<span className="font-switzer">[@]</span>twigg.one
-</div>
+                  <div className="w-fit flex flex-row">
+                    {" "}
+                    contact<span className="font-switzer">[@]</span>twigg.one
+                  </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <svg
@@ -154,9 +158,7 @@ export default function Footer() {
                       d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                     />
                   </svg>
-                  <span className="leading-relaxed">
-                  New Delhi
-                  </span>
+                  <span className="leading-relaxed">New Delhi</span>
                 </li>
               </ul>
             </div>
@@ -196,7 +198,12 @@ export default function Footer() {
         <div className="font-switzer pt-[30px] sm:pt-[40px] pb-[20px] sm:pb-[30px] flex flex-col md:flex-row justify-between gap-4">
           <div className="flex-1 text-[10px] sm:text-[12px] text-[#FDF9F0]/60 leading-relaxed max-w-4xl">
             <p className="mb-2">
-              Twigg is a platform owned and operated by Aadyantax Technologies Private Limited in collaboration with Ayush Sharma, a SEBI-registered Investment Adviser (Registration No. INA000020475). Investment advisory services on the Twigg platform are provided in partnership with Ayush Sharma, a SEBI-registered Investment Adviser (Registration No. INA000020475)
+              Twigg is a platform owned and operated by Aadyantax Technologies
+              Private Limited in collaboration with Ayush Sharma, a
+              SEBI-registered Investment Adviser (Registration No.
+              INA000020475). Investment advisory services on the Twigg platform
+              are provided in partnership with Ayush Sharma, a SEBI-registered
+              Investment Adviser (Registration No. INA000020475)
             </p>
           </div>
         </div>
