@@ -6,12 +6,12 @@ const ShareResult = () => {
   return (
     <div className="flex flex-col gap-4 items-center">
       <div className="flex flex-col gap-0.5 items-center text-center">
-        <p className="text-[#BC9313] text-[12px] md:text-[14px] font-switzer ">
-          Share the result
+        <p className="text-[#FDF9F0] text-[12px] md:text-[14px] font-switzer ">
+          Follow us
         </p>
-        <p className="text-[#FDF9F0] text-[16px] md:text-[24px] font-switzer ">
+        {/* <p className="text-[#FDF9F0] text-[16px] md:text-[24px] font-switzer ">
           Flex Your MoneyVibe
-        </p>
+        </p> */}
       </div>
       <div className="flex flex-row gap-4 p-[10px] w-full items-center justify-center rounded-[8px] border border-[#BC9313]/20">
         <div className="relative flex items-center justify-center">

@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import MoneyMainContent from "@/components/money-vibe/MoneyMainContent";
-import MoneyVibeHeader from "@/components/money-vibe/MoneyVibeHeader";
+import MoneyMainContent from "@/components/moneyvibe/MoneyMainContent";
+import MoneyVibeHeader from "@/components/moneyvibe/MoneyVibeHeader";
 import {
   CompletedBgLogo,
   MoneyVibeBg,
   ResultBgMobile,
 } from "@/utils/SvgUtils";
-import ResultCard from "@/components/money-vibe/ResultCard";
-import { MoneyVibeEvaluationResponse } from "@/components/money-vibe/TopicData";
+import ResultCard from "@/components/moneyvibe/ResultCard";
+import { MoneyVibeEvaluationResponse } from "@/components/moneyvibe/TopicData";
 
 const Page: React.FC = () => {
   const [isCompleted, setIsCompleted] = useState(false);
@@ -19,7 +19,7 @@ const Page: React.FC = () => {
   return (
     <div className="min-h-[87vh] md:min-h-screen relative mx-auto w-full py-[41px] flex flex-col gap-[56px] items-center md:justify-center">
       {!isCompleted ? (
-        <div className="max-w-7xl z-10 mx-auto w-full py-[61px] md:py-[41px] flex flex-col gap-[56px] justify-center items-center">
+        <div className="max-w-7xl z-10 mx-auto w-full py-[41px] md:py-[41px] flex flex-col gap-[20px] md:gap-[56px] justify-center items-center">
           <MoneyVibeHeader />
           <MoneyMainContent
             onComplete={(response) => {

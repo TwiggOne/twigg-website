@@ -16,9 +16,9 @@ const TopicList: React.FC<TopicListProps> = ({ topics }) => {
   return (
     <div
       className="
-        flex w-full md:w-fit md:h-full md:justify-between
+        flex w-full md:w-fit md:h-full md:justify-center
         flex-row md:flex-col 
-       gap-4 md:gap-3 md:ml-auto
+       gap-4 md:gap-10 md:ml-auto
         max-md:overflow-x-auto 
         max-md:flex-nowrap 
         px-4 md:px-0

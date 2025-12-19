@@ -42,9 +42,7 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
     setIsLoading(true);
 
     axios
-      .get(
-        "https://api.twigg-dev.one/api/v1/moneyvibe/questions"
-      )
+      .get("https://api.twigg-dev.one/api/v1/moneyvibe/questions")
       .then((res) => {
         setSections(res.data.sections);
 
@@ -127,10 +125,7 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
           submittedAt: new Date().toISOString(),
         };
 
-     
-
         // 🔹 DEMO POST API
-
       } catch (err) {
         // console.error("Submit failed:", err);
         // cache remains for retry
@@ -172,8 +167,8 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
   if (isLoading) {
     return (
       <div className="flex w-full h-[506px] items-center justify-center px-[40px] p-[20px] md:p-0">
-  <div
-      className="
+        <div
+          className="
       h-[440px] md:h-[506px] w-full
       flex flex-col gap-[45px]
       p-[56px]
@@ -182,13 +177,12 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
       rounded-[40px]
       items-center justify-center
     "
-    >
-      <div className="w-[120px] h-[123px] md:w-[182px] md:h-[190px]">
-              <LoadingTwiggLogo />
-
+        >
+          <div className="w-[120px] h-[123px] md:w-[182px] md:h-[190px]">
+            <LoadingTwiggLogo />
+          </div>
+        </div>{" "}
       </div>
-     
-    </div>      </div>
     );
   }
 
@@ -198,7 +192,7 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
       className="
       flex w-full flex-col-reverse md:flex-row justify-between
       md:rounded-[60px]
-      gap-[30px] md:gap-0
+      gap-[20px] md:gap-0
       md:px-[52px] md:py-[61px]
       md:bg-[rgba(253,249,240,0.02)]
       md:backdrop-blur-[50px]
@@ -295,7 +289,7 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
 
                       // ✅ SAVE RESULT
                       setEvaluationResult(res.data);
-        clearProgress(); // ✅ clear cache after success
+                      clearProgress(); // ✅ clear cache after success
 
                       // ✅ CLEAR LOCAL CACHE
 
