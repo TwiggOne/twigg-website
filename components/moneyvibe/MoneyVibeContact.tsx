@@ -1,5 +1,6 @@
 "use client";
 
+import parsePhoneNumberFromString from "libphonenumber-js/max";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -41,9 +42,19 @@ export default function MoneyVibeForm({ onComplete }: MoneyVibeFormProps) {
       newErrors.email = "Please enter a valid email address";
     }
 
-    if (!formData.phone.trim()) {
-      newErrors.phone = "Phone number is required";
-    }
+  if (!formData.phone.trim()) {
+  newErrors.phone = "Phone number is required";
+} else {
+  const phoneNumber = parsePhoneNumberFromString(
+    formData.phone.trim(),
+    "IN" // default country (India)
+  );
+
+  if (!phoneNumber || !phoneNumber.isValid()) {
+    newErrors.phone = "Please enter a valid phone number";
+  }
+}
+
 
     if (!formData.addToWaitlist) {
       newErrors.addToWaitlist = "Please check the box to continue";
