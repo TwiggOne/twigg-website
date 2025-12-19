@@ -1,6 +1,6 @@
-import { LoadingTwiggLogo } from "@/utils/SvgUtils";
+// import { LoadingTwiggLogo } from "@/utils/SvgUtils";
 import React from "react";
-// import { LoadingTwiggLogo } from './LoadingSvg'
+import { LoadingTwiggLogo } from './LoadingSvg'
 
 const LoadingMoneyUi = () => {
   return (
