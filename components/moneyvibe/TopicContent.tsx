@@ -1,4 +1,4 @@
-import { TopicBgLogo } from "@/utils/SvgUtils";
+import { TopicBgLogo, UpArrow } from "@/utils/SvgUtils";
 import AnswerItem from "./AnswerItem";
 import Image from "next/image";
 
@@ -16,9 +16,9 @@ const TopicContent: React.FC<TopicContentProps> = ({
   return (
     <div
       className="
+      relative
       h-[440px] md:h-[506px]
-              cursor-pointer
-
+md:w-[97%]
       flex flex-col gap-[45px] text-center
 p-[56px] items-center
       bg-[#FDF9F0]
@@ -26,7 +26,6 @@ p-[56px] items-center
       justify-center
       rounded-[40px] 
     "
-      onClick={next}
     >
       <div className="relative w-[210px] h-[210px] md:w-[278px] md:h-[283px] flex items-center justify-center">
         {/* <TopicBgLogo /> */}
@@ -50,6 +49,14 @@ p-[56px] items-center
           );
         })()}
       </h3>
+      <div
+        className=" p-1.5 px-4 bg-[#BC9313]/10  border border-[#BC9313]/40 rounded-[40px] w-fit flex text-[#BC9313]  justify-end-safe ml-auto absolute bottom-5 right-5 cursor-pointer"
+        onClick={next}
+      >
+        <div className="w-5 h-5 md:w-6 md:h-6">
+          <UpArrow right />
+        </div>
+      </div>
     </div>
   );
 };

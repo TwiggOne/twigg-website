@@ -19,16 +19,21 @@ export type MoneyVibeTraits = {
 /* ================= ARCHETYPES ================= */
 export type MoneyVibeArchetype = {
   name: string;
-  score: number;
-  traits:string;
+  score?: number; // optional because all_archetypes items don't have score
   title: string;
   description: string;
+  traits: string;
+  icon: string;
+  color: string;
 };
+
 
 export type MoneyVibeArchetypes = {
   primary: MoneyVibeArchetype;
   secondary: MoneyVibeArchetype;
   all_scores: Record<string, number>;
+    all_archetypes: MoneyVibeArchetype[];
+
 };
 
 /* ================= FULL RESPONSE ================= */

@@ -18,16 +18,17 @@ const ANSWERS = [
     label: "Disagree",
     iconPath: "/moneyvibe/disagree.png",
   },
+    {
+    value: "agree",
+    label: "Agree",
+    iconPath: "/moneyvibe/agree.png",
+  },
   {
     value: "strongly_agree",
     label: "Strongly Agree",
     iconPath: "/moneyvibe/strongly_agree.png",
   },
-  {
-    value: "agree",
-    label: "Agree",
-    iconPath: "/moneyvibe/agree.png",
-  },
+
 ];
 
 const QuestionItem: React.FC<QuestionItemProps> = ({
