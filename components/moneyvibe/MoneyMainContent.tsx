@@ -15,9 +15,9 @@ import {
   MoneyVibeEvaluationResponse,
 } from "./TopicData";
 import { useIsDesktop } from "./IsDesktop";
-
 import { saveProgress, loadProgress, clearProgress } from "./SaveProgessMoney";
 import { LoadingTwiggLogo } from "./LoadingSvg";
+import { IntroCard } from "./IntoCard";
 
 export type UserAnswer = {
   questionId: string;
@@ -61,7 +61,9 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
   /* ================= STACK ================= */
   const stack = useMemo(() => {
     if (!sections.length) return [];
-    return buildStack(sections);
+    const originalStack = buildStack(sections);
+    // Add intro card as first item
+    return [{ type: "intro" as const }, ...originalStack];
   }, [sections]);
   type NormalizedAnswer =
     | "Strongly Disagree"
@@ -136,32 +138,35 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
   }, [isFlowComplete, answers]);
 
   /* ================= TOPIC PROGRESS ================= */
-  const topicProgress = useMemo(() => {
-    if (!sections.length) return [];
+  /* ================= TOPIC PROGRESS ================= */
+const topicProgress = useMemo(() => {
+  if (!sections.length) return [];
 
-    const progressMap = new Map<string, number>();
-    sections.forEach((s) => progressMap.set(s.id, 0));
+  const progressMap = new Map<string, number>();
+  sections.forEach((s) => progressMap.set(s.id, 0));
 
-    for (let i = 0; i < activeIndex; i++) {
-      const item = stack[i];
-      if (item?.type === "question") {
-        progressMap.set(
-          item.sectionId,
-          (progressMap.get(item.sectionId) || 0) + 1
-        );
-      }
+  for (let i = 0; i < activeIndex; i++) {
+    const item = stack[i];
+    if (item?.type === "question") {
+      progressMap.set(
+        item.sectionId,
+        (progressMap.get(item.sectionId) || 0) + 1
+      );
     }
+  }
 
-    return sections.map((s) => ({
-      title: s.title,
-      iconUrl: s.minorImage,
-      progress: (progressMap.get(s.id) || 0) / s.questions.length,
-      isActive:
-        stack[activeIndex]?.type === "question"
-          ? stack[activeIndex].sectionId === s.id
-          : stack[activeIndex]?.section.id === s.id,
-    }));
-  }, [activeIndex, stack, sections]);
+  return sections.map((s) => ({
+    title: s.title,
+    iconUrl: s.minorImage,
+    progress: (progressMap.get(s.id) || 0) / s.questions.length,
+    isActive:
+      stack[activeIndex]?.type === "question"
+        ? stack[activeIndex].sectionId === s.id
+        : stack[activeIndex]?.type === "topic"
+        ? stack[activeIndex].section.id === s.id
+        : false, // intro card has no active section
+  }));
+}, [activeIndex, stack, sections]);
 
   /* ================= LOADING ================= */
   if (isLoading) {
@@ -212,7 +217,9 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
               return (
                 <motion.div
                   key={
-                    item.type === "topic"
+                    item.type === "intro"
+                      ? "intro-card"
+                      : item.type === "topic"
                       ? `topic-${item.section.id}`
                       : item.question.questionId
                   }
@@ -223,12 +230,16 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
                   style={{ zIndex, left: offset, scale }}
                   className="absolute w-full px-[40px] pr-[60px] p-[20px] md:p-0"
                 >
-                  {item.type === "topic" ? (
-                    <TopicContent
-                      iconUrl={item.section.majorImage}
-                      topicName={item.section.title}
-                      next={goNext}
-                    />
+                  {item.type === "intro" ? (
+                    <IntroCard next={goNext} />
+                  ) : item.type === "topic" ? (
+                    <div className="flex flex-col gap-2">
+                      <TopicContent
+                        iconUrl={item.section.majorImage}
+                        topicName={item.section.title}
+                        next={goNext}
+                      />
+                    </div>
                   ) : (
                     <QuestionItem
                       question={item.question}
@@ -307,7 +318,7 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
       </div>
 
       {/* SIDE LIST */}
-      <div className="pl-[24px] md:pl-0 flex items-center md:w-[30%] justify-center">
+      <div className=" md:pl-0 flex items-center md:w-[30%] justify-center">
         <TopicList topics={topicProgress} />
       </div>
     </div>
