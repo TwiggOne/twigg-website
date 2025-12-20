@@ -8,7 +8,6 @@ type FormErrors = {
   name?: string;
   email?: string;
   phone?: string;
-  addToWaitlist?: string;
 };
 
 type MoneyVibeFormProps = {
@@ -20,7 +19,7 @@ export default function MoneyVibeForm({ onComplete }: MoneyVibeFormProps) {
     name: "",
     email: "",
     phone: "",
-    addToWaitlist: false,
+    addToWaitlist: true,
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -56,9 +55,6 @@ export default function MoneyVibeForm({ onComplete }: MoneyVibeFormProps) {
 }
 
 
-    if (!formData.addToWaitlist) {
-      newErrors.addToWaitlist = "Please check the box to continue";
-    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -309,11 +305,7 @@ export default function MoneyVibeForm({ onComplete }: MoneyVibeFormProps) {
               Add me to the Waitlist
             </span>
           </label>
-          {errors.addToWaitlist && (
-            <span className="text-[#ff6b6b] text-xs mt-1 block ml-8">
-              {errors.addToWaitlist}
-            </span>
-          )}
+         
         </div>
 
             <button
