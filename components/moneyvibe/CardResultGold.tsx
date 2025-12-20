@@ -21,14 +21,14 @@ const CardResultGold: React.FC<CardResultGoldProps> = ({ title, description }) =
           {title}
         </h1>
 
-        <h1 className="text-[16px] md:text-[24px] font-switzer text-[#152D23]/80">
+        {/* <h1 className="text-[16px] md:text-[24px] font-switzer text-[#152D23]/80">
           {descriptionLines.map((line, index) => (
             <React.Fragment key={index}>
               {line}
               {index !== descriptionLines.length - 1 && <br />}
             </React.Fragment>
           ))}
-        </h1>
+        </h1> */}
       </div>
 
       {/* Decorative Stars & Images */}
@@ -65,7 +65,7 @@ const CardResultGold: React.FC<CardResultGoldProps> = ({ title, description }) =
         />
       </div>
 
-      <div className="w-[303px] h-[184px] md:w-[511px] md:h-[304px]">
+      <div className="w-[323px] h-[184px] md:w-[511px] md:h-[304px]">
         <ResultGoldCard />
       </div>
     </div>
