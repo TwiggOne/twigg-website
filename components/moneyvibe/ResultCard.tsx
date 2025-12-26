@@ -8,10 +8,10 @@ import { ArchetypesModal } from "./ResultModal";
 
 type ResultCardProps = {
   result: MoneyVibeEvaluationResponse | null;
+  onExplore: () => void;
 };
 
-export default function ResultCard({ result }: ResultCardProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export default function ResultCard({ result,onExplore }: ResultCardProps) {
   const otherArchetypes = result?.archetypes.all_archetypes;
   const description = result?.archetypes.primary.description ?? "";
 
@@ -62,18 +62,14 @@ export default function ResultCard({ result }: ResultCardProps) {
         }}
       />
       <button
-        onClick={() => setIsModalOpen(true)}
+  onClick={onExplore}
         className="mb-6 px-8 py-3 md:px-10 cursor-pointer md:py-4 bg-gradient-to-r from-[#BC9313] to-[#D4A72C] rounded-full text-[14px] md:text-[16px] font-semibold font-switzer text-[#FDF9F0] hover:shadow-lg hover:shadow-[#BC9313]/20 transition-all duration-300 hover:scale-105"
       >
         Explore other MoneyVibes{" "}
       </button>
 
       <ShareResult />
-      <ArchetypesModal
-        archetypes={otherArchetypes}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+     
     </div>
   );
 }
