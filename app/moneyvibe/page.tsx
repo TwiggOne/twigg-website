@@ -28,7 +28,7 @@ const Page: React.FC = () => {
           />
         </div>
       ) : (
-        <div className="max-w-[780px] py-[61px] mx-auto w-full flex justify-center items-center">
+        <div className="max-w-[654px] py-[61px] mx-auto w-full flex justify-center items-center">
           {!showArchetypes ? (
             <ResultCard
               result={result}

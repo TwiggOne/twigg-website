@@ -5,18 +5,31 @@ import Traits from "./Traits";
 import ShareResult from "./ShareResult";
 import { MoneyVibeEvaluationResponse } from "./TopicData";
 import { ArchetypesModal } from "./ResultModal";
+import NavigationResultTab from "./NavigationResultTab";
+import Image from "next/image";
+import ResultDescribe from "./ResultDescribe";
+import ResultDescribeVibe from "./ResultDescribe";
+import ResultDescribeClassic from "./ResultDescribeClassic";
 
 type ResultCardProps = {
   result: MoneyVibeEvaluationResponse | null;
   onExplore: () => void;
 };
+type ResultTab = "Bollywood" | "Classic" | "Cricket";
 
-export default function ResultCard({ result,onExplore }: ResultCardProps) {
+export default function ResultCard({ result, onExplore }: ResultCardProps) {
   const otherArchetypes = result?.archetypes.all_archetypes;
   const description = result?.archetypes.primary.description ?? "";
-
+  const [activeTab, setActiveTab] = useState<ResultTab>("Classic");
 
   if (!result || !otherArchetypes) return null;
+  const showImage = activeTab === "Bollywood" || activeTab === "Cricket";
+  const imageUrl =
+    activeTab === "Bollywood"
+      ? result.bollywoodVibe.primary.imageUrl
+      : activeTab === "Cricket"
+      ? result.cricketVibe.primary.imageUrl
+      : null;
 
   return (
     <div
@@ -27,49 +40,71 @@ export default function ResultCard({ result,onExplore }: ResultCardProps) {
         md:rounded-[60px]
         px-[18px] pb-[44px] md:p-[44px]
         w-full
-        items-center
+        items-start
         flex
         flex-col
         md:border border-[#BC9313]/20
         md:backdrop-blur-[50px]
       "
     >
-      <div className="leading-tight">
-        <h1 className="text-[28px] md:text-[40px] font-semibold font-bricolage text-[#FDF9F0]">
-          Here’s Your
-        </h1>
-        <h1 className="text-[28px] md:text-[40px] font-semibold font-bricolage text-[#BC9313]">
-          MoneyVibe
-        </h1>
-      </div>
+      <div className="flex flex-col  max-w-[487px] w-full mx-auto gap-6">
+        <div className="leading-tight flex flex-col gap-1 ">
+          <h1 className="text-[28px] md:text-[36px] font-semibold font-bricolage text-[#FDF9F0]">
+            Here’s Your <span className="text-[#BC9313]">MoneyVibe</span>
+          </h1>
+          <h1 className="text-[28px] md:text-[18px]  text-[#FDF9F0]/80 font-switzer ">
+            Check it in the style you vibe with.
+          </h1>
+        </div>
+        <NavigationResultTab onTabChange={(tab) => setActiveTab(tab)} />
+        {showImage && imageUrl && (
+          <div className="relative w-[447px] h-[193px] rounded-[20px] overflow-hidden">
+            <Image
+              key={imageUrl}
+              src={imageUrl}
+              alt={`${activeTab} vibe image`}
+              fill
+              className="object-cover transition-opacity duration-300"
+              priority
+            />
+          </div>
+        )}
 
-      <CardResultGold
-        title={result?.archetypes.primary.title ?? ""}
-        description={result?.archetypes.primary.description ?? ""}
-      />
-      <h1 className="text-[16px] py-6 md:text-[24px] font-switzer font-medium text-[#BC9313] text-center">
-        {description}
-      </h1>
+        {activeTab === "Bollywood" && (
+          <ResultDescribeVibe
+            icon={result.archetypes.primary.icon}
+            title={result.archetypes.primary.title}
+            subtitle={`Like ${result.bollywoodVibe.primary.character}`}
+            personality={result.bollywoodVibe.primary.personality}
+            moneyWise={result.bollywoodVibe.primary.moneyWise}
+          />
+        )}
 
-      {/* ✅ PASS TRAITS */}
-      <Traits traits={result?.archetypes.primary.traits ?? ""} />
+        {activeTab === "Cricket" && (
+          <ResultDescribeVibe
+            icon={result.archetypes.primary.icon}
+            title={result.archetypes.primary.title}
+            subtitle={`Like ${result.cricketVibe.primary.player}`}
+            personality={result.cricketVibe.primary.personality}
+            moneyWise={result.cricketVibe.primary.moneyWise}
+          />
+        )}
 
-      <div
-        className="my-8 h-[1px] w-full"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(253,249,240,0.05) 0%, #FDF9F0 50%, rgba(253,249,240,0) 100%)",
-        }}
-      />
-      <button
+       {activeTab === "Classic" && (
+  <ResultDescribeClassic
+    archetype={result.archetypes.primary}
+  />
+)} 
+  <div
   onClick={onExplore}
-        className="mb-6 px-8 py-3 md:px-10 cursor-pointer md:py-4 bg-gradient-to-r from-[#BC9313] to-[#D4A72C] rounded-full text-[14px] md:text-[16px] font-semibold font-switzer text-[#FDF9F0] hover:shadow-lg hover:shadow-[#BC9313]/20 transition-all duration-300 hover:scale-105"
-      >
-        Explore other MoneyVibes{" "}
-      </button>
+  className="cursor-pointer max-w-[287px] mx-auto rounded-[10px] px-[24px] py-[10px]
+  text-[#BC9313] font-semibold text-[14px]
+  bg-[rgba(188,147,19,0.05)] border border-[#BC9313]/60"
+>
+  View other MoneyVibe types
+</div>
 
-      <ShareResult />
-     
+      </div>
     </div>
   );
 }
