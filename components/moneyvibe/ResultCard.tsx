@@ -1,13 +1,8 @@
 "use client";
-import React, { useMemo, useState } from "react";
-import CardResultGold from "./CardResultGold";
-import Traits from "./Traits";
-import ShareResult from "./ShareResult";
+import React, {  useState } from "react";
 import { MoneyVibeEvaluationResponse } from "./TopicData";
-import { ArchetypesModal } from "./ResultModal";
 import NavigationResultTab from "./NavigationResultTab";
 import Image from "next/image";
-import ResultDescribe from "./ResultDescribe";
 import ResultDescribeVibe from "./ResultDescribe";
 import ResultDescribeClassic from "./ResultDescribeClassic";
 
@@ -92,7 +87,7 @@ export default function ResultCard({ result, onExplore }: ResultCardProps) {
 
        {activeTab === "Classic" && (
   <ResultDescribeClassic
-    archetype={result.archetypes.primary}
+    data={result}
   />
 )} 
   <div

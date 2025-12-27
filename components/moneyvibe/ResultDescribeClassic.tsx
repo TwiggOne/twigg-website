@@ -1,25 +1,27 @@
 import React from "react";
-import { MoneyVibeArchetype } from "./TopicData";
+import {  MoneyVibeEvaluationResponse } from "./TopicData";
 import ClassicPrimary from "./ClassicPrimary";
 import WhatThisMeans from "./WhatThisMeans";
+import VibeCompase from "./VibeCompase";
 
 interface ResultDescribeClassicProps {
-  archetype: MoneyVibeArchetype;
+  
+  data: MoneyVibeEvaluationResponse;
 }
 
 const ResultDescribeClassic: React.FC<ResultDescribeClassicProps> = ({
-  archetype,
+  data,
 }) => {
   return (
     <div className="flex flex-col gap-6">
-      <ClassicPrimary archetype={archetype} />
-<div className="absolute -right-[50%]">
+      <ClassicPrimary archetype={data.archetypes.primary} />
+<VibeCompase traits={data.traits} />
+      <div className="absolute -right-[50%]">
         <WhatThisMeans
-        whatThisMeans={archetype.whatThisMeans}
-        watchOutFor={archetype.watchOutFor}
-      />
-</div>
-  
+          whatThisMeans={data.archetypes.primary.whatThisMeans}
+          watchOutFor={data.archetypes.primary.watchOutFor}
+        />
+      </div>
     </div>
   );
 };
