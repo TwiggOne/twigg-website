@@ -3,6 +3,7 @@ import { MoneyVibeEvaluationResponse } from "./TopicData";
 import ClassicPrimary from "./ClassicPrimary";
 import WhatThisMeans from "./WhatThisMeans";
 import VibeCompase from "./VibeCompase";
+import VibeGraphMobile from "./VibeGraphMobile";
 
 interface ResultDescribeClassicProps {
   data: MoneyVibeEvaluationResponse;
@@ -19,6 +20,7 @@ const ResultDescribeClassic: React.FC<ResultDescribeClassicProps> = ({
   return (
     <div className="flex flex-col gap-6">
       <ClassicPrimary archetype={data.archetypes.primary} />
+<div className="hidden md:block">
 
       <VibeCompase
         traits={data.traits}
@@ -29,8 +31,22 @@ const ResultDescribeClassic: React.FC<ResultDescribeClassicProps> = ({
           })
         }
       />
+      </div>
+      <div className="text-[14px] font-switzer font-semibold text-[#BC9313] block md:hidden">Your Money Compass</div>
+
+      <div className="block md:hidden">
+      <VibeGraphMobile
+        traits={data.traits}
+        onActiveTraitChange={(trait) =>
+          setActiveTrait({
+            title: trait.title,
+            level: trait.level,
+          })
+        }
+      />
+      </div>
       <div
-        className="max-w-[306px] w-full flex rounded-[8px] flex-row
+        className="hidden md:block max-w-[306px] w-full flex rounded-[8px] flex-row
   border-x border-b border-t-0 border-[#BC9313]/20
   px-4 py-2 items-center justify-between leading-tight"
       >

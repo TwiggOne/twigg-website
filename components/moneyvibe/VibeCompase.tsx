@@ -15,7 +15,7 @@ type CompassPosition =
 
 interface VibeCompaseProps {
   traits: MoneyVibeTraits;
-    onActiveTraitChange?: (trait: {
+  onActiveTraitChange?: (trait: {
     title: keyof MoneyVibeTraits;
     level: TraitLevel;
     position: VisibleCompassPosition;
@@ -59,7 +59,10 @@ const LEVEL_SCORE: Record<TraitLevel, number> = {
 };
 type VisibleCompassPosition = Exclude<CompassPosition, "center">;
 
-const VibeCompase: React.FC<VibeCompaseProps> = ({ traits,onActiveTraitChange }) => {
+const VibeCompase: React.FC<VibeCompaseProps> = ({
+  traits,
+  onActiveTraitChange,
+}) => {
   const allTraits = useMemo(() => {
     return (Object.keys(traits) as Array<keyof MoneyVibeTraits>).map(
       (traitName) => ({
@@ -71,20 +74,19 @@ const VibeCompase: React.FC<VibeCompaseProps> = ({ traits,onActiveTraitChange })
     );
   }, [traits]);
 
-const visibleTraits = useMemo<
-  Array<{
-    title: keyof MoneyVibeTraits;
-    level: TraitLevel;
-    position: VisibleCompassPosition;
-    score: number;
-  }>
->(() => {
-  return allTraits.filter(
-    (t): t is typeof t & { position: VisibleCompassPosition } =>
-      t.position !== "center"
-  );
-}, [allTraits]);
-
+  const visibleTraits = useMemo<
+    Array<{
+      title: keyof MoneyVibeTraits;
+      level: TraitLevel;
+      position: VisibleCompassPosition;
+      score: number;
+    }>
+  >(() => {
+    return allTraits.filter(
+      (t): t is typeof t & { position: VisibleCompassPosition } =>
+        t.position !== "center"
+    );
+  }, [allTraits]);
 
   const activeTrait = useMemo(() => {
     return visibleTraits.reduce((max, curr) =>
@@ -93,16 +95,14 @@ const visibleTraits = useMemo<
   }, [visibleTraits]);
 
   const labels = useMemo(() => {
-    const others = visibleTraits.filter(
-      (t) => t.title !== activeTrait.title
-    );
+    const others = visibleTraits.filter((t) => t.title !== activeTrait.title);
     return [activeTrait, ...others.slice(0, 5)];
   }, [visibleTraits, activeTrait]);
-useEffect(() => {
-  if (onActiveTraitChange && activeTrait) {
-    onActiveTraitChange(activeTrait);
-  }
-}, [activeTrait, onActiveTraitChange]);
+  useEffect(() => {
+    if (onActiveTraitChange && activeTrait) {
+      onActiveTraitChange(activeTrait);
+    }
+  }, [activeTrait, onActiveTraitChange]);
 
   return (
     <div className="flex flex-col max-w-[306px] my-4 relative w-full py-[40px] items-center justify-center">
@@ -116,12 +116,9 @@ useEffect(() => {
       >
         <CompaseArrow />
       </div>
-<div className="absolute">
-  <OuterCompassBorder
-    angle={POSITION_ANGLE[activeTrait.position]}
-  />
-</div>
-
+      <div className="absolute">
+        <OuterCompassBorder angle={POSITION_ANGLE[activeTrait.position]} />
+      </div>
 
       {labels.map((item) => {
         const isActive = item.title === activeTrait.title;

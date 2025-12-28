@@ -12,7 +12,7 @@ const WhatThisMeans: React.FC<WhatThisMeansProps> = ({
 }) => {
   return (
     <div
-      className="max-w-[308px] w-full flex flex-col py-[21px] px-[15px]
+      className="md:max-w-[308px] w-full flex flex-col py-[21px] px-[15px]
       border border-[#BC9313]/10
       bg-gradient-to-br from-[#BC9313]/15 via-[#152D23]/20 to-[#152D23]
       rounded-[20px] gap-[38px]"
