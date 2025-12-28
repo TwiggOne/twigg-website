@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { CompaseArrow, CompaseBg, OuterCompassBorder } from "@/utils/SvgUtils";
 import { MoneyVibeTraits, TraitLevel } from "./TopicData";
 
@@ -15,6 +15,12 @@ type CompassPosition =
 
 interface VibeCompaseProps {
   traits: MoneyVibeTraits;
+    onActiveTraitChange?: (trait: {
+    title: keyof MoneyVibeTraits;
+    level: TraitLevel;
+    position: VisibleCompassPosition;
+    score: number;
+  }) => void;
 }
 
 const TRAIT_POSITION_MAP: Record<keyof MoneyVibeTraits, CompassPosition> = {
@@ -53,7 +59,7 @@ const LEVEL_SCORE: Record<TraitLevel, number> = {
 };
 type VisibleCompassPosition = Exclude<CompassPosition, "center">;
 
-const VibeCompase: React.FC<VibeCompaseProps> = ({ traits }) => {
+const VibeCompase: React.FC<VibeCompaseProps> = ({ traits,onActiveTraitChange }) => {
   const allTraits = useMemo(() => {
     return (Object.keys(traits) as Array<keyof MoneyVibeTraits>).map(
       (traitName) => ({
@@ -92,6 +98,11 @@ const visibleTraits = useMemo<
     );
     return [activeTrait, ...others.slice(0, 5)];
   }, [visibleTraits, activeTrait]);
+useEffect(() => {
+  if (onActiveTraitChange && activeTrait) {
+    onActiveTraitChange(activeTrait);
+  }
+}, [activeTrait, onActiveTraitChange]);
 
   return (
     <div className="flex flex-col max-w-[306px] my-4 relative w-full py-[40px] items-center justify-center">

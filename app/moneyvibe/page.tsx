@@ -28,7 +28,7 @@ const Page: React.FC = () => {
           />
         </div>
       ) : (
-        <div className="max-w-[654px] py-[61px] mx-auto w-full flex justify-center items-center">
+        <div className="max-w-[654px] py-[0px] mx-auto w-full flex justify-center items-center">
           {!showArchetypes ? (
             <ResultCard
               result={result}
@@ -48,15 +48,15 @@ const Page: React.FC = () => {
       {isCompleted && !showArchetypes ? (
         <>
           <div className="absolute -top-10 block md:hidden pointer-events-none">
-            <ResultBgMobile />
+            {/* <ResultBgMobile /> */}
           </div>
           <div className="absolute top-0 hidden md:block pointer-events-none">
-            <CompletedBgLogo />
+            {/* <CompletedBgLogo /> */}
           </div>
         </>
       ) : (
         <div className="absolute hidden md:block pointer-events-none top-0 left-0">
-          {!showArchetypes && <MoneyVibeBg />}
+          {/* {!showArchetypes && <MoneyVibeBg />} */}
         </div>
       )}
     </div>

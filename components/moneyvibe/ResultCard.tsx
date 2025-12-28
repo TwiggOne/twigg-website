@@ -1,5 +1,5 @@
 "use client";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { MoneyVibeEvaluationResponse } from "./TopicData";
 import NavigationResultTab from "./NavigationResultTab";
 import Image from "next/image";
@@ -28,26 +28,26 @@ export default function ResultCard({ result, onExplore }: ResultCardProps) {
 
   return (
     <div
-      className="
-      md:mt-[20px]
-        pt-[90px] md:pt-[33px]
-        md:bg-[rgba(253,249,240,0.02)]
-        md:rounded-[60px]
-        px-[18px] pb-[44px] md:p-[44px]
-        w-full
-        items-start
-        flex
-        flex-col
-        md:border border-[#BC9313]/20
-        md:backdrop-blur-[50px]
-      "
+      className={`
+    md:mt-[20px]
+    pt-[90px] md:pt-[33px]
+    px-[18px] pb-[44px] md:p-[44px]
+    w-full items-start flex flex-col
+    md:rounded-[60px]
+    md:backdrop-blur-[50px]
+    ${
+      activeTab !== "Classic"
+        ? "md:bg-[rgba(253,249,240,0.02)] md:border border-[#BC9313]/20"
+        : ""
+    }
+  `}
     >
       <div className="flex flex-col  max-w-[487px] w-full mx-auto gap-6">
         <div className="leading-tight flex flex-col gap-1 ">
-          <h1 className="text-[28px] md:text-[36px] font-semibold font-bricolage text-[#FDF9F0]">
+          <h1 className="text-[22px] md:text-[36px] font-semibold font-bricolage text-[#FDF9F0]">
             Here’s Your <span className="text-[#BC9313]">MoneyVibe</span>
           </h1>
-          <h1 className="text-[28px] md:text-[18px]  text-[#FDF9F0]/80 font-switzer ">
+          <h1 className="text-[12px] md:text-[18px]  text-[#FDF9F0]/80 font-switzer ">
             Check it in the style you vibe with.
           </h1>
         </div>
@@ -85,20 +85,15 @@ export default function ResultCard({ result, onExplore }: ResultCardProps) {
           />
         )}
 
-       {activeTab === "Classic" && (
-  <ResultDescribeClassic
-    data={result}
-  />
-)} 
-  <div
-  onClick={onExplore}
-  className="cursor-pointer max-w-[287px] mx-auto rounded-[10px] px-[24px] py-[10px]
+        {activeTab === "Classic" && <ResultDescribeClassic data={result} />}
+        <div
+          onClick={onExplore}
+          className="cursor-pointer max-w-[287px] mx-auto rounded-[10px] px-[24px] py-[10px]
   text-[#BC9313] font-semibold text-[14px]
   bg-[rgba(188,147,19,0.05)] border border-[#BC9313]/60"
->
-  View other MoneyVibe types
-</div>
-
+        >
+          View other MoneyVibe types
+        </div>
       </div>
     </div>
   );

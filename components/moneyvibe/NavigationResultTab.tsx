@@ -24,7 +24,7 @@ const NavigationResultTab: React.FC<NavigationResultTabProps> = ({
         <div
           key={tab}
           onClick={() => handleTabClick(tab)}
-          className={`flex-1 flex items-center justify-center py-2 px-3 rounded-[10px] text-[16px] font-medium font-switzer cursor-pointer transition-colors duration-200
+          className={`flex-1 flex items-center justify-center py-2 px-3 rounded-[10px] text-[12px] md:text-[16px] font-medium font-switzer cursor-pointer transition-colors duration-200
             ${
               activeTab === tab
                 ? "bg-[#BC9313] text-[#FDF9F0]"

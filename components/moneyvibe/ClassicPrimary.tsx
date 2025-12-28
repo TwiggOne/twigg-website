@@ -23,18 +23,18 @@ const ClassicPrimary: React.FC<ClassicPrimaryProps> = ({ archetype }) => {
           src={archetype.icon}
         />
 
-        <p className="mt-1 text-[24px] font-semibold font-bricolage text-[#BC9313]">
+        <p className="mt-1 text-[22px] md:text-[24px] font-semibold font-bricolage text-[#BC9313]">
           {archetype.title}
         </p>
 
-        <p className="text-[14px] font-switzer text-[#FDF9F0]/80">
+        <p className="text-[12px] md:text-[14px] font-switzer text-[#FDF9F0]/80">
           {archetype.recognitionHook}
         </p>
       </div>
 
       {/* You Probably */}
       <div className="flex flex-col gap-2">
-        <p className=" text-[16px] font-switzer text-[#BC9313]">
+        <p className=" text-[14px] md:text-[16px] font-switzer text-[#BC9313]">
           You Probably
         </p>
 
