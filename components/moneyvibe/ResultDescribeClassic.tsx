@@ -12,10 +12,26 @@ interface ResultDescribeClassicProps {
 const ResultDescribeClassic: React.FC<ResultDescribeClassicProps> = ({
   data,
 }) => {
-  const [activeTrait, setActiveTrait] = useState<{
-    title: keyof typeof data.traits;
-    level: string;
-  } | null>(null);
+const [activeTrait, setActiveTrait] = useState<{
+  title: keyof typeof data.traits;
+  level: string;
+} | null>(null);
+
+const handleActiveTraitChange = (trait: {
+  title: keyof typeof data.traits;
+  level: string;
+}) => {
+  setActiveTrait((prev) => {
+    if (
+      prev?.title === trait.title &&
+      prev?.level === trait.level
+    ) {
+      return prev; // ❌ prevent re-render loop
+    }
+    return trait;
+  });
+};
+
 
   return (
     <div className="flex flex-col gap-6">
@@ -23,12 +39,8 @@ const ResultDescribeClassic: React.FC<ResultDescribeClassicProps> = ({
       <div className="hidden md:block">
         <VibeCompase
           traits={data.traits}
-          onActiveTraitChange={(trait) =>
-            setActiveTrait({
-              title: trait.title,
-              level: trait.level,
-            })
-          }
+           onActiveTraitChange={handleActiveTraitChange}
+
         />
       </div>
       <div className="text-[14px] font-switzer font-semibold text-[#BC9313] block md:hidden">
@@ -38,12 +50,9 @@ const ResultDescribeClassic: React.FC<ResultDescribeClassicProps> = ({
       <div className="block md:hidden">
         <VibeGraphMobile
           traits={data.traits}
-          onActiveTraitChange={(trait) =>
-            setActiveTrait({
-              title: trait.title,
-              level: trait.level,
-            })
-          }
+       onActiveTraitChange={handleActiveTraitChange}
+
+          
         />
       </div>
       <div

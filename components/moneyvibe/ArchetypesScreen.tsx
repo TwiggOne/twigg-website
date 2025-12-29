@@ -6,15 +6,17 @@ import ArchetypesHeader from "./ArchetypesHeader";
 import Image from "next/image";
 import { PointerLogo } from "@/utils/SvgUtils";
 import SuccessModal from "./SuccessModal";
+import axios from "axios";
 
 type ArchetypesScreenProps = {
   archetypes: MoneyVibeArchetype[];
+  id:number
   onBack: () => void;
 };
 
 export default function ArchetypesScreen({
   archetypes,
-  onBack,
+  onBack,id
 }: ArchetypesScreenProps) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -78,11 +80,33 @@ export default function ArchetypesScreen({
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  const handleUpdateVibe = () => {
-    setIsModalOpen(true);
-    // Add your logic to update the vibe here
-    console.log("Updating vibe to:", activeArchetype.name);
-  };
+const handleUpdateVibe = async () => {
+  if (!activeArchetype) return;
+  setIsModalOpen(true);
+
+  try {
+    const payload = {
+      waitlistEntryId: id, // pass the id prop from parent
+      user_selected_archetype: activeArchetype.name,
+    };
+
+    console.log("Sending user selected archetype:", payload);
+
+    const response = await axios.put(
+      "https://api.twigg-dev.one/api/v1/moneyvibe/archetype",
+      payload,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log("Archetype updated successfully:", response.data);
+  } catch (error) {
+    console.error("Failed to update archetype:", error);
+  }
+};
 
   return (
     <>
@@ -144,7 +168,7 @@ export default function ArchetypesScreen({
             <div className="flex flex-col gap-2">
               <div className="flex flex-row gap-2 items-center">
                 <Image
-                  src={activeArchetype.icon}
+                  src={activeArchetype.pri_icon}
                   alt={activeArchetype.title}
                   height={33}
                   width={33}
@@ -211,7 +235,7 @@ export default function ArchetypesScreen({
           onClick={handleUpdateVibe}
           className="max-w-[287px] mx-auto rounded-[10px] px-[24px] py-[10px] flex items-center justify-center text-[#BC9313] font-semibold font-switzer text-[12px] md:text-[14px] bg-[rgba(188,147,19,0.05)] border border-[#BC9313]/60 backdrop-blur-[50px] hover:bg-[rgba(188,147,19,0.1)] transition-colors cursor-pointer"
         >
-I&apos;m more of this type
+          I&apos;m more of this type
         </button>
       </div>
 

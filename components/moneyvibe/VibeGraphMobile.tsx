@@ -49,15 +49,15 @@ const VibeGraphMobile: React.FC<VibeGraphMobileProps> = ({
     }
   }, [activeTrait, onActiveTraitChange]);
   const visibleItems = useMemo(() => {
-    if (!activeTrait) return items.slice(0, 6);
+    if (!activeTrait) return items.slice(0, 7);
 
     const others = items.filter((item) => item.title !== activeTrait.title);
 
-    return [activeTrait, ...others].slice(0, 6);
+    return [activeTrait, ...others].slice(0, 7);
   }, [items, activeTrait]);
 
   return (
-    <div className="w-full max-w-[340px] py-[24px] px-[18px] rounded-[16px] border border-[#BC9313]/25 bg-[#0E2A1F] p-4">
+    <div className="w-full  py-[24px] px-[18px] rounded-[16px] border border-[#BC9313]/25 bg-[#0E2A1F] p-4">
       {/* Graph Container */}
       <div className="flex gap-1">
         {/* Y-axis labels */}
@@ -87,7 +87,7 @@ const VibeGraphMobile: React.FC<VibeGraphMobileProps> = ({
 
           {/* Bars Container */}
           <div className="relative h-[120px]">
-            <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-3">
+<div className="absolute bottom-0 left-0 right-0 flex items-end justify-between">
               {visibleItems.map((item, index) => {
                 const isActive = item.title === activeTrait.title;
                 // Zig-zag pattern: even indices on top, odd on bottom
@@ -111,7 +111,7 @@ const VibeGraphMobile: React.FC<VibeGraphMobileProps> = ({
 
                       {/* Bar */}
                       <div
-                        className={`w-[28px] bg-gradient-to-b
+                        className={`w-[18px] bg-gradient-to-b
       from-[#BC9313] to-[#564309]
       ${LEVEL_HEIGHT[item.level]}
       ${isActive ? "" : ""}

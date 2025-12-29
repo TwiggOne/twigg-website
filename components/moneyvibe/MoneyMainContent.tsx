@@ -25,9 +25,11 @@ export type UserAnswer = {
 };
 
 type MoneyMainContentProps = {
-  onComplete?: (result: MoneyVibeEvaluationResponse) => void;
+  onComplete?: (data: {
+    result: MoneyVibeEvaluationResponse;
+    waitlistEntryId: number;
+  }) => void;
 };
-
 const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
   const [sections, setSections] = useState<ApiSection[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -305,7 +307,11 @@ const topicProgress = useMemo(() => {
                       // ✅ CLEAR LOCAL CACHE
 
                       // ✅ SEND RESULT TO PARENT
-                      onComplete?.(res.data);
+onComplete?.({
+  result: res.data,
+  waitlistEntryId,
+});
+
                     } catch (error) {
                       console.error("Evaluation submit failed:", error);
                       setSendDataForResults(false);

@@ -36,7 +36,7 @@ const ArchetypesHeader = forwardRef<
         height={20}
         width={20}
         alt={archetype.title}
-        src={archetype.icon}
+        src={archetype.sec_icon}
       />
       <p
         className={`text-[12px] md:text-[14px] font-medium font-switzer whitespace-nowrap ${

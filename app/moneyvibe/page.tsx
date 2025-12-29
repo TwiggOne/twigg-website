@@ -14,6 +14,7 @@ const Page: React.FC = () => {
   const [result, setResult] = useState<MoneyVibeEvaluationResponse | null>(
     null
   );
+  const [waitlistEntryId, setWaitlistEntryId] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen relative mx-auto w-full py-[41px] flex flex-col gap-[56px] items-center md:justify-center">
@@ -21,8 +22,9 @@ const Page: React.FC = () => {
         <div className="max-w-7xl mx-auto w-full py-[41px] flex flex-col gap-[56px] items-center">
           <MoneyVibeHeader />
           <MoneyMainContent
-            onComplete={(response) => {
-              setResult(response);
+            onComplete={({ result, waitlistEntryId }) => {
+              setResult(result);
+              setWaitlistEntryId(waitlistEntryId);
               setIsCompleted(true);
             }}
           />
@@ -36,6 +38,7 @@ const Page: React.FC = () => {
             />
           ) : (
             <ArchetypesScreen
+              id={waitlistEntryId ?? 0}
               archetypes={result?.archetypes.all_archetypes ?? []}
               onBack={() => setShowArchetypes(false)}
             />

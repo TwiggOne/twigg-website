@@ -21,8 +21,8 @@ export type MoneyVibeArchetype = {
   title: string;
   description: string;
   traits: string;
-  icon: string;
-  recognitionHook: string;
+ pri_icon: string;       // primary icon from API
+  sec_icon: string;    recognitionHook: string;
   youProbably: string[];
   whatThisMeans: string[];
   watchOutFor: string;

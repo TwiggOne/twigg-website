@@ -53,7 +53,7 @@ export default function ResultCard({ result, onExplore }: ResultCardProps) {
         </div>
         <NavigationResultTab onTabChange={(tab) => setActiveTab(tab)} />
         {showImage && imageUrl && (
-          <div className="relative w-[447px] h-[193px] rounded-[20px] overflow-hidden">
+          <div className="relative w-full h-[190px] md:w-[447px] md:h-[193px] rounded-[20px] overflow-hidden">
             <Image
               key={imageUrl}
               src={imageUrl}
@@ -67,8 +67,8 @@ export default function ResultCard({ result, onExplore }: ResultCardProps) {
 
         {activeTab === "Bollywood" && (
           <ResultDescribeVibe
-            icon={result.archetypes.primary.icon}
-            title={result.archetypes.primary.title}
+            icon={result.archetypes.primary.pri_icon}
+            title={result.bollywoodVibe.primary.title}
             subtitle={`Like ${result.bollywoodVibe.primary.character}`}
             personality={result.bollywoodVibe.primary.personality}
             moneyWise={result.bollywoodVibe.primary.moneyWise}
@@ -77,8 +77,8 @@ export default function ResultCard({ result, onExplore }: ResultCardProps) {
 
         {activeTab === "Cricket" && (
           <ResultDescribeVibe
-            icon={result.archetypes.primary.icon}
-            title={result.archetypes.primary.title}
+            icon={result.archetypes.primary.pri_icon}
+            title={result.cricketVibe.primary.title}
             subtitle={`Like ${result.cricketVibe.primary.player}`}
             personality={result.cricketVibe.primary.personality}
             moneyWise={result.cricketVibe.primary.moneyWise}

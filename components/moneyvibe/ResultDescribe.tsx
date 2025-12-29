@@ -24,9 +24,9 @@ export default function ResultDescribeVibe({
             <p className="text-[22px] md:text-[28px] font-semibold font-bricolage text-[#BC9313]">
               {title}
             </p>
-            <p className="text-[10px] md:text-[12px] font-switzer text-[#FDF9F0]/50">
+            {/* <p className="text-[10px] md:text-[12px] font-switzer text-[#FDF9F0]/50">
               {subtitle}
-            </p>
+            </p> */}
           </div>
         </div>
 
