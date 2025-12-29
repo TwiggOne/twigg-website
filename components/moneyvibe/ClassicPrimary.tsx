@@ -20,7 +20,7 @@ const ClassicPrimary: React.FC<ClassicPrimaryProps> = ({ archetype }) => {
           height={43}
           width={43}
           alt={archetype.title}
-          src={archetype.icon}
+          src={archetype.pri_icon}
         />
 
         <p className="mt-1 text-[22px] md:text-[24px] font-semibold font-bricolage text-[#BC9313]">
