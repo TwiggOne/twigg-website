@@ -211,7 +211,7 @@ export default function ArchetypesScreen({
           onClick={handleUpdateVibe}
           className="max-w-[287px] mx-auto rounded-[10px] px-[24px] py-[10px] flex items-center justify-center text-[#BC9313] font-semibold font-switzer text-[12px] md:text-[14px] bg-[rgba(188,147,19,0.05)] border border-[#BC9313]/60 backdrop-blur-[50px] hover:bg-[rgba(188,147,19,0.1)] transition-colors cursor-pointer"
         >
-          I'm more of this type
+I&apos;m more of this type
         </button>
       </div>
 
