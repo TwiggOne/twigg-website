@@ -132,7 +132,7 @@ export default function MoneyVibeForm({ onComplete }: MoneyVibeFormProps) {
   };
 
   return (
-    <div className="flex h-full max-w-[356px] flex-col justify-between p-[40px] md:p-4">
+    <div className="flex h-full max-w-[356px] flex-col justify-between md:mx-auto p-[40px] md:p-4">
       <h2 className="text-[#FDF9F0] text-[20px] font-medium font-bricolage  leading-tight">
         Please enter your details
         <br />

@@ -8,6 +8,7 @@ type AnswerItemProps = {
   icon: string;
   label: string;
   value: string;
+  selected: boolean;
   onSelectComplete: (value: string) => void;
 };
 
@@ -15,23 +16,28 @@ const AnswerItem: React.FC<AnswerItemProps> = ({
   icon,
   label,
   value,
+  selected,
   onSelectComplete,
 }) => {
-  const [selected, setSelected] = useState(false);
   const [animating, setAnimating] = useState(false);
 
-  const handleSelect = () => {
-    if (animating) return;
+const handleSelect = () => {
+  // If already selected → just go next immediately
+  if (selected && !animating) {
+    onSelectComplete(value);
+    return;
+  }
 
-    setAnimating(true);
-    setSelected(true);
+  if (animating) return;
 
-    setTimeout(() => {
-      onSelectComplete(value);
-      setAnimating(false);
-      setSelected(false);
-    }, 700); // must match animation length
-  };
+  setAnimating(true);
+
+  setTimeout(() => {
+    onSelectComplete(value);
+    setAnimating(false);
+  }, 700);
+};
+
 
   return (
     <motion.div
@@ -42,7 +48,7 @@ const AnswerItem: React.FC<AnswerItemProps> = ({
           ? "rgba(188,147,19,0.10)"
           : "rgba(255,255,255,1)",
       }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.25 }}
       className="
         w-full h-full
         p-[22px]
@@ -57,7 +63,7 @@ const AnswerItem: React.FC<AnswerItemProps> = ({
       {/* ICON */}
       <motion.div
         animate={
-          selected
+          animating
             ? {
                 y: [0, 12, 12, 12, 0],
                 scale: [1, 1, 1.5, 1, 1],
@@ -75,10 +81,10 @@ const AnswerItem: React.FC<AnswerItemProps> = ({
         </div>
       </motion.div>
 
-      {/* TEXT */}
+      {/* LABEL */}
       <motion.h3
-        animate={{ opacity: selected ? 0 : 1 }}
-        transition={{ duration: 0.6 }}
+        animate={{ opacity: animating ? 0 : 1 }}
+        transition={{ duration: 0.2 }}
         className="text-[10px] text-center md:text-[14px] text-[#1A1A1A]/80 font-medium font-switzer leading-tight"
       >
         {label}

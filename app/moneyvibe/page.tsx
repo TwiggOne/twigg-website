@@ -3,7 +3,12 @@
 import React, { useState } from "react";
 import MoneyMainContent from "@/components/moneyvibe/MoneyMainContent";
 import MoneyVibeHeader from "@/components/moneyvibe/MoneyVibeHeader";
-import { CompletedBgLogo, MoneyVibeBg, ResultBgMobile } from "@/utils/SvgUtils";
+import {
+  CompletedBgLogo,
+  MoneyVibeBg,
+  ResultBgMobile,
+  UpArrow,
+} from "@/utils/SvgUtils";
 import ResultCard from "@/components/moneyvibe/ResultCard";
 import ArchetypesScreen from "@/components/moneyvibe/ArchetypesScreen";
 import { MoneyVibeEvaluationResponse } from "@/components/moneyvibe/TopicData";
@@ -17,9 +22,9 @@ const Page: React.FC = () => {
   const [waitlistEntryId, setWaitlistEntryId] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen relative mx-auto w-full py-[41px] flex flex-col gap-[56px] items-center md:justify-center">
+    <div className="min-h-screen relative mx-auto w-full py-[41px] flex flex-col gap-[56px] items-center ">
       {!isCompleted ? (
-        <div className="max-w-7xl mx-auto w-full py-[41px] flex flex-col gap-[56px] items-center">
+        <div className="max-w-7xl mx-auto w-full py-[41px] flex flex-col gap-[56px] items-center h-full">
           <MoneyVibeHeader />
           <MoneyMainContent
             onComplete={({ result, waitlistEntryId }) => {
@@ -37,11 +42,15 @@ const Page: React.FC = () => {
               onExplore={() => setShowArchetypes(true)}
             />
           ) : (
-            <ArchetypesScreen
-              id={waitlistEntryId ?? 0}
-              archetypes={result?.archetypes.all_archetypes ?? []}
-              onBack={() => setShowArchetypes(false)}
-            />
+            <>
+              {" "}
+              <ArchetypesScreen
+                id={waitlistEntryId ?? 0}
+                archetypes={result?.archetypes.all_archetypes ?? []}
+                onBack={() => setShowArchetypes(false)}
+              />
+           
+            </>
           )}
         </div>
       )}

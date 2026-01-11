@@ -4,9 +4,10 @@ import { useState, useMemo, useRef } from "react";
 import { MoneyVibeArchetype } from "@/components/moneyvibe/TopicData";
 import ArchetypesHeader from "./ArchetypesHeader";
 import Image from "next/image";
-import { PointerLogo } from "@/utils/SvgUtils";
+import { PointerLogo, UpArrow } from "@/utils/SvgUtils";
 import SuccessModal from "./SuccessModal";
 import axios from "axios";
+import { ArrowLeftIcon } from "lucide-react";
 
 type ArchetypesScreenProps = {
   archetypes: MoneyVibeArchetype[];
@@ -110,9 +111,20 @@ const handleUpdateVibe = async () => {
 
   return (
     <>
-      <div className="max-w-[654px] max-md:mx-[22px] md:bg-[rgba(253,249,240,0.02)] md:border md:border-[#BC9313]/20 w-full flex flex-col gap-6 p-8 rounded-[60px] md:backdrop-blur-[50px] items-center">
+      <div className="md:relative max-w-[654px] md:mt-[100px] max-md:mx-[22px] md:bg-[rgba(253,249,240,0.02)] md:border md:border-[#BC9313]/20 w-full flex flex-col gap-6 p-8 rounded-[60px] md:backdrop-blur-[50px] items-center">
         {/* ================= Archetypes Header ================= */}
+                <div
+                  onClick={onBack}
+                  className="hidden cursor-pointer absolute  z-50  -left-20 top-10 shadow-md bg-[#BC9313]/20 border border-[#BC9313]/40 h-12 w-12 md:flex justify-center items-center rounded-full"
+                >
+                  <div className="w-[20px] h-[27px] text-[#BC9313] rotate-180">
+                    <UpArrow right />
+                  </div>
+                </div>
         <div className="mx-auto w-full max-w-[458px] flex flex-col text-[22px] md:text-[36px] leading-tight font-semibold font-bricolage text-left">
+          <div onClick={onBack}>
+            <ArrowLeftIcon className="text-[#FDF9F0] text-[24px] mb-4.5"/>
+          </div>
           <p className="text-[#BC9313]">Check Out the</p>
           <p className="text-[#FFFBF2]">Other MoneyVibes</p>
         </div>

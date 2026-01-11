@@ -29,17 +29,14 @@ export default function ResultCard({ result, onExplore }: ResultCardProps) {
   return (
     <div
       className={`
-    md:mt-[20px]
+    md:mt-[100px]
     pt-[90px] md:pt-[33px]
     px-[18px] pb-[44px] md:p-[44px]
     w-full items-start flex flex-col
     md:rounded-[60px]
     md:backdrop-blur-[50px]
-    ${
-      activeTab !== "Classic"
-        ? "md:bg-[rgba(253,249,240,0.02)] md:border border-[#BC9313]/20"
-        : ""
-    }
+   md:bg-[rgba(253,249,240,0.02)] md:border border-[#BC9313]/20
+    
   `}
     >
       <div className="flex flex-col  max-w-[487px] w-full mx-auto gap-6">
