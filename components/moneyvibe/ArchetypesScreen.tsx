@@ -121,8 +121,8 @@ const handleUpdateVibe = async () => {
                     <UpArrow right />
                   </div>
                 </div>
-        <div className="mx-auto w-full max-w-[458px] flex flex-col text-[22px] md:text-[36px] leading-tight font-semibold font-bricolage text-left">
-          <div onClick={onBack}>
+        <div className=" mx-auto w-full max-w-[458px] flex flex-col text-[22px] md:text-[36px] leading-tight font-semibold font-bricolage text-left">
+          <div onClick={onBack} className="md:hidden">
             <ArrowLeftIcon className="text-[#FDF9F0] text-[24px] mb-4.5"/>
           </div>
           <p className="text-[#BC9313]">Check Out the</p>
