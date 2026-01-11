@@ -102,7 +102,7 @@ const VibeGraphMobile: React.FC<VibeGraphMobileProps> = ({
                       {/* Label on top of bar */}
                       {index % 2 === 0 && (
                         <span
-                          className={`mb-[6px] text-[9px] whitespace-nowrap
+                          className={`mb-[6px] text-[9px] md:text-[12px] whitespace-nowrap
       ${isActive ? "text-[#FDF9F0]" : "text-[#FDF9F0]"}`}
                         >
                           {item.title}
@@ -111,7 +111,7 @@ const VibeGraphMobile: React.FC<VibeGraphMobileProps> = ({
 
                       {/* Bar */}
                       <div
-                        className={`w-[18px] bg-gradient-to-b
+                        className={`w-[18px] md:w-[28px] bg-gradient-to-b
       from-[#BC9313] to-[#564309]
       ${LEVEL_HEIGHT[item.level]}
       ${isActive ? "" : ""}
@@ -122,7 +122,7 @@ const VibeGraphMobile: React.FC<VibeGraphMobileProps> = ({
                     {/* Always show trait name at bottom */}
                     {/* Bottom label — EVEN index only */}
                     {index % 2 !== 0 && (
-                      <span className="text-[#FDF9F0] text-[9px] text-center absolute -bottom-[18px] left-1/2 -translate-x-1/2 whitespace-nowrap">
+                      <span className="text-[#FDF9F0] md:text-[12px] text-[9px] text-center absolute -bottom-[18px] left-1/2 -translate-x-1/2 whitespace-nowrap">
                         {item.title}
                       </span>
                     )}

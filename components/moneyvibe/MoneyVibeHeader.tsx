@@ -2,7 +2,7 @@ import React from "react";
 
 const MoneyVibeHeader = () => {
   return (
-    <div className="flex-row gap-2 flex  md:pt-10">
+    <div className="flex-row gap-2 flex pt-6  md:pt-10 max-md:pl-[38px]">
       <h3 className="text-[20px] md:text-[40px]  text-[#FDF9F0] font-semibold font-bricolage">
         Let’s find your
       </h3>

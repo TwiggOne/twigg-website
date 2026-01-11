@@ -34,20 +34,20 @@ const handleActiveTraitChange = (trait: {
 
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col md:gap-4 gap-6">
       <ClassicPrimary archetype={data.archetypes.primary} />
-      <div className="hidden md:block">
+      {/* <div className="hidden md:block">
         <VibeCompase
           traits={data.traits}
            onActiveTraitChange={handleActiveTraitChange}
 
         />
-      </div>
-      <div className="text-[14px] font-switzer font-semibold text-[#BC9313] block md:hidden">
+      </div> */}
+      <div className="text-[14px] md:text-[20px] font-switzer font-semibold text-[#BC9313]">
         Your Money Compass
       </div>
 
-      <div className="block md:hidden">
+      <div className="max-w-[451px] w-full">
         <VibeGraphMobile
           traits={data.traits}
        onActiveTraitChange={handleActiveTraitChange}
@@ -55,7 +55,7 @@ const handleActiveTraitChange = (trait: {
           
         />
       </div>
-      <div
+      {/* <div
         className="hidden md:flex max-w-[306px] w-full  rounded-[8px] flex-row
   border-x border-b border-t-0 border-[#BC9313]/20
   px-4 py-2 items-center justify-between leading-tight"
@@ -76,9 +76,9 @@ const handleActiveTraitChange = (trait: {
             </p>
           </div>
         )}
-      </div>
+      </div> */}
 
-      <div className="md:absolute -right-[30%] bottom-[15%]">
+      <div className="w-full max-w-[451px]">
         <WhatThisMeans
           whatThisMeans={data.archetypes.primary.whatThisMeans}
           watchOutFor={data.archetypes.primary.watchOutFor}

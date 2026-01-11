@@ -18,6 +18,8 @@ import { useIsDesktop } from "./IsDesktop";
 import { saveProgress, loadProgress, clearProgress } from "./SaveProgessMoney";
 import { LoadingTwiggLogo } from "./LoadingSvg";
 import { IntroCard } from "./IntoCard";
+import { UpArrow } from "@/utils/SvgUtils";
+import { ArrowLeftIcon } from "lucide-react";
 
 export type UserAnswer = {
   questionId: string;
@@ -33,6 +35,8 @@ type MoneyMainContentProps = {
 const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
   const [sections, setSections] = useState<ApiSection[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
+
   const [sendDataForResults, setSendDataForResults] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [answers, setAnswers] = useState<UserAnswer[]>([]);
@@ -96,7 +100,15 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
 
   const visibleStack = stack.slice(activeIndex, activeIndex + 3);
   const isDesktop = useIsDesktop();
-  const goNext = () => setActiveIndex((prev) => prev + 1);
+  const goNext = () => {
+    setDirection(1);
+    setActiveIndex((prev) => prev + 1);
+  };
+  const goPrev = () => {
+    if (activeIndex === 0) return;
+    setDirection(-1);
+    setActiveIndex((prev) => prev - 1);
+  };
 
   const isFlowComplete = !isLoading && activeIndex >= stack.length;
 
@@ -105,7 +117,19 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
     const normalized = normalizeAnswer(value);
 
     setAnswers((prev) => {
-      const updatedAnswers = [...prev, { questionId, answer: normalized }];
+      const exists = prev.find((a) => a.questionId === questionId);
+
+      let updatedAnswers: UserAnswer[];
+
+      if (exists) {
+        // 🔁 UPDATE existing answer
+        updatedAnswers = prev.map((a) =>
+          a.questionId === questionId ? { ...a, answer: normalized } : a
+        );
+      } else {
+        // ➕ ADD new answer
+        updatedAnswers = [...prev, { questionId, answer: normalized }];
+      }
 
       saveProgress({
         answers: updatedAnswers,
@@ -141,34 +165,34 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
 
   /* ================= TOPIC PROGRESS ================= */
   /* ================= TOPIC PROGRESS ================= */
-const topicProgress = useMemo(() => {
-  if (!sections.length) return [];
+  const topicProgress = useMemo(() => {
+    if (!sections.length) return [];
 
-  const progressMap = new Map<string, number>();
-  sections.forEach((s) => progressMap.set(s.id, 0));
+    const progressMap = new Map<string, number>();
+    sections.forEach((s) => progressMap.set(s.id, 0));
 
-  for (let i = 0; i < activeIndex; i++) {
-    const item = stack[i];
-    if (item?.type === "question") {
-      progressMap.set(
-        item.sectionId,
-        (progressMap.get(item.sectionId) || 0) + 1
-      );
+    for (let i = 0; i < activeIndex; i++) {
+      const item = stack[i];
+      if (item?.type === "question") {
+        progressMap.set(
+          item.sectionId,
+          (progressMap.get(item.sectionId) || 0) + 1
+        );
+      }
     }
-  }
 
-  return sections.map((s) => ({
-    title: s.title,
-    iconUrl: s.minorImage,
-    progress: (progressMap.get(s.id) || 0) / s.questions.length,
-    isActive:
-      stack[activeIndex]?.type === "question"
-        ? stack[activeIndex].sectionId === s.id
-        : stack[activeIndex]?.type === "topic"
-        ? stack[activeIndex].section.id === s.id
-        : false, // intro card has no active section
-  }));
-}, [activeIndex, stack, sections]);
+    return sections.map((s) => ({
+      title: s.title,
+      iconUrl: s.minorImage,
+      progress: (progressMap.get(s.id) || 0) / s.questions.length,
+      isActive:
+        stack[activeIndex]?.type === "question"
+          ? stack[activeIndex].sectionId === s.id
+          : stack[activeIndex]?.type === "topic"
+          ? stack[activeIndex].section.id === s.id
+          : false, // intro card has no active section
+    }));
+  }, [activeIndex, stack, sections]);
 
   /* ================= LOADING ================= */
   if (isLoading) {
@@ -197,17 +221,37 @@ const topicProgress = useMemo(() => {
   return (
     <div
       className="
-      flex w-full flex-col-reverse md:flex-row justify-between
+      flex w-full flex-col justify-between  
       md:rounded-[60px]
-      gap-[20px] md:gap-0
-      md:px-[52px] md:py-[61px]
+      gap-[20px] md:max-w-[1065px] md:h-full
+      md:px-[52px] md:py-[48px]
       md:bg-[rgba(253,249,240,0.02)]
       md:backdrop-blur-[50px]
+      md:gap-[48px]
       md:border md:border-[#BC9313]/20
     "
     >
+      {activeIndex > 0 && isFlowComplete && (
+        <div onClick={goPrev}>
+          <ArrowLeftIcon className="text-[#FDF9F0] text-[24px] mb-4.5 absolute top-17 left-6" />
+        </div>
+      )}
+      <div className="  flex items-center  md:justify-center max-md:pl-[38px] ">
+        <TopicList topics={topicProgress} />
+      </div>
+
+      {activeIndex > 0 && (
+        <div
+          onClick={goPrev}
+          className="hidden cursor-pointer absolute  z-50  left-20 top-1/2 shadow-md bg-[#BC9313]/20 border border-[#BC9313]/40 h-12 w-12 md:flex justify-center items-center rounded-full"
+        >
+          <div className="w-[20px] h-[27px] text-[#BC9313] rotate-180">
+            <UpArrow right />
+          </div>
+        </div>
+      )}
       {/* MAIN STACK */}
-      <div className="relative flex-1 h-[506px]">
+      <div className="relative  h-[440px] md:h-[506px] md:max-w-[681px] md:w-full md:mx-auto">
         <AnimatePresence>
           {!isFlowComplete &&
             visibleStack.map((item, index) => {
@@ -225,10 +269,21 @@ const topicProgress = useMemo(() => {
                       ? `topic-${item.section.id}`
                       : item.question.questionId
                   }
-                  initial={{ opacity }}
-                  animate={{ opacity }}
-                  exit={{ x: -300, opacity: 0 }}
-                  transition={{ duration: 0.4 }}
+                  exit={{
+                    x:
+                      item.type === "topic" || item.type === "intro"
+                        ? -300
+                        : direction === 1
+                        ? -300
+                        : -300,
+                    opacity: 0,
+                  }}
+                  initial={{
+                    x: direction === 1 ? 0 : -300,
+                    opacity,
+                  }}
+                  animate={{ x: 0, opacity }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                   style={{ zIndex, left: offset, scale }}
                   className="absolute w-full px-[40px] pr-[60px] p-[20px] md:p-0"
                 >
@@ -245,6 +300,11 @@ const topicProgress = useMemo(() => {
                   ) : (
                     <QuestionItem
                       question={item.question}
+                      selectedAnswer={
+                        answers.find(
+                          (a) => a.questionId === item.question.questionId
+                        )?.answer
+                      }
                       onAnswer={(value) =>
                         handleAnswer(item.question.questionId, value)
                       }
@@ -307,11 +367,10 @@ const topicProgress = useMemo(() => {
                       // ✅ CLEAR LOCAL CACHE
 
                       // ✅ SEND RESULT TO PARENT
-onComplete?.({
-  result: res.data,
-  waitlistEntryId,
-});
-
+                      onComplete?.({
+                        result: res.data,
+                        waitlistEntryId,
+                      });
                     } catch (error) {
                       console.error("Evaluation submit failed:", error);
                       setSendDataForResults(false);
@@ -324,9 +383,17 @@ onComplete?.({
       </div>
 
       {/* SIDE LIST */}
-      <div className=" md:pl-0 flex items-center md:w-[30%] justify-center">
-        <TopicList topics={topicProgress} />
-      </div>
+      {isFlowComplete && <div className="md:hidden h-14"></div>}
+      {activeIndex > 0 && !isFlowComplete && (
+        <div
+          onClick={goPrev}
+          className="md:hidden cursor-pointer mt-[24px]  shadow-md bg-[#BC9313]/20 border border-[#BC9313]/40 h-12 w-12 ml-[23px] flex justify-center items-center rounded-full"
+        >
+          <div className="w-[20px] h-[27px] text-[#BC9313] rotate-180">
+            <UpArrow right />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

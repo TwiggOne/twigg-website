@@ -3,6 +3,8 @@ import { ApiQuestion } from "./TopicData";
 
 type QuestionItemProps = {
   question: ApiQuestion;
+    selectedAnswer?: string;
+
   onAnswer: (value: string) => void;
 };
 
@@ -33,6 +35,7 @@ const ANSWERS = [
 
 const QuestionItem: React.FC<QuestionItemProps> = ({
   question,
+  selectedAnswer,
   onAnswer,
 }) => {
   return (
@@ -57,6 +60,8 @@ h-[440px]        md:h-[506px]
           <AnswerItem
             key={answer.value}
             value={answer.value}
+                selected={selectedAnswer === answer.label}
+
             icon={answer.iconPath}
             label={answer.label}
             onSelectComplete={onAnswer}

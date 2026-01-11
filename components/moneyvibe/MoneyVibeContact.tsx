@@ -132,11 +132,10 @@ export default function MoneyVibeForm({ onComplete }: MoneyVibeFormProps) {
   };
 
   return (
-    <div className="flex h-full max-w-[356px] flex-col justify-between p-[40px] md:p-4">
-      <h2 className="text-[#FDF9F0] text-[20px] font-medium font-bricolage  leading-tight">
-        Please enter your details
-        <br />
-        to know your MoneyVibe
+    <div className="flex h-full max-w-[356px] flex-col justify-between md:mx-auto p-[40px] md:p-4">
+      <h2 className="text-[#FDF9F0] md:text-center text-[20px] font-medium font-bricolage  leading-tight">
+        Please enter your details to know your MoneyVibe
+      
       </h2>
 
       <div className="space-y-4">
@@ -168,7 +167,7 @@ export default function MoneyVibeForm({ onComplete }: MoneyVibeFormProps) {
     focus:ring-2
     focus:ring-[#BC9313]/40
     backdrop-blur-[12px]
-    text-[12px]
+    text-[14px]
   "
             style={{
               boxShadow: `
@@ -212,7 +211,7 @@ export default function MoneyVibeForm({ onComplete }: MoneyVibeFormProps) {
     focus:ring-2
     focus:ring-[#BC9313]/40
     backdrop-blur-[12px]
-    text-[12px]
+    text-[14px]
   "
             style={{
               boxShadow: `
@@ -256,7 +255,7 @@ export default function MoneyVibeForm({ onComplete }: MoneyVibeFormProps) {
     focus:ring-2
     focus:ring-[#BC9313]/40
     backdrop-blur-[12px]
-    text-[12px]
+    text-[14px]
   "
             style={{
               boxShadow: `
