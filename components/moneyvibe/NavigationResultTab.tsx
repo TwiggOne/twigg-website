@@ -6,7 +6,8 @@ interface NavigationResultTabProps {
   onTabChange?: (tab: Tab) => void;
 }
 
-const TABS: Tab[] = ["Classic", "Bollywood", "Cricket"];
+// const TABS: Tab[] = ["Classic", "Bollywood", "Cricket"];
+const TABS: Tab[] = ["Classic"];
 
 const NavigationResultTab: React.FC<NavigationResultTabProps> = ({
   onTabChange,

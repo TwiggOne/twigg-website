@@ -18,11 +18,10 @@ const TopicList: React.FC<TopicListProps> = ({ topics }) => {
       className="
         flex w-fit   
         flex-row  
-       gap-4  
+       gap-4  max-md:
        md:gap-10
         max-md:overflow-x-auto 
         max-md:flex-nowrap 
-        px-4 md:px-0
         scrollbar-hide
      
         "

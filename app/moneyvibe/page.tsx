@@ -24,7 +24,7 @@ const Page: React.FC = () => {
   return (
     <div className="min-h-screen relative mx-auto w-full py-[41px] flex flex-col gap-[56px] items-center ">
       {!isCompleted ? (
-        <div className="max-w-7xl mx-auto w-full py-[41px] flex flex-col gap-[56px] items-center h-full">
+        <div className="max-w-7xl mx-auto w-full py-[41px] flex flex-col gap-[20px] md:gap-[56px] md:items-center h-full">
           <MoneyVibeHeader />
           <MoneyMainContent
             onComplete={({ result, waitlistEntryId }) => {

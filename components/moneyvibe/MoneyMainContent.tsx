@@ -19,6 +19,7 @@ import { saveProgress, loadProgress, clearProgress } from "./SaveProgessMoney";
 import { LoadingTwiggLogo } from "./LoadingSvg";
 import { IntroCard } from "./IntoCard";
 import { UpArrow } from "@/utils/SvgUtils";
+import { ArrowLeftIcon } from "lucide-react";
 
 export type UserAnswer = {
   questionId: string;
@@ -220,7 +221,7 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
   return (
     <div
       className="
-      flex w-full flex-col justify-between 
+      flex w-full flex-col justify-between  
       md:rounded-[60px]
       gap-[20px] md:max-w-[1065px] md:h-full
       md:px-[52px] md:py-[48px]
@@ -230,9 +231,15 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
       md:border md:border-[#BC9313]/20
     "
     >
-        <div className="  flex items-center  justify-center ">
+      {activeIndex > 0 && isFlowComplete && (
+        <div onClick={goPrev}>
+          <ArrowLeftIcon className="text-[#FDF9F0] text-[24px] mb-4.5 absolute top-17 left-6" />
+        </div>
+      )}
+      <div className="  flex items-center  md:justify-center max-md:pl-[38px] ">
         <TopicList topics={topicProgress} />
       </div>
+
       {activeIndex > 0 && (
         <div
           onClick={goPrev}
@@ -373,11 +380,11 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
               </motion.div>
             ))}
         </AnimatePresence>
-        
       </div>
 
       {/* SIDE LIST */}
-     {activeIndex > 0 && (
+      {isFlowComplete && <div className="md:hidden h-14"></div>}
+      {activeIndex > 0 && !isFlowComplete && (
         <div
           onClick={goPrev}
           className="md:hidden cursor-pointer mt-[24px]  shadow-md bg-[#BC9313]/20 border border-[#BC9313]/40 h-12 w-12 ml-[23px] flex justify-center items-center rounded-full"
