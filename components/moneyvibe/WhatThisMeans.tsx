@@ -15,7 +15,7 @@ const WhatThisMeans: React.FC<WhatThisMeansProps> = ({
       className=" w-full flex flex-col py-[21px] px-[15px]
       border border-[#BC9313]/10
       bg-gradient-to-br from-[#BC9313]/15 via-[#152D23]/20 to-[#152D23]
-      rounded-[20px] gap-[38px]"
+      rounded-[20px] gap-[20px]"
     >
       {/* What this means */}
       <div className="flex flex-col gap-3">
@@ -35,9 +35,11 @@ const WhatThisMeans: React.FC<WhatThisMeansProps> = ({
         </div>
       </div>
 
-      {/* Watch out */}
+      {/* Watch out */
+      }
+      <div className="h-[1px] w-full bg-gradient-to-r from-[#FDF9F0]/0 via-[#FDF9F0]/100 to-[#FDF9F0]/0 opacity-[0.8]" />
+
       <div className="flex flex-col gap-2">
-<div className="h-[1px] w-full bg-gradient-to-r from-[#FDF9F0]/0 via-[#FDF9F0]/100 to-[#FDF9F0]/0 opacity-[0.8" />
         <p className="text-[12px] font-medium text-[#BC9313] font-switzer">
           One thing to watch out for
         </p>
