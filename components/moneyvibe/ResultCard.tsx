@@ -48,7 +48,7 @@ export default function ResultCard({ result, onExplore }: ResultCardProps) {
             Check it in the style you vibe with.
           </h1>
         </div>
-        <NavigationResultTab onTabChange={(tab) => setActiveTab(tab)} />
+        {/* <NavigationResultTab onTabChange={(tab) => setActiveTab(tab)} /> */}
         {showImage && imageUrl && (
           <div className="relative w-full h-[190px] md:w-[447px] md:h-[193px] rounded-[20px] overflow-hidden">
             <Image

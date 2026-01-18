@@ -49,14 +49,15 @@ p-[56px] items-center
           );
         })()}
       </h3>
-      <div
-        className=" p-1.5 px-4 bg-[#BC9313]/10  border border-[#BC9313]/40 rounded-[40px] w-fit flex text-[#BC9313]  justify-end-safe ml-auto absolute bottom-5 right-5 cursor-pointer"
+         <div
         onClick={next}
-      >
-        <div className="w-5 h-5 md:w-6 md:h-6">
-          <UpArrow right />
-        </div>
-      </div>
+                className=" cursor-pointer items-center  justify-end-safe ml-auto absolute bottom-5 right-5  shadow-md bg-[#BC9313]/20 border border-[#BC9313]/40 h-12 w-12 flex rounded-full"
+              >
+                <div className="w-[20px] h-[27px] text-[#BC9313] mx-auto">
+                  <UpArrow right />
+                </div>
+              </div>
+  
     </div>
   );
 };
