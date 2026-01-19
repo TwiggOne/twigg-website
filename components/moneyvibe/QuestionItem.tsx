@@ -57,7 +57,7 @@ h-[440px]        md:h-[506px]
       "
     >
       <h3 className="text-[20px]  md:text-[34px] font-bricolage leading-[100%]">
-        {question.text} {question.direction}
+        {question.text}
       </h3>
 
       <div className="grid grid-cols-2 gap-[12px] md:gap-[18px] md:w-[90%]">
