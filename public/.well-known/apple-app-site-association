@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "4Q924C5V79.com.twigg.app.dev",
+        "paths": ["*"]
+      },
+      {
+        "appID": "4Q924C5V79.com.aadyantx.twigg",
+        "paths": ["*"]
+      }
+    ]
+  }
+}

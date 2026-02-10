@@ -3,9 +3,11 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.twigg.app",
+      "package_name": "com.twigg.app.dev",
       "sha256_cert_fingerprints": [
-        "20:69:1A:D0:F3:31:5F:04:BF:94:02:B7:1F:1A:F6:5C:C8:C6:5E:2C:31:1B:D1:47:56:97:6A:10:0E:B8:BD:58"
+        "99:9F:43:F5:DC:B1:34:FA:B3:13:96:C9:1A:40:E1:39:7C:A4:7F:F5:23:AE:62:10:31:DC:E8:C8:B2:DF:13:99",
+        "20:69:1A:D0:F3:31:5F:04:BF:94:02:B7:1F:1A:F6:5C:C8:C6:5E:2C:31:1B:D1:47:56:97:6A:10:0E:B8:BD:58",
+        "CC:B4:01:14:BE:67:6E:DA:C9:70:6A:43:D9:09:B6:FD:66:D8:E4:23:4C:7D:A9:DF:F2:07:39:A2:EA:90:AA:D7"
       ]
     }
   },
@@ -13,9 +15,11 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.twigg.app.dev",
+      "package_name": "com.aadyantx.twigg",
       "sha256_cert_fingerprints": [
-        "20:69:1A:D0:F3:31:5F:04:BF:94:02:B7:1F:1A:F6:5C:C8:C6:5E:2C:31:1B:D1:47:56:97:6A:10:0E:B8:BD:58"
+        "99:9F:43:F5:DC:B1:34:FA:B3:13:96:C9:1A:40:E1:39:7C:A4:7F:F5:23:AE:62:10:31:DC:E8:C8:B2:DF:13:99",
+        "20:69:1A:D0:F3:31:5F:04:BF:94:02:B7:1F:1A:F6:5C:C8:C6:5E:2C:31:1B:D1:47:56:97:6A:10:0E:B8:BD:58",
+        "CC:B4:01:14:BE:67:6E:DA:C9:70:6A:43:D9:09:B6:FD:66:D8:E4:23:4C:7D:A9:DF:F2:07:39:A2:EA:90:AA:D7"
       ]
     }
   }
