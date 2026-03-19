@@ -5,6 +5,7 @@ import HeroSection from "./HeroSection";
 import { Header } from "./Header";
 import CommingSoon from "./ComingSoon";
 import ProblemSectionMobile from "./ProblemSectionMobile";
+import TryOutSection from "./TryOutSection";
 
 const ProblemSection = dynamic(() => import("./ProblemSection"), { ssr: false });
 const Features = dynamic(() => import("./FeatureSection"), { ssr: false });
@@ -48,7 +49,7 @@ export function Landing() {
 
       <div className="mx-auto max-w-7xl px-[20px] md:px-0">
         <Trust />
-        <CTASection />
+        <TryOutSection />
       </div>
     </div>
   );
