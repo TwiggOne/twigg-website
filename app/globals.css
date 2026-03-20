@@ -166,7 +166,7 @@ body {
   border-radius: inherit;
   background: linear-gradient(
     328.59deg,
-    #152d23 0%,
+    rgb(21, 45, 35) 0%,
     rgba(21, 45, 35, 0.2) 40%,
     rgba(188, 147, 19, 0.3) 100%
   );

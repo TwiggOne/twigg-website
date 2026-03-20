@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { Container } from "../container";
 import Image from "next/image";
 import {
@@ -10,6 +10,9 @@ import {
 } from "@/utils/SvgUtils";
 // NOTE: Assuming 'motion/react' should be 'framer-motion'
 import { motion, Transition, useInView } from "motion/react";
+import TwiggLoopContent from "../ui/components/TwiggLoopContent";
+import TwiggSenseContent from "../ui/components/TwiggSenseContent";
+import TwiggAiContent from "../ui/components/TwiggAiContent";
 
 // =========================================================================
 // Features Component
@@ -131,157 +134,121 @@ export const Features = () => {
 // =========================================================================
 // Feature Cards Wrapper
 // =========================================================================
-function FeaturesCardsWrapper() {
-  const containerRef = useRef(null);
-  // Use a smaller threshold (0.2) to trigger the animation slightly earlier
-  const isInView = useInView(containerRef, { amount: 0.3, once: true });
-
+export function FeaturesCardsWrapper() {
   return (
-    <div
-      ref={containerRef}
-      // FIX: Ensure mobile layout (grid-cols-1) is applied correctly
-      className="grid grid-cols-1 md:grid-cols-3 gap-[23px] justify-center pt-10"
-    >
-      <FeatureCard
-        title="All-In-One Platform"
-        description="Expenses, loans, credit cards, investments and insurance in real time."
-        iconSrc="/Sol_img1.png"
-        position="left"
-        animateIn={isInView} // Pass the visibility status
-      />
-      <FeatureCard
-        title="AI + Expert Hybrid"
-        description="Instant clarity from AI, human expertise for trust and reassurance."
-        iconSrc="/img2.png"
-        position="center"
-        animateIn={isInView} // Pass the visibility status
-      />
-      <FeatureCard
-        title="No More FOMO"
-        description="See how you stack up against peers, learn and grow with context."
-        iconSrc="/Sol_img3.png"
-        position="right"
-        animateIn={isInView} // Pass the visibility status
-      />
+    <div className="grid grid-cols-3 grid-rows-2 gap-y-[33px] gap-x-[16px] w-full">
+      {/* div1 (BIG LEFT) */}
+      <div className="col-start-1 col-end-3 row-start-1 row-end-2">
+        <FeatureCard
+          content={
+            <div className="flex items-end gap-2 h-[80px]">
+              <div className="bg-yellow-500 w-3 h-[70%]" />
+              <div className="bg-yellow-500 w-3 h-[50%]" />
+              <div className="bg-yellow-500 w-3 h-[60%]" />
+              <div className="bg-yellow-500 w-3 h-[40%]" />
+              <div className="bg-yellow-500 w-3 h-[65%]" />
+            </div>
+          }
+          label="Twigg Connect"
+          title="All-in-One Platform One place."
+          description="Bank accounts, investments, insurance, and loans — securely linked in one place via the RBI's Account Aggregator framework and credit bureau. No more app-switching."
+        />
+      </div>
+
+      {/* div2 */}
+      <div className="col-start-3 col-end-4 row-start-1 row-end-2">
+        <FeatureCard
+          content={
+            <div className="flex items-end gap-2 h-[80px]">
+              <div className="bg-yellow-500 w-3 h-[70%]" />
+              <div className="bg-yellow-500 w-3 h-[50%]" />
+              <div className="bg-yellow-500 w-3 h-[60%]" />
+              <div className="bg-yellow-500 w-3 h-[40%]" />
+              <div className="bg-yellow-500 w-3 h-[65%]" />
+            </div>
+          }
+          label="TWIGG PULSE"
+          title="15+ signals. Know before it's a crisis."
+          description="EMI stress, insurance gaps, idle cash, overlapping portfolios."
+        />
+      </div>
+
+      {/* div3 */}
+      <div className="col-start-1 col-end-2 row-start-2 row-end-3">
+        <FeatureCard
+          content={<TwiggSenseContent />}
+          label="Twigg Sense"
+          title={`Fact-check any 
+financial claim.`}
+          description="See a reel, tweet, or tip? Sense checks if it's true — and if it's actually relevant to you and your money."
+        />
+      </div>
+
+      {/* div4 */}
+      <div className="col-start-2 col-end-3 row-start-2 row-end-3">
+        <FeatureCard
+          content={<TwiggAiContent />}
+          label="Twigg AI"
+          title={`Ask finance. 
+Twigg answers.`}
+          description="Your AI co-pilot grounded in your actual data deeply personalised, context-aware, and always on your side. Complex decisions are ring-fenced by vetted human advisors."
+        />
+      </div>
+
+      {/* div5 */}
+      <div className="col-start-3 col-end-4 row-start-2 row-end-3">
+        <FeatureCard
+          content={<TwiggLoopContent />}
+          label="Twigg Loop · Coming Soon"
+          title={`Good decisions
+become habits.`}
+          description="Challenges, streaks, peer circles, and a rewards ecosystem that make financial progress visible, social, and compounding — just like credit card points, for good money behaviour."
+        />
+      </div>
     </div>
   );
 }
 
-// =========================================================================
-// FeatureCard Component
 interface FeatureCardProps {
+  label: string;
   title: string;
   description: string;
-  iconSrc: string;
-  position?: "left" | "center" | "right";
-  animateIn?: boolean; // Use this prop for control
+  content: ReactNode;
 }
-
 export function FeatureCard({
+  label,
   title,
   description,
-  iconSrc,
-  position = "center",
-  animateIn = false, // Default to false
+  content,
 }: FeatureCardProps) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Custom Hook/Logic to determine mobile view
-  useEffect(() => {
-    // Use md breakpoint (768px) for consistency
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  // FIX: Corrected initial horizontal position logic
-  const getInitialX = () => {
-    if (isMobile) return 0; // Mobile: No horizontal offset
-
-    // Desktop: Start off-screen and slide in to final grid position
-    if (position === "left") return "100%"; // Starts from the far left
-    if (position === "right") return "-100%"; // Starts from the far right
-    return 0; // Center card starts in its final horizontal spot
-  };
-
-  // Define the base variants for motion
-  const variants = {
-    hidden: {
-      x: getInitialX(),
-      y: isMobile ? 0 : -300, // Removed vertical offset for mobile, letting the grid handle stacking
-      scale: isMobile ? 1 : 0.4, // Start slightly smaller on desktop
-      opacity: 0,
-    },
-    visible: {
-      x: 0, // Final x position (its final grid column)
-      y: 0, // Final y position
-      scale: 1, // Final scale
-      opacity: 1, // Final opacity
-    },
-  };
-
-  // Calculate delay based on position for staggering
-  const delayMap = {
-    center: 0, // Animate center first
-    left: 1, // Animate left second
-    right: 2, // Animate right last
-  };
-  const delayMapMobile = {
-    center: 1.5, // Animate center first
-    left: 0, // Animate left second
-    right: 3, // Animate right last
-  };
-  const transition = {
-    duration: isMobile ? 0.8 : 1.2, // Faster animation on mobile
-    ease: "easeOut",
-    delay: delayMap[position],
-  };
-
   return (
-    <motion.div
-      whileHover={{ scale: 1.03 }}
-      variants={variants}
-      initial="hidden"
-      animate={animateIn ? "visible" : "hidden"}
-      transition={{
-        duration: isMobile ? 0.8 : 1.2,
-        ease: "easeOut",
-        delay: isMobile ? delayMapMobile[position] : delayMap[position],
-      }}
-      className="feature-card w-full"
-    >
-      <div className="feature-card-inner p-[20px] md:py-[46px] md:px-[41px]">
-        <div
-          className="flex items-center justify-center mb-6"
-          style={{
-            filter: `
-      drop-shadow(0px 73px 29px rgba(0, 0, 0, 0.04))
-      drop-shadow(0px 41px 25px rgba(0, 0, 0, 0.13))
-      drop-shadow(0px 18px 18px rgba(0, 0, 0, 0.21))
-      drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.25))
-    `,
-          }}
-        >
-          <Image
-            src={iconSrc}
-            alt={title}
-            width={291}
-            height={170}
-            className="object-contain w-[240px] h-[140px] md:w-[291px] md:h-[170px]"
-          />
-        </div>
-        <div className="flex flex-col gap-[24px] md:mt-[24px]">
-          <h3 className="text-[24px] font-bricolage font-semibold text-[#FDF9F0] leading-[100%]">
+    <div className="feature-card w-full h-full">
+      <div className="feature-card-inner px-[24px] py-[32px] h-full flex flex-col justify-between">
+        {/* TOP CONTENT */}
+        <div>
+          <p className="font-medium text-[#BC9313] text-[14px] font-switzer">
+            {label}
+          </p>
+
+          <div className="h-[6px]" />
+
+          <h3 className="text-[24px] font-bricolage font-semibold text-[#FDF9F0] leading-[100%] whitespace-pre-line">
             {title}
           </h3>
-          <p className="text-[#FDF9F0]/80 font-switzer text-[18px] leading-[120%]">
+
+          <div className="h-[24px]" />
+
+          <p className="text-[#FDF9F0]/80 font-switzer text-[13px] font-light leading-[120%]">
             {description}
           </p>
         </div>
+
+        {/* BOTTOM CONTENT */}
+        <div className="mt-[37px] w-full">{content}</div>
       </div>
-    </motion.div>
+    </div>
   );
 }
-export default Features
+
+export default Features;
 // NOTE: The rest of the Features and FeaturesCardsWrapper components remain the same as the previous full solution.
