@@ -73,7 +73,7 @@ const TryOutSection = () => {
   );
 
   return (
-    <section className="relative w-full min-h-[600px] bg-[#152D23] flex flex-col lg:flex-row items-center justify-between pt-12 sm:pt-20 px-4 gap-[37px]">
+    <section className="relative w-full min-h-[600px] bg-[#152D23] flex flex-col lg:flex-row items-center justify-between  px-4 gap-[37px]">
       
       {/* LEFT */}
       <div className="flex-1">
@@ -178,6 +178,7 @@ const TryOutSection = () => {
           />
         </motion.div>
       </motion.div>
+      
     </section>
   );
 };

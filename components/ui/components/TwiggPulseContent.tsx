@@ -1,21 +1,18 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 const TwiggPulseContent = () => {
   const data = [
-    { label: "Protection", level: "High", value: 78 },
-    { label: "Cashflow", level: "Medium", value: 56 },
-    { label: "Credit", level: "Medium", value: 52 },
-    { label: "Investments", level: "Low", value: 38 },
-    { label: "Safety", level: "High", value: 61 },
+    { label: "Protection", value: 78 },
+    { label: "Cashflow", value: 56 },
+    { label: "Credit", value: 52 },
+    { label: "Investments", value: 38 },
+    { label: "Safety", value: 61 },
   ];
 
-  const LEVEL_HEIGHT: Record<string, string> = {
-    High: "h-[90px]",
-    Medium: "h-[56px]",
-    Low: "h-[20px]",
-  };
+  const MAX_HEIGHT = 90;
 
   return (
     <div className="w-full px-4 py-1">
@@ -33,26 +30,47 @@ const TwiggPulseContent = () => {
 
           {/* Bars */}
           <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between h-full">
-            {data.map((item, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center justify-end flex-1"
-              >
-                {/* % VALUE */}
-                <span className="text-[10px] text-[#FDF9F0] mb-2 font-switzer">
-                  {item.value}%
-                </span>
+            {data.map((item, index) => {
+              const finalHeight = (item.value / 100) * MAX_HEIGHT;
 
-                {/* BAR (UNCHANGED) */}
+              return (
                 <div
-                  className={`w-[37px] bg-gradient-to-b from-[#BC9313] to-[#564309] ${LEVEL_HEIGHT[item.level]}`}
-                />
-              </div>
-            ))}
+                  key={index}
+                  className="flex flex-col items-center justify-end flex-1"
+                >
+                  {/* % VALUE */}
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{
+                      delay: index * 0.4 + 0.6, // appears after bar grows
+                      duration: 0.3,
+                    }}
+                    viewport={{ once: true }}
+                    className="text-[10px] text-[#FDF9F0] mb-2 font-switzer"
+                  >
+                    {item.value}%
+                  </motion.span>
+
+                  {/* BAR */}
+                  <motion.div
+                    className="w-[37px] bg-gradient-to-b from-[#BC9313] to-[#564309] "
+                    initial={{ height: "4px" }} // start small (~4%)
+                    whileInView={{ height: finalHeight }}
+                    transition={{
+                      delay: index * 0.4, // stagger
+                      duration: 0.6,
+                      ease: "easeOut",
+                    }}
+                    viewport={{ once: true }}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* BOTTOM LABELS (ALIGNED SAME LINE) */}
+        {/* Labels */}
         <div className="flex justify-between">
           {data.map((item, index) => (
             <span

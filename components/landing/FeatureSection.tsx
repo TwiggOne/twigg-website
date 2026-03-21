@@ -67,9 +67,7 @@ export function FeaturesCardsWrapper() {
       {/* div2 */}
       <div className="col-start-3 col-end-4 row-start-1 row-end-2">
         <FeatureCard
-          content={
-          <TwiggPulseContent />
-          }
+          content={<TwiggPulseContent />}
           label="TWIGG PULSE"
           title="15+ signals. Know before it's a crisis."
           description="EMI stress, insurance gaps, idle cash, overlapping portfolios."

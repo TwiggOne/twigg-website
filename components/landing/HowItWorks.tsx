@@ -70,7 +70,7 @@ const StepLabel: React.FC<StepLabelProps> = ({ step, title, isActive }) => {
     <div className="flex flex-row gap-3">
       <div
         className={`w-1 rounded-[4px] ${
-          isActive ? "bg-[#BC9313]" : "bg-[#BC9313]/30"
+          isActive ? "bg-[#BC9313]" : "bg-[#BC9313]/0 "
         }`}
       />
 

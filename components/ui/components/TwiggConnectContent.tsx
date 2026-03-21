@@ -1,5 +1,5 @@
 import { MidCircle, OuterCircle } from "@/utils/SvgUtils";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 
@@ -25,9 +25,56 @@ const Label = ({ text, className = "" }: LabelProps) => {
     </div>
   );
 };
+
 export const TwiggConnectSideContent = () => {
+  // Container controls stagger
+  const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const fadeUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 0,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 2,
+      ease: "easeOut", // ✅ now valid because Variants is applied
+    },
+  },
+};
+
+const mainFade: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.9,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
   return (
-    <div className="relative flex justify-center items-center w-full h-full">
+    <motion.div
+      className="relative flex justify-center items-center w-full h-full"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.4 }}
+    >
       {/* Outer Glow */}
       <div className="absolute w-[80px] h-[80px] md:w-[220px] md:h-[227px]">
         <OuterCircle />
@@ -57,8 +104,8 @@ export const TwiggConnectSideContent = () => {
         }}
       />
 
-      {/* Logo */}
-      <div className="relative z-20">
+      {/* Main Logo (FIRST) */}
+      <motion.div className="relative z-20" variants={mainFade}>
         <Image
           src="/main.png"
           alt="logo"
@@ -66,43 +113,60 @@ export const TwiggConnectSideContent = () => {
           height={60}
           className="object-contain md:w-[125px] md:h-[113px] rotate-5"
         />
-      </div>
-      <div className="absolute z-20 top-0 right-6">
+      </motion.div>
+
+      {/* Icons (auto stagger one by one) */}
+      <motion.div
+        className="absolute z-20 top-0 right-6"
+        variants={fadeUp}
+      >
         <Image
           src="/twigg_connect/bank_card.png"
-          alt="logo"
+          alt="bank_card"
           width={124}
           height={124}
           className="object-contain md:w-[130px] md:h-[130px]"
         />
-      </div>
-      <div className="absolute z-20 top-16 left-10">
+      </motion.div>
+
+      <motion.div
+        className="absolute z-20 top-16 left-10"
+        variants={fadeUp}
+      >
         <Image
           src="/twigg_connect/bank_gate.png"
-          alt="logo"
+          alt="bank_gate"
           width={68}
           height={85}
           className="object-contain md:w-[68px] md:h-[85px]"
         />
-      </div>
-      <div className="absolute z-20 bottom-12 left-12">
+      </motion.div>
+
+      <motion.div
+        className="absolute z-20 bottom-12 left-12"
+        variants={fadeUp}
+      >
         <Image
           src="/twigg_connect/rupee.png"
-          alt="logo"
+          alt="rupee"
           width={59}
           height={62}
           className="object-contain md:w-[59px] md:h-[62px]"
         />
-      </div>
-      <div className="absolute z-20 bottom-8 right-8">
+      </motion.div>
+
+      <motion.div
+        className="absolute z-20 bottom-8 right-8"
+        variants={fadeUp}
+      >
         <Image
           src="/twigg_connect/trend.png"
-          alt="logo"
+          alt="trend"
           width={68}
           height={68}
           className="object-contain md:w-[68px] md:h-[68px]"
         />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
