@@ -7,6 +7,7 @@ import CommingSoon from "./ComingSoon";
 import ProblemSectionMobile from "./ProblemSectionMobile";
 import TryOutSection from "./TryOutSection";
 import HeroSectionV2 from "./HeroSectionV2";
+import HowItWorks from "./HowItWorks";
 
 const ProblemSection = dynamic(() => import("./ProblemSection"), { ssr: false });
 const Features = dynamic(() => import("./FeatureSection"), { ssr: false });
@@ -34,9 +35,7 @@ export function Landing() {
         <HeroSectionV2 />
       </div>
 
-      <div className="md:py-20">
-        <CommingSoon />
-      </div>
+   
 
       <div className="mx-auto max-w-7xl px-[20px] md:px-[20px]">
         {isMobileView ? (
@@ -44,11 +43,11 @@ export function Landing() {
         ) : (
           <ProblemSection />
         )}
-
         <Features />
       </div>
 
-      <div className="mx-auto max-w-7xl px-[20px] md:px-0">
+      <div className="mx-auto max-w-7xl px-[20px] md:px-0"><HowItWorks />
+
         <Trust />
         <TryOutSection />
       </div>
