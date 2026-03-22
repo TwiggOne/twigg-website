@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import HowItWorksCard from "../ui/components/HowItWorksCard";
 
 const HowItWorks: React.FC = () => {
@@ -13,8 +14,34 @@ const HowItWorks: React.FC = () => {
     { step: "STEP 4", title: "Act with confidence" },
   ];
 
+  const cards = [
+    {
+      image: "/how_it_works/step_1_image.png",
+      text: "Available on iOS via TestFlight and Android via Play Store in beta. Takes under 2 minutes to set up.",
+    },
+    {
+      image: "/how_it_works/step_2_image.png",
+      text: "Securely connect banks, investments, insurance and loans via RBI's Account Aggregator consent-based, read-only.",
+    },
+    {
+      image: "/how_it_works/step_3_image.png",
+      text: "Twigg Pulse reads 15+ signals across your financial life and tells you exactly what needs your attention.",
+    },
+    {
+      image: "/how_it_works/step_4_image.png",
+      text: "Get personalised guidance from Twigg AI, backed by expert advisors when decisions get complex.",
+    },
+  ];
+
+  // 🔑 Reorder so active card is always first
+  const orderedCards = [
+    ...cards.slice(activeStep),
+    ...cards.slice(0, activeStep),
+  ];
+
   return (
     <div className="flex flex-col gap-[84px] pb-[225px]">
+      {/* Header */}
       <div className="flex flex-col gap-4 leading-none">
         <h1 className="text-[56px] font-semibold font-bricolage text-[#FDF9F0]">
           How It <span className="text-[#BC9313]">Works</span>
@@ -25,6 +52,7 @@ const HowItWorks: React.FC = () => {
       </div>
 
       <div className="flex flex-row gap-[86px]">
+        {/* Steps */}
         <div className="flex flex-col gap-[56px]">
           {steps.map((item, index) => (
             <div key={index} onClick={() => setActiveStep(index)}>
@@ -36,24 +64,32 @@ const HowItWorks: React.FC = () => {
             </div>
           ))}
         </div>
-        <div className="flex flex-row gap-6">
-<HowItWorksCard   isActive={true}
 
-  image="/how_it_works/step_4_image.png"
-  text="Available on iOS via TestFlight and Android via Play Store in beta. Takes under 2 minutes to set up."
-/>    <HowItWorksCard
-  image="/how_it_works/step_2_image.png"
-  text="Securely connect banks, investments, insurance and loans via RBI's Account Aggregator consent-based, read-only."
-/>   
-  <HowItWorksCard
-  image="/how_it_works/step_3_image.png"
-  text="Twigg Pulse reads 15+ signals across your financial life and tells you exactly what needs your attention."
-/>   
-  <HowItWorksCard
-  image="/how_it_works/step_4_image.png"
-  text="Get personalised guidance from Twigg AI, backed by expert advisors when decisions get complex."
-/>   
-  </div>
+        {/* Cards */}
+        <div className="flex flex-row gap-6 items-stretch">
+          <AnimatePresence >
+            {orderedCards.map((card, index) => (
+              <motion.div
+                key={card.text}
+                layout
+                initial={{ x: 120, opacity: 0 }}
+                animate={{
+                  x: 0,
+                  opacity: 1,
+                  scale: index === 0 ? 1 : 1,
+                }}
+                exit={{ x: -160, opacity: 0 }}
+                transition={{ duration: 0.45, ease: "easeInOut" }}
+              >
+                <HowItWorksCard
+                  isActive={index === 0}
+                  image={card.image}
+                  text={card.text}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );
@@ -65,12 +101,16 @@ type StepLabelProps = {
   isActive?: boolean;
 };
 
-const StepLabel: React.FC<StepLabelProps> = ({ step, title, isActive }) => {
+const StepLabel: React.FC<StepLabelProps> = ({
+  step,
+  title,
+  isActive,
+}) => {
   return (
-    <div className="flex flex-row gap-3">
+    <div className="flex flex-row gap-3 cursor-pointer">
       <div
         className={`w-1 rounded-[4px] ${
-          isActive ? "bg-[#BC9313]" : "bg-[#BC9313]/0 "
+          isActive ? "bg-[#BC9313]" : "bg-transparent"
         }`}
       />
 
@@ -94,4 +134,5 @@ const StepLabel: React.FC<StepLabelProps> = ({ step, title, isActive }) => {
     </div>
   );
 };
+
 export default HowItWorks;

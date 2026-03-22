@@ -14,7 +14,7 @@ const HowItWorksCard: React.FC<HowItWorksCardProps> = ({
 }) => {
   return (
     <div
-      className={`rounded-[16px] w-[407px] p-[32px] gap-[26px] flex flex-col backdrop-blur-xs transition-all duration-300 border border-[#BC9313]/20
+      className={`rounded-[16px] w-[407px] p-[32px] gap-[26px] flex flex-col backdrop-blur-xs transition-all duration-300 border border-[#BC9313]/20 h-full
       ${
         isActive
           ? "bg-gradient-to-br from-[#1E332A]/50 via-[#263830]/50 to-[#BA9F3E]/50 opacity-100"
