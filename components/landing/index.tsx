@@ -3,9 +3,9 @@ import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 
 import { Header } from "./Header";
-import HeroSectionV2 from "./HeroSectionV2"; // ✅ NOT dynamic
+import HeroSectionV2 from "./HeroSectionV2";
 
-// ✅ Dynamic imports for below-the-fold sections
+// Dynamic imports
 const ProblemSection = dynamic(() => import("./ProblemSection"));
 const ProblemSectionMobile = dynamic(() => import("./ProblemSectionMobile"));
 const Features = dynamic(() => import("./FeatureSection"));
@@ -30,32 +30,43 @@ export function Landing() {
     <div className="bg-[#152D23] w-full">
       <Header />
 
-      {/* ✅ Fast loading Hero */}
-      <div className="mx-auto max-w-7xl pt-10">
+      {/* Hero */}
+      <div id="home" className="mx-auto max-w-7xl pt-10">
         <HeroSectionV2 />
       </div>
 
-      {/* ⬇️ Lazy loaded sections */}
+      {/* Problem + Features */}
       <div className="mx-auto max-w-7xl px-[20px] md:px-[20px]">
-        {isMobileView ? (
-          <ProblemSectionMobile />
-        ) : (
-          <>
-            <div className="h-[90px]" />
-            <ProblemSection />
-          </>
-        )}
-        <Features />
+        <div id="features">
+          {isMobileView ? (
+            <ProblemSectionMobile />
+          ) : (
+            <>
+              <div className="h-[90px]" />
+              <ProblemSection />
+            </>
+          )}
+          <Features />
+        </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-[20px] md:px-0">
+      {/* How it works */}
+      <div id="how-it-works" className="mx-auto max-w-7xl px-[20px] md:px-0">
         <HowItWorks />
-        <Trust />
+      </div>
 
+      {/* Security (mapped to Trust section) */}
+      <div id="security" className="mx-auto max-w-7xl px-[20px] md:px-0">
+        <Trust />
+      </div>
+
+      {/* CTA / Try out */}
+      <div className="mx-auto max-w-7xl px-[20px] md:px-0">
         <div className="h-[72px] md:h-[150px]" />
         <TryOutSection />
         <div className="h-[150px]" />
       </div>
+
     </div>
   );
 }
