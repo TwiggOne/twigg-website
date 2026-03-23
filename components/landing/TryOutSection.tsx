@@ -81,9 +81,8 @@ const TryOutSection = () => {
         </h1>
 
         <div className="h-[16px] md:h-10" />
-
-        <p className="text-[14px]  md:text-[20px] font-switzer text-[#FDF9F0]/80">
-          We're in controlled beta — testing with real users across five
+        <p className="text-[14px] md:text-[20px] font-switzer text-[#FDF9F0]/80">
+          We&apos;re in controlled beta — testing with real users across five
           dimensions. Join now to get early access and help us build the
           financial co-pilot India deserves.
         </p>
@@ -162,7 +161,7 @@ const TryOutSection = () => {
           className="absolute inset-0"
           onAnimationComplete={() => setTagsAnimated(true)}
         >
-            <AnimatedTag
+          <AnimatedTag
             Tag={TwiggOutTag1}
             text=""
             className="absolute top-[30%] left-4 md:left-[-5%] scale-[0.7] md:scale-100 origin-left "
