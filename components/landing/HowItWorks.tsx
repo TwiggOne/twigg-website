@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HowItWorksCard from "../ui/components/HowItWorksCard";
 
 const HowItWorks: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const stepsScrollRef = useRef<HTMLDivElement>(null);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const steps = [
     { step: "STEP 1", title: "Download the app" },
@@ -33,7 +35,27 @@ const HowItWorks: React.FC = () => {
     },
   ];
 
-  // 🔑 Reorder so active card is always first
+  // Only scroll to center if the active step is partially/fully out of view
+  useEffect(() => {
+    const container = stepsScrollRef.current;
+    const activeEl = stepRefs.current[activeStep];
+    if (!container || !activeEl) return;
+
+    const containerLeft = container.scrollLeft;
+    const containerWidth = container.offsetWidth;
+    const elLeft = activeEl.offsetLeft;
+    const elWidth = activeEl.offsetWidth;
+    const elRight = elLeft + elWidth;
+    const visibleRight = containerLeft + containerWidth;
+
+    const isFullyVisible = elLeft >= containerLeft && elRight <= visibleRight;
+
+    if (!isFullyVisible) {
+      const scrollTo = elLeft - containerWidth / 2 + elWidth / 2;
+      container.scrollTo({ left: scrollTo, behavior: "smooth" });
+    }
+  }, [activeStep]);
+
   const orderedCards = [
     ...cards.slice(activeStep),
     ...cards.slice(0, activeStep),
@@ -46,15 +68,25 @@ const HowItWorks: React.FC = () => {
         <h1 className="text-[20px] md:text-[56px] font-semibold font-bricolage text-[#FDF9F0]">
           How It <span className="text-[#BC9313]">Works</span>
         </h1>
-        <p className="text-[24px] text-[#FDF9F0]/80 font-switzer">
-TrackFrom sign-up to clarity in minutes.        </p>
+        <p className="text-[14px] md:text-[24px] text-[#FDF9F0]/80 font-switzer">
+          From sign-up to clarity in minutes.
+        </p>
       </div>
 
       <div className="flex flex-col md:flex-row gap-[33px] md:gap-[86px]">
-        {/* Steps */}
-        <div className="flex flex-row md:flex-col gap-[24px] md:gap-[56px]">
+        {/* Steps — naturally laid out, scroll only when needed */}
+        <div
+          ref={stepsScrollRef}
+          className="flex flex-row md:flex-col gap-[24px] md:gap-[56px] overflow-x-auto md:overflow-x-visible pb-2 md:pb-0"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           {steps.map((item, index) => (
-            <div key={index} onClick={() => setActiveStep(index)}>
+            <div
+              key={index}
+              ref={(el) => { stepRefs.current[index] = el; }}
+              onClick={() => setActiveStep(index)}
+              className="flex-shrink-0"
+            >
               <StepLabel
                 step={item.step}
                 title={item.title}
@@ -65,18 +97,14 @@ TrackFrom sign-up to clarity in minutes.        </p>
         </div>
 
         {/* Cards */}
-        <div className="flex flex-row gap-6 items-stretch ">
-          <AnimatePresence >
+        <div className="flex flex-row gap-6 items-stretch">
+          <AnimatePresence>
             {orderedCards.map((card, index) => (
               <motion.div
                 key={card.text}
                 layout
                 initial={{ x: 120, opacity: 0 }}
-                animate={{
-                  x: 0,
-                  opacity: 1,
-                  scale: index === 0 ? 1 : 1,
-                }}
+                animate={{ x: 0, opacity: 1 }}
                 exit={{ x: -160, opacity: 0 }}
                 transition={{ duration: 0.45, ease: "easeInOut" }}
               >
@@ -100,30 +128,24 @@ type StepLabelProps = {
   isActive?: boolean;
 };
 
-const StepLabel: React.FC<StepLabelProps> = ({
-  step,
-  title,
-  isActive,
-}) => {
+const StepLabel: React.FC<StepLabelProps> = ({ step, title, isActive }) => {
   return (
     <div className="flex flex-col md:flex-row gap-1 md:gap-3 cursor-pointer">
       <div
-        className={`md:w-1 max-md:h-0.5 max-md:w-8 rounded-[4px] ${
+        className={`md:w-1 max-md:h-0.5 max-md:w-8 rounded-[4px] transition-colors duration-300 ${
           isActive ? "bg-[#BC9313]" : "bg-transparent"
         }`}
       />
-
       <div className="gap-1 flex flex-col">
         <p
-          className={`text-[10px] md:text-[16px] font-bricolage font-semibold ${
+          className={`text-[10px] md:text-[16px] font-bricolage font-semibold transition-colors duration-300 ${
             isActive ? "text-[#BC9313]" : "text-[#BC9313]/50"
           }`}
         >
           {step}
         </p>
-
         <p
-          className={`text-[14px] md:text-[24px] font-bricolage font-semibold whitespace-nowrap ${
+          className={`text-[14px] md:text-[24px] font-bricolage font-semibold whitespace-nowrap transition-colors duration-300 ${
             isActive ? "text-[#FDF9F0]" : "text-[#FDF9F0]/50"
           }`}
         >

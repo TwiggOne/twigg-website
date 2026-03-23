@@ -1,15 +1,8 @@
 "use client";
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import React, { ReactNode, useRef } from "react";
 import { Container } from "../container";
-import Image from "next/image";
-import {
-  InnerCircle,
-  MidCircle,
-  OuterCircle,
-  RightArrowInline,
-} from "@/utils/SvgUtils";
-// NOTE: Assuming 'motion/react' should be 'framer-motion'
-import { motion, Transition, useInView } from "motion/react";
+import { RightArrowInline } from "@/utils/SvgUtils";
+import { motion, useInView } from "motion/react";
 import TwiggLoopContent from "../ui/components/TwiggLoopContent";
 import TwiggSenseContent from "../ui/components/TwiggSenseContent";
 import TwiggAiContent from "../ui/components/TwiggAiContent";
@@ -19,14 +12,10 @@ import {
 } from "../ui/components/TwiggConnectContent";
 import TwiggPulseContent from "../ui/components/TwiggPulseContent";
 
-// =========================================================================
-// Features Component
-// =========================================================================
 export const Features = () => {
   return (
     <section className="bg-[#152D23] py-[72px] md:py-28 text-[#FDF9F0]">
       <Container>
-        {/* Heading */}
         <div className="flex flex-col items-start gap-4 text-start">
           <h1 className="font-bricolage text-[20px] md:text-[56px] flex gap-2 font-semibold text-[#FDF9F0] leading-[100%] sm:leading-[100%]">
             With Twigg,{" "}
@@ -41,71 +30,98 @@ export const Features = () => {
           </p>
         </div>
         <div className="h-[50px] md:h-[95px]" />
-        {/* Feature Cards */}
         <FeaturesCardsWrapper />
       </Container>
     </section>
   );
 };
-// =========================================================================
-// Feature Cards Wrapper
-// =========================================================================
-export function FeaturesCardsWrapper() {
+
+// ── Individual animated card wrapper with its own inView ref ──
+function AnimatedCard({
+  gridClass,
+  children,
+}: {
+  gridClass: string;
+  children: ReactNode;
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+
   return (
-    <div className="flex flex-col md:grid  md:grid-cols-3 md:grid-rows-2 gap-y-[33px] gap-x-[16px] w-full">
-      {/* div1 (BIG LEFT) */}
-      <div className="col-start-1 col-end-3 row-start-1 row-end-2">
-        <FeatureCard
-          content={<TwiggConnectContent />}
-          sideContent={<TwiggConnectSideContent />}
-          label="Twigg Connect"
-          title="All-in-One Platform One place."
-          description="Bank accounts, investments, insurance, and loans — securely linked in one place via the RBI's Account Aggregator framework and credit bureau. No more app-switching."
-        />
-      </div>
+    <motion.div
+      ref={ref}
+      className={gridClass}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
-      {/* div2 */}
-      <div className="col-start-3 col-end-4 row-start-1 row-end-2">
-        <FeatureCard
-          content={<TwiggPulseContent />}
-          label="TWIGG PULSE"
-          title="15+ signals. Know before it's a crisis."
-          description="EMI stress, insurance gaps, idle cash, overlapping portfolios."
-        />
-      </div>
+export function FeaturesCardsWrapper() {
+  const cards = [
+    {
+      gridClass: "col-start-1 col-end-3 row-start-1 row-end-2",
+      props: {
+        content: <TwiggConnectContent />,
+        sideContent: <TwiggConnectSideContent />,
+        label: "Twigg Connect",
+        title: "All-in-One Platform One place.",
+        description:
+          "Bank accounts, investments, insurance, and loans — securely linked in one place via the RBI's Account Aggregator framework and credit bureau. No more app-switching.",
+      },
+    },
+    {
+      gridClass: "col-start-3 col-end-4 row-start-1 row-end-2",
+      props: {
+        content: <TwiggPulseContent />,
+        label: "TWIGG PULSE",
+        title: "15+ signals. Know before it's a crisis.",
+        description:
+          "EMI stress, insurance gaps, idle cash, overlapping portfolios.",
+      },
+    },
+    {
+      gridClass: "col-start-1 col-end-2 row-start-2 row-end-3",
+      props: {
+        content: <TwiggSenseContent />,
+        label: "Twigg Sense",
+        title: `Fact-check any \nfinancial claim.`,
+        description:
+          "See a reel, tweet, or tip? Sense checks if it's true — and if it's actually relevant to you and your money.",
+      },
+    },
+    {
+      gridClass: "col-start-2 col-end-3 row-start-2 row-end-3",
+      props: {
+        content: <TwiggAiContent />,
+        label: "Twigg AI",
+        title: `Ask finance. \nTwigg answers.`,
+        description:
+          "Your AI co-pilot grounded in your actual data deeply personalised, context-aware, and always on your side. Complex decisions are ring-fenced by vetted human advisors.",
+      },
+    },
+    {
+      gridClass: "col-start-3 col-end-4 row-start-2 row-end-3",
+      props: {
+        content: <TwiggLoopContent />,
+        label: "Twigg Loop · Coming Soon",
+        title: `Good decisions\nbecome habits.`,
+        description:
+          "Challenges, streaks, peer circles, and a rewards ecosystem that make financial progress visible, social, and compounding — just like credit card points, for good money behaviour.",
+      },
+    },
+  ];
 
-      {/* div3 */}
-      <div className="col-start-1 col-end-2 row-start-2 row-end-3">
-        <FeatureCard
-          content={<TwiggSenseContent />}
-          label="Twigg Sense"
-          title={`Fact-check any 
-financial claim.`}
-          description="See a reel, tweet, or tip? Sense checks if it's true — and if it's actually relevant to you and your money."
-        />
-      </div>
-
-      {/* div4 */}
-      <div className="col-start-2 col-end-3 row-start-2 row-end-3">
-        <FeatureCard
-          content={<TwiggAiContent />}
-          label="Twigg AI"
-          title={`Ask finance. 
-Twigg answers.`}
-          description="Your AI co-pilot grounded in your actual data deeply personalised, context-aware, and always on your side. Complex decisions are ring-fenced by vetted human advisors."
-        />
-      </div>
-
-      {/* div5 */}
-      <div className="col-start-3 col-end-4 row-start-2 row-end-3">
-        <FeatureCard
-          content={<TwiggLoopContent />}
-          label="Twigg Loop · Coming Soon"
-          title={`Good decisions
-become habits.`}
-          description="Challenges, streaks, peer circles, and a rewards ecosystem that make financial progress visible, social, and compounding — just like credit card points, for good money behaviour."
-        />
-      </div>
+  return (
+    <div className="flex flex-col md:grid md:grid-cols-3 md:grid-rows-2 gap-y-[33px] gap-x-[16px] w-full">
+      {cards.map((card, index) => (
+        <AnimatedCard key={index} gridClass={card.gridClass}>
+          <FeatureCard {...card.props} />
+        </AnimatedCard>
+      ))}
     </div>
   );
 }
@@ -117,6 +133,7 @@ interface FeatureCardProps {
   content: ReactNode;
   sideContent?: ReactNode;
 }
+
 export function FeatureCard({
   label,
   title,
@@ -127,41 +144,29 @@ export function FeatureCard({
   return (
     <div className="feature-card w-full h-full">
       <div className="feature-card-inner px-[14px] md:px-[24px] py-[22px] md:py-[32px] h-full flex flex-col justify-between">
-        
         <div className="flex flex-row h-full w-full">
           <div className="flex flex-col justify-between w-full">
-            
-            {/* TOP TEXT */}
             <div>
               <p className="font-medium text-[#BC9313] text-[12px] md:text-[14px] font-switzer">
                 {label}
               </p>
-
               <div className="h-[6px]" />
-
               <h3 className="text-[16px] md:text-[24px] font-bricolage font-semibold text-[#FDF9F0] leading-[100%] whitespace-pre-line">
                 {title}
               </h3>
-
               <div className="h-[16px] md:h-[24px]" />
-
               <p className="text-[#FDF9F0]/80 font-switzer text-[10px] md:text-[13px] font-light leading-[120%]">
                 {description}
               </p>
             </div>
 
-            {/* ✅ MOBILE: show sideContent instead of content */}
             <div className="mt-[20px] md:mt-[37px] w-full md:hidden">
               {sideContent ? sideContent : content}
             </div>
 
-            {/* ✅ DESKTOP: always show content */}
-            <div className="mt-[37px] w-full hidden md:block">
-              {content}
-            </div>
+            <div className="mt-[37px] w-full hidden md:block">{content}</div>
           </div>
 
-          {/* ✅ DESKTOP ONLY sideContent */}
           {sideContent && (
             <div className="hidden md:flex items-center justify-center w-full h-full">
               {sideContent}
@@ -174,4 +179,3 @@ export function FeatureCard({
 }
 
 export default Features;
-// NOTE: The rest of the Features and FeaturesCardsWrapper components remain the same as the previous full solution.
