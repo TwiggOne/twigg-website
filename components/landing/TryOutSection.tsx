@@ -95,8 +95,22 @@ const TryOutSection = () => {
         <div className="h-14" />
 
         <div className="flex gap-4">
-          <DownloadButton platform="apple" />
-          <DownloadButton platform="google" />
+         <a
+        href="https://apps.apple.com/in/app/twigg-one/id6758598241"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <DownloadButton platform="apple" />
+      </a>
+
+      {/* Google Play Store */}
+      <a
+        href="https://play.google.com/store/apps/details?id=com.aadyantx.twigg"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <DownloadButton platform="google" />
+      </a>
         </div>
 
         <div className="h-[25px]" />

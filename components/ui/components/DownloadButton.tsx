@@ -16,7 +16,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ platform = 'apple', tex
       : { icon: AppleIcon, defaultText: 'App Store' }
 
   return (
-    <div className="flex flex-row items-center rounded-[40px] px-8 py-[18px] gap-[14px] bg-[#FDF9F0]/20 backdrop-blur-[50px] border border-white/20 cursor-pointer hover:scale-105 transition-transform">
+    <div className="flex flex-row items-center rounded-[40px] px-[40px] py-[14px] gap-[14px] bg-[#FDF9F0]/5 backdrop-blur-[50px] border border-white/20 cursor-pointer hover:scale-105 transition-transform">
       <PlatformIcon />
       <p className="text-[18px] font-medium font-switzer text-[#FDF9F0]">
         {text || defaultText}
