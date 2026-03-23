@@ -52,7 +52,7 @@ export function Landing() {
         <HowItWorks />
         <Trust />
 
-        <div className="h-[150px]" />
+        <div className="h-[72px] md:h-[150px]" />
         <TryOutSection />
         <div className="h-[150px]" />
       </div>

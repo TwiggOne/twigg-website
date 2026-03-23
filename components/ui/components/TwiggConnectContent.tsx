@@ -69,25 +69,25 @@ const mainFade: Variants = {
 
   return (
     <motion.div
-      className="relative flex justify-center items-center w-full h-full"
+      className="relative flex justify-center items-center w-full h-[240px] md:h-full "
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.4 }}
     >
       {/* Outer Glow */}
-      <div className="absolute w-[80px] h-[80px] md:w-[220px] md:h-[227px]">
+      <div className="absolute w-[220px] h-[227px]">
         <OuterCircle />
       </div>
 
       {/* Middle Circle */}
-      <div className="absolute w-[50px] h-[50px] md:w-[160px] md:h-[160px] z-10">
+      <div className="absolute w-[160px] h-[160px] z-10">
         <MidCircle />
       </div>
 
       {/* Animated Glow */}
       <motion.div
-        className="absolute rounded-full w-[40px] h-[40px] md:w-[80px] md:h-[80px]"
+        className="absolute rounded-full w-[80px] h-[80px] md:w-[80px] md:h-[80px]"
         style={{
           background: "rgba(188, 147, 19, 1)",
           filter: "blur(40px)",
@@ -117,7 +117,7 @@ const mainFade: Variants = {
 
       {/* Icons (auto stagger one by one) */}
       <motion.div
-        className="absolute z-20 top-0 right-6"
+        className="absolute z-20 -top-10 md:top-0 right-6"
         variants={fadeUp}
       >
         <Image
@@ -130,7 +130,7 @@ const mainFade: Variants = {
       </motion.div>
 
       <motion.div
-        className="absolute z-20 top-16 left-10"
+        className="absolute z-20 -top-0 md:top-16 left-10"
         variants={fadeUp}
       >
         <Image
@@ -143,7 +143,7 @@ const mainFade: Variants = {
       </motion.div>
 
       <motion.div
-        className="absolute z-20 bottom-12 left-12"
+        className="absolute z-20 bottom-4 md:bottom-12 left-12"
         variants={fadeUp}
       >
         <Image
@@ -156,7 +156,7 @@ const mainFade: Variants = {
       </motion.div>
 
       <motion.div
-        className="absolute z-20 bottom-8 right-8"
+        className="absolute z-20 bottom-0 md:bottom-8 right-8"
         variants={fadeUp}
       >
         <Image

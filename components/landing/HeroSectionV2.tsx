@@ -15,7 +15,7 @@ const HeroSectionV2: React.FC = () => {
     <section className="relative z-10 w-full pt-30 ">
       <div className="relative max-w-[1440px] mx-auto flex flex-col-reverse lg:flex-row justify-between items-center px-6 lg:px-4 ">
         {/* LEFT SECTION */}
-        <div className="flex flex-col justify-center md:w-[50%] mt-[150px] md:mt-[0px] text-center lg:text-left mb-12 lg:mb-0">
+        <div className="flex flex-col justify-center md:w-[50%]  md:mt-[0px] text-center lg:text-left mb-12 lg:mb-0">
           <h2
             className="text-[32px] sm:text-[32px] lg:text-[72px] leading-[1.1]"
             style={{ fontFamily: "Bricolage Grotesque", fontWeight: 600 }}
@@ -30,15 +30,15 @@ const HeroSectionV2: React.FC = () => {
           </p>
 
           {/* LABELS */}
-          <div className="flex flex-wrap gap-3 max-w-[410px]">
+          <div className="flex flex-wrap gap-3 max-w-[410px] max-sm:justify-center">
             {labels.map((label, index) => (
               <HeroGoldLabelItem key={index} label={label} />
             ))}
           </div>
 
-          <div className="h-[56px]" />
+          <div className="h-[24px] md:h-[56px]" />
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 max-md:justify-center">
             <a
               href="https://apps.apple.com/in/app/twigg-one/id6758598241"
               target="_blank"
@@ -58,7 +58,7 @@ const HeroSectionV2: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative md:w-[50%] flex justify-center">
+        <div className="relative w-full md:w-[50%] flex justify-center">
           <HeroRightContent />
         </div>
       </div>

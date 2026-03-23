@@ -193,7 +193,7 @@ export const ProblemSection = () => {
     bottom: { top: "75%", left: "0%", scale: 0.8, opacity: 0, zIndex: 0 },
   };
   return (
-    <section className="relative min-h-screen flex items-center justify-center">
+    <section className="relative  flex items-center justify-center">
       <motion.div
         className="w-full bg-[#FDF9F0] rounded-[60px] p-8 sm:p-12 md:py-[76px] md:px-[59px] relative "
         initial={{ opacity: 0, y: 100 }}

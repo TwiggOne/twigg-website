@@ -40,20 +40,19 @@ const HowItWorks: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-[84px] pb-[225px]">
+    <div className="flex flex-col gap-[31px] md:gap-[84px] pb-[72px] md:pb-[225px]">
       {/* Header */}
       <div className="flex flex-col gap-4 leading-none">
-        <h1 className="text-[56px] font-semibold font-bricolage text-[#FDF9F0]">
+        <h1 className="text-[20px] md:text-[56px] font-semibold font-bricolage text-[#FDF9F0]">
           How It <span className="text-[#BC9313]">Works</span>
         </h1>
         <p className="text-[24px] text-[#FDF9F0]/80 font-switzer">
-          From sign-up to clarity in minutes.
-        </p>
+TrackFrom sign-up to clarity in minutes.        </p>
       </div>
 
-      <div className="flex flex-row gap-[86px]">
+      <div className="flex flex-col md:flex-row gap-[33px] md:gap-[86px]">
         {/* Steps */}
-        <div className="flex flex-col gap-[56px]">
+        <div className="flex flex-row md:flex-col gap-[24px] md:gap-[56px]">
           {steps.map((item, index) => (
             <div key={index} onClick={() => setActiveStep(index)}>
               <StepLabel
@@ -66,7 +65,7 @@ const HowItWorks: React.FC = () => {
         </div>
 
         {/* Cards */}
-        <div className="flex flex-row gap-6 items-stretch">
+        <div className="flex flex-row gap-6 items-stretch ">
           <AnimatePresence >
             {orderedCards.map((card, index) => (
               <motion.div
@@ -107,16 +106,16 @@ const StepLabel: React.FC<StepLabelProps> = ({
   isActive,
 }) => {
   return (
-    <div className="flex flex-row gap-3 cursor-pointer">
+    <div className="flex flex-col md:flex-row gap-1 md:gap-3 cursor-pointer">
       <div
-        className={`w-1 rounded-[4px] ${
+        className={`md:w-1 max-md:h-0.5 max-md:w-8 rounded-[4px] ${
           isActive ? "bg-[#BC9313]" : "bg-transparent"
         }`}
       />
 
       <div className="gap-1 flex flex-col">
         <p
-          className={`text-[16px] font-bricolage font-semibold ${
+          className={`text-[10px] md:text-[16px] font-bricolage font-semibold ${
             isActive ? "text-[#BC9313]" : "text-[#BC9313]/50"
           }`}
         >
@@ -124,7 +123,7 @@ const StepLabel: React.FC<StepLabelProps> = ({
         </p>
 
         <p
-          className={`text-[24px] font-bricolage font-semibold whitespace-nowrap ${
+          className={`text-[14px] md:text-[24px] font-bricolage font-semibold whitespace-nowrap ${
             isActive ? "text-[#FDF9F0]" : "text-[#FDF9F0]/50"
           }`}
         >

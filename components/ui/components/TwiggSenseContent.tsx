@@ -17,8 +17,8 @@ const TwiggSenseContent = () => {
       <div className="grid grid-cols-2 gap-2">
         <SenseCard title={"Factual "} /> <SenseCard title={"Relevant "} />
       </div>
-      <div className="h-[17px]" />
-      <p className="text-[10px] text-[#FDF9F0] font-switzer italic">
+      <div className="h-[7px] md:h-[17px]" />
+      <p className="text-[8px] md:text-[10px] text-[#FDF9F0] font-switzer italic">
         <span className="text-[#BC9313] font-medium">Next step: </span>
         Your ELSS SIP is only ₹2K. Consider increasing by ₹3K.
       </p>
@@ -31,10 +31,11 @@ interface SenseCardProps {
 
 const SenseCard = ({ title }: SenseCardProps) => {
   return (
-    <div className="flex flex-row rounded-[10px] p-[14px] items-center gap-2 border border-[#BC9313]/50 backdrop-blur-[40px] shadow-md">
-      <FactGoldCheck />
+    <div className="flex flex-row rounded-[10px] p-[8px] px-[14px] md:p-[14px] items-center gap-1 md:gap-2 border border-[#BC9313]/50 backdrop-blur-[40px] shadow-md">
+      <div className="w-3 h-3 md:w-4 md:h-4">      <FactGoldCheck />
+</div>
 
-      <p className="text-[12px] font-switzer text-[#FDF9F0] leading-[120%]">
+      <p className="text-[10px] md:text-[12px] font-switzer text-[#FDF9F0] ">
         {title}
       </p>
     </div>

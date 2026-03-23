@@ -128,7 +128,7 @@ const HeroRightContent = () => {
   const centerIndex = positions.findIndex((pos) => pos === 1);
 
   return (
-    <div className="relative flex justify-center items-center h-[575px] w-full ">
+    <div className="relative flex justify-center items-center h-[300px] md:h-[575px] w-full max-sm:scale-[0.55] max-md:pb-20">
       {images.map((img, i) => {
         const slot = positions[i];
         const { zIndex, animate } = POSITION_STYLES[slot];

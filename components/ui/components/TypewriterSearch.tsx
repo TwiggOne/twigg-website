@@ -42,7 +42,7 @@ export default function TypewriterSearch({ texts }: TypewriterSearchProps) {
   return (
     <>
       <div
-        className="relative w-full  py-[10px] flex flex-row justify-between items-center  rounded-[8px] sm:rounded-[10px] sm:py-[13px] mx-auto  px-[10px] sm:px-[14px]"
+        className="relative w-full  py-[12px] flex flex-row justify-between items-center  rounded-[8px] sm:rounded-[10px] sm:py-[13px] mx-auto  px-[10px] sm:px-[14px]"
         style={{
           background: "#FDF9F014",
           border: "1px solid #fdf9f026",
@@ -57,7 +57,7 @@ export default function TypewriterSearch({ texts }: TypewriterSearchProps) {
         }}
       >
         <div className="flex items-center">
-          <span className="text-white font-switzer text-[12px] sm:text-[11px] leading-[18px]   whitespace-nowrap">
+          <span className="text-white font-switzer text-[10px] sm:text-[11px] leading-[18px]   whitespace-nowrap">
             {displayText}
             <span className="inline-block w-[2px] h-[1em] bg-[#FDF9F0] animate-blink align-middle ml-[2px]" />
           </span>

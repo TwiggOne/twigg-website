@@ -51,13 +51,13 @@ interface LoopCardProps {
 
 const LoopCard = ({ title, icon }: LoopCardProps) => {
   return (
-    <div className="flex flex-row rounded-[10px] p-[14px] items-center justify-between border border-[#BC9313]/50 backdrop-blur-[40px] shadow-md">
+    <div className="flex flex-row rounded-[10px] p-[11px] md:p-[14px] items-center justify-between border border-[#BC9313]/50 backdrop-blur-[40px] shadow-md">
       
-      <p className="text-[12px] font-switzer text-[#FDF9F0] leading-[120%]">
+      <p className="text-[10px] md:text-[12px] font-switzer text-[#FDF9F0] leading-[120%]">
         {title}
       </p>
-
-      {icon}
+<div className="w-[36px] h-[31px] md:h-[45px] md:w-[52px]">      {icon}
+</div>
     </div>
   );
 };

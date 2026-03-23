@@ -47,7 +47,7 @@ const TwiggAiContent = () => {
     <div className="flex flex-col gap-[14px]">
       <TypewriterSearch texts={texts} />
 
-      <div className="flex flex-row rounded-[10px] p-[14px] items-start gap-2 border border-[#BC9313]/50 backdrop-blur-[40px] shadow-md overflow-hidden">
+      <div className="flex  flex-row rounded-[10px] p-[14px] items-start gap-2 border border-[#BC9313]/50 backdrop-blur-[40px] shadow-md overflow-hidden">
         
         <AnimatePresence mode="wait">
           {!showFinal ? (
@@ -60,7 +60,7 @@ const TwiggAiContent = () => {
               transition={{ duration: 0.5 }}
               className="w-full"
             >
-              <p className="text-[12px] font-switzer text-[#FDF9F0] h-11">
+              <p className="text-[10px] md:text-[12px] font-switzer text-[#FDF9F0] h-9 md:h-11">
                 Analyzing your portfolio...
               </p>
             </motion.div>
@@ -72,11 +72,11 @@ const TwiggAiContent = () => {
               animate="animate"
               exit="exit"
               transition={{ duration: 0.6 }}
-              className="flex flex-row items-start gap-2"
+              className="flex flex-row items-start  gap-2"
             >
               <TwiggGold />
 
-              <p className="text-[12px] font-switzer text-[#FDF9F0]/80 leading-[125%]">
+              <p className="text-[10px] md:text-[12px] font-switzer text-[#FDF9F0]/80 leading-[125%]">
                 <span className="text-[#FDF9F0] font-semibold">
                   Your portfolio is up 14.2% YTD.
                 </span>{" "}

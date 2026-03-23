@@ -10,7 +10,6 @@ import {
   TwiggOutTag2,
   TwiggOutTag3,
   TwiggOutTag4,
-
 } from "@/utils/SvgUtils";
 import Image from "next/image";
 
@@ -73,66 +72,60 @@ const TryOutSection = () => {
   );
 
   return (
-    <section className="relative w-full min-h-[600px] bg-[#152D23] flex flex-col lg:flex-row items-center justify-between  px-4 gap-[37px]">
-      
+    <section className="relative w-full min-h-[600px] bg-[#152D23] flex flex-col lg:flex-row items-center justify-between  md:px-4 gap-[37px]">
       {/* LEFT */}
       <div className="flex-1">
-        <h1 className="text-[48px] font-semibold font-bricolage text-[#FDF9F0] leading-tight">
+        <h1 className="text-[20px]  md:text-[48px] font-semibold font-bricolage text-[#FDF9F0] leading-tight">
           Try Twigg now.
-          <span className="text-[#BC9313] block">
-            Shape what it becomes.
-          </span>
+          <span className="text-[#BC9313] block">Shape what it becomes.</span>
         </h1>
 
-        <div className="h-10" />
+        <div className="h-[16px] md:h-10" />
 
-        <p className="text-[20px] font-switzer text-[#FDF9F0]/80">
+        <p className="text-[14px]  md:text-[20px] font-switzer text-[#FDF9F0]/80">
           We're in controlled beta — testing with real users across five
           dimensions. Join now to get early access and help us build the
           financial co-pilot India deserves.
         </p>
 
-        <div className="h-14" />
+        <div className="h-[32px] md:h-14" />
 
         <div className="flex gap-4">
-         <a
-        href="https://apps.apple.com/in/app/twigg-one/id6758598241"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <DownloadButton platform="apple" />
-      </a>
+          <a
+            href="https://apps.apple.com/in/app/twigg-one/id6758598241"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <DownloadButton platform="apple" />
+          </a>
 
-      {/* Google Play Store */}
-      <a
-        href="https://play.google.com/store/apps/details?id=com.aadyantx.twigg"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <DownloadButton platform="google" />
-      </a>
+          {/* Google Play Store */}
+          <a
+            href="https://play.google.com/store/apps/details?id=com.aadyantx.twigg"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <DownloadButton platform="google" />
+          </a>
         </div>
 
-        <div className="h-[25px]" />
+        <div className="h-4 md:h-[25px]" />
 
-        <p className="text-[12px] font-switzer text-[#FDF9F0] max-w-[323px]">
+        <p className="text-[10px]  md:text-[12px] font-switzer text-[#FDF9F0] max-w-[323px]">
           Beta is free. Your feedback will directly shape the product. We read
           every message sent to{" "}
-          <span className="text-[#BC9313] font-medium">
-            contact@twigg.one
-          </span>
+          <span className="text-[#BC9313] font-medium">contact@twigg.one</span>
         </p>
       </div>
 
       {/* RIGHT (FIXED) */}
       <motion.div className="flex-1 flex items-center justify-center relative aspect-square">
-        
         {/* Circles */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="absolute w-[544px] h-[553px]">
+          <div className="absolute w-[476px] h-[467px] md:w-[544px] md:h-[553px]">
             <OuterCircle />
           </div>
-          <div className="absolute w-[376px] h-[367px]">
+          <div className="absolute md:w-[376px] md:h-[367px] w-[300px] h-[300px]">
             <MidCircle />
           </div>
           <div className="absolute w-[168px] h-[168px]">
@@ -152,7 +145,7 @@ const TryOutSection = () => {
         />
 
         {/* Image */}
-        <div className="relative w-[290px] h-[581px]">
+        <div className="relative md:w-[290px] md:h-[581px] w-[380px] h-[476px]">
           <Image
             src="/try_out_twigg.png"
             alt="Twiggout"
@@ -172,27 +165,26 @@ const TryOutSection = () => {
           <AnimatedTag
             Tag={TwiggOutTag1}
             text=""
-            className="absolute top-[30%] left-[-5%] "
+            className="absolute top-[30%] left-[-5%] max-md:scale-[0.7] "
           />
           <AnimatedTag
             Tag={TwiggOutTag2}
             text=""
-            className="absolute top-[17%] right-[-3%] "
+            className="absolute top-[17%] right-[-3%] max-md:scale-[0.7] "
           />
           <AnimatedTag
             Tag={TwiggOutTag3}
             text=""
-            className="absolute bottom-[10%] left-[-5%] "
+            className="absolute bottom-[10%] left-[-5%] max-md:scale-[0.7]"
           />
           <AnimatedTag
             Tag={TwiggOutTag4}
             text=""
             addSpace
-            className="absolute bottom-[24%] right-[-5%] "
+            className="absolute bottom-[24%] right-[-5%] max-md:scale-[0.7]"
           />
         </motion.div>
       </motion.div>
-      
     </section>
   );
 };

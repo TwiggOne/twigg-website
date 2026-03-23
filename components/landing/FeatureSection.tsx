@@ -24,7 +24,7 @@ import TwiggPulseContent from "../ui/components/TwiggPulseContent";
 // =========================================================================
 export const Features = () => {
   return (
-    <section className="bg-[#152D23] py-28 text-[#FDF9F0]">
+    <section className="bg-[#152D23] py-[72px] md:py-28 text-[#FDF9F0]">
       <Container>
         {/* Heading */}
         <div className="flex flex-col items-start gap-4 text-start">
@@ -40,7 +40,7 @@ export const Features = () => {
             <br /> Your money made simple, your future secured.
           </p>
         </div>
-        <div className="h-[95px]" />
+        <div className="h-[50px] md:h-[95px]" />
         {/* Feature Cards */}
         <FeaturesCardsWrapper />
       </Container>
@@ -52,7 +52,7 @@ export const Features = () => {
 // =========================================================================
 export function FeaturesCardsWrapper() {
   return (
-    <div className="grid grid-cols-3 grid-rows-2 gap-y-[33px] gap-x-[16px] w-full">
+    <div className="flex flex-col md:grid  md:grid-cols-3 md:grid-rows-2 gap-y-[33px] gap-x-[16px] w-full">
       {/* div1 (BIG LEFT) */}
       <div className="col-start-1 col-end-3 row-start-1 row-end-2">
         <FeatureCard
@@ -126,33 +126,44 @@ export function FeatureCard({
 }: FeatureCardProps) {
   return (
     <div className="feature-card w-full h-full">
-      <div className="feature-card-inner px-[24px] py-[32px] h-full flex flex-col justify-between">
-        {/* TOP CONTENT */}
+      <div className="feature-card-inner px-[14px] md:px-[24px] py-[22px] md:py-[32px] h-full flex flex-col justify-between">
+        
         <div className="flex flex-row h-full w-full">
-          <div className="flex flex-col justify-between ">
-            {" "}
+          <div className="flex flex-col justify-between w-full">
+            
+            {/* TOP TEXT */}
             <div>
-              <p className="font-medium text-[#BC9313] text-[14px] font-switzer">
+              <p className="font-medium text-[#BC9313] text-[12px] md:text-[14px] font-switzer">
                 {label}
               </p>
 
               <div className="h-[6px]" />
 
-              <h3 className="text-[24px] font-bricolage font-semibold text-[#FDF9F0] leading-[100%] whitespace-pre-line">
+              <h3 className="text-[16px] md:text-[24px] font-bricolage font-semibold text-[#FDF9F0] leading-[100%] whitespace-pre-line">
                 {title}
               </h3>
 
-              <div className="h-[24px]" />
+              <div className="h-[16px] md:h-[24px]" />
 
-              <p className="text-[#FDF9F0]/80 font-switzer text-[13px] font-light leading-[120%]">
+              <p className="text-[#FDF9F0]/80 font-switzer text-[10px] md:text-[13px] font-light leading-[120%]">
                 {description}
               </p>
             </div>
-            {/* BOTTOM CONTENT */}
-            <div className="mt-[37px] w-full">{content}</div>
+
+            {/* ✅ MOBILE: show sideContent instead of content */}
+            <div className="mt-[20px] md:mt-[37px] w-full md:hidden">
+              {sideContent ? sideContent : content}
+            </div>
+
+            {/* ✅ DESKTOP: always show content */}
+            <div className="mt-[37px] w-full hidden md:block">
+              {content}
+            </div>
           </div>
+
+          {/* ✅ DESKTOP ONLY sideContent */}
           {sideContent && (
-            <div className="flex items-center justify-center w-full h-full">
+            <div className="hidden md:flex items-center justify-center w-full h-full">
               {sideContent}
             </div>
           )}
