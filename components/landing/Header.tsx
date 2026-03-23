@@ -9,7 +9,7 @@ const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
   { label: "Features", href: "#features" },
   { label: "Security", href: "#security" },
-  { label: "Team", href: "#team" },
+  { label: "Team", href: "/team" }, // ✅ changed
 ];
 
 export const Header = () => {
@@ -66,7 +66,8 @@ ${menuOpen ? "rounded-b-[24px] rounded-t-none md:rounded-[100px] top-0  pt-2" : 
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-[#FDF9F0]/80 font-switzer text-[18px] font-switzer hover:text-[#BC9313] transition-colors duration-200"
+                onClick={() => setMenuOpen(false)}
+                className="text-[#FDF9F0] text-[16px] font-switzer px-2 hover:text-[#BC9313] transition-colors duration-200"
               >
                 {link.label}
               </Link>

@@ -122,7 +122,7 @@ const TryOutSection = () => {
       <motion.div className="flex-1 flex items-center justify-center relative aspect-square">
         {/* Circles */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="absolute w-[476px] h-[467px] md:w-[544px] md:h-[553px]">
+          <div className="absolute w-[446px] h-[447px] md:w-[544px] md:h-[553px]">
             <OuterCircle />
           </div>
           <div className="absolute md:w-[376px] md:h-[367px] w-[300px] h-[300px]">
@@ -145,7 +145,7 @@ const TryOutSection = () => {
         />
 
         {/* Image */}
-        <div className="relative md:w-[290px] md:h-[581px] w-[380px] h-[476px]">
+        <div className="relative md:w-[290px] md:h-[581px] w-[380px] h-[446px]">
           <Image
             src="/try_out_twigg.png"
             alt="Twiggout"
@@ -162,26 +162,29 @@ const TryOutSection = () => {
           className="absolute inset-0"
           onAnimationComplete={() => setTagsAnimated(true)}
         >
-          <AnimatedTag
+            <AnimatedTag
             Tag={TwiggOutTag1}
             text=""
-            className="absolute top-[30%] left-[-5%] max-md:scale-[0.7] "
+            className="absolute top-[30%] left-4 md:left-[-5%] scale-[0.7] md:scale-100 origin-left "
           />
+          {/* Tag 2 — right top */}
           <AnimatedTag
             Tag={TwiggOutTag2}
             text=""
-            className="absolute top-[17%] right-[-3%] max-md:scale-[0.7] "
+            className="absolute top-[17%] right-4 md:right-[-3%] scale-[0.7] md:scale-100 origin-right"
           />
+          {/* Tag 3 — left bottom */}
           <AnimatedTag
             Tag={TwiggOutTag3}
             text=""
-            className="absolute bottom-[10%] left-[-5%] max-md:scale-[0.7]"
+            className="absolute bottom-[15%] left-8 md:left-[-5%] scale-[0.7] md:scale-100 origin-left"
           />
+          {/* Tag 4 — right bottom */}
           <AnimatedTag
             Tag={TwiggOutTag4}
             text=""
             addSpace
-            className="absolute bottom-[24%] right-[-5%] max-md:scale-[0.7]"
+            className="absolute bottom-[24%] right-6 md:right-[-5%] scale-[0.7] md:scale-100 origin-right"
           />
         </motion.div>
       </motion.div>

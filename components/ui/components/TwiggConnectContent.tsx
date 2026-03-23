@@ -111,7 +111,7 @@ const mainFade: Variants = {
           alt="logo"
           width={60}
           height={60}
-          className="object-contain md:w-[125px] md:h-[113px] rotate-5"
+          className="object-contain w-[125px] h-[113px] md:w-[125px] md:h-[113px] rotate-5"
         />
       </motion.div>
 
