@@ -31,7 +31,21 @@ export const Header = () => {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+const redirectToStore = () => {
+  const userAgent = navigator.userAgent || navigator.vendor;
 
+  if (/android/i.test(userAgent)) {
+    window.location.href =
+      "https://play.google.com/store/apps/details?id=com.aadyantx.twigg";
+  } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+    window.location.href =
+      "https://apps.apple.com/in/app/twigg-one/id6758598241";
+  } else {
+    // Desktop fallback (you can choose what to do here)
+    window.location.href =
+      "https://play.google.com/store/apps/details?id=com.aadyantx.twigg";
+  }
+};
   return (
     <>
       <header
@@ -73,11 +87,11 @@ ${menuOpen ? "rounded-b-[24px] rounded-t-none md:rounded-[100px] top-0  pt-2" : 
               </Link>
             ))}
             <button
-              onClick={() => router.push("/waitlist")}
-              className="hidden md:block px-12 w-[178px] py-3 rounded-full text-[16px] font-semibold bg-[#BC9313] text-white hover:bg-[#f1c33a] transition-all hover:scale-105 cursor-pointer"
-            >
-              Join Beta
-            </button>
+  onClick={redirectToStore}
+  className="hidden md:block px-12 w-[178px] py-3 rounded-full text-[16px] font-semibold bg-[#BC9313] text-white hover:bg-[#f1c33a] transition-all hover:scale-105 cursor-pointer"
+>
+  Join Beta
+</button>
           </nav>
 
           {/* Desktop CTA Button */}
@@ -121,24 +135,8 @@ ${menuOpen ? "rounded-b-[24px] rounded-t-none md:rounded-[100px] top-0  pt-2" : 
               onClick={() => {
                 setMenuOpen(false);
 
-                const el = document.getElementById("home");
-                if (el) {
-                  const rect = el.getBoundingClientRect();
-                  const scrollTop =
-                    window.pageYOffset || document.documentElement.scrollTop;
+                 redirectToStore
 
-                  // 👇 scroll to middle of the section
-                  const y =
-                    rect.top +
-                    scrollTop +
-                    rect.height / 2 -
-                    window.innerHeight / 2;
-
-                  window.scrollTo({
-                    top: y,
-                    behavior: "smooth",
-                  });
-                }
               }}
               className="w-[142px] py-[11px] rounded-[10px] bg-[#BC9313] text-[#FDF9F0] font-semibold font-switzer text-[14px] hover:bg-[#f1c33a] transition-all cursor-pointer"
             >
