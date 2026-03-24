@@ -8,28 +8,74 @@ const HowItWorks: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
   const stepsScrollRef = useRef<HTMLDivElement>(null);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pauseRef = useRef(false);
+  useEffect(() => {
+    startAutoPlay();
 
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [activeStep]);
   const steps = [
     { step: "STEP 1", title: "Download the app" },
     { step: "STEP 2", title: "Link your accounts" },
     { step: "STEP 3", title: "See your full picture" },
     { step: "STEP 4", title: "Act with confidence" },
   ];
+  const startAutoPlay = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
+    timeoutRef.current = setTimeout(() => {
+      if (!pauseRef.current) {
+        setActiveStep((prev) => (prev + 1) % cards.length);
+      }
+    }, 7000);
+  };
   const cards = [
     {
+      id: "step1",
+
       image: "/how_it_works/step_1_image.png",
-      text: "Available on iOS via TestFlight and Android via Play Store in beta. Takes under 2 minutes to set up.",
+      text: (
+        <>
+          Available on{" "}
+          <a
+            href="https://apps.apple.com/in/app/twigg-one/id6758598241"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#BC9313] underline"
+          >
+            iOS
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://play.google.com/store/apps/details?id=com.aadyantx.twigg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#BC9313] underline"
+          >
+            Android
+          </a>{" "}
+          in beta. Takes under 2 minutes to set up.
+        </>
+      ),
     },
     {
+      id: "step2",
+
       image: "/how_it_works/step_2_image.png",
       text: "Securely connect banks, investments, insurance and loans via RBI's Account Aggregator consent-based, read-only.",
     },
     {
+      id: "step3",
+
       image: "/how_it_works/step_3_image.png",
       text: "Twigg Pulse reads 15+ signals across your financial life and tells you exactly what needs your attention.",
     },
     {
+      id: "step4",
+
       image: "/how_it_works/step_4_image.png",
       text: "Get personalised guidance from Twigg AI, backed by expert advisors when decisions get complex.",
     },
@@ -62,7 +108,7 @@ const HowItWorks: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-[31px] md:gap-[84px] pb-[72px] md:pb-[225px]">
+    <div className="flex flex-col gap-[31px] md:gap-[84px] ">
       {/* Header */}
       <div className="flex flex-col gap-4 leading-none">
         <h1 className="text-[20px] md:text-[56px] font-semibold font-bricolage text-[#FDF9F0]">
@@ -83,8 +129,23 @@ const HowItWorks: React.FC = () => {
           {steps.map((item, index) => (
             <div
               key={index}
-              ref={(el) => { stepRefs.current[index] = el; }}
-              onClick={() => setActiveStep(index)}
+              ref={(el) => {
+                stepRefs.current[index] = el;
+              }}
+              onClick={() => {
+                setActiveStep(index);
+
+                // Pause autoplay
+                pauseRef.current = true;
+
+                if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+                // Resume after 7 seconds
+                setTimeout(() => {
+                  pauseRef.current = false;
+                  startAutoPlay();
+                }, 7000);
+              }}
               className="flex-shrink-0"
             >
               <StepLabel
@@ -101,7 +162,7 @@ const HowItWorks: React.FC = () => {
           <AnimatePresence>
             {orderedCards.map((card, index) => (
               <motion.div
-                key={card.text}
+                key={card.id}
                 layout
                 initial={{ x: 120, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}

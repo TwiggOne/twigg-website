@@ -3,8 +3,7 @@ import React from "react";
 
 type HowItWorksCardProps = {
   image: string;
-  text: string;
-  isActive?: boolean;
+text: React.ReactNode;  isActive?: boolean;
 };
 
 const HowItWorksCard: React.FC<HowItWorksCardProps> = ({

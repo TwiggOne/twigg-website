@@ -37,7 +37,7 @@ export function Landing() {
 
       {/* Problem + Features */}
       <div className="mx-auto max-w-7xl px-[20px] md:px-[20px]">
-        <div id="features">
+        <div id="">
           {isMobileView ? (
             <ProblemSectionMobile />
           ) : (
@@ -46,7 +46,10 @@ export function Landing() {
               <ProblemSection />
             </>
           )}
-          <Features />
+          <div id="features">
+            {" "}
+            <Features />
+          </div>
         </div>
       </div>
 
@@ -57,6 +60,9 @@ export function Landing() {
 
       {/* Security (mapped to Trust section) */}
       <div id="security" className="mx-auto max-w-7xl px-[20px] md:px-0">
+        <div className="pb-[72px] md:pb-[225px]">
+          
+        </div>
         <Trust />
       </div>
 
@@ -66,7 +72,6 @@ export function Landing() {
         <TryOutSection />
         <div className="h-[150px]" />
       </div>
-
     </div>
   );
 }
