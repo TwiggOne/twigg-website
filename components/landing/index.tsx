@@ -1,15 +1,17 @@
 "use client";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
-import HeroSection from "./HeroSection";
-import { Header } from "./Header";
-import CommingSoon from "./ComingSoon";
-import ProblemSectionMobile from "./ProblemSectionMobile";
 
-const ProblemSection = dynamic(() => import("./ProblemSection"), { ssr: false });
-const Features = dynamic(() => import("./FeatureSection"), { ssr: false });
-const Trust = dynamic(() => import("./Trust"), { ssr: false });
-const CTASection = dynamic(() => import("./CTASection"), { ssr: false });
+import { Header } from "./Header";
+import HeroSectionV2 from "./HeroSectionV2";
+
+// Dynamic imports
+const ProblemSection = dynamic(() => import("./ProblemSection"));
+const ProblemSectionMobile = dynamic(() => import("./ProblemSectionMobile"));
+const Features = dynamic(() => import("./FeatureSection"));
+const Trust = dynamic(() => import("./Trust"));
+const TryOutSection = dynamic(() => import("./TryOutSection"));
+const HowItWorks = dynamic(() => import("./HowItWorks"));
 
 export function Landing() {
   const [isMobileView, setIsMobileView] = useState(false);
@@ -19,7 +21,7 @@ export function Landing() {
       setIsMobileView(window.innerWidth <= 1010);
     };
 
-    handleResize(); // initial check
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -28,27 +30,47 @@ export function Landing() {
     <div className="bg-[#152D23] w-full">
       <Header />
 
-      <div className="mx-auto max-w-7xl pt-10">
-        <HeroSection />
+      {/* Hero */}
+      <div id="home" className="mx-auto max-w-7xl pt-10">
+        <HeroSectionV2 />
       </div>
 
-      <div className="md:py-20">
-        <CommingSoon />
-      </div>
-
+      {/* Problem + Features */}
       <div className="mx-auto max-w-7xl px-[20px] md:px-[20px]">
-        {isMobileView ? (
-          <ProblemSectionMobile />
-        ) : (
-          <ProblemSection />
-        )}
-
-        <Features />
+        <div id="">
+          {isMobileView ? (
+            <ProblemSectionMobile />
+          ) : (
+            <>
+              <div className="h-[90px]" />
+              <ProblemSection />
+            </>
+          )}
+          <div id="features">
+            {" "}
+            <Features />
+          </div>
+        </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-[20px] md:px-0">
+      {/* How it works */}
+      <div id="how-it-works" className="mx-auto max-w-7xl px-[20px] md:px-0">
+        <HowItWorks />
+      </div>
+
+      {/* Security (mapped to Trust section) */}
+      <div id="security" className="mx-auto max-w-7xl px-[20px] md:px-0">
+        <div className="pb-[72px] md:pb-[225px]">
+          
+        </div>
         <Trust />
-        <CTASection />
+      </div>
+
+      {/* CTA / Try out */}
+      <div className="mx-auto max-w-7xl px-[20px] md:px-0">
+        <div className="h-[72px] md:h-[150px]" />
+        <TryOutSection />
+        <div className="h-[150px]" />
       </div>
     </div>
   );

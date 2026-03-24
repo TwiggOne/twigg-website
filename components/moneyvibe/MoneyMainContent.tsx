@@ -340,8 +340,7 @@ const MoneyMainContent: React.FC<MoneyMainContentProps> = ({ onComplete }) => {
                       setSendDataForResults(true);
 
                       const payload = {
-                        waitlistEntryId,
-                        answers,
+waitlistEntryId: String(waitlistEntryId),                        answers,
                       };
 
                       console.log("Submitting evaluation:", payload);

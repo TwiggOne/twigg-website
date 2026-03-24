@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 export default function HeroSection() {
   const router = useRouter();
   const [showScrollTop, setShowScrollTop] = useState(false); // <-- new
-const [tagsAnimated, setTagsAnimated] = useState(false);
+  const [tagsAnimated, setTagsAnimated] = useState(false);
 
   // Show button after scrolling 1 screen height
   useEffect(() => {
@@ -35,20 +35,19 @@ const [tagsAnimated, setTagsAnimated] = useState(false);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-useEffect(() => {
-  if (!tagsAnimated) {
-    const maxAnimationTime = 5000; // 5 seconds, for example
-    const timer = setTimeout(() => setTagsAnimated(true), maxAnimationTime);
-    return () => clearTimeout(timer);
-  }
-}, [tagsAnimated]);
+  useEffect(() => {
+    if (!tagsAnimated) {
+      const maxAnimationTime = 5000; // 5 seconds, for example
+      const timer = setTimeout(() => setTagsAnimated(true), maxAnimationTime);
+      return () => clearTimeout(timer);
+    }
+  }, [tagsAnimated]);
 
   const containerVariants = {
     hidden: {},
     visible: {
-      delay:1,
+      delay: 1,
       transition: {
-        
         staggerChildren: 1.2, // 0.6s delay between tags
       },
     },
@@ -64,37 +63,37 @@ useEffect(() => {
     },
   };
   const AnimatedTag = ({
-  Tag,
-  text,
-  className,
-  addSpace = false, // corrected prop name
-}: {
-  Tag: React.ElementType;
-  text: string;
-  className?: string;
-  addSpace?: boolean; // corrected type
-}) => (
-  <motion.div className={className} variants={tagVariants as Variants}>
-    <div className="relative w-[218px] h-[66px] flex items-center justify-center">
-      <div className="scale-[1.15]">
-        <Tag />
+    Tag,
+    text,
+    className,
+    addSpace = false, // corrected prop name
+  }: {
+    Tag: React.ElementType;
+    text: string;
+    className?: string;
+    addSpace?: boolean; // corrected type
+  }) => (
+    <motion.div className={className} variants={tagVariants as Variants}>
+      <div className="relative w-[218px] h-[66px] flex items-center justify-center">
+        <div className="scale-[1.15]">
+          <Tag />
+        </div>
+        <span
+          className="absolute font-switzer text-[#FDF9F0] text-[18px]"
+          style={{
+            transform: "translate(0%, -20%)",
+            fontWeight: 600,
+            marginTop: addSpace ? 16 : 0, // conditional margin
+            fontStyle: "normal",
+            lineHeight: "100%",
+            letterSpacing: "0%",
+          }}
+        >
+          {text}
+        </span>
       </div>
-      <span
-        className="absolute font-switzer text-[#FDF9F0] text-[18px]"
-        style={{
-          transform: "translate(0%, -20%)",
-          fontWeight: 600,
-          marginTop: addSpace ? 16 : 0, // conditional margin
-          fontStyle: "normal",
-          lineHeight: "100%",
-          letterSpacing: "0%",
-        }}
-      >
-        {text}
-      </span>
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
 
   return (
     <section className="relative z-10 w-full pt-30 ">
@@ -113,7 +112,8 @@ useEffect(() => {
             className="font-normal text-[16px] sm:text-[16px] lg:text-[24px] mt-[32px] md:mt-[32px] leading-[130%] mb-[32px] md:mb-[57px] italic font-switzer max-w-[300px] md:max-w-[300px]"
             style={{ color: "#FDF9F0CC" }}
           >
-Trusted guidance for every money move you make          </p>
+            Trusted guidance for every money move you make{" "}
+          </p>
           {/* Button */}
           <div className="flex justify-center lg:justify-start">
             <motion.button
@@ -223,7 +223,6 @@ Trusted guidance for every money move you make          </p>
               alt="Hero Image"
               priority
               fill
-           
               className="object-cover relative z-20"
               style={{
                 WebkitMaskImage:
@@ -246,20 +245,19 @@ Trusted guidance for every money move you make          </p>
           </div>
 
           {/* TAGS */}
-            <motion.div
-              variants={containerVariants}
-              className="absolute inset-0"
-  initial={!tagsAnimated ? "hidden" : undefined} // animate only if not already animated
-              animate="visible"
-  onAnimationComplete={() => setTagsAnimated(true)}
+          <motion.div
+            variants={containerVariants}
+            className="absolute inset-0"
+            initial={!tagsAnimated ? "hidden" : undefined} // animate only if not already animated
+            animate="visible"
+            onAnimationComplete={() => setTagsAnimated(true)}
+          >
+            {/* Top Left */}
 
-            >
-              {/* Top Left */}
-
-              <AnimatedTag
-                Tag={Tag1}
-                text="Thoughtful Investing"
-                className="
+            <AnimatedTag
+              Tag={Tag1}
+              text="Thoughtful Investing"
+              className="
       absolute 
       top-[-10%] left-[-80%]
       sm:top-[-50%] sm:left-[-160%]
@@ -267,13 +265,13 @@ Trusted guidance for every money move you make          </p>
       lg:top-[23%] lg:left-[-6%]
       scale-[0.5] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
     "
-              />
+            />
 
-              {/* Top Right */}
-              <AnimatedTag
-                Tag={Tag2}
-                text="Conscious Spending"
-                className="
+            {/* Top Right */}
+            <AnimatedTag
+              Tag={Tag2}
+              text="Conscious Spending"
+              className="
       absolute 
       top-[-20%] right-[-75%]
       sm:top-[-50%] sm:left-[90%]
@@ -281,13 +279,13 @@ Trusted guidance for every money move you make          </p>
       lg:top-[16%] lg:left-[65%]
       scale-[0.5] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
     "
-              />
+            />
 
-              {/* Bottom Left */}
-              <AnimatedTag
-                Tag={Tag3}
-                text="Purposeful Insurance"
-                className="
+            {/* Bottom Left */}
+            <AnimatedTag
+              Tag={Tag3}
+              text="Purposeful Insurance"
+              className="
       absolute 
       bottom-[-25%] left-[-70%]
       sm:bottom-[-60%] sm:left-[-150%]
@@ -295,14 +293,14 @@ Trusted guidance for every money move you make          </p>
       lg:bottom-[17%] lg:left-[2%]
       scale-[0.5] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
     "
-              />
+            />
 
-              {/* Bottom Right */}
-              <AnimatedTag
-                Tag={Tag4}
-                addSpace
-                text="Responsible Borrowing"
-                className="
+            {/* Bottom Right */}
+            <AnimatedTag
+              Tag={Tag4}
+              addSpace
+              text="Responsible Borrowing"
+              className="
       absolute 
       bottom-[-10%] left-[60%]
       sm:bottom-[-50%] sm:left-[80%]
@@ -310,9 +308,8 @@ Trusted guidance for every money move you make          </p>
       lg:bottom-[25%] lg:left-[70%]
       scale-[0.5] sm:scale-[0.55] md:scale-[0.85] lg:scale-100
     "
-              />
-            </motion.div>
-          
+            />
+          </motion.div>
 
           {showScrollTop && (
             <div

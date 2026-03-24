@@ -163,7 +163,7 @@ export const ProblemSection = () => {
   };
 
   useEffect(() => {
-    const timer = setInterval(handleRotate, 8000);
+    const timer = setInterval(handleRotate, 5000);
     return () => clearInterval(timer);
   }, []);
   // Compute visible labels (max 3) based on activeIndex
@@ -193,11 +193,11 @@ export const ProblemSection = () => {
     bottom: { top: "75%", left: "0%", scale: 0.8, opacity: 0, zIndex: 0 },
   };
   return (
-    <section className="relative min-h-screen flex items-center justify-center">
+    <section className="relative  flex items-center justify-center">
       <motion.div
         className="w-full bg-[#FDF9F0] rounded-[60px] p-8 sm:p-12 md:py-[76px] md:px-[59px] relative "
         initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
@@ -205,7 +205,7 @@ export const ProblemSection = () => {
         <motion.div
           className="mb-12 sm:mb-16"
           initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          animate={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >

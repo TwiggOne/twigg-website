@@ -1,12 +1,21 @@
-"use client"
+"use client";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+const navLinks = [
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Features", href: "#features" },
+  { label: "Security", href: "#security" },
+  { label: "Team", href: "/team" }, // ✅ changed
+];
+
 export const Header = () => {
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,58 +25,142 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <header
-      className={`fixed top-2 left-1/2 transform -translate-x-1/2 z-999 transition-all duration-300 w-full max-w-[1312px] px-4 sm:px-6 md:px-8
-        ${
-          scrolled
-            ? "bg-[#21483880] border border-[#FDF9F00A] rounded-[100px] z-20 shadow-[0px_7px_15px_0px_#0000001A,0px_27px_27px_0px_#00000017,0px_61px_36px_0px_#0000000D,0px_108px_43px_0px_#00000003,0px_169px_47px_0px_#00000000,0px_4px_4px_0px_#FDF9F01A_inset] backdrop-blur-[40px]"
-            : "bg-[#152D23] border-none rounded-[100px] shadow-none"
-        }`}
-    >
-      <div
-        className="
-          flex items-center justify-between
-          py-3 sm:py-4
-        "
-      >
-        {/* Logo */}
-        <Link href={"/"}>
-          <div className="flex items-center gap-2 sm:gap-3">
-            <Image
-              src="/logo.svg"
-              alt="Logo"
-              width={30}
-              height={30}
-              className="w-[30px] h-[30px] sm:w-[38px] sm:h-[38px]"
-            />
-            <span className="text-[#FDF9F0] font-bold text-xl sm:text-3xl">
-              TWIGG
-            </span>
-          </div>
-        </Link>
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+const redirectToStore = () => {
+  const userAgent = navigator.userAgent || navigator.vendor ;
 
-        {/* Button */}
-        {scrolled &&   <button
-           onClick={() => {
-            router.push("/waitlist");
-          }}
-          className={` px-[20px] cursor-pointer sm:px-[24px] py-[8px] sm:py-[14px] rounded-full text-[10px] sm:text-base font-semibold transition-all hover:scale-105 text-center
-            ${
-              scrolled
-                ? "bg-[#BC9313] text-white hover:bg-[#f1c33a]"
-                : "bg-transparent text-white border border-[#FDF9F0] hover:bg-[#BC9313]/10"
+  // iOS devices
+  const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+
+  // Android devices
+  const isAndroid = /android/i.test(userAgent);
+
+  // Mac (including Apple Silicon Macs that can run iOS apps)
+  const isMac = /Macintosh|MacIntel|MacPPC|Mac68K/.test(userAgent);
+
+  if (isAndroid) {
+    window.location.href =
+      "https://play.google.com/store/apps/details?id=com.aadyantx.twigg";
+  } else if (isIOS || isMac) {
+    window.location.href =
+      "https://apps.apple.com/in/app/twigg-one/id6758598241";
+  } else {
+    // fallback (Windows/Linux → Play Store or landing page)
+    window.location.href =
+      "https://play.google.com/store/apps/details?id=com.aadyantx.twigg";
+  }
+};
+  return (
+    <>
+      <header
+        className={`fixed left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 w-full max-w-[1312px] px-4 sm:px-6 md:px-8
+          ${
+            scrolled
+              ? "bg-[#21483880] border border-[#FDF9F00A] rounded-[100px] shadow-[0px_7px_15px_0px_#0000001A,0px_27px_27px_0px_#00000017,0px_61px_36px_0px_#0000000D,0px_108px_43px_0px_#00000003,0px_169px_47px_0px_#00000000,0px_4px_4px_0px_#FDF9F01A_inset] backdrop-blur-[40px]"
+              : "bg-[#152D23] border-none rounded-[100px] shadow-none"
+          }
+${menuOpen ? "rounded-b-[24px] rounded-t-none md:rounded-[100px] top-0  pt-2" : "rounded-[100px] top-2 "}        `}
+      >
+        <div className="flex items-center justify-between py-3 sm:py-4">
+          {/* Logo */}
+          <Link href="/">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Image
+                src="/logo.svg"
+                alt="Logo"
+                width={30}
+                height={30}
+                className="w-[30px] h-[30px] sm:w-[38px] sm:h-[38px]"
+              />
+              <span className="text-[#FDF9F0] font-bold text-xl sm:text-3xl">
+                TWIGG
+              </span>
+            </div>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-[56px]">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="text-[#FDF9F0] text-[16px] font-switzer px-2 hover:text-[#BC9313] transition-colors duration-200"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <button
+              onClick={redirectToStore}
+              className="hidden md:block px-12 w-[178px] py-3 rounded-full text-[16px] font-semibold bg-[#BC9313] text-white hover:bg-[#f1c33a] transition-all hover:scale-105 cursor-pointer"
+            >
+              Join Beta
+            </button>
+          </nav>
+
+          {/* Desktop CTA Button */}
+
+          {/* Mobile Hamburger / Close */}
+          <button
+            onClick={() => setMenuOpen((prev) => !prev)}
+            className={`md:hidden flex justify-center items-center w-9 h-9 cursor-pointer ${
+              menuOpen ? "" : ""
             }`}
-          style={{
-            width: "auto",
-            minWidth: "92px", // keeps a nice proportion for sm/md
-            maxWidth: "178px", // matches desktop width
-          }}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+          >
+            {menuOpen ? (
+              <X className="text-[#FDF9F0]" />
+            ) : (
+              <Menu className="text-[#FDF9F0]" />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Dropdown Panel — slides down inside the header pill */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out
+            ${menuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"}`}
         >
-          Join Waitlist
-        </button>}
-      
-      </div>
-    </header>
+          <nav className="flex flex-col px-1 pt-5 pb-2 gap-[24px]">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="text-[#FDF9F0] text-[16px] font-switzer  px-2  hover:text-[#BC9313] transition-colors duration-200"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="px-2 pt-[28px] pb-5">
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+
+                redirectToStore();
+              }}
+              className="w-[142px] py-[11px] rounded-[10px] bg-[#BC9313] text-[#FDF9F0] font-semibold font-switzer text-[14px] hover:bg-[#f1c33a] transition-all cursor-pointer"
+            >
+              Download app
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Backdrop */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
+    </>
   );
 };

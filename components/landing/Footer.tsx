@@ -16,16 +16,16 @@ export default function Footer() {
       title: "Product",
       links: [
         // { name: "Features", href: "#features" },
-        { name: "MoneyVibe", href: "/moneyvibe" },
-
-        { name: "FAQs", href: "/faqs" },
+        { name: "How It Works", href: "#how-it-works" },
+  { name: "Features", href: "#features" },
+  { name: "Security", href: "#security" },
       ],
     },
     {
-      title: "Support",
+      title: "Disclosures",
       links: [
         { name: "Terms & Conditions", href: "/terms-condition" }, // ✅ navigates to /terms-condition
-        // { name: "Privacy Policy", href: "/privacy-policy" }, // ✅ navigates to /privacy-policy
+        { name: "Privacy Policy", href: "/privacy-policy" }, // ✅ navigates to /privacy-policy
       ],
     },
   ];

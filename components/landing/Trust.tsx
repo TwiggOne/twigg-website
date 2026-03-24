@@ -363,7 +363,7 @@ export const Trust = () => {
               alt="mobile-shield"
               height={196}
               width={137}
-              className="object-contain sm:w-[50%] sm:h-[40%] relative z-20"
+              className="object-contain  sm:w-[50%] sm:h-[40%] relative z-20"
               style={{
                 filter: "drop-shadow(0px 11px 25px rgba(0, 0, 0, 0.1))",
               }}
