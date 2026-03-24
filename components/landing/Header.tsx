@@ -31,21 +31,30 @@ export const Header = () => {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
-  const redirectToStore = () => {
-    const userAgent = navigator.userAgent || navigator.vendor;
+const redirectToStore = () => {
+  const userAgent = navigator.userAgent || navigator.vendor ;
 
-    if (/android/i.test(userAgent)) {
-      window.location.href =
-        "https://play.google.com/store/apps/details?id=com.aadyantx.twigg";
-    } else if (/iPad|iPhone|iPod/.test(userAgent)) {
-      window.location.href =
-        "https://apps.apple.com/in/app/twigg-one/id6758598241";
-    } else {
-      // Desktop fallback (you can choose what to do here)
-      window.location.href =
-        "https://play.google.com/store/apps/details?id=com.aadyantx.twigg";
-    }
-  };
+  // iOS devices
+  const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+
+  // Android devices
+  const isAndroid = /android/i.test(userAgent);
+
+  // Mac (including Apple Silicon Macs that can run iOS apps)
+  const isMac = /Macintosh|MacIntel|MacPPC|Mac68K/.test(userAgent);
+
+  if (isAndroid) {
+    window.location.href =
+      "https://play.google.com/store/apps/details?id=com.aadyantx.twigg";
+  } else if (isIOS || isMac) {
+    window.location.href =
+      "https://apps.apple.com/in/app/twigg-one/id6758598241";
+  } else {
+    // fallback (Windows/Linux → Play Store or landing page)
+    window.location.href =
+      "https://play.google.com/store/apps/details?id=com.aadyantx.twigg";
+  }
+};
   return (
     <>
       <header

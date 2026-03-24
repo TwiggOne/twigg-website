@@ -1,41 +1,31 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import HowItWorksCard from "../ui/components/HowItWorksCard";
 
 const HowItWorks: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
+
   const stepsScrollRef = useRef<HTMLDivElement>(null);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const pauseRef = useRef(false);
-  useEffect(() => {
-    startAutoPlay();
 
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, [activeStep]);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { amount: 0.5 });
+
   const steps = [
     { step: "STEP 1", title: "Download the app" },
     { step: "STEP 2", title: "Link your accounts" },
     { step: "STEP 3", title: "See your full picture" },
     { step: "STEP 4", title: "Act with confidence" },
   ];
-  const startAutoPlay = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
-    timeoutRef.current = setTimeout(() => {
-      if (!pauseRef.current) {
-        setActiveStep((prev) => (prev + 1) % cards.length);
-      }
-    }, 7000);
-  };
   const cards = [
     {
       id: "step1",
-
       image: "/how_it_works/step_1_image.png",
       text: (
         <>
@@ -63,25 +53,44 @@ const HowItWorks: React.FC = () => {
     },
     {
       id: "step2",
-
       image: "/how_it_works/step_2_image.png",
       text: "Securely connect banks, investments, insurance and loans via RBI's Account Aggregator consent-based, read-only.",
     },
     {
       id: "step3",
-
       image: "/how_it_works/step_3_image.png",
       text: "Twigg Pulse reads 15+ signals across your financial life and tells you exactly what needs your attention.",
     },
     {
       id: "step4",
-
       image: "/how_it_works/step_4_image.png",
       text: "Get personalised guidance from Twigg AI, backed by expert advisors when decisions get complex.",
     },
   ];
 
-  // Only scroll to center if the active step is partially/fully out of view
+  // 🔁 Autoplay logic
+  const startAutoPlay = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+    timeoutRef.current = setTimeout(() => {
+      if (!pauseRef.current) {
+        setActiveStep((prev) => (prev + 1) % cards.length);
+      }
+    }, 4000);
+  };
+
+  // ▶️ Run autoplay only when in view
+  useEffect(() => {
+    if (!isInView) return;
+
+    startAutoPlay();
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [activeStep, isInView]);
+
+  // 📍 Scroll active step into view
   useEffect(() => {
     const container = stepsScrollRef.current;
     const activeEl = stepRefs.current[activeStep];
@@ -108,7 +117,10 @@ const HowItWorks: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-[31px] md:gap-[84px] ">
+    <div
+      ref={sectionRef}
+      className="flex flex-col gap-[31px] md:gap-[84px]"
+    >
       {/* Header */}
       <div className="flex flex-col gap-4 leading-none">
         <h1 className="text-[20px] md:text-[56px] font-semibold font-bricolage text-[#FDF9F0]">
@@ -120,7 +132,7 @@ const HowItWorks: React.FC = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-[33px] md:gap-[86px]">
-        {/* Steps — naturally laid out, scroll only when needed */}
+        {/* Steps */}
         <div
           ref={stepsScrollRef}
           className="flex flex-row md:flex-col gap-[24px] md:gap-[56px] overflow-x-auto md:overflow-x-visible pb-2 md:pb-0"
@@ -135,16 +147,15 @@ const HowItWorks: React.FC = () => {
               onClick={() => {
                 setActiveStep(index);
 
-                // Pause autoplay
+                // ⛔ Pause autoplay
                 pauseRef.current = true;
-
                 if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
-                // Resume after 7 seconds
+                // ▶️ Resume after 7s
                 setTimeout(() => {
                   pauseRef.current = false;
-                  startAutoPlay();
-                }, 7000);
+                  if (isInView) startAutoPlay();
+                }, 4000);
               }}
               className="flex-shrink-0"
             >
@@ -199,14 +210,14 @@ const StepLabel: React.FC<StepLabelProps> = ({ step, title, isActive }) => {
       />
       <div className="gap-1 flex flex-col">
         <p
-          className={`text-[10px] md:text-[16px] font-bricolage font-semibold transition-colors duration-300 ${
+          className={`text-[10px] md:text-[16px] font-bricolage font-semibold ${
             isActive ? "text-[#BC9313]" : "text-[#BC9313]/50"
           }`}
         >
           {step}
         </p>
         <p
-          className={`text-[14px] md:text-[24px] font-bricolage font-semibold whitespace-nowrap transition-colors duration-300 ${
+          className={`text-[14px] md:text-[24px] font-bricolage font-semibold whitespace-nowrap ${
             isActive ? "text-[#FDF9F0]" : "text-[#FDF9F0]/50"
           }`}
         >

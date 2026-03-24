@@ -163,7 +163,7 @@ export const ProblemSection = () => {
   };
 
   useEffect(() => {
-    const timer = setInterval(handleRotate, 8000);
+    const timer = setInterval(handleRotate, 5000);
     return () => clearInterval(timer);
   }, []);
   // Compute visible labels (max 3) based on activeIndex

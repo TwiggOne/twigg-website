@@ -1349,12 +1349,12 @@ export const PointerLogo = () => {
       <path
         d="M17.6728 8.82278C17.6728 10.7028 17.3074 12.4951 16.3325 14.1203C14.9073 16.4954 12.7825 17.809 10.0296 17.9778C7.19729 18.1523 4.64144 17.2981 2.55745 15.3631C0.518207 13.4745 -0.260104 11.0501 0.075238 8.29768C0.407748 5.56906 1.66415 3.31287 3.81895 1.61973C5.50698 0.293094 7.48788 -0.168003 9.61945 0.0529144C11.4321 0.240978 13.1377 0.757586 14.5827 1.90126C16.4254 3.35932 17.402 5.30283 17.607 7.63719C17.6416 8.03088 17.6518 8.4274 17.6728 8.82278ZM16.5013 8.53559C16.5013 8.28522 16.5132 8.03371 16.5013 7.7839C16.3965 5.87835 15.6681 4.25602 14.2298 2.99225C13.3416 2.21394 12.2654 1.77494 11.1472 1.4362C9.27165 0.86691 7.41764 0.983034 5.68428 1.85764C2.90412 3.25735 1.43983 5.64157 1.13394 8.6789C0.847884 11.5163 2.01252 13.7917 4.33499 15.401C6.23148 16.7135 8.39251 17.1004 10.6719 16.7843C11.9102 16.6144 13.029 16.1754 13.9574 15.294C15.9048 13.4479 16.6163 11.1458 16.5013 8.53559Z"
         fill="#BC9313"
-        fill-opacity="0.15"
+        fillOpacity="0.15"
       />
       <path
         d="M9.17359 2.56555C10.1779 2.55366 11.3103 2.85218 12.3724 3.43223C14.2349 4.44902 15.0245 6.10477 15.148 8.13835C15.2143 9.24803 15.1786 10.3696 14.8325 11.4312C14.0961 13.6936 12.4279 15.3227 9.77914 15.4564C7.73366 15.56 5.9448 14.9766 4.43746 13.6126C3.05757 12.3664 2.39029 10.7718 2.53247 8.91099C2.72506 6.3863 3.98543 4.49717 6.15778 3.22661C7.00973 2.72643 7.98687 2.5327 9.17359 2.56555ZM3.62629 9.26786C3.62006 10.3345 3.92368 11.3739 4.64591 12.2746C5.65081 13.5248 6.99387 14.1326 8.54879 14.362C11.2111 14.7557 13.0929 13.3503 13.8344 10.9831C13.991 10.4517 14.0769 9.90208 14.0899 9.34829C14.1425 8.03072 14.0474 6.73184 13.2662 5.59949C12.2166 4.07856 9.79556 3.32007 7.8022 3.74548C5.8519 4.16239 3.5334 6.72617 3.62629 9.26786Z"
         fill="#BC9313"
-        fill-opacity="0.15"
+        fillOpacity="0.15"
       />
       <path
         d="M9.04996 5.28835C10.7986 5.2317 12.8384 6.57024 12.7064 9.0094C12.5756 11.4355 11.2824 12.8335 9.16778 12.8154C6.40971 12.7922 5.18617 10.7195 5.23998 9.02016C5.30286 7.02454 7.05887 5.26626 9.04996 5.28835ZM11.6081 8.92726C11.6358 7.49073 10.6315 6.43486 9.2148 6.40483C7.64062 6.37425 6.37686 7.55077 6.33834 9.08247C6.30208 10.5422 7.45992 11.6972 8.98992 11.7261C10.6479 11.7578 11.5735 10.7682 11.6081 8.92726Z"
@@ -1391,9 +1391,9 @@ export const ResultGoldCard = () => {
           width="511"
           height="308"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -1514,9 +1514,9 @@ export const SocialBg = () => {
           width="56"
           height="56"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -1572,7 +1572,7 @@ export const SocialBg = () => {
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FDF9F0" />
-          <stop offset="1" stopColor="#FDF9F0" stop-opacity="0.5" />
+          <stop offset="1" stopColor="#FDF9F0" stopOpacity="0.5" />
         </linearGradient>
       </defs>
     </svg>
@@ -1620,7 +1620,7 @@ export const CompaseBg = () => {
       <path
         d="M59.9187 0.0318871C68.9545 -0.075173 79.1421 2.61152 88.6977 7.83198C105.454 16.9831 112.559 31.8848 113.67 50.187C114.266 60.1742 113.945 70.2685 110.831 79.8223C104.206 100.184 89.1972 114.846 65.3666 116.049C46.9637 116.982 30.8695 111.731 17.3081 99.455C4.89342 88.2392 -1.11007 73.8881 0.169109 57.1408C1.90187 34.4186 13.2412 17.4164 32.7857 5.98139C40.4506 1.47977 49.2418 -0.263803 59.9187 0.0318871ZM10.0101 60.3526C9.95409 69.9524 12.6857 79.3074 19.1836 87.4133C28.2245 98.6648 40.3079 104.135 54.2974 106.2C78.2502 109.743 95.1803 97.0947 101.851 75.7897C103.26 71.0076 104.033 66.0606 104.15 61.0766C104.624 49.2184 103.768 37.5284 96.7397 27.3373C87.2962 13.6489 65.5144 6.82257 47.5804 10.6512C30.0337 14.4034 9.17435 37.4774 10.0101 60.3526Z"
         fill="#214838"
-        fill-opacity="0.35"
+        fillOpacity="0.35"
       />
       <path
         d="M58.1644 21.9588C75.9451 21.387 96.6864 34.8987 95.3444 59.5204C94.0138 84.0106 80.864 98.1226 59.3624 97.9396C31.3176 97.7052 18.8763 76.7831 19.4235 59.6291C20.0629 39.4845 37.9185 21.7358 58.1644 21.9588ZM84.176 58.6913C84.4582 44.1904 74.246 33.5321 59.8405 33.229C43.8338 32.9203 30.9836 44.7965 30.5919 60.258C30.2233 74.9933 41.9965 86.6523 57.5539 86.9439C74.413 87.2641 83.8246 77.2748 84.176 58.6913Z"
@@ -1731,17 +1731,17 @@ export const VibeChanged = () => {
       <path
         d="M82 41.6631C82 50.5412 80.3047 59.0047 75.7814 66.6791C69.1686 77.8951 59.3099 84.0982 46.5363 84.8954C33.3948 85.7192 21.5359 81.6854 11.8663 72.5479C2.40443 63.6297 -1.20686 52.181 0.349098 39.1835C1.89191 26.2983 7.7215 15.6441 17.7196 7.64874C25.5519 1.38405 34.7431 -0.793349 44.6334 0.249873C53.044 1.13795 60.9578 3.57749 67.6626 8.97817C76.2125 15.8634 80.7437 25.0411 81.6951 36.0645C81.8554 37.9236 81.9027 39.796 82 41.6631ZM76.5647 40.3069C76.5647 39.1246 76.6199 37.937 76.5647 36.7573C76.0784 27.7589 72.6984 20.0979 66.0252 14.1301C61.904 10.4547 56.9102 8.38166 51.7219 6.78205C43.0196 4.09374 34.4172 4.6421 26.3746 8.7722C13.4749 15.3819 6.68068 26.6407 5.2614 40.9837C3.93411 54.3824 9.3379 65.1276 20.1139 72.7271C28.9135 78.9249 38.9405 80.7519 49.5168 79.2593C55.2623 78.4568 60.4532 76.3837 64.7609 72.2215C73.7971 63.5039 77.0982 52.633 76.5647 40.3069Z"
         fill="#BC9313"
-        fill-opacity="0.05"
+        fillOpacity="0.05"
       />
       <path
         d="M42.5538 12.1163C47.2138 12.0602 52.4677 13.4699 57.3958 16.209C66.0377 21.0105 69.7015 28.8293 70.2745 38.4323C70.582 43.6725 70.4164 48.9689 68.8105 53.9817C65.3937 64.6654 57.6534 72.3584 45.3634 72.9897C35.8726 73.4792 27.5725 70.724 20.5785 64.2828C14.176 58.398 11.0799 50.8681 11.7396 42.0809C12.6332 30.1587 18.4812 21.2379 28.5607 15.238C32.5137 12.876 37.0475 11.9612 42.5538 12.1163ZM16.8148 43.7661C16.7859 48.803 18.1947 53.7115 21.5458 57.9646C26.2084 63.8682 32.4401 66.7384 39.6548 67.8218C52.0078 69.6809 60.739 63.0443 64.1795 51.8658C64.9059 49.3567 65.3045 46.761 65.3648 44.146C65.6093 37.9241 65.1677 31.7904 61.5433 26.4433C56.673 19.2611 45.4397 15.6794 36.1907 17.6882C27.1414 19.657 16.3838 31.7637 16.8148 43.7661Z"
         fill="#BC9313"
-        fill-opacity="0.05"
+        fillOpacity="0.05"
       />
       <path
         d="M42.3813 24.1484C50.943 23.8682 60.9302 30.4897 60.284 42.5557C59.6433 54.5573 53.3115 61.4729 42.9582 61.3833C29.4542 61.2684 23.4636 51.0154 23.7271 42.6089C24.0349 32.737 32.6326 24.0392 42.3813 24.1484ZM54.9063 42.1494C55.0422 35.0432 50.1248 29.82 43.1884 29.6715C35.481 29.5201 29.2934 35.3402 29.1048 42.9172C28.9273 50.1383 34.5962 55.8518 42.0874 55.9948C50.2053 56.1517 54.7371 51.2563 54.9063 42.1494Z"
         fill="#BC9313"
-        fill-opacity="0.2"
+        fillOpacity="0.2"
       />
     </svg>
   );
@@ -1792,18 +1792,18 @@ export const TwiggOutTag2 = () => {
     >
       <g filter="url(#filter0_d_9065_2565)" data-figma-bg-blur-radius="40">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M169.425 0H19.649C14.9329 0 11.0735 3.4116 11.0735 7.58222V28.6714C11.0669 36.2883 9.90708 42.2543 4 47.3529C6.78446 48.239 11.0498 48.6362 13.4986 45.6883C15.0595 47.1117 17.2419 48 19.6482 48H169.424C174.141 48 178 44.5884 178 40.4178V7.58294C178 3.41304 174.141 0.000722185 169.424 0.000722185L169.425 0Z"
           fill="url(#paint0_linear_9065_2565)"
-          fill-opacity="0.35"
-          shape-rendering="crispEdges"
+          fillOpacity="0.35"
+          shapeRendering="crispEdges"
         />
         <path
           d="M19.6494 0.5C15.1498 0.5 11.5734 3.74374 11.5732 7.58203V28.6719L11.5693 29.3867C11.4922 36.4353 10.306 42.1779 5.00977 47.1162C6.18424 47.4079 7.52491 47.581 8.8291 47.4609C10.4575 47.311 11.9973 46.7138 13.1143 45.3691L13.4482 44.9658L13.8359 45.3184C15.3032 46.6563 17.3647 47.5 19.6484 47.5H169.425C173.924 47.4998 177.5 44.2562 177.5 40.418V7.58301C177.5 3.74541 173.925 0.501152 169.425 0.500977H168.104L168.104 0.5H19.6494Z"
           stroke="url(#paint1_linear_9065_2565)"
-          stroke-opacity="0.5"
-          shape-rendering="crispEdges"
+          strokeOpacity="0.5"
+          shapeRendering="crispEdges"
         />
       </g>
       <path
@@ -1818,9 +1818,9 @@ export const TwiggOutTag2 = () => {
           width="254"
           height="128"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -1851,8 +1851,8 @@ export const TwiggOutTag2 = () => {
           transform="translate(36 40)"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M169.425 0H19.649C14.9329 0 11.0735 3.4116 11.0735 7.58222V28.6714C11.0669 36.2883 9.90708 42.2543 4 47.3529C6.78446 48.239 11.0498 48.6362 13.4986 45.6883C15.0595 47.1117 17.2419 48 19.6482 48H169.424C174.141 48 178 44.5884 178 40.4178V7.58294C178 3.41304 174.141 0.000722185 169.424 0.000722185L169.425 0Z"
           />
         </clipPath>
@@ -1864,8 +1864,8 @@ export const TwiggOutTag2 = () => {
           y2="39.4403"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FDF9F0" />
-          <stop offset="1" stop-color="#FDF9F0" stop-opacity="0.4" />
+          <stop stopColor="#FDF9F0" />
+          <stop offset="1" stopColor="#FDF9F0" stopOpacity="0.4" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_9065_2565"
@@ -1875,8 +1875,8 @@ export const TwiggOutTag2 = () => {
           y2="13.3946"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" stop-opacity="0.8" />
-          <stop offset="1" stop-color="white" stop-opacity="0.2" />
+          <stop stopColor="white" stopOpacity="0.8" />
+          <stop offset="1" stopColor="white" stopOpacity="0.2" />
         </linearGradient>
       </defs>
     </svg>
@@ -1895,18 +1895,18 @@ export const TwiggOutTag1 = () => {
       <foreignObject x="-17" y="-35" width="279" height="124"></foreignObject>
       <g filter="url(#filter0_d_9065_2571)" data-figma-bg-blur-radius="40">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M32.8067 5H204.103C209.496 5 213.91 8.1273 213.91 11.9504V31.2822C213.918 38.2643 215.244 43.7331 222 48.4068C218.815 49.2191 213.937 49.5832 211.137 46.8809C209.352 48.1857 206.855 49 204.103 49H32.8077C27.4139 49 23 45.8727 23 42.0496V11.951C23 8.12862 27.4129 5.00066 32.8077 5.00066L32.8067 5Z"
           fill="url(#paint0_linear_9065_2571)"
-          fill-opacity="0.35"
-          shape-rendering="crispEdges"
+          fillOpacity="0.35"
+          shapeRendering="crispEdges"
         />
         <path
           d="M204.103 5.5C206.707 5.5 209.056 6.25563 210.74 7.44922C212.426 8.64408 213.41 10.2452 213.41 11.9502V31.2822L213.415 31.9385C213.459 35.1975 213.825 38.1713 214.963 40.9023C216.071 43.5604 217.899 45.9545 220.811 48.1592C219.472 48.4202 217.948 48.5726 216.461 48.4629C214.559 48.3225 212.77 47.7615 211.484 46.5215L211.182 46.2295L210.842 46.4775C209.152 47.7129 206.762 48.5 204.104 48.5H32.8076C30.203 48.5 27.8543 47.7444 26.1699 46.5508C24.4838 45.3559 23.5001 43.7548 23.5 42.0498V11.9512C23.5 10.2464 24.4838 8.64517 26.1699 7.4502C27.8542 6.25659 30.2026 5.50099 32.8076 5.50098L34.3779 5.5H204.103Z"
           stroke="url(#paint1_linear_9065_2571)"
-          stroke-opacity="0.5"
-          shape-rendering="crispEdges"
+          strokeOpacity="0.5"
+          shapeRendering="crispEdges"
         />
       </g>
       <path
@@ -1921,9 +1921,9 @@ export const TwiggOutTag1 = () => {
           width="279"
           height="124"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -1954,8 +1954,8 @@ export const TwiggOutTag1 = () => {
           transform="translate(17 35)"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M32.8067 5H204.103C209.496 5 213.91 8.1273 213.91 11.9504V31.2822C213.918 38.2643 215.244 43.7331 222 48.4068C218.815 49.2191 213.937 49.5832 211.137 46.8809C209.352 48.1857 206.855 49 204.103 49H32.8077C27.4139 49 23 45.8727 23 42.0496V11.951C23 8.12862 27.4129 5.00066 32.8077 5.00066L32.8067 5Z"
           />
         </clipPath>
@@ -1967,8 +1967,8 @@ export const TwiggOutTag1 = () => {
           y2="51.0991"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FDF9F0" />
-          <stop offset="1" stop-color="#FDF9F0" stop-opacity="0.2" />
+          <stop stopColor="#FDF9F0" />
+          <stop offset="1" stopColor="#FDF9F0" stopOpacity="0.2" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_9065_2571"
@@ -1978,8 +1978,8 @@ export const TwiggOutTag1 = () => {
           y2="-3.39837"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" stop-opacity="0.8" />
-          <stop offset="1" stop-color="white" stop-opacity="0.2" />
+          <stop stopColor="white" stopOpacity="0.8" />
+          <stop offset="1" stopColor="white" stopOpacity="0.2" />
         </linearGradient>
       </defs>
     </svg>
@@ -1997,18 +1997,18 @@ export const TwiggOutTag3 = () => {
       <foreignObject x="-36" y="-40" width="282" height="128"></foreignObject>
       <g filter="url(#filter0_d_9065_2568)" data-figma-bg-blur-radius="40">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M13.9546 48H187.833C193.308 48 197.788 44.5884 197.788 40.4178V19.3286C197.796 11.7117 199.142 5.7457 206 0.647079C202.767 -0.23904 197.816 -0.636242 194.973 2.31171C193.161 0.88829 190.627 0 187.834 0H13.9555C8.48042 0 4 3.41161 4 7.58222V40.4171C4 44.587 8.47947 47.9993 13.9555 47.9993L13.9546 48Z"
           fill="url(#paint0_linear_9065_2568)"
-          fill-opacity="0.35"
-          shape-rendering="crispEdges"
+          fillOpacity="0.35"
+          shapeRendering="crispEdges"
         />
         <path
           d="M187.833 47.5C190.47 47.4999 192.85 46.6776 194.561 45.375C196.271 44.0723 197.288 42.3126 197.288 40.418V19.3281L197.293 18.6133C197.338 15.0632 197.709 11.8298 198.859 8.8623C199.991 5.94518 201.867 3.31477 204.874 0.890625C203.496 0.59497 201.918 0.418 200.38 0.540039C198.456 0.692663 196.641 1.30271 195.333 2.65918L195.02 2.98438L194.664 2.70508C192.947 1.35664 190.525 0.500065 187.834 0.5H13.9551C11.3182 0.500095 8.93799 1.32239 7.22754 2.625C5.51696 3.92772 4.50007 5.68745 4.5 7.58203V40.417C4.5 42.3113 5.51699 44.0712 7.22754 45.374C8.93785 46.6766 11.3178 47.4989 13.9551 47.499L15.4375 47.5H187.833Z"
           stroke="url(#paint1_linear_9065_2568)"
-          stroke-opacity="0.5"
-          shape-rendering="crispEdges"
+          strokeOpacity="0.5"
+          shapeRendering="crispEdges"
         />
       </g>
       <path
@@ -2023,9 +2023,9 @@ export const TwiggOutTag3 = () => {
           width="282"
           height="128"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -2056,8 +2056,8 @@ export const TwiggOutTag3 = () => {
           transform="translate(36 40)"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M13.9546 48H187.833C193.308 48 197.788 44.5884 197.788 40.4178V19.3286C197.796 11.7117 199.142 5.7457 206 0.647079C202.767 -0.23904 197.816 -0.636242 194.973 2.31171C193.161 0.88829 190.627 0 187.834 0H13.9555C8.48042 0 4 3.41161 4 7.58222V40.4171C4 44.587 8.47947 47.9993 13.9555 47.9993L13.9546 48Z"
           />
         </clipPath>
@@ -2069,8 +2069,8 @@ export const TwiggOutTag3 = () => {
           y2="4.14013"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FDF9F0" />
-          <stop offset="1" stop-color="#FDF9F0" stop-opacity="0.2" />
+          <stop stopColor="#FDF9F0" />
+          <stop offset="1" stopColor="#FDF9F0" stopOpacity="0.2" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_9065_2568"
@@ -2080,8 +2080,8 @@ export const TwiggOutTag3 = () => {
           y2="48.8561"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" stop-opacity="0.8" />
-          <stop offset="1" stop-color="white" stop-opacity="0.4" />
+          <stop stopColor="white" stopOpacity="0.8" />
+          <stop offset="1" stopColor="white" stopOpacity="0.4" />
         </linearGradient>
       </defs>
     </svg>
@@ -2099,18 +2099,18 @@ export const TwiggOutTag4 = () => {
       <foreignObject x="-36" y="-40" width="263" height="128"></foreignObject>
       <g filter="url(#filter0_d_9065_2574)" data-figma-bg-blur-radius="40">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M177.982 0H20.4585C15.4983 0 11.4393 3.4116 11.4393 7.58222V28.6714C11.4325 36.2883 10.2126 42.2543 4 47.3529C6.92849 48.239 11.4144 48.6362 13.9899 45.6883C15.6315 47.1117 17.9269 48 20.4576 48H177.981C182.941 48 187 44.5884 187 40.4178V7.58294C187 3.41304 182.942 0.000722185 177.981 0.000722185L177.982 0Z"
           fill="url(#paint0_linear_9065_2574)"
-          fill-opacity="0.35"
-          shape-rendering="crispEdges"
+          fillOpacity="0.35"
+          shapeRendering="crispEdges"
         />
         <path
           d="M20.458 0.5C15.6895 0.500209 11.9396 3.76558 11.9395 7.58203V28.6719L11.9346 29.3857C11.8939 32.933 11.5591 36.1603 10.5186 39.1221C9.4929 42.0415 7.78789 44.6798 5.04688 47.1133C6.28686 47.4064 7.70412 47.5808 9.08398 47.46C10.808 47.309 12.4355 46.7075 13.6133 45.3594L13.9414 44.9844L14.3174 45.3105C15.8644 46.6519 18.0425 47.5 20.458 47.5H177.98C182.749 47.5 186.5 44.2345 186.5 40.418V7.58301C186.5 3.76702 182.75 0.500977 177.98 0.500977L176.609 0.5H20.458Z"
           stroke="url(#paint1_linear_9065_2574)"
-          stroke-opacity="0.5"
-          shape-rendering="crispEdges"
+          strokeOpacity="0.5"
+          shapeRendering="crispEdges"
         />
       </g>
       <path
@@ -2125,9 +2125,9 @@ export const TwiggOutTag4 = () => {
           width="263"
           height="128"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -2158,8 +2158,8 @@ export const TwiggOutTag4 = () => {
           transform="translate(36 40)"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M177.982 0H20.4585C15.4983 0 11.4393 3.4116 11.4393 7.58222V28.6714C11.4325 36.2883 10.2126 42.2543 4 47.3529C6.92849 48.239 11.4144 48.6362 13.9899 45.6883C15.6315 47.1117 17.9269 48 20.4576 48H177.981C182.941 48 187 44.5884 187 40.4178V7.58294C187 3.41304 182.942 0.000722185 177.981 0.000722185L177.982 0Z"
           />
         </clipPath>
@@ -2171,8 +2171,8 @@ export const TwiggOutTag4 = () => {
           y2="38.1478"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FDF9F0" />
-          <stop offset="1" stop-color="#FDF9F0" stop-opacity="0.2" />
+          <stop stopColor="#FDF9F0" />
+          <stop offset="1" stopColor="#FDF9F0" stopOpacity="0.2" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_9065_2574"
@@ -2182,8 +2182,8 @@ export const TwiggOutTag4 = () => {
           y2="8.98784"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" stop-opacity="0.8" />
-          <stop offset="1" stop-color="white" stop-opacity="0.2" />
+          <stop stopColor="white" stopOpacity="0.8" />
+          <stop offset="1" stopColor="white" stopOpacity="0.2" />
         </linearGradient>
       </defs>
     </svg>
