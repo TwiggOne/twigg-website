@@ -82,8 +82,9 @@ const TryOutSection = () => {
 
         <div className="h-[16px] md:h-10" />
         <p className="text-[14px] md:text-[20px] font-switzer text-[#FDF9F0]/80">
-          We&apos;re in controlled beta. Join now to get early access and help
-          us build India's Financial Decision App.
+          {
+            "We're in controlled beta. Join now to get early access and help us build India's Financial Decision App."
+          }
         </p>
 
         <div className="h-[32px] md:h-14" />
