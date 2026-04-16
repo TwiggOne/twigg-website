@@ -10,6 +10,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/gaps",
+        destination: "/gaps.html",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
