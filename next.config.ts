@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
         source: "/gaps",
         destination: "/gaps.html",
       },
+      {
+        source: "/download",
+        destination: "/download.html",
+      },
     ];
   },
 };
