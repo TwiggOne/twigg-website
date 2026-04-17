@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Twigg — Where Your Money Gaps Show Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0d2218;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    color: #f5f0e8;
+    padding: 0 0 80px;
+  }
+
+  .hero {
+    padding: 56px 24px 48px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .label-pill {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c8960c;
+    border: 1px solid #c8960c44;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 800;
+    line-height: 1.2;
+    color: #f5f0e8;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 span { color: #c8960c; }
+
+  .hero p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #a8bfb0;
+    max-width: 520px;
+  }
+
+  .selector-wrap {
+    max-width: 680px;
+    margin: 0 auto 32px;
+    padding: 0 24px;
+  }
+
+  .selector-label {
+    font-size: 12px;
+    color: #6b8f7a;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .band-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .band-tab {
+    background: #132d1f;
+    border: 1px solid #1e4530;
+    border-radius: 12px;
+    padding: 12px 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .band-tab:hover { border-color: #c8960c44; }
+
+  .band-tab.active {
+    background: #1a3d2b;
+    border-color: #c8960c;
+  }
+
+  .band-tab .band-income {
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #f5f0e8;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .band-tab .band-sub { font-size: 10px; color: #6b8f7a; }
+  .band-tab.active .band-income { color: #f5c842; }
+  .band-tab.active .band-sub { color: #c8960c; }
+
+  .content-area {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .band-panel { display: none; }
+  .band-panel.visible { display: block; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .stat-card {
+    background: #132d1f;
+    border: 1px solid #1e4530;
+    border-radius: 14px;
+    padding: 14px 12px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b8f7a;
+    margin-bottom: 6px;
+  }
+
+  .stat-value {
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #f5f0e8;
+  }
+
+  .stat-value.negative { color: #f87171; }
+  .stat-value.positive { color: #4ade80; }
+
+  .stat-footnote {
+    font-size: 9px;
+    color: #4a6b58;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .standout-banner {
+    background: #0f2d1a;
+    border: 1px solid #4ade8044;
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .standout-banner .banner-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+
+  .standout-banner p {
+    font-size: 13px;
+    color: #8aaa96;
+    line-height: 1.6;
+  }
+
+  .standout-banner p strong { color: #4ade80; }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c8960c;
+    margin-bottom: 14px;
+  }
+
+  .gap-card {
+    background: #132d1f;
+    border: 1px solid #1e4530;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .gap-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+
+  .gap-icon.red    { background: #3d1212; }
+  .gap-icon.amber  { background: #3d2a08; }
+  .gap-icon.green  { background: #0f2d1a; }
+
+  .gap-body { flex: 1; }
+
+  .gap-name {
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #f5f0e8;
+    margin-bottom: 4px;
+  }
+
+  .gap-metric {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    background: #1a3d2b;
+    border: 1px solid #2a5c3f;
+    color: #f5c842;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+
+  .gap-desc {
+    font-size: 13px;
+    color: #8aaa96;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .prevalence-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .prevalence-bar {
+    flex: 1;
+    height: 4px;
+    background: #1e4530;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .prevalence-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.6s ease;
+  }
+
+  .prevalence-fill.red   { background: #f87171; }
+  .prevalence-fill.amber { background: #f5c842; }
+  .prevalence-fill.green { background: #4ade80; }
+
+  .prevalence-text {
+    font-size: 11px;
+    color: #6b8f7a;
+    white-space: nowrap;
+  }
+
+  .insight-box {
+    background: #0f2518;
+    border: 1px solid #c8960c33;
+    border-radius: 16px;
+    padding: 22px 20px;
+    margin: 28px 0;
+  }
+
+  .insight-box p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #c8d8cc;
+    font-style: italic;
+  }
+
+  .insight-box p strong {
+    color: #f5f0e8;
+    font-style: normal;
+  }
+
+  .cta-section {
+    max-width: 680px;
+    margin: 40px auto 0;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .cta-wrap {
+    background: #132d1f;
+    border: 1px solid #1e4530;
+    border-radius: 20px;
+    padding: 36px 28px;
+  }
+
+  .cta-wrap h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #f5f0e8;
+    margin-bottom: 10px;
+  }
+
+  .cta-wrap p {
+    font-size: 14px;
+    color: #8aaa96;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #c8960c;
+    color: #0d2218;
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .cta-btn:hover { background: #f5c842; transform: translateY(-1px); }
+
+  .cta-footnote {
+    font-size: 12px;
+    color: #4a6b58;
+    margin-top: 14px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="label-pill">Pattern Report</div>
+    <h1>Your income went up.<br><span>Your financial clarity didn't.</span></h1>
+    <p>We mapped the most common money gaps across income levels using data from early Twigg users. Select your income range to see where the gaps typically show up.</p>
+  </div>
+
+  <div class="selector-wrap">
+    <div class="selector-label">What do you earn per year?</div>
+    <div class="band-tabs">
+      <div class="band-tab active" onclick="showBand('a')">
+        <span class="band-income">₹6–15L</span>
+        <span class="band-sub">per year</span>
+      </div>
+      <div class="band-tab" onclick="showBand('b')">
+        <span class="band-income">₹15–30L</span>
+        <span class="band-sub">per year</span>
+      </div>
+      <div class="band-tab" onclick="showBand('c')">
+        <span class="band-income">₹30–60L</span>
+        <span class="band-sub">per year</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-area">
+
+    <!-- BAND A: ₹6–15L -->
+    <div class="band-panel visible" id="panel-a">
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Avg monthly income</div>
+          <div class="stat-value">₹85k</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg monthly spend</div>
+          <div class="stat-value">₹1.4L</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg monthly surplus</div>
+          <div class="stat-value negative">−₹56k</div>
+          <div class="stat-footnote">3-month avg · includes one-time spends</div>
+        </div>
+      </div>
+
+      <div class="section-title">Most common gaps in this range</div>
+
+      <div class="gap-card">
+        <div class="gap-icon red">🛡️</div>
+        <div class="gap-body">
+          <div class="gap-name">Emergency Fund Gap</div>
+          <div class="gap-desc">The most universal gap at this income level. Most people have less than 30 days of liquid runway. The gap is invisible until income stops — then it becomes urgent overnight.</div>
+          <div class="prevalence-bar-wrap">
+            <div class="prevalence-bar"><div class="prevalence-fill red" style="width:90%"></div></div>
+            <div class="prevalence-text">Most common gap</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-icon amber">💸</div>
+        <div class="gap-body">
+          <div class="gap-name">Cashflow Stress</div>
+          <div class="gap-desc">Expenses consistently outpace income. Often a timing issue — large irregular spends in some months, variable income in others. Without visibility it feels like a permanent deficit.</div>
+          <div class="prevalence-bar-wrap">
+            <div class="prevalence-bar"><div class="prevalence-fill amber" style="width:82%"></div></div>
+            <div class="prevalence-text">Very common</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-icon green">📈</div>
+        <div class="gap-body">
+          <div class="gap-name">Investment Not Started</div>
+          <div class="gap-desc">The income exists. The SIP doesn't. Most often it's not laziness — it's not knowing whether safety basics are covered first. So investing keeps getting deferred to next month.</div>
+          <div class="prevalence-bar-wrap">
+            <div class="prevalence-bar"><div class="prevalence-fill green" style="width:70%"></div></div>
+            <div class="prevalence-text">Very common</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-icon red">📉</div>
+        <div class="gap-body">
+          <div class="gap-name">Income Volatility</div>
+          <div class="gap-desc">Irregular credits — freelance, variable pay, delayed salaries — make consistent planning nearly impossible. Month-to-month swings are wider than most people realise.</div>
+          <div class="prevalence-bar-wrap">
+            <div class="prevalence-bar"><div class="prevalence-fill red" style="width:58%"></div></div>
+            <div class="prevalence-text">Common</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <p>The pattern here isn't about spending too much. It's about spending happening <strong>before there's a system to see it.</strong> The cashflow deficit often closes significantly once there's visibility — not willpower.</p>
+      </div>
+    </div>
+
+    <!-- BAND B: ₹15–30L — positive surplus -->
+    <div class="band-panel" id="panel-b">
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Avg monthly income</div>
+          <div class="stat-value">₹2.0L</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg monthly spend</div>
+          <div class="stat-value">₹1.7L</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg monthly surplus</div>
+          <div class="stat-value positive">+₹31k</div>
+          <div class="stat-footnote">Only band with a positive average surplus</div>
+        </div>
+      </div>
+
+      <div class="standout-banner">
+        <div class="banner-icon">💡</div>
+        <p>This is the only income band with a <strong>positive average surplus</strong>. The gaps here aren't about cashflow — they're about what's happening to the money that's being left over each month.</p>
+      </div>
+
+      <div class="section-title">Most common gaps in this range</div>
+
+      <div class="gap-card">
+        <div class="gap-icon green">📈</div>
+        <div class="gap-body">
+          <div class="gap-name">Investment Underutilised</div>
+          <div class="gap-desc">The surplus exists but isn't being deployed. SIPs haven't been started, or the amount was set at a lower salary and never revised. The money sits idle while compounding time passes.</div>
+          <div class="prevalence-bar-wrap">
+            <div class="prevalence-bar"><div class="prevalence-fill green" style="width:85%"></div></div>
+            <div class="prevalence-text">Most common gap</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-icon red">🛡️</div>
+        <div class="gap-body">
+          <div class="gap-name">Emergency Fund Gap</div>
+          <div class="gap-desc">Even with a positive monthly surplus, most people here don't have 3 months of liquid savings. The surplus gets absorbed into lifestyle spending before it can accumulate into a buffer.</div>
+          <div class="prevalence-bar-wrap">
+            <div class="prevalence-bar"><div class="prevalence-fill red" style="width:70%"></div></div>
+            <div class="prevalence-text">Very common</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-icon amber">💸</div>
+        <div class="gap-body">
+          <div class="gap-name">Cashflow Stress</div>
+          <div class="gap-desc">Less common here than other bands — but still appears. Usually in months with large one-time spends: travel, gadgets, events. The average looks fine; specific months don't.</div>
+          <div class="prevalence-bar-wrap">
+            <div class="prevalence-bar"><div class="prevalence-fill amber" style="width:42%"></div></div>
+            <div class="prevalence-text">Moderately common</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-icon red">📉</div>
+        <div class="gap-body">
+          <div class="gap-name">Income Volatility</div>
+          <div class="gap-desc">Variable pay, bonuses, and project-based income make it hard to build consistent investment habits. Planning gets anchored to the best month, not the average one.</div>
+          <div class="prevalence-bar-wrap">
+            <div class="prevalence-bar"><div class="prevalence-fill red" style="width:42%"></div></div>
+            <div class="prevalence-text">Moderately common</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <p>The surprising truth at this income level: <strong>the money is there. The system isn't.</strong> A ₹31k average monthly surplus sounds like progress — until you realise most of it isn't going anywhere intentional.</p>
+      </div>
+    </div>
+
+    <!-- BAND C: ₹30–60L — overconcentrated equity -->
+    <div class="band-panel" id="panel-c">
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Avg monthly income</div>
+          <div class="stat-value">₹3.7L</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg monthly spend</div>
+          <div class="stat-value">₹4.3L</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg monthly surplus</div>
+          <div class="stat-value negative">−₹62k</div>
+          <div class="stat-footnote">3-month avg · includes one-time spends</div>
+        </div>
+      </div>
+
+      <div class="section-title">Most common gaps in this range</div>
+
+      <div class="gap-card">
+        <div class="gap-icon red">🛡️</div>
+        <div class="gap-body">
+          <div class="gap-name">Emergency Fund Gap</div>
+          <div class="gap-desc">A proper emergency buffer at this income level means ₹15–25L in liquid form. Most people here have investments — but not liquidity. In a crisis, they'd be selling assets, not drawing on savings.</div>
+          <div class="prevalence-bar-wrap">
+            <div class="prevalence-bar"><div class="prevalence-fill red" style="width:88%"></div></div>
+            <div class="prevalence-text">Most common gap</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-icon amber">💸</div>
+        <div class="gap-body">
+          <div class="gap-name">Cashflow Stress</div>
+          <div class="gap-desc">High income, high fixed commitments. Home loan EMIs, school fees, premium subscriptions — the fixed outflow has silently outpaced the inflow over time without anyone noticing.</div>
+          <div class="prevalence-bar-wrap">
+            <div class="prevalence-bar"><div class="prevalence-fill amber" style="width:76%"></div></div>
+            <div class="prevalence-text">Very common</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-icon green">📊</div>
+        <div class="gap-body">
+          <div class="gap-name">Portfolio Overconcentrated in Equity</div>
+          <div class="gap-metric">Median: 91.6% equity allocation</div>
+          <div class="gap-desc">The sharpest measurable gap at this income level. Portfolios are almost entirely in equity — strong in a bull run, but highly exposed when markets correct. No debt or gold buffer exists.</div>
+          <div class="prevalence-bar-wrap">
+            <div class="prevalence-bar"><div class="prevalence-fill green" style="width:62%"></div></div>
+            <div class="prevalence-text">Common</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-icon amber">📅</div>
+        <div class="gap-body">
+          <div class="gap-name">Month-End Balance Dip</div>
+          <div class="gap-desc">The week before salary is consistently tighter than it should be. Not a crisis on its own — but a signal that the margin between income and fixed commitments is thinner than comfortable.</div>
+          <div class="prevalence-bar-wrap">
+            <div class="prevalence-bar"><div class="prevalence-fill amber" style="width:48%"></div></div>
+            <div class="prevalence-text">Moderately common</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <p>The pattern at this income level: <strong>complexity is the problem, not discipline.</strong> Investments are running, EMIs are being paid, everything looks fine — until someone sees that 91% is in equity with no buffer if markets move.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cta-section">
+    <div class="cta-wrap">
+      <h2>These are patterns. Yours is specific.</h2>
+      <p>The gaps above show what's common. Twigg reads your actual accounts and tells you which ones apply to you — and what to do about them first.</p>
+      <a href="/download" class="cta-btn">
+        See what Twigg finds in your money →
+      </a>
+      <div class="cta-footnote">Read-only connection · Takes 2 minutes · Your money doesn't move</div>
+    </div>
+  </div>
+
+<script>
+  function showBand(band) {
+    document.querySelectorAll('.band-panel').forEach(p => p.classList.remove('visible'));
+    document.querySelectorAll('.band-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + band).classList.add('visible');
+    const idx = {'a': 0, 'b': 1, 'c': 2}[band];
+    document.querySelectorAll('.band-tab')[idx].classList.add('active');
+  }
+</script>
+
+</body>
+</html>

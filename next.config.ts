@@ -10,6 +10,18 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/gaps",
+        destination: "/gaps.html",
+      },
+      {
+        source: "/download",
+        destination: "/download.html",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

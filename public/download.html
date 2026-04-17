@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Twigg</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: #0d2218;
+    color: #f5f0e8;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .wrap {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+  }
+  h1 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 4vw, 30px);
+    margin-bottom: 12px;
+  }
+  h1 span { color: #c8960c; }
+  p {
+    color: #f5f0e8cc;
+    max-width: 420px;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 28px;
+  }
+  .spinner {
+    width: 28px;
+    height: 28px;
+    border: 2px solid #f5f0e833;
+    border-top-color: #c8960c;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin-bottom: 20px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .fallback-links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .fallback-links a {
+    color: #c8960c;
+    text-decoration: none;
+    border: 1px solid #c8960c44;
+    padding: 10px 18px;
+    border-radius: 999px;
+    transition: background 0.2s;
+  }
+  .fallback-links a:hover { background: #c8960c11; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="spinner" aria-hidden="true"></div>
+    <h1>Taking you to <span>Twigg</span>…</h1>
+    <p>Redirecting you to the right app store for your device.</p>
+    <div class="fallback-links">
+      <a href="https://apps.apple.com/in/app/twigg-one/id6758598241">Download on the App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=com.aadyantx.twigg">Get it on Google Play</a>
+    </div>
+  </div>
+
+<script>
+  (function redirect() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      window.location.href = "https://apps.apple.com/in/app/twigg-one/id6758598241";
+    } else if (/android/i.test(userAgent)) {
+      window.location.href = "https://play.google.com/store/apps/details?id=com.aadyantx.twigg";
+    } else {
+      window.location.href = "https://www.twigg.one";
+    }
+  })();
+</script>
+</body>
+</html>
