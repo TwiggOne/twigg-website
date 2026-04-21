@@ -8,7 +8,7 @@ const HeroSectionV2: React.FC = () => {
     "Salaried Professionals",
     "Early Investors",
     "First-gen Wealth Builders",
-    "High-income,Low-clarity",
+    "High-income, Low-clarity",
   ];
 
   return (
@@ -24,9 +24,9 @@ const HeroSectionV2: React.FC = () => {
             <span className="text-[#FDF9F0] block">Made simple!</span>
           </h2>
 
-          <p className="text-[#FDF9F0]/80 font-normal text-[16px] sm:text-[16px] lg:text-[20px] mt-[32px] md:mt-[20px] leading-[120%] mb-[32px] md:mb-[24px] font-switzer max-w-[473px]">
-            Trusted guidance for every money move you make your accounts,
-            investments, loans, and insurance, in one clear space.
+          <p className="text-[#FDF9F0]/80 font-normal text-[16px] sm:text-[16px] lg:text-[20px] mt-[32px] md:mt-[20px] leading-[1.32] lg:leading-[1.2] mb-[32px] md:mb-[24px] font-switzer max-w-[473px] text-pretty">
+            Trusted guidance for every money move you make, with your accounts,
+            investments, loans, and insurance in one clear space.
           </p>
 
           {/* LABELS */}
