@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { TargetAndTransition } from "framer-motion";
 import { motion } from "framer-motion";
 const MotionImage = motion(Image);
+
 const images = [
   {
     src: "/hero/mobile_1.png",
@@ -15,14 +16,14 @@ const images = [
         width: 218,
         height: 149,
         top: 186,
-        left: -100,
+        left: -30,
       },
       {
         src: "/hero/mobile_1_2.png",
         width: 230,
         height: 145,
-        top: 400,
-        left: 150,
+        top: 380,
+        left: 40,
       },
     ],
   },
@@ -57,81 +58,145 @@ const images = [
   {
     src: "/hero/mobile_3.png",
     alt: "mobile_3_hero",
-    overlays: [
-      {
-        src: "/hero/mobile_3_1.png",
-        width: 313,
-        height: 96,
+    overlays: [  {
+        src: "/hero/mobile_3_3.png",
+        width: 130,
+        height: 54,
         top: 200,
-        left: -100,
-      },
+        left: 200,
+      }, 
       {
         src: "/hero/mobile_3_2.png",
+        width: 257,
+        height: 144,
+        top: 370,
+        left: 160,
+      },
+      {
+        src: "/hero/mobile_3_1.png",
         width: 251,
         height: 53,
-        top: 350,
-        left: 120,
+        top: 280,
+        left: -120,
       },
+    
+    ],
+  },
+    {
+    src: "/hero/mobile_4.png",
+    alt: "mobile_4_hero",
+    overlays: [  {
+        src: "/hero/mobile_4_1.png",
+        width: 90,
+        height: 91,
+        top: 130,
+        left: 0,
+      }, 
+      {
+        src: "/hero/mobile_4_2.png",
+        width: 125,
+        height: 100,
+        top: 250,
+        left: 220,
+      },
+      {
+        src: "/hero/mobile_4_3.png",
+        width: 277,
+        height: 52,
+        top: 360,
+        left: -30,
+      },
+    
+    ],
+  },
+    {
+    src: "/hero/mobile_5.png",
+    alt: "mobile_5_hero",
+    overlays: [  {
+        src: "/hero/mobile_5_1.png",
+        width: 112,
+        height: 43,
+        top: 150,
+        left: -50,
+      }, 
+      {
+        src: "/hero/mobile_5_2.png",
+        width: 125,
+        height: 57,
+        top: 300,
+        left: 210,
+      },
+      {
+        src: "/hero/mobile_5_3.png",
+        width: 144,
+        height: 47,
+        top: 485,
+        left: -40,
+      },
+    
     ],
   },
 ];
 
-const POSITION_STYLES: Record<
-  number,
+
+const SLOT_STYLES: Record<
+  "left" | "center" | "right",
   { zIndex: number; animate: TargetAndTransition }
 > = {
-  0: {
-    // LEFT
+  left: {
     zIndex: 0,
     animate: { x: -215, scale: 0.8, opacity: 0.3 },
   },
-  1: {
-    // CENTER
+  center: {
     zIndex: 10,
     animate: { x: 0, scale: 1, opacity: 1 },
   },
-  2: {
-    // RIGHT
+  right: {
     zIndex: 0,
     animate: { x: 215, scale: 0.8, opacity: 0.3 },
   },
 };
 
-const HeroRightContent = () => {
-  const [positions, setPositions] = useState([0, 2, 1]);
-  const [showOverlays, setShowOverlays] = useState<number | null>(null);
+const TOTAL = images.length;
 
+const HeroRightContent = () => {
+  // currentIndex = index of the CENTER image
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showOverlays, setShowOverlays] = useState(false);
+
+  // Trigger overlays shortly after mount for the initial center image
+  useEffect(() => {
+    const timer = setTimeout(() => setShowOverlays(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Auto-advance every 6s
   useEffect(() => {
     const interval = setInterval(() => {
-      setPositions((prev) => {
-        const next = prev.map((pos) => (pos + 2) % 3);
-
-        // Trigger overlay display after 0.5s for center image
-        const centerIdx = next.findIndex((pos) => pos === 1);
-        setShowOverlays(null); // reset first
-        setTimeout(() => setShowOverlays(centerIdx), 500);
-
-        return next;
-      });
+      setShowOverlays(false); // hide overlays during transition
+      setCurrentIndex((prev) => (prev + 1) % TOTAL);
+      setTimeout(() => setShowOverlays(true), 500); // show overlays for new center
     }, 6000);
     return () => clearInterval(interval);
   }, []);
 
-  // Initial overlay for first center
-  useEffect(() => {
-    const initialCenter = positions.findIndex((pos) => pos === 1);
-    const timer = setTimeout(() => setShowOverlays(initialCenter), 500);
-    return () => clearTimeout(timer);
-  }, []);
+  const leftIndex = (currentIndex - 1 + TOTAL) % TOTAL;
+  const rightIndex = (currentIndex + 1) % TOTAL;
 
-  // Find which image is currently CENTER
-  const centerIndex = positions.findIndex((pos) => pos === 1);
+  // Only render the 3 visible images: left, center, right
+  const visibleSlots: { index: number; slot: "left" | "center" | "right" }[] =
+    [
+      { index: leftIndex, slot: "left" },
+      { index: currentIndex, slot: "center" },
+      { index: rightIndex, slot: "right" },
+    ];
 
   return (
     <div className="relative flex justify-center items-center h-[300px] md:h-[575px] w-full max-sm:scale-[0.55] max-md:pb-20">
-      {images.map((img, i) => {
-        const slot = positions[i];
-        const { zIndex, animate } = POSITION_STYLES[slot];
+      {visibleSlots.map(({ index, slot }) => {
+        const img = images[index];
+        const { zIndex, animate } = SLOT_STYLES[slot];
+        const isCenter = slot === "center";
 
         return (
           <motion.div
@@ -147,9 +212,9 @@ const HeroRightContent = () => {
           >
             <Image src={img.src} alt={img.alt} width={280} height={575} />
 
-            {/* Render overlays only if this is the active center image */}
-            {slot === 1 &&
-              showOverlays === i &&
+            {/* Render overlays only for the center image when showOverlays is true */}
+            {isCenter &&
+              showOverlays &&
               img.overlays.map((overlay, idx) => (
                 <MotionImage
                   key={idx}
