@@ -4,7 +4,7 @@ import Script from "next/script";
 
 const GTM_ID = "GTM-MCR2VW3Q"; // replace
 
-export default function GTM() {
+export  function GTM() {
   return (
     <>
       {/* GTM Script */}
@@ -34,6 +34,31 @@ export default function GTM() {
           style={{ display: "none", visibility: "hidden" }}
         />
       </noscript>
+    </>
+  );
+}
+
+
+const GA_ID = "G-RFRQLG0Z52";
+
+export  function GA() {
+  return (
+    <>
+      {/* Load gtag */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        strategy="afterInteractive"
+      />
+
+      {/* Init GA */}
+      <Script id="ga-script" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}');
+        `}
+      </Script>
     </>
   );
 }

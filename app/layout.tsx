@@ -4,7 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import { Toaster } from "@/components/ui/sonner";
-import GTM from "@/components/GTM";
+import { GA, GTM } from "@/components/GTM";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,8 +34,6 @@ export const metadata: Metadata = {
   },
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -46,13 +44,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${bricolage.className} antialiased`}
       >
-         <GTM />
-          <div className=" flex flex-col bg-[#152D23] overflow-hidden">
-            <Header />
-            {children}
+        <GA />
+        <GTM />
+        <div className=" flex flex-col bg-[#152D23] overflow-hidden">
+          <Header />
+          {children}
 
-            <Footer />
-          </div>
+          <Footer />
+        </div>
         <Toaster />
       </body>
     </html>
