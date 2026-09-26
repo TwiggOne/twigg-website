@@ -419,7 +419,7 @@ const TermsConditionPage = () => {
               contact:
             </p>
             <div className="flex flex-col gap-[4px] text-[14px] sm:text-[15px] lg:text-[16px] font-switzer text-[#152D23] leading-[150%] pl-4 border-l-2 border-[#BC9313]/40 my-1">
-              <p className="font-semibold text-[#152D23]">Utkarsh [Surname]</p>
+              <p className="font-semibold text-[#152D23]">Utkarsh Vijay</p>
               <p>Grievance Officer, Aadyantax Technologies Pvt. Ltd.</p>
               <p>
                 Email:{" "}
@@ -430,7 +430,10 @@ const TermsConditionPage = () => {
                   contact@twigg.one
                 </a>
               </p>
-              <p>Address: [Registered office address], New Delhi, India</p>
+              <p>
+                Address: B1101, Cedar Luxuria, Muhana Mandi Road, Jaipur -
+                302020
+              </p>
             </div>
             <p className="text-[14px] sm:text-[15px] lg:text-[16px] font-switzer text-[#152D23] leading-[150%]">
               We will acknowledge your grievance within 48 hours and aim to
@@ -456,7 +459,6 @@ const TermsConditionPage = () => {
                   contact@twigg.one
                 </a>
               </p>
-              <p>New Delhi, India</p>
             </div>
           </section>
         </div>
