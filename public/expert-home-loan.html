@@ -11,6 +11,13 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap">
 <!-- Google Tag Manager (same container as twigg.one) -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MCR2VW3Q');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRQLG0Z52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RFRQLG0Z52');
+</script>
 <!-- Optional: Meta Pixel base code (PageView) can go here, or be added via GTM. -->
 <style>
   :root{--bg:#0d2218;--ink:#f5f0e8;--cream:#132d1f;--muted:#b9c4bc;--gold:#f5c842;--wa:#1faa59;--wa-d:#178a48}
@@ -71,6 +78,7 @@
   document.getElementById('wa-cta').addEventListener('click', function () {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({event: 'whatsapp_cta_click', topic: 'home_loan'});
+    gtag('event', 'whatsapp_cta_click', {topic: 'home_loan', transport_type: 'beacon'});
     if (typeof fbq === 'function') fbq('track', 'Contact', {content_name: 'home_loan'});
   });
 </script>
