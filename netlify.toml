@@ -1,0 +1,12 @@
+# Netlify-level rewrites for the static ad landing pages in public/.
+# next.config.ts rewrites() did not serve these on Netlify (404), while the
+# direct .html URLs work. status = 200 keeps the clean URL in the address bar.
+[[redirects]]
+  from = "/expert/insurance"
+  to = "/expert-insurance.html"
+  status = 200
+
+[[redirects]]
+  from = "/expert/home-loan"
+  to = "/expert-home-loan.html"
+  status = 200
