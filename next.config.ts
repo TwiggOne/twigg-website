@@ -20,6 +20,14 @@ const nextConfig: NextConfig = {
         source: "/download",
         destination: "/download.html",
       },
+      {
+        source: "/expert/insurance",
+        destination: "/expert-insurance.html",
+      },
+      {
+        source: "/expert/home-loan",
+        destination: "/expert-home-loan.html",
+      },
     ];
   },
 };
