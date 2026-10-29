@@ -39,7 +39,7 @@ export  function GTM() {
 }
 
 
-const GA_ID = "G-RFRQLG0Z52";
+const GA_ID = "G-DQ3B0BHHS1";
 
 export  function GA() {
   return (
